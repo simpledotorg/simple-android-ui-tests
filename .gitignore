@@ -1,0 +1,9 @@
+.idea
+.gradle
+build
+out
+optimus.log
+dump.rdb
+.DS_Store
+
+
