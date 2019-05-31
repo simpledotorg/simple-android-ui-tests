@@ -1,10 +1,8 @@
 package pages;
 
-import cucumber.api.java.en.And;
 import io.appium.java_client.AppiumDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.FindBys;
 import org.openqa.selenium.support.PageFactory;
 import org.testng.Assert;
 
@@ -38,8 +36,11 @@ public class PatientTabPage extends BasePage {
         searchSection.searchForUnRegisteredPatient();
     }
 
-    @And("^(\\w+) perform search$")
-    public void userPerformSearch(String User) {
-        searchSection.SearchPatient();
+    public void searchForRegisteredPatient(String patientName) {
+        searchSection.searchForRegisteredPatientWithBpInfo(patientName);
+    }
+
+    public void userSearchedForRegisteredPatientWithoutBPInfo(String patientName) {
+        searchSection.searchForRegisteredPatientWithoutBPInfo(patientName);
     }
 }

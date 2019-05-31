@@ -4,15 +4,20 @@ import CreateUser.UserClient;
 import CreateUser.UserRequestBody;
 import CreateUser.UserRequestBodyBuilder;
 import CreateUser.UserResponse;
+import com.embibe.optimus.utils.ScenarioContext;
+import createBps.BpClient;
+import createBps.BpResponse;
+import createPatients.PatientClient;
+import createPatients.PatientResponse;
 import cucumber.api.java.en.And;
 import cucumber.api.java.en.Given;
 import pages.RegisterUserPage;
 import utils.AdbUtils;
 import utils.RandomValue;
+import utils.ScenarioContextKeys;
 
 public class RegisterUserSteps extends BaseSteps {
 
-    UserResponse userResponse;
 
     @And("^(\\w+) taps on GetStarted button$")
     public void userClicksOnGetStartedButton(String User) {
@@ -33,7 +38,7 @@ public class RegisterUserSteps extends BaseSteps {
 
     @And("^(\\w+) enters security pin number$")
     public void userEnterSecurityPinNumber(String User) {
-        int pin=RandomValue.getRandomPinValue();
+        int pin = RandomValue.getRandomPinValue();
         new RegisterUserPage(getDriverInstanceFor(User)).enterPin(Integer.toString(pin));
     }
 
@@ -44,7 +49,7 @@ public class RegisterUserSteps extends BaseSteps {
 
     @And("^(\\w+) enters registered phone number$")
     public void userEntersRegisteredPhoneNumber(String User) {
-        String phoneNumber = userResponse.getUser().getPhone_number();
+        String phoneNumber = ScenarioContext.getData("User", ScenarioContextKeys.USER_PHONENUMBER);
         new RegisterUserPage(getDriverInstanceFor(User)).enterRegistrationPhoneNumber(phoneNumber);
     }
 
@@ -76,6 +81,36 @@ public class RegisterUserSteps extends BaseSteps {
     @Given("^(\\w+) Registers New User through API$")
     public void userRegistersNewUser(String User) {
         UserRequestBody userRequestBody = new UserRequestBodyBuilder().build();
-        userResponse = new UserClient().registerNewUser(userRequestBody);
+        UserResponse userResponse = new UserClient().registerNewUser(userRequestBody);
+
+        ScenarioContext.putData("User", ScenarioContextKeys.USER_ID, userResponse.getUser().getId());
+        ScenarioContext.putData("User", ScenarioContextKeys.USER_PHONENUMBER, userResponse.getUser().getPhone_number());
+        ScenarioContext.putData("User", ScenarioContextKeys.ACCESS_TOKEN, userResponse.getAccess_token());
+    }
+
+    @And("^(\\w+) Registers New Patient through API$")
+    public void userRegistersNewPatientThroughAPI(String User) {
+        String userId = ScenarioContext.getData("User", ScenarioContextKeys.USER_ID);
+        String facilityId = "2f086ff7-83dc-4758-bd31-9d9109df9a09";
+
+        String patientId = RandomValue.getRandomPatientId();
+        ScenarioContext.putData("User",ScenarioContextKeys.PATIENT_ID,patientId);
+        String patientName=RandomValue.getRandomPatientName();
+        ScenarioContext.putData("User",ScenarioContextKeys.PATIENT_NAME,patientName);
+
+        String token = ScenarioContext.getData("User", ScenarioContextKeys.ACCESS_TOKEN);
+        PatientResponse response =  new PatientClient().createPatient(patientId,patientName, facilityId, userId, token);
+    }
+
+    @And("^(\\w+) Registers New Bp record through API$")
+    public void userRegistersNewBpRecordThroughAPI(String User) {
+
+        String bpId=RandomValue.getRandomBpId();
+        String patientId=ScenarioContext.getData("User",ScenarioContextKeys.PATIENT_ID);
+        String facilityId="2f086ff7-83dc-4758-bd31-9d9109df9a09";
+        String userId = ScenarioContext.getData("User", ScenarioContextKeys.USER_ID);
+        String token = ScenarioContext.getData("User", ScenarioContextKeys.ACCESS_TOKEN);
+
+       BpResponse response=new BpClient().createNewBp(bpId,patientId,facilityId,userId,token);
     }
 }

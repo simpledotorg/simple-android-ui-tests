@@ -7,6 +7,7 @@ import org.openqa.selenium.support.FindBys;
 import org.openqa.selenium.support.PageFactory;
 import org.testng.Assert;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class SearchSection extends BasePage {
@@ -24,8 +25,8 @@ public class SearchSection extends BasePage {
     @FindBy(id = "patientsearch_search")
     private WebElement NextButton;
 
-    @FindBy(id = "patientsearch_header")
-    private WebElement HasVisitedLabel;
+    @FindBys({@FindBy(id = "patientsearch_header")})
+    private List<WebElement> searchHeaderList;
 
     @FindBy(id = "patients_search_patients")
     private WebElement searchPatientTextBox;
@@ -43,24 +44,28 @@ public class SearchSection extends BasePage {
     @FindBy(id = "searchresults_empty_state_text")
     private WebElement resultInfoForInvalidSearch;
 
-
-    public void SearchPatient() {
+    private void searchPatient(String patientName) {
         searchPatientTextBox.click();
-        searchPatientName.sendKeys("Testuser 1");
+        searchPatientName.sendKeys(patientName);
         NextButton.click();
-        Assert.assertTrue(HasVisitedLabel.getText().contains("Has visited"));
-        Assert.assertTrue(searchResult.size() > 0);
+    }
 
+    public void searchForRegisteredPatientWithBpInfo(String patientName) {
+        searchPatient(patientName);
         Assert.assertTrue(registerAsNewPatientButton.isDisplayed());
     }
 
     //invalid search
     public void searchForUnRegisteredPatient() {
-        searchPatientTextBox.click();
-        searchPatientName.sendKeys("Testuser 1");
-        NextButton.click();
+       searchPatient("unRegisteredPatient");
         Assert.assertEquals(resultInfoForInvalidSearch.getText(), "No patients match");
         Assert.assertEquals(registerPatientLabel.getText(), "Patient is not registered");
         Assert.assertTrue(registerAsNewPatientButton.isDisplayed());
     }
+
+    public void searchForRegisteredPatientWithoutBPInfo(String patientName) {
+        searchPatient(patientName);
+        Assert.assertTrue(registerAsNewPatientButton.isDisplayed());
+    }
+
 }
