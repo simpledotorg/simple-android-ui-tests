@@ -57,7 +57,7 @@ public class SearchSection extends BasePage {
 
     //invalid search
     public void searchForUnRegisteredPatient() {
-       searchPatient("unRegisteredPatient");
+        searchPatient("unRegisteredPatient");
         Assert.assertEquals(resultInfoForInvalidSearch.getText(), "No patients match");
         Assert.assertEquals(registerPatientLabel.getText(), "Patient is not registered");
         Assert.assertTrue(registerAsNewPatientButton.isDisplayed());
@@ -68,4 +68,15 @@ public class SearchSection extends BasePage {
         Assert.assertTrue(registerAsNewPatientButton.isDisplayed());
     }
 
+    //This method is used when user search for patient name
+    // and some related search is present
+    public void searchForPatientName(String patientName) {
+        searchPatient(patientName);
+//        Assert.assertEquals(registerPatientLabel.getText(), "Can’t find the patient in this list?");
+        Assert.assertTrue(registerAsNewPatientButton.isDisplayed());
+    }
+
+    public void tapsOnRegisteredPatientTab() {
+        registerAsNewPatientButton.click();
+    }
 }

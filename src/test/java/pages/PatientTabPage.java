@@ -3,8 +3,11 @@ package pages;
 import io.appium.java_client.AppiumDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.FindBys;
 import org.openqa.selenium.support.PageFactory;
 import org.testng.Assert;
+
+import java.util.List;
 
 public class PatientTabPage extends BasePage {
     private AppiumDriver driver;
@@ -19,6 +22,8 @@ public class PatientTabPage extends BasePage {
     @FindBy(id="patients_dismiss_user_approved_status")
     private WebElement GotITButton;
 
+    @FindBys({@FindBy(id="recentpatient_item_title")})
+    private List<WebElement> recentPatientNameList;
 
     public PatientTabPage(AppiumDriver driver) {
         super(driver);
@@ -43,4 +48,29 @@ public class PatientTabPage extends BasePage {
     public void userSearchedForRegisteredPatientWithoutBPInfo(String patientName) {
         searchSection.searchForRegisteredPatientWithoutBPInfo(patientName);
     }
+
+    public void searchForPatientName(String patientName) {
+        searchSection.searchForPatientName(patientName);
+    }
+
+    public void tapsOnRegisteredPatientTab() {
+        searchSection.tapsOnRegisteredPatientTab();
+    }
+
+    public void verifiesRecentPatientList(String patientName) {
+
+        String status="false";
+        for (WebElement ele:recentPatientNameList) {
+            String [] str=ele.getText().split(",");
+            String expectedValue=str[0];
+            System.out.println(ele.getText()+"expectedValue");
+
+            if(expectedValue.contains(patientName)){
+                status="true";
+            }
+        }
+        Assert.assertEquals(status,"true","patient Name is  not present in recent patient list");
+    }
+
+
 }

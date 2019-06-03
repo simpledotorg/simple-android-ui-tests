@@ -12,7 +12,7 @@ Feature: Search for Patient information
     And User taps on Got It Button
     Then User searches for unregistered Patient
 
-  @search1
+  @search
   Scenario: Search for patient without BP info
     Given User Registers New User through API
     And User Registers New Patient through API
@@ -25,7 +25,7 @@ Feature: Search for Patient information
     And User taps on Got It Button
     Then User searched for Registered Patient without BP info
 
-  @search3
+  @search2
   Scenario: Search for patient with BP info
     Given User Registers New User through API
     And User Registers New Patient through API

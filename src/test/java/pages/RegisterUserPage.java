@@ -14,10 +14,8 @@ import java.util.List;
 public class RegisterUserPage extends BasePage {
     private AppiumDriver driver;
 
-    @FindBys({
-            @FindBy(xpath = "//android.widget.ImageView")
-    })
-    private List<WebElement> getStartedButton;
+    @FindBy(id = "onboarding_get_started")
+    private WebElement getStartedButton;
 
     @FindBy(id = "registrationphone_phone")
     private WebElement registrationPhoneNumber;
@@ -49,18 +47,17 @@ public class RegisterUserPage extends BasePage {
     @FindBy(className = "facility_item_name")
     private WebElement searchResult;
 
-    @FindBy(id="pinentry_pin")
+    @FindBy(id = "pinentry_pin")
     private WebElement registeredUserPin;
 
-    @FindBy(id="patients_enter_code")
+    @FindBy(id = "patients_enter_code")
     private WebElement enterCodeLink;
 
-    @FindBy(id="enterotp_otp")
+    @FindBy(id = "enterotp_otp")
     private WebElement Otp;
 
-    @FindBy(id="android:id/button1")
+    @FindBy(id = "android:id/button1")
     private WebElement gotItButton;
-
 
 
     public RegisterUserPage(AppiumDriver driver) {
@@ -73,13 +70,13 @@ public class RegisterUserPage extends BasePage {
         ConfirmPin.sendKeys(pin);
     }
 
-    public void enterPin(String pin ) {
+    public void enterPin(String pin) {
         registrationPin.sendKeys(pin);
         reEnterPin(pin);
     }
 
     public void clicksOnGetStartedButton() {
-        getStartedButton.get(1).click();
+        getStartedButton.click();
     }
 
     public void enterRegistrationPhoneNumber(String phoneNumber) {
@@ -87,7 +84,7 @@ public class RegisterUserPage extends BasePage {
     }
 
     public void enterRegistrationName(String name) {
-        registrationNameTextBox.sendKeys(name+"\n");
+        registrationNameTextBox.sendKeys(name + "\n");
     }
 
     private void skipLocationAccess() {
@@ -100,19 +97,19 @@ public class RegisterUserPage extends BasePage {
 //        searchResult.click();
     }
 
-    public void enterPinForRegisteredUser(String pin){
+    public void enterPinForRegisteredUser(String pin) {
         registeredUserPin.sendKeys(pin);
     }
 
-    public void clickOnEnterCodeLink(){
+    public void clickOnEnterCodeLink() {
         enterCodeLink.click();
     }
 
-    public void enterOtp(){
-        Otp.sendKeys("000000"+"/n");
+    public void enterOtp() {
+        Otp.sendKeys("000000" + "\n");
     }
 
-    public void clicksOnGotItButton(){
+    public void clicksOnGotItButton() {
         gotItButton.click();
     }
 }

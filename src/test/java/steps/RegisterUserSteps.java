@@ -5,8 +5,10 @@ import CreateUser.UserRequestBody;
 import CreateUser.UserRequestBodyBuilder;
 import CreateUser.UserResponse;
 import com.embibe.optimus.utils.ScenarioContext;
-import createBps.BpClient;
-import createBps.BpResponse;
+import createBp.BpClient;
+import createBp.BpRequestBody;
+import createBp.BpRequestBuilder;
+import createBp.BpResponse;
 import createPatients.PatientClient;
 import createPatients.PatientResponse;
 import cucumber.api.java.en.And;
@@ -94,23 +96,29 @@ public class RegisterUserSteps extends BaseSteps {
         String facilityId = "2f086ff7-83dc-4758-bd31-9d9109df9a09";
 
         String patientId = RandomValue.getRandomPatientId();
-        ScenarioContext.putData("User",ScenarioContextKeys.PATIENT_ID,patientId);
-        String patientName=RandomValue.getRandomPatientName();
-        ScenarioContext.putData("User",ScenarioContextKeys.PATIENT_NAME,patientName);
+        ScenarioContext.putData("User", ScenarioContextKeys.PATIENT_ID, patientId);
+        String patientName = RandomValue.getRandomPatientName();
+        ScenarioContext.putData("User", ScenarioContextKeys.PATIENT_NAME, patientName);
 
         String token = ScenarioContext.getData("User", ScenarioContextKeys.ACCESS_TOKEN);
-        PatientResponse response =  new PatientClient().createPatient(patientId,patientName, facilityId, userId, token);
+        PatientResponse response = new PatientClient().createPatient(patientId, patientName, facilityId, userId, token);
     }
 
     @And("^(\\w+) Registers New Bp record through API$")
     public void userRegistersNewBpRecordThroughAPI(String User) {
 
-        String bpId=RandomValue.getRandomBpId();
-        String patientId=ScenarioContext.getData("User",ScenarioContextKeys.PATIENT_ID);
-        String facilityId="2f086ff7-83dc-4758-bd31-9d9109df9a09";
+        String bpId = RandomValue.getRandomBpId();
+        String patientId = ScenarioContext.getData("User", ScenarioContextKeys.PATIENT_ID);
+        String facilityId = "2f086ff7-83dc-4758-bd31-9d9109df9a09";
         String userId = ScenarioContext.getData("User", ScenarioContextKeys.USER_ID);
         String token = ScenarioContext.getData("User", ScenarioContextKeys.ACCESS_TOKEN);
 
-       BpResponse response=new BpClient().createNewBp(bpId,patientId,facilityId,userId,token);
+        BpRequestBody builder = new BpRequestBuilder()
+                                .withUserId(userId)
+                                .withBpId(bpId)
+                                .withPatientId(patientId)
+                                .withFacilityId(facilityId).build();
+        BpResponse response = new BpClient().createNewBp(builder, facilityId, userId, token);
+
     }
 }

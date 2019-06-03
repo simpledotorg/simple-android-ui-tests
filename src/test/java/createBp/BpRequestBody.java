@@ -1,4 +1,4 @@
-package createBps;
+package createBp;
 
 import lombok.Getter;
 import lombok.Setter;

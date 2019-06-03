@@ -1,6 +1,6 @@
 package utils;
 
-import com.embibe.optimus.utils.ScenarioContext;
+import com.github.javafaker.Faker;
 import com.mifmif.common.regex.Generex;
 
 import java.util.Calendar;
@@ -8,16 +8,16 @@ import java.util.Random;
 
 public class RandomValue {
 
-    public static String getRandomId(){
+    public static String getRandomUserId(){
         Generex generex= new Generex("[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}");
         String id = generex.random();
         return id;
     }
 
     public static String getRandomUserName(){
-        int num = new Random().nextInt(100);
-        String name="QaTestUser "+num;
-        return name;
+        Faker faker = new Faker();
+        String name = faker.name().fullName();
+        return name.toUpperCase();
     }
 
     public static String getRandomPhoneNumber(){
@@ -49,9 +49,8 @@ public class RandomValue {
     }
 
     public static String getRandomPatientName(){
-        int num = new Random().nextInt(100);
-        String name="QaTestPatient"+num;
-        ScenarioContext.putData("User",ScenarioContextKeys.PATIENT_NAME,name);
-        return name;
+        Faker faker = new Faker();
+        String name = faker.name().fullName();
+        return name.toUpperCase();
     }
 }

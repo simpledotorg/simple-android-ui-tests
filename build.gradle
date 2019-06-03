@@ -75,6 +75,7 @@ dependencies {
     compile files('libs/optimus-commons.jar')
     compile group: 'com.github.mifmif', name: 'generex', version: '1.0.1'
     compile group: 'com.google.code.gson', name: 'gson', version: '2.3.1'
+    implementation 'com.github.javafaker:javafaker:0.18'
 }
 
 
