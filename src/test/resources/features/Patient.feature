@@ -23,3 +23,37 @@ Feature: Create Patient
     And User taps on appointment
     Then User verifies recent patients list
 
+  @createPatient
+  Scenario: Create New Patient Without phone number
+    Then User searches for Patient name
+    And User taps on registered patient
+    And User enters new patient info Without phone number
+    And User clicks on next Button at diagnosis screen
+    And User enters new Bp Info
+    And User taps on next ArrowButton
+    And User enters date
+    And User taps on save Button
+    And User taps on appointment
+    Then User verifies recent patients list
+
+  @createPatient
+  Scenario: Create New Patient Without blood Pressure
+    Then User searches for Patient name
+    And User taps on registered patient
+    And User enters new patient info
+    And User clicks on next Button at diagnosis screen
+    And User navigates back
+    And User taps on save Button
+    Then User verifies recent patients list for patient without bp info
+    Then User searched for Registered Patient without BP info
+
+  @createPatient
+  Scenario: Create New Patient Without blood Pressure and Phone number
+    Then User searches for Patient name
+    And User taps on registered patient
+    And User enters new patient info Without phone number
+    And User clicks on next Button at diagnosis screen
+    And User navigates back
+    And User taps on save Button
+    Then User verifies recent patients list for patient without bp info
+    Then User searched for Registered Patient without BP info

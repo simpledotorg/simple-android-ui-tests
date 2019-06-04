@@ -48,4 +48,8 @@ public class PatientDetailPage extends BasePage {
     public void clickOnAppointmentDoneButton() {
         scheduleAppointmentDoneButton.click();
     }
+
+    public void userNavigatesBack() {
+        driver.navigate().back();
+    }
 }

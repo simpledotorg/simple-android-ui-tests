@@ -44,7 +44,7 @@ public class RegisterUserPage extends BasePage {
     @FindBy(id = "registrationfacilities_search")
     private WebElement searchBar;
 
-    @FindBy(className = "facility_item_name")
+    @FindBy(xpath = "//androidx.recyclerview.widget.RecyclerView/android.widget.FrameLayout")
     private WebElement searchResult;
 
     @FindBy(id = "pinentry_pin")
@@ -84,7 +84,7 @@ public class RegisterUserPage extends BasePage {
     }
 
     public void enterRegistrationName(String name) {
-        registrationNameTextBox.sendKeys(name + "\n");
+        registrationNameTextBox.sendKeys(name+"\n");
     }
 
     private void skipLocationAccess() {
@@ -94,7 +94,7 @@ public class RegisterUserPage extends BasePage {
     public void searchFacility() {
         skipLocationAccess();
         searchBar.sendKeys("CHC Bagta");
-//        searchResult.click();
+        searchResult.click();
     }
 
     public void enterPinForRegisteredUser(String pin) {
@@ -110,6 +110,7 @@ public class RegisterUserPage extends BasePage {
     }
 
     public void clicksOnGotItButton() {
+        waitForElementToBeVisible(gotItButton);
         gotItButton.click();
     }
 }

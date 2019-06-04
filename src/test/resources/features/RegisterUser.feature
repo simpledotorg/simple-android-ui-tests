@@ -1,6 +1,6 @@
 Feature: Register Nurse
 
-  @register
+  @register  @smoke
   Scenario: Register New Nurse/User
     Given User Launches app
     And User taps on GetStarted button

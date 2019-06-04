@@ -7,7 +7,6 @@ import org.openqa.selenium.support.FindBys;
 import org.openqa.selenium.support.PageFactory;
 import org.testng.Assert;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class SearchSection extends BasePage {
@@ -25,8 +24,6 @@ public class SearchSection extends BasePage {
     @FindBy(id = "patientsearch_search")
     private WebElement NextButton;
 
-    @FindBys({@FindBy(id = "patientsearch_header")})
-    private List<WebElement> searchHeaderList;
 
     @FindBy(id = "patients_search_patients")
     private WebElement searchPatientTextBox;
@@ -34,15 +31,17 @@ public class SearchSection extends BasePage {
     @FindBy(id = "searchresults_new_patient")
     private WebElement registerAsNewPatientButton;
 
-    @FindBys
-            ({@FindBy(id = "patientsearchresult_item_title")})
-    private List<WebElement> searchResult;
-
     @FindBy(id = "searchresults_new_patient_rationale")
     private WebElement registerPatientLabel;
 
     @FindBy(id = "searchresults_empty_state_text")
-    private WebElement resultInfoForInvalidSearch;
+    private WebElement searchResult;
+
+    @FindBys({
+            @FindBy(id="patientsearch_header")
+    })
+    private List<WebElement> header;
+
 
     private void searchPatient(String patientName) {
         searchPatientTextBox.click();
@@ -50,29 +49,32 @@ public class SearchSection extends BasePage {
         NextButton.click();
     }
 
-    public void searchForRegisteredPatientWithBpInfo(String patientName) {
-        searchPatient(patientName);
-        Assert.assertTrue(registerAsNewPatientButton.isDisplayed());
-    }
+        public void searchForRegisteredPatientWithBpInfo(String patientName) {
+            searchPatient(patientName);
+//            Assert.assertTrue(hasVisitedText.isDisplayed());
+            Assert.assertTrue(registerAsNewPatientButton.isDisplayed());
+        }
 
-    //invalid search
-    public void searchForUnRegisteredPatient() {
-        searchPatient("unRegisteredPatient");
-        Assert.assertEquals(resultInfoForInvalidSearch.getText(), "No patients match");
-        Assert.assertEquals(registerPatientLabel.getText(), "Patient is not registered");
-        Assert.assertTrue(registerAsNewPatientButton.isDisplayed());
-    }
+//    This method should be used for
+//    invalid search or for new patient
 
-    public void searchForRegisteredPatientWithoutBPInfo(String patientName) {
-        searchPatient(patientName);
-        Assert.assertTrue(registerAsNewPatientButton.isDisplayed());
-    }
+        public void searchForPatientName(String patientName) {
+            searchPatient(patientName);
+            Assert.assertEquals(searchResult.getText(), "No patients match");
+            Assert.assertEquals(registerPatientLabel.getText(), "Patient is not registered");
+            Assert.assertTrue(registerAsNewPatientButton.isDisplayed());
+        }
 
-    //This method is used when user search for patient name
-    // and some related search is present
-    public void searchForPatientName(String patientName) {
+        public void searchForRegisteredPatientWithoutBPInfo(String patientName) {
         searchPatient(patientName);
-//        Assert.assertEquals(registerPatientLabel.getText(), "Can’t find the patient in this list?");
+        String status="";
+
+        for (WebElement ele:header) {
+            if(ele.getText().equals("Other Results")){
+                status="true";
+            }
+        }
+        Assert.assertEquals(status,"true","other result section isn't displayed");
         Assert.assertTrue(registerAsNewPatientButton.isDisplayed());
     }
 

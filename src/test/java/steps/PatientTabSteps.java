@@ -1,6 +1,7 @@
 package steps;
 
 import com.embibe.optimus.utils.ScenarioContext;
+import cucumber.api.PendingException;
 import cucumber.api.java.en.And;
 import cucumber.api.java.en.Then;
 import pages.PatientTabPage;
@@ -15,7 +16,8 @@ public class PatientTabSteps extends BaseSteps {
 
     @Then("^(\\w+) searches for unregistered Patient$")
     public void userPerformSearchForUnregisteredPatient(String User) {
-        new PatientTabPage(getDriverInstanceFor(User)).searchForUnRegisteredPatient();
+        String invalidSearch="unRegisteredPatient";
+        new PatientTabPage(getDriverInstanceFor(User)).searchForPatientName(invalidSearch);
     }
 
     @Then("^(\\w+) searched for Registered Patient$")
@@ -27,14 +29,14 @@ public class PatientTabSteps extends BaseSteps {
     @Then("^(\\w+) searched for Registered Patient without BP info$")
     public void userSearchedForRegisteredPatientWithoutBPInfo(String User) {
         String patientName = ScenarioContext.getData("User", ScenarioContextKeys.PATIENT_NAME);
-        new PatientTabPage(getDriverInstanceFor(User)).searchForRegisteredPatient(patientName);
+        new PatientTabPage(getDriverInstanceFor(User)).userSearchedForRegisteredPatientWithoutBPInfo(patientName);
     }
 
     @Then("^(\\w+) searches for Patient name$")
     public void userSearchesForUnregisteredPatientName(String User) {
         String patientName = RandomValue.getRandomPatientName();
-        System.out.println(patientName + "patientName");
-        ScenarioContext.putData("User", ScenarioContextKeys.PATIENT_NAME_UI, patientName);
+        ScenarioContext.putData("User", ScenarioContextKeys.PATIENT_NAME, patientName);
+
         new PatientTabPage(getDriverInstanceFor(User)).searchForPatientName(patientName);
     }
 
@@ -45,7 +47,18 @@ public class PatientTabSteps extends BaseSteps {
 
     @Then("^(\\w+) verifies recent patients list$")
     public void userVerifiesRecentPatientsList(String User) {
-        String patientName = ScenarioContext.getData("User", ScenarioContextKeys.PATIENT_NAME_UI);
+        String patientName = ScenarioContext.getData("User", ScenarioContextKeys.PATIENT_NAME);
         new PatientTabPage(getDriverInstanceFor(User)).verifiesRecentPatientList(patientName);
+    }
+
+    @Then("^(\\w+) verifies recent patients list for patient without bp info$")
+    public void userVerifiesRecentPatientsListForPatientWithoutBpInfo(String User){
+        String patientName = ScenarioContext.getData("User", ScenarioContextKeys.PATIENT_NAME);
+        new PatientTabPage(getDriverInstanceFor(User)).verifiesRecentPatientListForWithoutBpInfo(patientName);
+    }
+
+    @And("^(\\w+) verifies SEE ALL option$")
+    public void userVerifiesSEEALLOption(String User){
+        new PatientTabPage(getDriverInstanceFor(User)).verifiesSeeAllOption();
     }
 }

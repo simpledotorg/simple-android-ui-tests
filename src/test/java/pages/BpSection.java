@@ -1,6 +1,5 @@
 package pages;
 
-import cucumber.api.java.en.And;
 import io.appium.java_client.AppiumDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;

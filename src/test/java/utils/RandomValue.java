@@ -16,7 +16,7 @@ public class RandomValue {
 
     public static String getRandomUserName(){
         Faker faker = new Faker();
-        String name = faker.name().fullName();
+        String name = faker.name().firstName();
         return name.toUpperCase();
     }
 

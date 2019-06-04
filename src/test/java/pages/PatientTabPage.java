@@ -37,8 +37,8 @@ public class PatientTabPage extends BasePage {
         Assert.assertTrue(GotITButton.isDisplayed());
     }
 
-    public void searchForUnRegisteredPatient() {
-        searchSection.searchForUnRegisteredPatient();
+    public void searchForUnRegisteredPatient(String patientName) {
+        searchSection.searchForPatientName(patientName);
     }
 
     public void searchForRegisteredPatient(String patientName) {
@@ -60,12 +60,17 @@ public class PatientTabPage extends BasePage {
     public void verifiesRecentPatientList(String patientName) {
 
         String status="false";
-        for (WebElement ele:recentPatientNameList) {
-            String [] str=ele.getText().split(",");
-            String expectedValue=str[0];
-            System.out.println(ele.getText()+"expectedValue");
 
-            if(expectedValue.contains(patientName)){
+        String actualValue=patientName.replaceAll("\\s","");
+
+
+        for (WebElement ele:recentPatientNameList) {
+
+            String [] str=ele.getText().split(",");
+
+            String expectedValue=str[0].replaceAll("\\s","");
+
+            if(expectedValue.contains(actualValue)){
                 status="true";
             }
         }
@@ -73,4 +78,36 @@ public class PatientTabPage extends BasePage {
     }
 
 
+    public void verifiesRecentPatientListForWithoutBpInfo(String patientName) {
+
+        String status="true";
+
+        String actualValue=patientName.replaceAll("\\s","");
+
+        for (WebElement ele:recentPatientNameList) {
+
+            String [] str=ele.getText().split(",");
+
+            String expectedValue=str[0].replaceAll("\\s","");
+
+            if(expectedValue.contains(actualValue)){
+                status="false";
+            }
+        }
+        Assert.assertEquals(status,"true","patient without bp info is present in recent patient list");
+    }
+
+    public void verifiesSeeAllOption() {
+        if(recentPatientNameList.size()>=10)
+        {
+            System.out.println("see all option should be present");
+//            Assertion
+        }
+        else{
+//            Assertion
+            System.out.println("see all option should not be present");
+
+        }
+
+    }
 }

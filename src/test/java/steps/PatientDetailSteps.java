@@ -15,7 +15,7 @@ public class PatientDetailSteps extends BaseSteps {
 
     @And("^(\\w+) enters new Bp Info$")
     public void userEntersNewBpInfo(String User) {
-        new PatientDetailPage(getDriverInstanceFor(User)).enterBpInfo("", "200159");
+        new PatientDetailPage(getDriverInstanceFor(User)).enterBpInfo(" ", "200159");
     }
 
     @And("^(\\w+) taps on next ArrowButton$")
@@ -38,4 +38,16 @@ public class PatientDetailSteps extends BaseSteps {
     public void userTapsOnAppointment(String User) {
         new PatientDetailPage(getDriverInstanceFor(User)).clickOnAppointmentDoneButton();
     }
+
+    @And("^(\\w+) enters new patient info Without phone number$")
+    public void userEntersNewPatientInfoWithoutPhoneNumber(String User){
+        new PatientDetailPage(getDriverInstanceFor(User)).enterPatientInfo("","44","Male", "testColony");
+    }
+
+    @And("^(\\w+) navigates back$")
+    public void userNavigatesBack(String User){
+        new PatientDetailPage(getDriverInstanceFor(User)).userNavigatesBack();
+    }
+
+
 }
