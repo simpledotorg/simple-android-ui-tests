@@ -35,7 +35,21 @@ public class PatientPrimaryInfoSection extends BasePage {
     
     @FindBy(className = "android.widget.Button")
     private WebElement nextButton;
-    
+
+    @FindBy(xpath="//android.widget.TextView[contains(@text,'Phone number cannot be less than 6 digits')]")
+    private WebElement phoneNumberErrorMsg;
+
+    @FindBy(id="patiententry_gender_validation_error")
+    private WebElement genderValidationerrorMsg;
+
+    @FindBy(xpath = "//android.widget.TextView[contains(@text,'Enter colony / village / ward')]")
+    private WebElement colonyValidationerrorMsg;
+
+//    @FindBy(xpath = "//android.widget.TextView[contains(@text,'Enter patient’s age')]")
+//    private WebElement AgeValidationerrorMsg;
+
+    @FindBy(id="patiententry_date_of_birth")
+    private WebElement enterDateOfBirth;
 
 
     public PatientPrimaryInfoSection(AppiumDriver driver) {
@@ -45,11 +59,11 @@ public class PatientPrimaryInfoSection extends BasePage {
     }
 
     private void enterPhoneNumber(String number) {
-        PhoneNumberTextBox.sendKeys(number);
+        PhoneNumberTextBox.sendKeys(number+"\n");
     }
 
     private void enterAge(String age) {
-        ageTextBox.sendKeys(age);
+        ageTextBox.sendKeys(age+"\n");
     }
 
     private void enterGender(String value) {
@@ -63,15 +77,15 @@ public class PatientPrimaryInfoSection extends BasePage {
     }
 
     private void enterColony(String value){
-        colonyTextBox.sendKeys(value);
+        colonyTextBox.sendKeys(value+"\n");
     }
 
     public void enterDistrict(String value){
-        districtTextBox.sendKeys(value);
+        districtTextBox.sendKeys(value+"\n");
     }
 
     public void enterState(String value){
-        stateTextBox.sendKeys(value);
+        stateTextBox.sendKeys(value+"\n");
     }
     
     public void clickNextButton(){
@@ -86,5 +100,23 @@ public class PatientPrimaryInfoSection extends BasePage {
         Assert.assertTrue(districtTextBox.getText().equalsIgnoreCase("Bathinda"));
         Assert.assertTrue(stateTextBox.getText().equalsIgnoreCase("Punjab"));
         clickNextButton();
+    }
+
+    public void validateErrorMessage(){
+        Assert.assertTrue(phoneNumberErrorMsg.isDisplayed());
+//        Assert.assertTrue(genderValidationerrorMsg.getText().contains("Choose gender"));
+        Assert.assertTrue(colonyValidationerrorMsg.isDisplayed());
+//        Assert.assertTrue(AgeValidationerrorMsg.isDisplayed());
+    }
+
+    public void enterPatientInvalidPatientInfo(String phonenumber) {
+        enterPhoneNumber(phonenumber);
+        clickNextButton();
+    }
+
+    public void enterInvalidDate(String sDate) {
+        enterDateOfBirth.sendKeys(sDate);
+        clickNextButton();
+//        need to add ASSERTION when defect will get fixed
     }
 }

@@ -14,10 +14,9 @@ public class PatientTabSteps extends BaseSteps {
         new PatientTabPage(getDriverInstanceFor(User)).verifyPatientTab();
     }
 
-    @Then("^(\\w+) searches for unregistered Patient$")
-    public void userPerformSearchForUnregisteredPatient(String User) {
-        String invalidSearch="unRegisteredPatient";
-        new PatientTabPage(getDriverInstanceFor(User)).searchForPatientName(invalidSearch);
+    @Then("(\\w+) searches for unregistered Patient as (.*)$")
+    public void userPerformSearchForUnregisteredPatient(String User,String str) {
+        new PatientTabPage(getDriverInstanceFor(User)).searchForPatientName(str);
     }
 
     @Then("^(\\w+) searched for Registered Patient$")
@@ -61,4 +60,5 @@ public class PatientTabSteps extends BaseSteps {
     public void userVerifiesSEEALLOption(String User){
         new PatientTabPage(getDriverInstanceFor(User)).verifiesSeeAllOption();
     }
+
 }

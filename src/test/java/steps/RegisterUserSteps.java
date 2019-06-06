@@ -11,8 +11,10 @@ import createBp.BpRequestBuilder;
 import createBp.BpResponse;
 import createPatients.PatientClient;
 import createPatients.PatientResponse;
+import cucumber.api.PendingException;
 import cucumber.api.java.en.And;
 import cucumber.api.java.en.Given;
+import cucumber.api.java.en.Then;
 import pages.RegisterUserPage;
 import utils.AdbUtils;
 import utils.RandomValue;
@@ -41,12 +43,14 @@ public class RegisterUserSteps extends BaseSteps {
     @And("^(\\w+) enters security pin number$")
     public void userEnterSecurityPinNumber(String User) {
         int pin = RandomValue.getRandomPinValue();
+         ScenarioContext.putData("User",ScenarioContextKeys.PIN,pin);
         new RegisterUserPage(getDriverInstanceFor(User)).enterPin(Integer.toString(pin));
     }
 
     @And("^(\\w+) search for facility$")
     public void userSearchForFacility(String User) {
-        new RegisterUserPage(getDriverInstanceFor(User)).searchFacility();
+        String facility="CHC Bagta";
+        new RegisterUserPage(getDriverInstanceFor(User)).searchFacility(facility);
     }
 
     @And("^(\\w+) enters registered phone number$")
@@ -120,5 +124,39 @@ public class RegisterUserSteps extends BaseSteps {
                                 .withFacilityId(facilityId).build();
         BpResponse response = new BpClient().createNewBp(builder, facilityId, userId, token);
 
+    }
+
+    @And("^(\\w+) enters invalid registration phone number as (.*)$")
+    public void userEntersInvalidRegistrationPhoneNumber(String User,String phone) {
+        new RegisterUserPage(getDriverInstanceFor(User)).enterInvalidPhoneNumber(phone);
+    }
+
+
+    @And("^(\\w+) enters invalid security pin as (.*)$")
+    public void userEntersInvalidSecurityPin(String User,String pin) {
+        new RegisterUserPage(getDriverInstanceFor(User)).enterInvalidPin( pin);
+    }
+
+    @And("^(\\w+) taps on reset pin$")
+    public void userTapsOnResetPin(String User){
+        new RegisterUserPage(getDriverInstanceFor(User)).tapsOnResetPin();
+    }
+
+    @Then("^(\\w+) search for invalid facility$")
+    public void userSearchForInvalidFacility(String User) {
+        String facility="invalid facility";
+        new RegisterUserPage(getDriverInstanceFor(User)).searchFacility(facility);
+
+    }
+
+    @And("^(\\w+) verifies error message$")
+    public void userVerifiesErrorMessage(String User){
+        new RegisterUserPage(getDriverInstanceFor(User)).verifyErorMessageForInvalidFacilitySearch();
+    }
+
+    @And("^(\\w+) enters confirm pin number$")
+    public void userEntersConfirmPinNumber(String User){
+        String pin=ScenarioContext.getData("User",ScenarioContextKeys.PIN);
+        new RegisterUserPage(getDriverInstanceFor(User)).reEnterPin(pin);
     }
 }

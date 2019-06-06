@@ -52,4 +52,16 @@ public class PatientDetailPage extends BasePage {
     public void userNavigatesBack() {
         driver.navigate().back();
     }
+
+    public void validateErrorMessage() {
+        patientPrimaryInfoSection.validateErrorMessage();
+    }
+
+    public void enterPatientInvalidPatientInfo(String phoneNumber) {
+        patientPrimaryInfoSection.enterPatientInvalidPatientInfo(phoneNumber);
+    }
+
+    public void enterInvalidDate(String sDate) {
+        patientPrimaryInfoSection.enterInvalidDate(sDate);
+    }
 }

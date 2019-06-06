@@ -1,15 +1,10 @@
 package pages;
 
 import io.appium.java_client.AppiumDriver;
-import io.appium.java_client.android.AndroidKeyCode;
-import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.FindBys;
 import org.openqa.selenium.support.PageFactory;
 import org.testng.Assert;
-
-import java.util.List;
 
 public class RegisterUserPage extends BasePage {
     private AppiumDriver driver;
@@ -36,7 +31,7 @@ public class RegisterUserPage extends BasePage {
     private WebElement registrationPin;
 
     @FindBy(id = "registrationconfirmpin_pin")
-    private WebElement ConfirmPin;
+    private WebElement confirmPin;
 
     @FindBy(id = "registrationlocation_skip")
     private WebElement skipLocationAccess;
@@ -59,6 +54,23 @@ public class RegisterUserPage extends BasePage {
     @FindBy(id = "android:id/button1")
     private WebElement gotItButton;
 
+    @FindBy(id = "registrationphone_error")
+    private WebElement registrationPhoneNumberErrorMsg;
+
+    @FindBy(id = "registrationconfirmpin_reset_pin")
+    private WebElement resetPin;
+
+    @FindBy(id = "permission_deny_button")
+    private WebElement permissionDenyButton;
+
+    @FindBy(id = "permission_allow_button")
+    private WebElement permissionAllowButton;
+
+    @FindBy(xpath = "//android.widget.LinearLayout[@id='registrationconfirmpin_error']/android.widget.TextView")
+    private WebElement confirmPinErrorMsg;
+
+    @FindBy(id = "registrationpin_card_content")
+    private WebElement registrationPinSection;
 
     public RegisterUserPage(AppiumDriver driver) {
         super(driver);
@@ -66,13 +78,12 @@ public class RegisterUserPage extends BasePage {
         this.driver = driver;
     }
 
-    private void reEnterPin(String pin) {
-        ConfirmPin.sendKeys(pin);
+    public void reEnterPin(String pin) {
+        confirmPin.sendKeys(pin);
     }
 
     public void enterPin(String pin) {
         registrationPin.sendKeys(pin);
-        reEnterPin(pin);
     }
 
     public void clicksOnGetStartedButton() {
@@ -84,16 +95,16 @@ public class RegisterUserPage extends BasePage {
     }
 
     public void enterRegistrationName(String name) {
-        registrationNameTextBox.sendKeys(name+"\n");
+        registrationNameTextBox.sendKeys(name + "\n");
     }
 
     private void skipLocationAccess() {
         skipLocationAccess.click();
     }
 
-    public void searchFacility() {
+    public void searchFacility(String facility) {
         skipLocationAccess();
-        searchBar.sendKeys("CHC Bagta");
+        searchBar.sendKeys(facility);
         searchResult.click();
     }
 
@@ -112,5 +123,40 @@ public class RegisterUserPage extends BasePage {
     public void clicksOnGotItButton() {
         waitForElementToBeVisible(gotItButton);
         gotItButton.click();
+    }
+
+    public void enterInvalidPhoneNumber(String phone) {
+        registrationPhoneNumber.sendKeys(phone + "\n");
+        Assert.assertTrue(registrationPhoneNumberErrorMsg.getText().contains("Check phone number"));
+    }
+
+    public void enterInvalidPin(String pin) {
+        reEnterPin(pin);
+        Assert.assertTrue(confirmPinErrorMsg.isDisplayed());
+        System.out.println(confirmPinErrorMsg.getText()+"text");
+        Assert.assertTrue(resetPin.isDisplayed());
+    }
+
+    public void tapsOnResetPin() {
+        resetPin.click();
+        Assert.assertTrue(registrationPinSection.isDisplayed());
+        enterPin("1234");
+
+
+        Assert.assertTrue(skipLocationAccess.isDisplayed());
+    }
+
+    public void verifyErorMessageForInvalidFacilitySearch() {
+//        Assertion pending becuase of defect - no proper error message is displayed for invalid facility name
+        System.out.println("assertion pending");
+    }
+
+    public void denyAccess() {
+        permissionDenyButton.click();
+        Assert.assertTrue(skipLocationAccess.isDisplayed());
+    }
+
+    public void allowAccess() {
+        permissionAllowButton.click();
     }
 }

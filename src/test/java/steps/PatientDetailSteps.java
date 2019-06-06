@@ -1,21 +1,23 @@
 package steps;
 
+import cucumber.api.DataTable;
 import cucumber.api.PendingException;
 import cucumber.api.java.en.And;
-import pages.DiagnosisPage;
 import pages.PatientDetailPage;
-import pages.PatientPrimaryInfoSection;
 import utils.Date;
+import utils.RandomValue;
+
+import java.util.Map;
 
 public class PatientDetailSteps extends BaseSteps {
     @And("^(\\w+) enters new patient info$")
     public void userEntersNewPateintInfo(String User) {
-        new PatientDetailPage(getDriverInstanceFor(User)).enterPatientInfo("9878988988", "44", "Male", "testColony");
+        new PatientDetailPage(getDriverInstanceFor(User)).enterPatientInfo(RandomValue.getRandomPhoneNumber(), "44", "Male","test");
     }
 
     @And("^(\\w+) enters new Bp Info$")
     public void userEntersNewBpInfo(String User) {
-        new PatientDetailPage(getDriverInstanceFor(User)).enterBpInfo(" ", "200159");
+        new PatientDetailPage(getDriverInstanceFor(User)).enterBpInfo(" ", "2001159");
     }
 
     @And("^(\\w+) taps on next ArrowButton$")
@@ -49,5 +51,20 @@ public class PatientDetailSteps extends BaseSteps {
         new PatientDetailPage(getDriverInstanceFor(User)).userNavigatesBack();
     }
 
+    @And("^(\\w+) verifies error message validation$")
+    public void userVerifiesErrorMessageValidation(String User) {
+        new PatientDetailPage(getDriverInstanceFor(User)).validateErrorMessage();
+    }
 
+    @And("^(\\w+) enters invalid data for patients primary info$")
+    public void userEntersInvalidDataForPatientsPrimaryInfo(String User,DataTable dataTable ) {
+        Map<String, String> map = dataTable.asMap(String.class, String.class);
+        new PatientDetailPage(getDriverInstanceFor(User)).enterPatientInvalidPatientInfo(map.get("phoneNumber"));
+    }
+
+    @And("^(\\w+) enters invalid date$")
+    public void userEntersInvalidDate(String User,DataTable dataTable) {
+        Map<String, String> map = dataTable.asMap(String.class, String.class);
+        new PatientDetailPage(getDriverInstanceFor(User)).enterInvalidDate(map.get("Date"));
+    }
 }

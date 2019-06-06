@@ -51,7 +51,14 @@ public class SearchSection extends BasePage {
 
         public void searchForRegisteredPatientWithBpInfo(String patientName) {
             searchPatient(patientName);
-//            Assert.assertTrue(hasVisitedText.isDisplayed());
+            String status="";
+
+            for (WebElement ele:header) {
+                if(ele.getText().equals("Other Results")){
+                    status="true";
+                }
+            }
+            Assert.assertEquals(status,"true","other result section isn't displayed");
             Assert.assertTrue(registerAsNewPatientButton.isDisplayed());
         }
 

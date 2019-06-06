@@ -1,7 +1,7 @@
 Feature: Search for Patient information
 
   @search  @smoke
-  Scenario:Search for unregistered Patient
+  Scenario Outline:Search for unregistered Patient
     Given User Registers New User through API
     And User Launches app
     And User taps on GetStarted button
@@ -10,7 +10,11 @@ Feature: Search for Patient information
     And User taps on Enter code link
     And User enters otp
     And User taps on Got It Button
-    Then User searches for unregistered Patient
+    Then User searches for unregistered Patient as <invalid>
+    Examples:
+    |invalid|
+    |invalidData|
+
 
   @search  @smoke
   Scenario: Search for patient without BP info
@@ -37,4 +41,4 @@ Feature: Search for Patient information
     And User taps on Enter code link
     And User enters otp
     And User taps on Got It Button
-    Then User searched for Registered Patient without BP info
+    Then User searched for Registered Patient

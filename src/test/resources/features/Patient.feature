@@ -10,7 +10,7 @@ Feature: Create Patient
     And User enters otp
     And User taps on Got It Button
 
-  @createPatient
+  @createPatient @smoke
   Scenario: Create New Patient
     Then User searches for Patient name
     And User taps on registered patient
@@ -23,7 +23,7 @@ Feature: Create Patient
     And User taps on appointment
     Then User verifies recent patients list
 
-  @createPatient
+  @createPatient @smoke
   Scenario: Create New Patient Without phone number
     Then User searches for Patient name
     And User taps on registered patient
@@ -36,7 +36,7 @@ Feature: Create Patient
     And User taps on appointment
     Then User verifies recent patients list
 
-  @createPatient
+  @createPatient @smoke
   Scenario: Create New Patient Without blood Pressure
     Then User searches for Patient name
     And User taps on registered patient
@@ -47,7 +47,7 @@ Feature: Create Patient
     Then User verifies recent patients list for patient without bp info
     Then User searched for Registered Patient without BP info
 
-  @createPatient
+  @createPatient @smoke
   Scenario: Create New Patient Without blood Pressure and Phone number
     Then User searches for Patient name
     And User taps on registered patient
@@ -57,3 +57,20 @@ Feature: Create Patient
     And User taps on save Button
     Then User verifies recent patients list for patient without bp info
     Then User searched for Registered Patient without BP info
+
+
+  @createPatient @smoke
+  Scenario:User validate error message for invalid Data
+    Then User searches for Patient name
+    And User taps on registered patient
+    And User enters invalid data for patients primary info
+      | phoneNumber | 98789  |
+    And User verifies error message validation
+
+  @createPatient @smoke
+  Scenario: invalid Date
+    Then User searches for Patient name
+    And User taps on registered patient
+    And User enters invalid date
+      | Date | "31022019" |
+

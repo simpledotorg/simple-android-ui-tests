@@ -12,7 +12,7 @@
       "nativeApp":true,
       "optimusDesiredCapabilities": {
         "appiumServerCapabilities": {
-          "app": "simpleQa.apk",
+          "app": "qaDebug.apk",
           "platformName": "Android"
         },
         "androidOnlyCapabilities": {
