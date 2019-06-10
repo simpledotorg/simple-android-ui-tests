@@ -5,7 +5,7 @@ import org.testng.annotations.Test;
 public class test {
     @Test
     public void test(){
-        UserRequestBody userRequestBody=new UserRequestBodyBuilder().build();
+        UserRequestBody userRequestBody=new UserRequestBody.Builder().build();
         UserResponse userResponse=new UserClient().registerNewUser(userRequestBody);
 
         System.out.println(userResponse.getUser().getId());

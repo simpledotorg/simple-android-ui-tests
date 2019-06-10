@@ -16,4 +16,5 @@ public class User {
     private String password_digest;
     private String deleted_at;
     private String sync_approval_status;
+
 }

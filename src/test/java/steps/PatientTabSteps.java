@@ -61,4 +61,11 @@ public class PatientTabSteps extends BaseSteps {
         new PatientTabPage(getDriverInstanceFor(User)).verifiesSeeAllOption();
     }
 
+    @And("^(\\w+) select patient form search list$")
+    public void userSelectPatientFormSearchList(String User){
+        new PatientTabPage(getDriverInstanceFor(User)).selectPatientFromSearchList();
+
+    }
+
+
 }

@@ -72,5 +72,5 @@ Feature: Create Patient
     Then User searches for Patient name
     And User taps on registered patient
     And User enters invalid date
-      | Date | "31022019" |
+      | Date |"31022019"|
 

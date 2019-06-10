@@ -2,15 +2,8 @@ package steps;
 
 import CreateUser.UserClient;
 import CreateUser.UserRequestBody;
-import CreateUser.UserRequestBodyBuilder;
 import CreateUser.UserResponse;
 import com.embibe.optimus.utils.ScenarioContext;
-import createBp.BpClient;
-import createBp.BpRequestBody;
-import createBp.BpRequestBuilder;
-import createBp.BpResponse;
-import createPatients.PatientClient;
-import createPatients.PatientResponse;
 import cucumber.api.PendingException;
 import cucumber.api.java.en.And;
 import cucumber.api.java.en.Given;
@@ -86,7 +79,7 @@ public class RegisterUserSteps extends BaseSteps {
 
     @Given("^(\\w+) Registers New User through API$")
     public void userRegistersNewUser(String User) {
-        UserRequestBody userRequestBody = new UserRequestBodyBuilder().build();
+        UserRequestBody userRequestBody = new UserRequestBody.Builder().build();
         UserResponse userResponse = new UserClient().registerNewUser(userRequestBody);
 
         ScenarioContext.putData("User", ScenarioContextKeys.USER_ID, userResponse.getUser().getId());
@@ -96,34 +89,15 @@ public class RegisterUserSteps extends BaseSteps {
 
     @And("^(\\w+) Registers New Patient through API$")
     public void userRegistersNewPatientThroughAPI(String User) {
-        String userId = ScenarioContext.getData("User", ScenarioContextKeys.USER_ID);
         String facilityId = "2f086ff7-83dc-4758-bd31-9d9109df9a09";
-
-        String patientId = RandomValue.getRandomPatientId();
-        ScenarioContext.putData("User", ScenarioContextKeys.PATIENT_ID, patientId);
-        String patientName = RandomValue.getRandomPatientName();
-        ScenarioContext.putData("User", ScenarioContextKeys.PATIENT_NAME, patientName);
-
-        String token = ScenarioContext.getData("User", ScenarioContextKeys.ACCESS_TOKEN);
-        PatientResponse response = new PatientClient().createPatient(patientId, patientName, facilityId, userId, token);
+        String number=RandomValue.getRandomPhoneNumber();
+        new RegisterUserPage(getDriverInstanceFor(User)).createNewPatient(facilityId,"mobile",number);
     }
 
     @And("^(\\w+) Registers New Bp record through API$")
     public void userRegistersNewBpRecordThroughAPI(String User) {
-
-        String bpId = RandomValue.getRandomBpId();
-        String patientId = ScenarioContext.getData("User", ScenarioContextKeys.PATIENT_ID);
         String facilityId = "2f086ff7-83dc-4758-bd31-9d9109df9a09";
-        String userId = ScenarioContext.getData("User", ScenarioContextKeys.USER_ID);
-        String token = ScenarioContext.getData("User", ScenarioContextKeys.ACCESS_TOKEN);
-
-        BpRequestBody builder = new BpRequestBuilder()
-                                .withUserId(userId)
-                                .withBpId(bpId)
-                                .withPatientId(patientId)
-                                .withFacilityId(facilityId).build();
-        BpResponse response = new BpClient().createNewBp(builder, facilityId, userId, token);
-
+        new RegisterUserPage(getDriverInstanceFor(User)).createNewBP(facilityId);
     }
 
     @And("^(\\w+) enters invalid registration phone number as (.*)$")
@@ -158,5 +132,17 @@ public class RegisterUserSteps extends BaseSteps {
     public void userEntersConfirmPinNumber(String User){
         String pin=ScenarioContext.getData("User",ScenarioContextKeys.PIN);
         new RegisterUserPage(getDriverInstanceFor(User)).reEnterPin(pin);
+    }
+
+    @And("^(\\w+) Registers list of new Bp record through API$")
+    public void userRegistersListOfNewBpRecordThroughAPI(String User){
+        String facilityId = "2f086ff7-83dc-4758-bd31-9d9109df9a09";
+        new RegisterUserPage(getDriverInstanceFor(User)).createListOfBpForOnePatient(facilityId);
+    }
+
+    @And("^(\\w+) Registers New Patient without phonenumber through API$")
+    public void userRegistersNewPatientWithoutPhonenumberThroughAPI(String User) {
+        String facilityId = "2f086ff7-83dc-4758-bd31-9d9109df9a09";
+        new RegisterUserPage(getDriverInstanceFor(User)).createNewPatientWithoutPhoneNumber(facilityId,"mobile");
     }
 }
