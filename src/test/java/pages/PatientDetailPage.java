@@ -9,6 +9,8 @@ public class PatientDetailPage extends BasePage {
     private AppiumDriver driver;
     PatientPrimaryInfoSection patientPrimaryInfoSection;
     BpSection bpSection;
+    MedicineSection medicineSection;
+
 
     @FindBy(xpath = "//android.widget.Button[@text='Save']")
     private WebElement saveButton;
@@ -21,6 +23,7 @@ public class PatientDetailPage extends BasePage {
         PageFactory.initElements(driver, this);
         patientPrimaryInfoSection = new PatientPrimaryInfoSection(driver);
         bpSection = new BpSection(driver);
+        medicineSection = new MedicineSection(driver);
         this.driver = driver;
     }
 
@@ -63,5 +66,62 @@ public class PatientDetailPage extends BasePage {
 
     public void enterInvalidDate(String sDate) {
         patientPrimaryInfoSection.enterInvalidDate(sDate);
+    }
+
+    public void tapsOnAddNewBp() {
+        bpSection.tapsOnAddNewBpButton();
+    }
+
+    public void verifiesUpdatePopUp() {
+        bpSection.verifiesUpdatePopUp();
+    }
+
+    public void enterPhoneNumber() {
+        bpSection.addPhoneNumber();
+    }
+
+    public void tapsOnSkipButton() {
+        bpSection.tapsOnSkipButton();
+    }
+
+    public void enterPastDate() {
+
+        bpSection.enterPastDate();
+    }
+
+    public void verifiesDaysInformation() {
+        bpSection.verifiesDaysInformation();
+    }
+
+    public void tapsOnEditBpLink() {
+        bpSection.tapsOnEditBpLink();
+    }
+
+    public void tapsOnRemoveLink() {
+        bpSection.tapsOnRemoveLink();
+    }
+
+    public void tapsOnCancelButton() {
+        bpSection.tapsOnCancelButton();
+    }
+
+    public void tapsOnRemoveButton() {
+        bpSection.tapsOnRemoveButton();
+    }
+
+    public void verifiesMessage() {
+        bpSection.verifiesBpSummary();
+    }
+
+    public void verifiesBpList() {
+        bpSection.verfiesBpList();
+    }
+
+    public void removeAllBpInfo() {
+        bpSection.removeAllBpInfo();
+    }
+
+    public void addNewMedicine() {
+        medicineSection.tapsOnAddNewMedicineButton();
     }
 }

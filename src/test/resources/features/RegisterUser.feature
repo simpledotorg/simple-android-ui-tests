@@ -1,6 +1,6 @@
 Feature: Register Nurse
 
-  @register  @smoke
+  @register  @smokey
   Scenario: Register New Nurse/User
     Given User Launches app
     And User taps on GetStarted button
@@ -23,7 +23,7 @@ Feature: Register Nurse
     |     98988 |
 
 
-   @register @smoke
+   @register @smokey
      Scenario Outline: Register New Nurse/User with invalid confirm PIN
      Given User Launches app
      And User taps on GetStarted button
@@ -37,7 +37,7 @@ Feature: Register Nurse
      |       |
 
 
-  @register @smoke
+  @register @smokey
   Scenario: New Nurse/User reset pin at the time of registration
     Given User Launches app
     And User taps on GetStarted button
@@ -46,7 +46,7 @@ Feature: Register Nurse
     And User enters invalid security pin as 4321
     And User taps on reset pin
 
-   @register @smoke
+   @register @smokey
      Scenario: Register New Nurse/User with invalid facility
      Given User Launches app
      And User taps on GetStarted button

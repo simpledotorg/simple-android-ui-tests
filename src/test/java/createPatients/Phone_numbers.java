@@ -1,5 +1,11 @@
 package createPatients;
 
+import lombok.Getter;
+import lombok.Setter;
+import utils.RandomValue;
+
+@Getter
+@Setter
 public class Phone_numbers {
     private String number;
     private String phone_type;
@@ -17,5 +23,49 @@ public class Phone_numbers {
         this.created_at = created_at;
         this.id = id;
         this.deleted_at = deleted_at;
+    }
+
+    public static class Builder {
+
+        private String number;
+        private String phone_type;
+        private String updated_at = "2019-05-29T05:39:35Z";
+        private Boolean active = true;
+        private String created_at = "2019-05-29T05:39:35Z";
+        private String id = RandomValue.getRandomPhoneNumberId();
+        private String deleted_at = "";
+
+
+        public Builder() {
+        }
+
+        public Builder withActive(Boolean value) {
+            this.active = value;
+            return this;
+        }
+
+        public Builder withUpdatedAt(String value) {
+            this.updated_at = value;
+            return this;
+        }
+
+        public Builder withCreatedAt(String value) {
+            this.created_at = value;
+            return this;
+        }
+
+        public Builder withPhoneType(String value) {
+            this.phone_type = value;
+            return this;
+        }
+
+        public Builder withPhoneNumber(String value) {
+            this.number = value;
+            return this;
+        }
+
+        public Phone_numbers Build() {
+            return new Phone_numbers(number, phone_type, updated_at, active, created_at, id, deleted_at);
+        }
     }
 }
