@@ -118,7 +118,7 @@ public class RegisterUserSteps extends BaseSteps {
 
     @Then("^(\\w+) search for invalid facility$")
     public void userSearchForInvalidFacility(String User) {
-        String facility="invalid facility";
+        String facility="invalid GetFacility";
         new RegisterUserPage(getDriverInstanceFor(User)).searchFacility(facility);
 
     }

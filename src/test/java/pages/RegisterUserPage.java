@@ -157,7 +157,7 @@ public class RegisterUserPage extends BasePage {
     }
 
     public void verifyErorMessageForInvalidFacilitySearch() {
-//        Assertion pending becuase of defect - no proper error message is displayed for invalid facility name
+//        Assertion pending becuase of defect - no proper error message is displayed for invalid GetFacility name
         System.out.println("assertion pending");
     }
 
