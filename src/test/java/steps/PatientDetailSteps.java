@@ -159,7 +159,7 @@ public class PatientDetailSteps extends BaseSteps {
         ScenarioContext.putData("User", ScenarioContextKeys.DRUG_NAME, drugname);
         String dosage = "10 mg";
 
-        String drugInfo = dosage + " " + drugname;
+        String drugInfo = dosage + "   " + drugname;
         ScenarioContext.putData("User", ScenarioContextKeys.DRUG_INFO, drugInfo);
 
 
@@ -207,6 +207,8 @@ public class PatientDetailSteps extends BaseSteps {
     @And("^(\\w+) update medicine info$")
     public void userUpdateMedicineInfo(String User) {
         String name = "checker";
+        ScenarioContext.putData("User", ScenarioContextKeys.DRUG_NAME,name);
+
         new PatientDetailPage(getDriverInstanceFor(User)).modifyCustomizeMadicineName(name);
     }
 

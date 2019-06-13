@@ -14,7 +14,7 @@ Feature: Add New Medicine
     Then User searched for Registered Patient
     And User select patient form search list
 
-  @smoke @medicine
+  @smoke @medicine   
   Scenario: Add new customized Medicine to already registered patient
     Then User taps on Add new medicine button
     Then User taps on Add another medicine button
@@ -34,7 +34,7 @@ Feature: Add New Medicine
     And User update medicine info
     And User verifies custum drug list
     And User taps on save bp medicine button
-    Then User verifies updated medicine info
+#    Then User verifies updated medicine info
 
   @smoke @medicine
   Scenario: Delete customized Medicine to already registered patient

@@ -149,6 +149,7 @@ public class MedicineSection extends BasePage {
     public void verifyCustumDrugList(String name, String expectedStatus, String failureMessage) {
         String status = "false";
         for (WebElement ele : customDrugNameList) {
+
             if (ele.getText().toUpperCase().equals(name.toUpperCase())) {
                 status = "true";
             }
