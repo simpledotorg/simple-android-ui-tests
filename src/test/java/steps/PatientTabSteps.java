@@ -68,4 +68,8 @@ public class PatientTabSteps extends BaseSteps {
     }
 
 
+    @Then("^(\\w+) select patient from recent patient list$")
+    public void userSelectPatientFromRecentPatientList(String User) {
+        new PatientTabPage(getDriverInstanceFor(User)).selectPatientFromRecentPatientList();
+    }
 }

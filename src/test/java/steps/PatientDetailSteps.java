@@ -1,14 +1,20 @@
 package steps;
 
+import GetFacility.FacilityClient;
+import GetFacility.FacilityResponse;
+import GetProtocol.ProtocolClient;
+import GetProtocol.ProtocolResponse;
+import com.embibe.optimus.utils.ScenarioContext;
 import cucumber.api.DataTable;
 import cucumber.api.PendingException;
 import cucumber.api.java.en.And;
 import cucumber.api.java.en.Then;
 import pages.PatientDetailPage;
-import pages.PatientTabPage;
 import utils.Date;
 import utils.RandomValue;
+import utils.ScenarioContextKeys;
 
+import java.util.HashSet;
 import java.util.Map;
 
 public class PatientDetailSteps extends BaseSteps {
@@ -121,10 +127,6 @@ public class PatientDetailSteps extends BaseSteps {
         new PatientDetailPage(getDriverInstanceFor(User)).tapsOnCancelButton();
     }
 
-    @And("^(\\w+) taps on Remove button$")
-    public void userTapsOnRemoveButton(String User) {
-        new PatientDetailPage(getDriverInstanceFor(User)).tapsOnRemoveButton();
-    }
 
     @Then("^(\\w+) verifies message$")
     public void userVerifiesMessage(String User) {
@@ -143,7 +145,117 @@ public class PatientDetailSteps extends BaseSteps {
 
     @Then("^(\\w+) taps on Add new medicine button$")
     public void userTapsOnAddNewMedicineButton(String User) {
-        new PatientDetailPage(getDriverInstanceFor(User)).addNewMedicine();
+        new PatientDetailPage(getDriverInstanceFor(User)).tapsOnAddNewMedicine();
+    }
+
+    @Then("(\\w+) taps on Add another medicine button$")
+    public void userTapsOnAddAnotherMedicineButton(String User) throws Throwable {
+        new PatientDetailPage(getDriverInstanceFor(User)).tapsOnAddAnotherMedicine();
+    }
+
+    @And("^(\\w+) add new customized medicine$")
+    public void userAddNewCustomizedMedicine(String User) {
+        String drugname = "Test";
+        ScenarioContext.putData("User", ScenarioContextKeys.DRUG_NAME, drugname);
+        String dosage = "10 mg";
+
+        String drugInfo = dosage + " " + drugname;
+        ScenarioContext.putData("User", ScenarioContextKeys.DRUG_INFO, drugInfo);
+
+
+        new PatientDetailPage(getDriverInstanceFor(User)).addCustomizeMedicine(drugname, dosage);
+    }
+
+    @And("^(\\w+) taps on save bp medicine button$")
+    public void userTapsOnSaveBpMediicneButton(String User) {
+        new PatientDetailPage(getDriverInstanceFor(User)).tapsOnSaveBpMedicineButton();
+    }
+
+    @Then("^(\\w+) verifies updated medicine info$")
+    public void userVerifiesUpdatedMedicineInfo(String User) {
+        new PatientDetailPage(getDriverInstanceFor(User)).verifiesUpdatedMedicineInfo();
+    }
+
+    @And("^(\\w+) add new customized medicine with <drugName> and <dosage>$")
+    public void userAddNewCustomizedMedicineAsDrugNameAndDosage(String User, String drugname, String dosage) {
+        new PatientDetailPage(getDriverInstanceFor(User)).addCustomizeMedicine(drugname, dosage);
+    }
+
+    @And("^(\\w+) add new invalid customized medicine$")
+    public void userAddNewInvalidCustomizedMedicine(String User) {
+        new PatientDetailPage(getDriverInstanceFor(User)).addInvalidData();
+    }
+
+    @And("^(\\w+) taps on Update Medicine info$")
+    public void userTapsOnUpdateMedicineInfo(String User) {
+        new PatientDetailPage(getDriverInstanceFor(User)).tapsOnUpdateMedicine();
+    }
+
+    @And("^(\\w+) select customize medicine$")
+    public void userSelectCustomizeMedicine(String User) {
+        String drug_name = ScenarioContext.getData("User", ScenarioContextKeys.DRUG_NAME);
+        new PatientDetailPage(getDriverInstanceFor(User)).selectMedicineFromList(drug_name);
+    }
+
+    @And("^(\\w+) verifies custum drug list$")
+    public void userVerifiesCustumDrugList(String User) {
+        String drug_name = ScenarioContext.getData("User", ScenarioContextKeys.DRUG_NAME);
+
+        new PatientDetailPage(getDriverInstanceFor(User)).verifyCustumDrugList(drug_name, "true", "custum drugname should be present");
+    }
+
+    @And("^(\\w+) update medicine info$")
+    public void userUpdateMedicineInfo(String User) {
+        String name = "checker";
+        new PatientDetailPage(getDriverInstanceFor(User)).modifyCustomizeMadicineName(name);
+    }
+
+    @Then("^(\\w+) taps on remove custum prescription link$")
+    public void userTapsOnRemoveCustumPrescriptionLink(String User) {
+        new PatientDetailPage(getDriverInstanceFor(User)).tapsOnRemoveCustumPrescriptionLink();
+    }
+
+    @And("^(\\w+) select prescribed medicine$")
+    public void userSelectPrescribedMedicine(String User) {
+        new PatientDetailPage(getDriverInstanceFor(User)).selectMedicine();
+    }
+
+    @Then("^(\\w+) taps on \"([^\"]*)\"$")
+    public void userTapsOn(String User, String name) throws Throwable {
+        new PatientDetailPage(getDriverInstanceFor(User)).selectNoneAsDosage();
+    }
+
+    @And("^(\\w+) verifies custum drug list for deleted customized drug$")
+    public void userVerifiesCustumDrugListForDeletedCustomizedDrug(String User) {
+        String drug_name = ScenarioContext.getData("User", ScenarioContextKeys.DRUG_NAME);
+
+        new PatientDetailPage(getDriverInstanceFor(User)).verifyCustumDrugList(drug_name, "false", "cusromized drug name should not be displayed");
+    }
+
+    @Then("^(\\w+) verifies add medicine button$")
+    public void userVerifiesAddMedicineButton(String User) {
+        new PatientDetailPage(getDriverInstanceFor(User)).verifiesAddMedicineButton();
+    }
+
+    @Then("^(\\w+) validate medicine info at bp medicine page$")
+    public void userValidateMedicineInfoAtBpMedicinePage(String User) {
+
+        String facilityId="2f086ff7-83dc-4758-bd31-9d9109df9a09";
+        FacilityResponse allFacilityInfo = new FacilityClient().getAllFacilityInfo();
+        String protocolId = allFacilityInfo.getProtocolId(facilityId);
+
+
+        ProtocolResponse protocolResponse = new ProtocolClient().getAllProtocolInfo();
+        HashSet<String> protocolDrugNameList = protocolResponse.getProtocolDrugNameList(protocolId);
+
+
+
+        new PatientDetailPage(getDriverInstanceFor(User)).validateMedicineUI(protocolDrugNameList);
+    }
+
+    @And("^(\\w+) taps on remove button$")
+    public void userTapsOnRemoveButton(String User) {
+        new PatientDetailPage(getDriverInstanceFor(User)).tapsOnRemoveButton();
     }
 }
 

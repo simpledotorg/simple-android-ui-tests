@@ -47,10 +47,10 @@ public class Patients {
         private String status;
         private String date_of_birth;
         private int age;
-        private String age_updated_at = "2019-05-29T05:39:35Z";
+        private String age_updated_at = "2019-06-12T05:39:35Z";
         private String deleted_at = "";
-        private String created_at = "2019-05-29T05:39:35Z";
-        private String updated_at = "2019-05-29T05:39:35Z";
+        private String created_at = "2019-06-12T05:39:35Z";
+        private String updated_at = "2019-06-12T05:39:35Z";
         private Address address;
         private List<Phone_numbers> phone_numbers;
 

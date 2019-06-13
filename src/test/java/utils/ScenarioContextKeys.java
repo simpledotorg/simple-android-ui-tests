@@ -10,5 +10,7 @@ public interface ScenarioContextKeys {
     String PATIENT_NAME="patient_name";
     String PATIENT_ID="patinet_id";
 
+    String DRUG_NAME="drug_name";
+    String DRUG_INFO="drug_info";
 
 }

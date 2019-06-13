@@ -5,6 +5,8 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
+import java.util.HashSet;
+
 public class PatientDetailPage extends BasePage {
     private AppiumDriver driver;
     PatientPrimaryInfoSection patientPrimaryInfoSection;
@@ -121,7 +123,63 @@ public class PatientDetailPage extends BasePage {
         bpSection.removeAllBpInfo();
     }
 
-    public void addNewMedicine() {
+    public void tapsOnAddNewMedicine() {
         medicineSection.tapsOnAddNewMedicineButton();
+    }
+
+    public void tapsOnAddAnotherMedicine() {
+        medicineSection.tapsOnAddAnotherMedicineButton();
+    }
+
+    public void addCustomizeMedicine(String drugname,String  dosage) {
+        medicineSection.addCustomizeMedicine(drugname,dosage);
+    }
+
+    public void tapsOnSaveBpMedicineButton() {
+        medicineSection.tapsOnSaveBpMedicineButton();
+    }
+
+    public void verifiesUpdatedMedicineInfo() {
+        medicineSection.verifiesUpdatedMedicineInfo();
+    }
+
+    public void addInvalidData() {
+        medicineSection.addInvalidData("Test");
+    }
+
+    public void tapsOnUpdateMedicine() {
+        medicineSection.tapsOnUpdateMedicine();
+    }
+
+    public void selectMedicineFromList(String drug_name) {
+        medicineSection.selectMedicineFromList(drug_name);
+    }
+
+    public void verifyCustumDrugList(String name,String status,String message) {
+        medicineSection.verifyCustumDrugList(name,status,message);
+    }
+
+    public void modifyCustomizeMadicineName(String name) {
+        medicineSection.modifyCustomizeMadicineName(name);
+    }
+
+    public void tapsOnRemoveCustumPrescriptionLink() {
+        medicineSection.tapsOnRemoveCustumPrescriptionLink();
+    }
+
+    public void selectMedicine() {
+        medicineSection.selectMedicine();
+    }
+
+    public void selectNoneAsDosage() {
+        medicineSection.selectNoneAsDosage();
+    }
+
+    public void verifiesAddMedicineButton() {
+        medicineSection.verifiesAddMedicineButton();
+    }
+
+    public void validateMedicineUI(HashSet<String> protocolDrugNameList) {
+        medicineSection.validateMedicineUI(protocolDrugNameList);
     }
 }

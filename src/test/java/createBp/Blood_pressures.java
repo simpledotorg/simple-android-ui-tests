@@ -30,10 +30,10 @@ public class Blood_pressures {
     public static class Builder {
         int systolic = 120;
         int diastolic = 111;
-        String updated_at = "2019-04-10T05:34:44Z";
+        String updated_at = "2019-06-12T05:34:44Z";
         String user_id;
         String patient_id;
-        String created_at = "2019-04-10T05:34:44Z";
+        String created_at = "2019-06-12T05:34:44Z";
         String facility_id;
         String id=RandomValue.getRandomBpId();
 
