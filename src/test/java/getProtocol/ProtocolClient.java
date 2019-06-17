@@ -1,4 +1,4 @@
-package GetProtocol;
+package getProtocol;
 
 import io.restassured.http.ContentType;
 import io.restassured.response.Response;

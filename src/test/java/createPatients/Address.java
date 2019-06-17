@@ -34,14 +34,14 @@ public class Address {
 
     public static class Builder {
 
-        private String street_address="test Street";
+        private String street_address="street";
         private String country="India";
         private String pin ="1234565";
         private String updated_at="2019-05-29T05:39:35Z";
         private String district="testDistrict";
         private String created_at="2019-05-29T05:39:35Z";
         private String id=RandomValue.getRandomAddressId();
-        private String state="test State";
+        private String state="state";
         private String deleted_at="";
         private String village_or_colony="testVillage";
 

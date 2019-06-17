@@ -1,4 +1,4 @@
-package CreateUser;
+package user;
 
 import org.testng.annotations.Test;
 

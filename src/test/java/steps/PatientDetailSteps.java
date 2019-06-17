@@ -1,12 +1,11 @@
 package steps;
 
-import GetFacility.FacilityClient;
-import GetFacility.FacilityResponse;
-import GetProtocol.ProtocolClient;
-import GetProtocol.ProtocolResponse;
+import getFacility.FacilityClient;
+import getFacility.FacilityResponse;
+import getProtocol.ProtocolClient;
+import getProtocol.ProtocolResponse;
 import com.embibe.optimus.utils.ScenarioContext;
 import cucumber.api.DataTable;
-import cucumber.api.PendingException;
 import cucumber.api.java.en.And;
 import cucumber.api.java.en.Then;
 import pages.PatientDetailPage;
@@ -200,14 +199,13 @@ public class PatientDetailSteps extends BaseSteps {
     @And("^(\\w+) verifies custum drug list$")
     public void userVerifiesCustumDrugList(String User) {
         String drug_name = ScenarioContext.getData("User", ScenarioContextKeys.DRUG_NAME);
-
-        new PatientDetailPage(getDriverInstanceFor(User)).verifyCustumDrugList(drug_name, "true", "custum drugname should be present");
+        new PatientDetailPage(getDriverInstanceFor(User)).verifyCustumDrugList(drug_name, "true", drug_name+"custum drug should be present in bp medicine page");
     }
 
     @And("^(\\w+) update medicine info$")
     public void userUpdateMedicineInfo(String User) {
         String name = "checker";
-        ScenarioContext.putData("User", ScenarioContextKeys.DRUG_NAME,name);
+        ScenarioContext.putData("User", ScenarioContextKeys.DRUG_NAME, name);
 
         new PatientDetailPage(getDriverInstanceFor(User)).modifyCustomizeMadicineName(name);
     }
@@ -240,16 +238,15 @@ public class PatientDetailSteps extends BaseSteps {
     }
 
     @Then("^(\\w+) validate medicine info at bp medicine page$")
-    public void userValidateMedicineInfoAtBpMedicinePage(String User) {
+    public void validateMedicineInfoAtBpMedicinePage(String User) {
 
-        String facilityId="2f086ff7-83dc-4758-bd31-9d9109df9a09";
+        String facilityId = ScenarioContext.getData("User",ScenarioContextKeys.FACILTIYID);
         FacilityResponse allFacilityInfo = new FacilityClient().getAllFacilityInfo();
         String protocolId = allFacilityInfo.getProtocolId(facilityId);
 
 
         ProtocolResponse protocolResponse = new ProtocolClient().getAllProtocolInfo();
         HashSet<String> protocolDrugNameList = protocolResponse.getProtocolDrugNameList(protocolId);
-
 
 
         new PatientDetailPage(getDriverInstanceFor(User)).validateMedicineUI(protocolDrugNameList);
@@ -259,5 +256,16 @@ public class PatientDetailSteps extends BaseSteps {
     public void userTapsOnRemoveButton(String User) {
         new PatientDetailPage(getDriverInstanceFor(User)).tapsOnRemoveButton();
     }
+
+    @And("^(\\w+) create protocol drug from api$")
+    public void userCreateProtocolDrugFromApi(String User) throws Throwable {
+        new PatientDetailPage(getDriverInstanceFor(User)).createProtocolDrug();
+    }
+
+    @Then("^(\\w+) on patient summary detail page verifies medicine info$")
+    public void userOnPatientSummaryDetailPageVerifiesMedicineInfo(String User) {
+        new PatientDetailPage(getDriverInstanceFor(User)).verifiesMedicineInfo();
+    }
+
 }
 

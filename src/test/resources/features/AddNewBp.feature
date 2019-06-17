@@ -21,7 +21,7 @@ Feature: Add new Bp
     And User enters date
     And User taps on save Button
     And User taps on appointment
-    Then User verifies recent patients list
+#    Then User verifies recent patients list
 
 
   @addbp    @smoke
@@ -46,7 +46,7 @@ Feature: Add new Bp
     And User enters phone number
     And User taps on save Button
     And User taps on appointment
-    Then User verifies recent patients list
+#    Then User verifies recent patients list
 
 
   @addbp  @smoke
@@ -73,7 +73,7 @@ Feature: Add new Bp
     And User taps on skip button
     And User taps on save Button
     And User taps on appointment
-    Then User verifies recent patients list
+#    Then User verifies recent patients list
 
 
   @addbp @smoke
@@ -97,3 +97,5 @@ Feature: Add new Bp
     And User verifies days information
     And User taps on save Button
     And User taps on appointment
+
+
