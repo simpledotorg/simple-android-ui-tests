@@ -1,8 +1,10 @@
-package CreateUser;
+package user;
 
+import com.embibe.optimus.utils.ScenarioContext;
 import lombok.Getter;
 import lombok.Setter;
 import utils.RandomValue;
+import utils.ScenarioContextKeys;
 
 @Getter
 @Setter
@@ -36,6 +38,7 @@ public class UserRequestBody {
         String password_digest = "$2a$10$vJkbmZrjKDJh1jk1y8HJhuzLAzoY.8p0GfIpNjCNqKvOQh6.ArpYK";
 
         public UserRequestBody build() {
+            ScenarioContext.putData("User",ScenarioContextKeys.FACILTIYID,registration_facility_id);
             return new UserRequestBody(full_name, registration_facility_id, updated_at, created_at, phone_number, id, password_digest);
         }
     }

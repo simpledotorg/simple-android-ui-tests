@@ -112,6 +112,7 @@ public class PatientPrimaryInfoSection extends BasePage {
     public void enterPatientInvalidPatientInfo(String phonenumber) {
         enterPhoneNumber(phonenumber);
         clickNextButton();
+        driver.hideKeyboard();
     }
 
     public void enterInvalidDate(String sDate) {

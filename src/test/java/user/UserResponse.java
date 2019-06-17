@@ -1,4 +1,4 @@
-package CreateUser;
+package user;
 
 import lombok.Getter;
 import lombok.Setter;

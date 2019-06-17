@@ -11,6 +11,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.testng.Assert;
+import user.RegisterUser;
 import utils.ScenarioContextKeys;
 
 import java.util.ArrayList;
@@ -157,7 +158,7 @@ public class RegisterUserPage extends BasePage {
     }
 
     public void verifyErorMessageForInvalidFacilitySearch() {
-//        Assertion pending becuase of defect - no proper error message is displayed for invalid GetFacility name
+//        Assertion pending becuase of defect - no proper error message is displayed for invalid getFacility name
         System.out.println("assertion pending");
     }
 
@@ -255,5 +256,9 @@ public class RegisterUserPage extends BasePage {
         BpRequestBody bpRequestBody=new BpRequestBody(bp);
 
         BpResponse response = new BpClient().createNewBp(bpRequestBody, facilityId, userId, token);
+    }
+
+    public void registerNewUser() {
+        new RegisterUser().registerNewUser();
     }
 }

@@ -1,4 +1,4 @@
-package GetFacility;
+package getFacility;
 import lombok.Getter;
 import lombok.Setter;
 

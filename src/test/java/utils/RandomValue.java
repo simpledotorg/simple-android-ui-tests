@@ -6,6 +6,7 @@ import com.mifmif.common.regex.Generex;
 import org.testng.annotations.Test;
 
 import java.util.Calendar;
+import java.util.Locale;
 import java.util.Random;
 
 public class RandomValue {
@@ -52,7 +53,9 @@ public class RandomValue {
     }
 
     public static String getRandomPatientName(){
-        String name = faker.name().fullName();
+        Faker faker2= new Faker(new Locale("{en-IND}"));
+
+        String name = faker2.name().fullName();
         ScenarioContext.putData("User", ScenarioContextKeys.PATIENT_NAME, name);
         return name.toUpperCase();
     }
@@ -63,9 +66,11 @@ public class RandomValue {
     }
 
     public static String getRandomPhoneNumberId(){
-        String addressId=generex.random();
-        return addressId;
+        String phone=generex.random();
+        return phone;
     }
 
-
+    public static String getRandomProtocolId(){
+        return generex.random();
+    }
 }

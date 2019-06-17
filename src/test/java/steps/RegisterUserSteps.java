@@ -1,10 +1,9 @@
 package steps;
 
-import CreateUser.UserClient;
-import CreateUser.UserRequestBody;
-import CreateUser.UserResponse;
+import user.UserClient;
+import user.UserRequestBody;
+import user.UserResponse;
 import com.embibe.optimus.utils.ScenarioContext;
-import cucumber.api.PendingException;
 import cucumber.api.java.en.And;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
@@ -79,12 +78,7 @@ public class RegisterUserSteps extends BaseSteps {
 
     @Given("^(\\w+) Registers New User through API$")
     public void userRegistersNewUser(String User) {
-        UserRequestBody userRequestBody = new UserRequestBody.Builder().build();
-        UserResponse userResponse = new UserClient().registerNewUser(userRequestBody);
-
-        ScenarioContext.putData("User", ScenarioContextKeys.USER_ID, userResponse.getUser().getId());
-        ScenarioContext.putData("User", ScenarioContextKeys.USER_PHONENUMBER, userResponse.getUser().getPhone_number());
-        ScenarioContext.putData("User", ScenarioContextKeys.ACCESS_TOKEN, userResponse.getAccess_token());
+        new RegisterUserPage(getDriverInstanceFor(User)).registerNewUser();
     }
 
     @And("^(\\w+) Registers New Patient through API$")
@@ -118,7 +112,7 @@ public class RegisterUserSteps extends BaseSteps {
 
     @Then("^(\\w+) search for invalid facility$")
     public void userSearchForInvalidFacility(String User) {
-        String facility="invalid GetFacility";
+        String facility="invalid getFacility";
         new RegisterUserPage(getDriverInstanceFor(User)).searchFacility(facility);
 
     }

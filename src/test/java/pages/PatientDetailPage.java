@@ -1,5 +1,6 @@
 package pages;
 
+import protocolDrug.CreateDrug;
 import io.appium.java_client.AppiumDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -181,5 +182,13 @@ public class PatientDetailPage extends BasePage {
 
     public void validateMedicineUI(HashSet<String> protocolDrugNameList) {
         medicineSection.validateMedicineUI(protocolDrugNameList);
+    }
+
+    public void createProtocolDrug() {
+      new CreateDrug().createProtocolDrugFromAPI();
+    }
+
+    public void verifiesMedicineInfo() {
+        medicineSection.verifiesUpdatedMedicineInfo();
     }
 }

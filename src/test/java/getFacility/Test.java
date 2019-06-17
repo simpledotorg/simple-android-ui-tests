@@ -1,4 +1,4 @@
-package GetFacility;
+package getFacility;
 
 import org.testng.Assert;
 

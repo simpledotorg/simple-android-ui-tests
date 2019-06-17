@@ -135,7 +135,6 @@ public class MedicineSection extends BasePage {
     }
 
     public void selectMedicineFromList(String name) {
-
         for (WebElement ele : customDrugNameList) {
             System.out.println(ele.getText().toUpperCase());
             if (ele.getText().toUpperCase().equals(name.toUpperCase())) {
@@ -147,15 +146,19 @@ public class MedicineSection extends BasePage {
     }
 
     public void verifyCustumDrugList(String name, String expectedStatus, String failureMessage) {
+
+        if(customDrugNameList.size()==0){
+            Assert.fail("custun drug list is not present");
+        }
+
         String status = "false";
         for (WebElement ele : customDrugNameList) {
-
             if (ele.getText().toUpperCase().equals(name.toUpperCase())) {
                 status = "true";
             }
-
-            Assert.assertEquals(status, expectedStatus, failureMessage);
         }
+        Assert.assertEquals(status, expectedStatus, failureMessage);
+
     }
 
     public void modifyCustomizeMadicineName(String name) {
@@ -172,7 +175,7 @@ public class MedicineSection extends BasePage {
         drugNameList.get(0).click();
         String dosage = prescribedDosageName.get(0).getText();
         prescribedDosageName.get(0).click();
-        String drug_info = dosage+"   "+name;
+        String drug_info = dosage + "   " + name;
 
         ScenarioContext.putData("User", ScenarioContextKeys.DRUG_INFO, drug_info);
     }
@@ -194,4 +197,6 @@ public class MedicineSection extends BasePage {
         }
         Assert.assertTrue(protocolDrugNameList.containsAll(nameList));
     }
+
+
 }

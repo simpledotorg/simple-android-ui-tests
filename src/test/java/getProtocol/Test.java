@@ -1,4 +1,4 @@
-package GetProtocol;
+package getProtocol;
 
 import java.util.HashSet;
 

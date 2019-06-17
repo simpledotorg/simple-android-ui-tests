@@ -1,6 +1,5 @@
-package CreateUser;
+package user;
 
-import helper.JsonHelper;
 import io.restassured.http.ContentType;
 import io.restassured.response.Response;
 

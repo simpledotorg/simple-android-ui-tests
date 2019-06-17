@@ -126,6 +126,7 @@ public class BpSection extends BasePage {
 
     public void verifiesDaysInformation() {
         waitForElementToBeVisible(daysAgoInfo);
+
 //        need to create data to assertt exact days info
         Assert.assertTrue(daysAgoInfo.getText().contains("days ago"));
     }
