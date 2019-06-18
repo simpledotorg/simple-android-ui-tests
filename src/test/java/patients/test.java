@@ -1,6 +1,5 @@
-package createPatients;
+package patients;
 
-import com.google.gson.Gson;
 import org.testng.annotations.Test;
 
 import java.util.ArrayList;

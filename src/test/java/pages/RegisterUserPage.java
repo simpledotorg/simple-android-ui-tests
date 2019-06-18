@@ -1,11 +1,8 @@
 package pages;
 
 import com.embibe.optimus.utils.ScenarioContext;
-import createBp.Blood_pressures;
-import createBp.BpClient;
-import createBp.BpRequestBody;
-import createBp.BpResponse;
-import createPatients.*;
+import bloodPressure.*;
+import patients.*;
 import io.appium.java_client.AppiumDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -13,9 +10,6 @@ import org.openqa.selenium.support.PageFactory;
 import org.testng.Assert;
 import user.RegisterUser;
 import utils.ScenarioContextKeys;
-
-import java.util.ArrayList;
-import java.util.List;
 
 public class RegisterUserPage extends BasePage {
     private AppiumDriver driver;
@@ -144,7 +138,7 @@ public class RegisterUserPage extends BasePage {
     public void enterInvalidPin(String pin) {
         reEnterPin(pin);
         Assert.assertTrue(confirmPinErrorMsg.isDisplayed());
-        System.out.println(confirmPinErrorMsg.getText()+"text");
+        System.out.println(confirmPinErrorMsg.getText() + "text");
         Assert.assertTrue(resetPin.isDisplayed());
     }
 
@@ -158,7 +152,7 @@ public class RegisterUserPage extends BasePage {
     }
 
     public void verifyErorMessageForInvalidFacilitySearch() {
-//        Assertion pending becuase of defect - no proper error message is displayed for invalid getFacility name
+//        Assertion pending becuase of defect - no proper error message is displayed for invalid facility name
         System.out.println("assertion pending");
     }
 
@@ -171,94 +165,40 @@ public class RegisterUserPage extends BasePage {
         permissionAllowButton.click();
     }
 
-    public void createNewBP(String facilityId){
-
-        String patientId = ScenarioContext.getData("User", ScenarioContextKeys.PATIENT_ID);
-        String userId = ScenarioContext.getData("User", ScenarioContextKeys.USER_ID);
-        String token = ScenarioContext.getData("User", ScenarioContextKeys.ACCESS_TOKEN);
-
-        Blood_pressures build = new Blood_pressures.Builder()
-                .withUserId(userId)
-                .withPatientId(patientId)
-                .withFacilityId(facilityId).build();
-
-        List<Blood_pressures> bp = new ArrayList<>();
-        bp.add(build);
-
-        BpRequestBody bpRequestBody=new BpRequestBody(bp);
-
-        BpResponse response = new BpClient().createNewBp(bpRequestBody, facilityId, userId, token);
-
+    public void registerNewPatient() {
+        new CreatePatients().createPatient();
     }
 
 
-    public void createNewPatient(String facilityId,String mobileType,String number){
-        String userId = ScenarioContext.getData("User", ScenarioContextKeys.USER_ID);
-        String token = ScenarioContext.getData("User", ScenarioContextKeys.ACCESS_TOKEN);
-
-        List<Phone_numbers> ph = new ArrayList<>();
-        Phone_numbers phone_number = new Phone_numbers.Builder()
-                .withPhoneType(mobileType).withPhoneNumber(number).Build();
-        ph.add(phone_number);
-        Address address = new Address.Builder().Build();
-
-        Patients build = new Patients.Builder().withAddress(address).withAge(44).withGender("male").withPhoneNumber(ph).withStatus("active").build();
-
-        List<Patients> patients = new ArrayList<>();
-        patients.add(build);
-
-        PatientRequestBody patientRequestBody = new PatientRequestBody(patients);
-
-        PatientResponse response = new PatientClient().createPatient(patientRequestBody, facilityId, userId, token);
-    }
-
-
-    public void createNewPatientWithoutPhoneNumber(String facilityId,String mobileType){
-        String userId = ScenarioContext.getData("User", ScenarioContextKeys.USER_ID);
-        String token = ScenarioContext.getData("User", ScenarioContextKeys.ACCESS_TOKEN);
-
-        Address address = new Address.Builder().Build();
-
-        Patients build = new Patients.Builder().withAddress(address).withAge(44).withGender("male").withStatus("active").build();
-
-        List<Patients> patients = new ArrayList<>();
-        patients.add(build);
-
-        PatientRequestBody patientRequestBody = new PatientRequestBody(patients);
-
-        PatientResponse response = new PatientClient().createPatient(patientRequestBody, facilityId, userId, token);
-    }
-
-
-    public void createListOfBpForOnePatient(String facilityId){
-        String patientId = ScenarioContext.getData("User", ScenarioContextKeys.PATIENT_ID);
-        String userId = ScenarioContext.getData("User", ScenarioContextKeys.USER_ID);
-        String token = ScenarioContext.getData("User", ScenarioContextKeys.ACCESS_TOKEN);
-
-        Blood_pressures build = new Blood_pressures.Builder()
-                .withUserId(userId)
-                .withPatientId(patientId)
-                .withFacilityId(facilityId).build();
-        Blood_pressures build2 = new Blood_pressures.Builder()
-                .withUserId(userId)
-                .withPatientId(patientId)
-                .withFacilityId(facilityId).build();
-        Blood_pressures build3 = new Blood_pressures.Builder()
-                .withUserId(userId)
-                .withPatientId(patientId)
-                .withFacilityId(facilityId).build();
-
-        List<Blood_pressures> bp = new ArrayList<>();
-        bp.add(build);
-        bp.add(build2);
-        bp.add(build3);
-
-        BpRequestBody bpRequestBody=new BpRequestBody(bp);
-
-        BpResponse response = new BpClient().createNewBp(bpRequestBody, facilityId, userId, token);
+    public void registerNewPatientWithoutPhoneNumber() {
+       new CreatePatients().createPatientWithoutPhoneNumber();
     }
 
     public void registerNewUser() {
         new RegisterUser().registerNewUser();
+    }
+
+    public void registerNewPatientWithBp() {
+        new CreatePatients().createPatient();
+        new CreateBp().registerNewBp();
+    }
+
+    public void registerNewPatientWithoutBp() {
+        new CreatePatients().createPatient();
+    }
+
+    public void registerNewPatientWithListOfBps(int patientCount,int bpcount) {
+        createPatientWithListOfBP(1,2);
+    }
+
+
+    private void createPatientWithListOfBP(int patientcount, int bpcount) {
+
+        while (patientcount > 0) {
+            new CreatePatients().createPatient();
+            String patientId=ScenarioContext.getData("User",ScenarioContextKeys.PATIENT_ID);
+            new CreateBp().createBpList(patientId, bpcount);
+            patientcount--;
+        }
     }
 }

@@ -2,9 +2,8 @@ Feature: Add protocol drug
 
   @smoke @custom_drug
   Scenario: create drug from api and validate it in UI
-    Given User Registers New User through API
-    And User Registers New Patient through API
-    And User Registers New Bp record through API
+    Given User registers new user through api
+    And User registers new patient with bp from api
     And User create protocol drug from api
     And User Launches app
     And User taps on GetStarted button

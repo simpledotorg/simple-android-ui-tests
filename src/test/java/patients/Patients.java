@@ -1,10 +1,9 @@
-package createPatients;
+package patients;
 
 import lombok.Getter;
 import lombok.Setter;
 import utils.RandomValue;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @Getter

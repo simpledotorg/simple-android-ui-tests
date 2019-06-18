@@ -1,7 +1,7 @@
 Feature: Create Patient
 
   Background:
-    Given User Registers New User through API
+    Given User registers new user through api
     And User Launches app
     And User taps on GetStarted button
     And User enters registered phone number
