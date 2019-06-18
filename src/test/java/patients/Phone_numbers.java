@@ -1,4 +1,4 @@
-package createPatients;
+package patients;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -27,7 +27,7 @@ public class Phone_numbers {
 
     public static class Builder {
 
-        private String number;
+        private String number=RandomValue.getRandomPhoneNumber();
         private String phone_type;
         private String updated_at = "2019-05-29T05:39:35Z";
         private Boolean active = true;

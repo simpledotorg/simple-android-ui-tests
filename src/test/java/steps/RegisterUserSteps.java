@@ -1,9 +1,7 @@
 package steps;
 
-import user.UserClient;
-import user.UserRequestBody;
-import user.UserResponse;
 import com.embibe.optimus.utils.ScenarioContext;
+import cucumber.api.PendingException;
 import cucumber.api.java.en.And;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
@@ -76,29 +74,15 @@ public class RegisterUserSteps extends BaseSteps {
         new RegisterUserPage((getDriverInstanceFor(User))).clicksOnGotItButton();
     }
 
-    @Given("^(\\w+) Registers New User through API$")
+    @Given("^(\\w+) registers new user through api$")
     public void userRegistersNewUser(String User) {
         new RegisterUserPage(getDriverInstanceFor(User)).registerNewUser();
-    }
-
-    @And("^(\\w+) Registers New Patient through API$")
-    public void userRegistersNewPatientThroughAPI(String User) {
-        String facilityId = "2f086ff7-83dc-4758-bd31-9d9109df9a09";
-        String number=RandomValue.getRandomPhoneNumber();
-        new RegisterUserPage(getDriverInstanceFor(User)).createNewPatient(facilityId,"mobile",number);
-    }
-
-    @And("^(\\w+) Registers New Bp record through API$")
-    public void userRegistersNewBpRecordThroughAPI(String User) {
-        String facilityId = "2f086ff7-83dc-4758-bd31-9d9109df9a09";
-        new RegisterUserPage(getDriverInstanceFor(User)).createNewBP(facilityId);
     }
 
     @And("^(\\w+) enters invalid registration phone number as (.*)$")
     public void userEntersInvalidRegistrationPhoneNumber(String User,String phone) {
         new RegisterUserPage(getDriverInstanceFor(User)).enterInvalidPhoneNumber(phone);
     }
-
 
     @And("^(\\w+) enters invalid security pin as (.*)$")
     public void userEntersInvalidSecurityPin(String User,String pin) {
@@ -112,9 +96,8 @@ public class RegisterUserSteps extends BaseSteps {
 
     @Then("^(\\w+) search for invalid facility$")
     public void userSearchForInvalidFacility(String User) {
-        String facility="invalid getFacility";
+        String facility="invalid facility";
         new RegisterUserPage(getDriverInstanceFor(User)).searchFacility(facility);
-
     }
 
     @And("^(\\w+) verifies error message$")
@@ -124,19 +107,27 @@ public class RegisterUserSteps extends BaseSteps {
 
     @And("^(\\w+) enters confirm pin number$")
     public void userEntersConfirmPinNumber(String User){
-        String pin=ScenarioContext.getData("User",ScenarioContextKeys.PIN);
+        String pin=ScenarioContext.getData("User",ScenarioContextKeys.PIN).toString();
         new RegisterUserPage(getDriverInstanceFor(User)).reEnterPin(pin);
     }
 
-    @And("^(\\w+) Registers list of new Bp record through API$")
-    public void userRegistersListOfNewBpRecordThroughAPI(String User){
-        String facilityId = "2f086ff7-83dc-4758-bd31-9d9109df9a09";
-        new RegisterUserPage(getDriverInstanceFor(User)).createListOfBpForOnePatient(facilityId);
+    @And("^(\\w+) registers new patient without phonenumber through api$")
+    public void userRegistersNewPatientWithoutPhonenumberThroughAPI(String User) {
+        new RegisterUserPage(getDriverInstanceFor(User)).registerNewPatientWithoutPhoneNumber();
     }
 
-    @And("^(\\w+) Registers New Patient without phonenumber through API$")
-    public void userRegistersNewPatientWithoutPhonenumberThroughAPI(String User) {
-        String facilityId = "2f086ff7-83dc-4758-bd31-9d9109df9a09";
-        new RegisterUserPage(getDriverInstanceFor(User)).createNewPatientWithoutPhoneNumber(facilityId,"mobile");
+    @And("^(\\w+) registers new patient with bp from api$")
+    public void userRegisterNewPatientWithBp(String User){
+        new RegisterUserPage(getDriverInstanceFor(User)).registerNewPatientWithBp();
+    }
+
+    @And("^(\\w+) registers new patient without bp from api$")
+    public void userRegisterNewPatientWithoutBpFromApi(String User) {
+        new RegisterUserPage(getDriverInstanceFor(User)).registerNewPatientWithoutBp();
+    }
+
+    @And("^(\\w+) register new patient with list of bp through api$")
+    public void userRegisterNewPatientWithMlistOfBpThroughApi(String User) {
+        new RegisterUserPage(getDriverInstanceFor(User)).registerNewPatientWithListOfBps(1,2);
     }
 }

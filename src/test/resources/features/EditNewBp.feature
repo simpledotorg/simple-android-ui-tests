@@ -2,9 +2,8 @@ Feature: Edit BP info
 
   @edit @smoke
   Scenario:Edit BP info to already registered patient
-    Given User Registers New User through API
-    And User Registers New Patient through API
-    And User Registers New Bp record through API
+    Given User registers new user through api
+    And User registers new patient with bp from api
     And User Launches app
     And User taps on GetStarted button
     And User enters registered phone number
@@ -25,9 +24,8 @@ Feature: Edit BP info
 
   @edit @smoke
   Scenario:Remove BP info for already registered patient
-    Given User Registers New User through API
-    And User Registers New Patient through API
-    And User Registers New Bp record through API
+    Given User registers new user through api
+    And User registers new patient with bp from api
     And User Launches app
     And User taps on GetStarted button
     And User enters registered phone number
@@ -49,9 +47,8 @@ Feature: Edit BP info
 
   @edit @smoke
   Scenario: Edit BP info to already registered patient who has more than one recorded bp.
-    Given User Registers New User through API
-    And User Registers New Patient through API
-    And User Registers list of new Bp record through API
+    Given User registers new user through api
+    And User register new patient with list of bp through api
     And User Launches app
     And User taps on GetStarted button
     And User enters registered phone number
@@ -71,9 +68,8 @@ Feature: Edit BP info
 
   @edit @smoke
   Scenario: Remove BP info to already registered patient who has more than one recorded bp.
-    Given User Registers New User through API
-    And User Registers New Patient through API
-    And User Registers list of new Bp record through API
+    Given User registers new user through api
+    And User register new patient with list of bp through api
     And User Launches app
     And User taps on GetStarted button
     And User enters registered phone number
@@ -90,9 +86,8 @@ Feature: Edit BP info
 
   @edit @smoke
   Scenario:Remove all Bp info for registered patient who has more than one bp recorded.
-    Given User Registers New User through API
-    And User Registers New Patient through API
-    And User Registers list of new Bp record through API
+    Given User registers new user through api
+    And User register new patient with list of bp through api
     And User Launches app
     And User taps on GetStarted button
     And User enters registered phone number

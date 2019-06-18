@@ -1,6 +1,5 @@
-package createPatients;
+package patients;
 
-import com.github.javafaker.Faker;
 import lombok.Getter;
 import lombok.Setter;
 import utils.RandomValue;

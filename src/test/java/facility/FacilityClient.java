@@ -1,4 +1,4 @@
-package getFacility;
+package facility;
 
 import io.restassured.http.ContentType;
 import io.restassured.response.Response;

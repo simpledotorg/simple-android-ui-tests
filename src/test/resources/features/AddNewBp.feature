@@ -3,9 +3,8 @@ Feature: Add new Bp
   @addbp @smoke
   Scenario: Add new BP to already registered patient
 
-    Given User Registers New User through API
-    And User Registers New Patient through API
-    And User Registers New Bp record through API
+    Given User registers new user through api
+    And User registers new patient with bp from api
     And User Launches app
     And User taps on GetStarted button
     And User enters registered phone number
@@ -26,8 +25,8 @@ Feature: Add new Bp
 
   @addbp    @smoke
   Scenario: Add new BP and phone number to already registered patient without phone number and BP
-    Given User Registers New User through API
-    And User Registers New Patient without phonenumber through API
+    Given User registers new user through api
+    And User registers new patient without phonenumber through api
     And User Launches app
     And User taps on GetStarted button
     And User enters registered phone number
@@ -52,9 +51,8 @@ Feature: Add new Bp
   @addbp  @smoke
   Scenario: Add new BP to already registered patient without phone number
 
-    Given User Registers New User through API
-    And User Registers New Patient without phonenumber through API
-    And User Registers New Bp record through API
+    Given User registers new user through api
+    And User registers new patient without phonenumber through api
     And User Launches app
     And User taps on GetStarted button
     And User enters registered phone number
@@ -78,9 +76,8 @@ Feature: Add new Bp
 
   @addbp @smoke
   Scenario: Add new BP with past date to already registered patient
-    Given User Registers New User through API
-    And User Registers New Patient through API
-    And User Registers New Bp record through API
+    Given User registers new user through api
+    And User registers new patient with bp from api
     And User Launches app
     And User taps on GetStarted button
     And User enters registered phone number

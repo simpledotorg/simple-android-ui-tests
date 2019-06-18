@@ -1,7 +1,8 @@
-package createPatients;
+package patients;
 
 import com.google.gson.Gson;
 import io.restassured.response.Response;
+import org.testng.Assert;
 
 import static io.restassured.RestAssured.given;
 
@@ -19,8 +20,7 @@ public class PatientClient {
                 .body(json)
                 .post("https://api-qa.simple.org/api/v3/patients/sync");
 
-        System.out.println("patient info generated");
-
+        Assert.assertTrue(response.statusCode()==200,"create Patient api service failed");
         return response.as(PatientResponse.class);
     }
 

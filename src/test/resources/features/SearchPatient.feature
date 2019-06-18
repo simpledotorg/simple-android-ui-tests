@@ -2,7 +2,7 @@ Feature: Search for Patient information
 
   @search  @smoke
   Scenario Outline:Search for unregistered Patient
-    Given User Registers New User through API
+    Given User registers new user through api
     And User Launches app
     And User taps on GetStarted button
     And User enters registered phone number
@@ -18,8 +18,8 @@ Feature: Search for Patient information
 
   @search  @smoke
   Scenario: Search for patient without BP info
-    Given User Registers New User through API
-    And User Registers New Patient through API
+    Given User registers new user through api
+    And User registers new patient without bp from api
     And User Launches app
     And User taps on GetStarted button
     And User enters registered phone number
@@ -31,9 +31,8 @@ Feature: Search for Patient information
 
   @search  @smoke
   Scenario: Search for patient with BP info
-    Given User Registers New User through API
-    And User Registers New Patient through API
-    And User Registers New Bp record through API
+    Given User registers new user through api
+    And User registers new patient with bp from api
     And User Launches app
     And User taps on GetStarted button
     And User enters registered phone number

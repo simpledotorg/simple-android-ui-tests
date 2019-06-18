@@ -1,9 +1,8 @@
 Feature: Add New Medicine
 
   Background:
-    Given User Registers New User through API
-    And User Registers New Patient through API
-    And User Registers New Bp record through API
+    Given User registers new user through api
+    And User registers new patient with bp from api
     And User Launches app
     And User taps on GetStarted button
     And User enters registered phone number
@@ -14,7 +13,7 @@ Feature: Add New Medicine
     Then User searched for Registered Patient
     And User select patient form search list
 
-  @smoke @medicine   
+  @smoke @medicine
   Scenario: Add new customized Medicine to already registered patient
     Then User taps on Add new medicine button
     Then User taps on Add another medicine button

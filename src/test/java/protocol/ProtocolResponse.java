@@ -1,4 +1,4 @@
-package getProtocol;
+package protocol;
 
 import lombok.Getter;
 import lombok.Setter;

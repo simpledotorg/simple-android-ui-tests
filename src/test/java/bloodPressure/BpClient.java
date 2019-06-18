@@ -1,4 +1,4 @@
-package createBp;
+package bloodPressure;
 
 import com.google.gson.Gson;
 import io.restassured.response.Response;
@@ -6,7 +6,7 @@ import io.restassured.response.Response;
 import static io.restassured.RestAssured.given;
 
 public class BpClient {
-    public BpResponse createNewBp(BpRequestBody bpRequest,String facilityId, String userId, String token){
+    public BpResponse Post(BpRequestBody bpRequest, String facilityId, String userId, String token){
         String json = new Gson().toJson(bpRequest);
 
         Response response = given()
