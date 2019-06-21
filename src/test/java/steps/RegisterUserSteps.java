@@ -116,7 +116,7 @@ public class RegisterUserSteps extends BaseSteps {
         new RegisterUserPage(getDriverInstanceFor(User)).registerNewPatientWithoutPhoneNumber();
     }
 
-    @And("^(\\w+) registers new patient with bp from api$")
+    @Given("^(\\w+) registers new patient with bp from api$")
     public void userRegisterNewPatientWithBp(String User){
         new RegisterUserPage(getDriverInstanceFor(User)).registerNewPatientWithBp();
     }

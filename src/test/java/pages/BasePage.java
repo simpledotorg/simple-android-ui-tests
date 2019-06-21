@@ -1,6 +1,9 @@
 package pages;
 
 import io.appium.java_client.AppiumDriver;
+import io.appium.java_client.TouchAction;
+import io.appium.java_client.touch.WaitOptions;
+import io.appium.java_client.touch.offset.PointOption;
 import org.junit.Assert;
 import org.openqa.selenium.*;
 import org.openqa.selenium.support.FindBy;
@@ -8,6 +11,7 @@ import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import java.time.Duration;
 import java.util.List;
 
 
@@ -196,5 +200,22 @@ public class BasePage {
                 return true;
             }
         return false;
+    }
+
+    public void scrollDown() {
+
+        System.out.println(" m here");
+        Dimension size = driver.manage().window().getSize();
+
+        int startY = (int) (size.height * 0.7);
+        int endY = (int) (size.height * 0.3);
+        int x = (size.width / 2);
+
+        System.out.println(startY+""+endY+""+x);
+
+        new TouchAction(driver).press(PointOption.point(x, startY))
+                .waitAction(WaitOptions.waitOptions(Duration.ofMillis(1000)))
+                .moveTo(PointOption.point(x,endY))
+                .release().perform();
     }
 }

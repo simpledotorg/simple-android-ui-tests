@@ -14,6 +14,7 @@ import java.util.List;
 public class PatientTabPage extends BasePage {
     private AppiumDriver driver;
     private SearchSection searchSection;
+    private RecentPatientSection recentPatientSection;
 
     @FindBy(id = "patients_scan_simple_card")
     private WebElement scanBPPassportButton;
@@ -24,17 +25,16 @@ public class PatientTabPage extends BasePage {
     @FindBy(id = "patients_dismiss_user_approved_status")
     private WebElement GotITButton;
 
-    @FindBys({@FindBy(id = "recentpatient_item_title")})
-    private List<WebElement> recentPatientNameList;
 
-    @FindBy(id = "seeall_button")
-    private WebElement seeAllButton;
+    @FindBy(id = "sync_indicator_root_layout")
+    private WebElement syncLink;
 
     public PatientTabPage(AppiumDriver driver) {
         super(driver);
         PageFactory.initElements(driver, this);
         this.driver = driver;
         searchSection = new SearchSection(driver);
+        recentPatientSection = new RecentPatientSection(driver);
     }
 
     public void verifyPatientTab() {
@@ -86,56 +86,32 @@ public class PatientTabPage extends BasePage {
     }
 
 
-    public void verifiesRecentPatientListForWithoutBpInfo(String patientName) {
+//    public void verifiesRecentPatientListForWithoutBpInfo(String patientName) {
+//
+////        String status = "true";
+////
+////        String actualValue = patientName.replaceAll("\\s", "").toUpperCase();
+////
+////        for (WebElement ele : recentPatientNameList) {
+////
+////            String[] str = ele.getText().split(",");
+////
+////            String expectedValue = str[0].replaceAll("\\s", "");
+////
+////            if (expectedValue.contains(actualValue)) {
+////                status = "false";
+////            }
+////        }
+////        Assert.assertEquals(status, "true", "patient without bp info is present in recent patient list");
+//    }
 
-//        String status = "true";
-//
-//        String actualValue = patientName.replaceAll("\\s", "").toUpperCase();
-//
-//        for (WebElement ele : recentPatientNameList) {
-//
-//            String[] str = ele.getText().split(",");
-//
-//            String expectedValue = str[0].replaceAll("\\s", "");
-//
-//            if (expectedValue.contains(actualValue)) {
-//                status = "false";
-//            }
-//        }
-//        Assert.assertEquals(status, "true", "patient without bp info is present in recent patient list");
-    }
-
-    public void verifiesSeeAllOption() {
-
-//        scroll and record size for recent patient list
-        System.out.println(recentPatientNameList.size()+"size");
-        if (recentPatientNameList.size() >= 10) {
-            Assert.assertTrue(seeAllButton.isDisplayed());
-        } else {
-            Assert.assertEquals(seeAllButton.isDisplayed(), false);
-        }
-    }
 
     public void selectPatientFromSearchList() {
         String patientName = ScenarioContext.getData("User", ScenarioContextKeys.PATIENT_NAME);
         searchSection.selectPatientFromSearchList(patientName);
     }
 
-    public void selectPatientFromRecentPatientList() {
-        String patientName = ScenarioContext.getData("User", ScenarioContextKeys.PATIENT_NAME);
-        String[] split = patientName.split(",");
-
-
-        System.out.println(patientName+"name");
-        System.out.println(recentPatientNameList.size()+"size");
-
-        waitForElementToBeVisible(recentPatientNameList.get(0));
-
-        for (WebElement ele :recentPatientNameList) {
-
-            if(ele.getText().contains(split[0])){
-                ele.click();
-            }
-        }
+    public void tapsOnSyncLink() {
+        syncLink.click();
     }
 }

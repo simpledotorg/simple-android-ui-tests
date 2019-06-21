@@ -73,4 +73,8 @@ public class RandomValue {
     public static String getRandomProtocolId(){
         return generex.random();
     }
+
+    public static String getRandomAppointmentId(){
+        return generex.random();
+    }
 }
