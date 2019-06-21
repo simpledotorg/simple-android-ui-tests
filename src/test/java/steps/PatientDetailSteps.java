@@ -1,5 +1,6 @@
 package steps;
 
+import cucumber.api.PendingException;
 import facility.FacilityClient;
 import facility.FacilityResponse;
 import protocol.ProtocolClient;
@@ -267,5 +268,9 @@ public class PatientDetailSteps extends BaseSteps {
         new PatientDetailPage(getDriverInstanceFor(User)).verifiesMedicineInfo();
     }
 
+    @And("^(\\w+) updates phone number$")
+    public void userUpdatesPhoneNumber(String User){
+        new PatientDetailPage(getDriverInstanceFor(User)).updatePhoneNumber();
+    }
 }
 

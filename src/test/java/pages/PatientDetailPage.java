@@ -191,4 +191,8 @@ public class PatientDetailPage extends BasePage {
     public void verifiesMedicineInfo() {
         medicineSection.verifiesUpdatedMedicineInfo();
     }
+
+    public void updatePhoneNumber() {
+        bpSection.updatePhonenumber();
+    }
 }

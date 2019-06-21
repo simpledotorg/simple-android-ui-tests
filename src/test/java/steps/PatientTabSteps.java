@@ -52,8 +52,8 @@ public class PatientTabSteps extends BaseSteps {
 
     @Then("^(\\w+) verifies recent patients list for patient without bp info$")
     public void userVerifiesRecentPatientsListForPatientWithoutBpInfo(String User){
-        String patientName = ScenarioContext.getData("User", ScenarioContextKeys.PATIENT_NAME);
-        new PatientTabPage(getDriverInstanceFor(User)).verifiesRecentPatientListForWithoutBpInfo(patientName);
+//        String patientName = ScenarioContext.getData("User", ScenarioContextKeys.PATIENT_NAME);
+//        new PatientTabPage(getDriverInstanceFor(User)).verifiesRecentPatientListForWithoutBpInfo(patientName);
     }
 
     @And("^(\\w+) verifies SEE ALL option$")
@@ -67,9 +67,13 @@ public class PatientTabSteps extends BaseSteps {
 
     }
 
-
     @Then("^(\\w+) select patient from recent patient list$")
     public void userSelectPatientFromRecentPatientList(String User) {
-        new PatientTabPage(getDriverInstanceFor(User)).selectPatientFromRecentPatientList();
+//        new PatientTabPage(getDriverInstanceFor(User)).selectPatientFromRecentPatientList();
+    }
+
+    @And("^(\\w+) on Patient tab taps on sync link$")
+    public void userTapsOnSyncLink(String User) {
+        new PatientTabPage(getDriverInstanceFor(User)).tapsOnSyncLink();
     }
 }

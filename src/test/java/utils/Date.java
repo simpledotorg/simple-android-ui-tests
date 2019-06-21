@@ -16,6 +16,12 @@ public class Date {
     }
 
 
+    public static String getCurrentDateINYYYY_MM_DD() {
+        LocalDate localDate = LocalDate.now();
+        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+        return dtf.format(localDate);
+    }
+
     @Test
     public void getDate() {
 

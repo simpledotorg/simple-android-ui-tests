@@ -105,8 +105,11 @@ public class BpSection extends BasePage {
     @FindBy(id = "addphone_phone")
     private WebElement phoneNumberTextFeild;
 
+    @FindBy(id="updatephone_phone")
+    private WebElement updatePhoneNumberTextFeild;
+
     public void addPhoneNumber() {
-        phoneNumberTextFeild.sendKeys(RandomValue.getRandomPhoneNumber());
+        phoneNumberTextFeild.sendKeys(RandomValue.getRandomPhoneNumber()+"\n");
         savePhoneNumberButton.click();
     }
 
@@ -171,5 +174,10 @@ public class BpSection extends BasePage {
             tapsOnRemoveLink();
             tapsOnRemoveButton();
         }
+    }
+
+    public void updatePhonenumber(){
+        updatePhoneNumberTextFeild.sendKeys(RandomValue.getRandomPhoneNumber());
+        savePhoneNumberButton.click();
     }
 }

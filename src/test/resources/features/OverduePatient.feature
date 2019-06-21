@@ -1,0 +1,134 @@
+Feature: overdue patients test
+
+  Background:
+    Given User registers new user through api
+    Given User registers new patient with bp from api
+    Given User creates overdue patient
+    And User taps on GetStarted button
+    And User enters registered phone number
+    And User enters registered security pin
+    And User taps on Enter code link
+    And User enters otp
+    And User taps on Got It Button
+
+  @overdue
+  Scenario: create overdue patient from api and validate it in ui
+    And User on Homepage taps on Overdue Tab
+    Then User on Overdue Tab verifies patient info present in overdue list
+
+  @overdue
+  Scenario: user should be able to view information for overdue patient
+    And User on Homepage taps on Overdue Tab
+    And User on Overdue tab taps on patient detail
+    Then User on Overdue tab verifies expanded view of patient information
+
+  @overdue
+  Scenario: update appointment with agreed to visit
+    And User on Homepage taps on Overdue Tab
+    And User on Overdue tab taps on patient detail
+    And User on Overdue tab taps on agreed to visit reason
+    Then User on Overdue tab verifies patient info removed from overdue list
+    And User on Homepage taps on Patients Tab
+    And User on Patient tab taps on sync link
+
+  @overdue
+  Scenario: add new bp for an overdue patient
+    And User on Homepage taps on Overdue Tab
+    Then User on Overdue Tab verifies patient info present in overdue list
+    And User on Homepage taps on Patients Tab
+    And User searched for Registered Patient
+    And User select patient form search list
+    And User taps on Add new Bp button
+    And User enters new Bp Info
+    And User taps on next ArrowButton
+    And User enters date
+    And User taps on save Button
+    And User taps on appointment
+    And User on Homepage taps on Overdue Tab
+    Then User on Overdue tab verifies patient info removed from overdue list
+
+  @overdue
+  Scenario: update appointment with remind to call later
+    And User on Homepage taps on Overdue Tab
+    And User on Overdue tab taps on patient detail
+    And User on Overdue tab taps on remind to call later
+    And User on Overdue tab taps on done button
+    Then User on Overdue tab verifies patient info removed from overdue list
+    And User on Homepage taps on Patients Tab
+    And User on Patient tab taps on sync link
+
+  @overdue
+  Scenario Outline:End to end flow of adding bp for a patient whose appointment is updated with Phone number doesn't exist
+    And User on Homepage taps on Overdue Tab
+    And User on Overdue tab taps on patient detail
+    And User on Overdue tab taps on remove from overdue list
+    And User on Overdue tab selects <reasons>
+    And User on Overdue reason page selects done button
+    And User enters registered security pin
+    Then User on Overdue tab verifies patient info removed from overdue list
+    And User on Homepage taps on Patients Tab
+    And User searched for Registered Patient
+    And User select patient form search list
+    And User verifies update phone number pop up
+    And User updates phone number
+    And User taps on save Button
+    And User taps on appointment
+    And User on Patient tab taps on sync link
+
+    Examples:
+      | reasons                    |
+      | Phone number does not work |
+
+  @overdue
+  Scenario Outline:End to end flow for a patient whose appointment is updated with Phone number doesn't exist
+    And User on Homepage taps on Overdue Tab
+    And User on Overdue tab taps on patient detail
+    And User on Overdue tab taps on remove from overdue list
+    Then User on Overdue tab Verifies reason screen
+    And User on Overdue tab selects <reasons>
+    And User on Overdue reason page selects done button
+    And User enters registered security pin
+    Then User on Overdue tab verifies patient info removed from overdue list
+    And User on Homepage taps on Patients Tab
+    And User searched for Registered Patient
+    And User select patient form search list
+    And User verifies update phone number pop up
+    And User taps on skip button
+    And User taps on save Button
+    And User taps on appointment
+    And User on Patient tab taps on sync link
+
+    Examples:
+      | reasons                    |
+      | Phone number does not work |
+
+
+  @overdue1
+  Scenario Outline: update appointment with other reason
+    And User on Homepage taps on Overdue Tab
+    And User on Overdue tab taps on patient detail
+    And User on Overdue tab taps on remove from overdue list
+    And User on Overdue tab selects <reasons>
+    And User on Overdue reason page selects done button
+    And User enters registered security pin
+    Then User on Overdue tab verifies patient info removed from overdue list
+    And User on Homepage taps on Patients Tab
+    And User on Patient tab taps on sync link
+
+    Examples:
+      | reasons                                       |
+      | Patient is not responding                     |
+      | Transferred to another public health facility |
+      | Moved to private practitioner                 |
+
+  @overdue
+  Scenario: Verify Call pop up
+    And User on Homepage taps on Overdue Tab
+    And User on Overdue tab taps on call Icon
+    Then User on Overdue tab verifies popup
+
+
+
+
+
+
