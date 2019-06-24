@@ -3,7 +3,7 @@ Feature: Add new Bp
   @addbp @smoke
   Scenario: Add new BP to already registered patient
 
-    Given User registers new user through api
+   Given User registers new user from api
     And User registers new patient with bp from api
     And User Launches app
     And User taps on GetStarted button
@@ -12,21 +12,21 @@ Feature: Add new Bp
     And User taps on Enter code link
     And User enters otp
     And User taps on Got It Button
-    Then User searched for Registered Patient
-    And User select patient form search list
-    And User taps on Add new Bp button
-    And User enters new Bp Info
-    And User taps on next ArrowButton
-    And User enters date
-    And User taps on save Button
-    And User taps on appointment
+    Then User on Search page searched for Registered Patient
+    And User on Search page selects patient form search list
+    And User on Patient summary page taps on Add new Bp button
+    And User on Patient summary page enters new Bp Info
+    And User on Patient summary page taps on next ArrowButton
+    And User on Patient summary page enters date
+    And User on Patient summary page taps on save Button
+    And User on Patient summary page taps on appointment
 #    Then User verifies recent patients list
 
 
   @addbp    @smoke
   Scenario: Add new BP and phone number to already registered patient without phone number and BP
-    Given User registers new user through api
-    And User registers new patient without phonenumber through api
+   Given User registers new user from api
+    And User registers new patient without phonenumber from api
     And User Launches app
     And User taps on GetStarted button
     And User enters registered phone number
@@ -34,25 +34,25 @@ Feature: Add new Bp
     And User taps on Enter code link
     And User enters otp
     And User taps on Got It Button
-    Then User searched for Registered Patient without BP info
-    And User select patient form search list
-    And User taps on Add new Bp button
-    And User enters new Bp Info
-    And User taps on next ArrowButton
-    And User enters date
-    And User taps on save Button
-    And User verifies update phone number pop up
-    And User enters phone number
-    And User taps on save Button
-    And User taps on appointment
+    Then User on Search page searched for Registered Patient without BP info
+    And User on Search page selects patient form search list
+    And User on Patient summary page taps on Add new Bp button
+    And User on Patient summary page enters new Bp Info
+    And User on Patient summary page taps on next ArrowButton
+    And User on Patient summary page enters date
+    And User on Patient summary page taps on save Button
+    And User on Patient summary page verifies update phone number pop up
+    And User on Patient summary page enters phone number
+    And User on Patient summary page taps on save Button
+    And User on Patient summary page taps on appointment
 #    Then User verifies recent patients list
 
 
   @addbp  @smoke
   Scenario: Add new BP to already registered patient without phone number
 
-    Given User registers new user through api
-    And User registers new patient without phonenumber through api
+   Given User registers new user from api
+    And User registers new patient without phonenumber from api
     And User Launches app
     And User taps on GetStarted button
     And User enters registered phone number
@@ -60,23 +60,23 @@ Feature: Add new Bp
     And User taps on Enter code link
     And User enters otp
     And User taps on Got It Button
-    Then User searched for Registered Patient
-    And User select patient form search list
-    And User taps on Add new Bp button
-    And User enters new Bp Info
-    And User taps on next ArrowButton
-    And User enters past date
-    And User taps on save Button
-    And User verifies update phone number pop up
-    And User taps on skip button
-    And User taps on save Button
-    And User taps on appointment
+    Then User on Search page searched for Registered Patient
+    And User on Search page selects patient form search list
+    And User on Patient summary page taps on Add new Bp button
+    And User on Patient summary page enters new Bp Info
+    And User on Patient summary page taps on next ArrowButton
+    And User on Patient summary page enters past date
+    And User on Patient summary page taps on save Button
+    And User on Patient summary page verifies update phone number pop up
+    And User on Patient summary page taps on skip button
+    And User on Patient summary page taps on save Button
+    And User on Patient summary page taps on appointment
 #    Then User verifies recent patients list
 
 
   @addbp @smoke
   Scenario: Add new BP with past date to already registered patient
-    Given User registers new user through api
+   Given User registers new user from api
     And User registers new patient with bp from api
     And User Launches app
     And User taps on GetStarted button
@@ -85,14 +85,14 @@ Feature: Add new Bp
     And User taps on Enter code link
     And User enters otp
     And User taps on Got It Button
-    Then User searched for Registered Patient
-    And User select patient form search list
-    And User taps on Add new Bp button
-    And User enters new Bp Info
-    And User taps on next ArrowButton
-    And User enters past date
-    And User verifies days information
-    And User taps on save Button
-    And User taps on appointment
+    Then User on Search page searched for Registered Patient
+    And User on Search page selects patient form search list
+    And User on Patient summary page taps on Add new Bp button
+    And User on Patient summary page enters new Bp Info
+    And User on Patient summary page taps on next ArrowButton
+    And User on Patient summary page enters past date
+    And User on Patient summary page verifies days information
+    And User on Patient summary page taps on save Button
+    And User on Patient summary page taps on appointment
 
 

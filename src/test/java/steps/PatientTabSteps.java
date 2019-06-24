@@ -14,66 +14,35 @@ public class PatientTabSteps extends BaseSteps {
         new PatientTabPage(getDriverInstanceFor(User)).verifyPatientTab();
     }
 
-    @Then("(\\w+) searches for unregistered Patient as (.*)$")
-    public void userPerformSearchForUnregisteredPatient(String User,String str) {
-        new PatientTabPage(getDriverInstanceFor(User)).searchForPatientName(str);
-    }
-
-    @Then("^(\\w+) searched for Registered Patient$")
-    public void userSearchedForRegisteredPatient(String User) {
-        String patientName = ScenarioContext.getData("User", ScenarioContextKeys.PATIENT_NAME);
-        new PatientTabPage(getDriverInstanceFor(User)).searchForRegisteredPatient(patientName);
-    }
-
-    @Then("^(\\w+) searched for Registered Patient without BP info$")
-    public void userSearchedForRegisteredPatientWithoutBPInfo(String User) {
-        String patientName = ScenarioContext.getData("User", ScenarioContextKeys.PATIENT_NAME);
-        new PatientTabPage(getDriverInstanceFor(User)).userSearchedForRegisteredPatientWithoutBPInfo(patientName);
-    }
-
-    @Then("^(\\w+) searches for Patient name$")
-    public void userSearchesForUnregisteredPatientName(String User) {
-        String patientName = RandomValue.getRandomPatientName();
-        ScenarioContext.putData("User", ScenarioContextKeys.PATIENT_NAME, patientName);
-
-        new PatientTabPage(getDriverInstanceFor(User)).searchForPatientName(patientName);
-    }
-
-    @And("^(\\w+) taps on registered patient$")
-    public void userClicksOnRegisteredPatient(String User) {
-        new PatientTabPage(getDriverInstanceFor(User)).tapsOnRegisteredPatientTab();
-    }
-
-    @Then("^(\\w+) verifies recent patients list$")
-    public void userVerifiesRecentPatientsList(String User) {
-        String patientName = ScenarioContext.getData("User", ScenarioContextKeys.PATIENT_NAME);
-        new PatientTabPage(getDriverInstanceFor(User)).verifiesRecentPatientList(patientName);
-    }
-
-    @Then("^(\\w+) verifies recent patients list for patient without bp info$")
-    public void userVerifiesRecentPatientsListForPatientWithoutBpInfo(String User){
-//        String patientName = ScenarioContext.getData("User", ScenarioContextKeys.PATIENT_NAME);
-//        new PatientTabPage(getDriverInstanceFor(User)).verifiesRecentPatientListForWithoutBpInfo(patientName);
-    }
-
-    @And("^(\\w+) verifies SEE ALL option$")
+    @And("^(\\w+) on patient tab verifies SEE ALL option$")
     public void userVerifiesSEEALLOption(String User){
         new PatientTabPage(getDriverInstanceFor(User)).verifiesSeeAllOption();
     }
 
-    @And("^(\\w+) select patient form search list$")
-    public void userSelectPatientFormSearchList(String User){
-        new PatientTabPage(getDriverInstanceFor(User)).selectPatientFromSearchList();
-
+    @Then("^(\\w+) on Patient tab select patient from recent patient list$")
+    public void userSelectPatientFromRecentPatientList(String User) {
+        new PatientTabPage(getDriverInstanceFor(User)).selectPatientFromRecentPatientList();
     }
 
-    @Then("^(\\w+) select patient from recent patient list$")
-    public void userSelectPatientFromRecentPatientList(String User) {
-//        new PatientTabPage(getDriverInstanceFor(User)).selectPatientFromRecentPatientList();
+    @And("^(\\w+) on Patient tab taps on search text box$")
+    public void userOnPatientTabTapsOnSearchTextBox(String User) {
+        new PatientTabPage(getDriverInstanceFor(User)).tapsOnSearchTextBox();
+    }
+
+    @Then("^(\\w+) on Patient tab verifies patient info present in recent patients list$")
+    public void userOnPatientTabVerifiesPatientInfoPresentInRecentPatientsList(String User) {
+        String patientName = ScenarioContext.getData("User", ScenarioContextKeys.PATIENT_NAME);
+        new PatientTabPage(getDriverInstanceFor(User)).isPatientPresent(patientName);
     }
 
     @And("^(\\w+) on Patient tab taps on sync link$")
     public void userTapsOnSyncLink(String User) {
         new PatientTabPage(getDriverInstanceFor(User)).tapsOnSyncLink();
+    }
+
+    @Then("^(\\w+) on Patient tab verifies patient info not present in recent patients list$")
+    public void userOnPatientTabVerifiesPatientInfoNotPresentInRecentPatientsList(String User){
+        String patientName = ScenarioContext.getData("User", ScenarioContextKeys.PATIENT_NAME);
+        new PatientTabPage(getDriverInstanceFor(User)).isPatientNotPresent(patientName);
     }
 }

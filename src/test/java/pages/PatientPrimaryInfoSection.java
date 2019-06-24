@@ -118,6 +118,6 @@ public class PatientPrimaryInfoSection extends BasePage {
     public void enterInvalidDate(String sDate) {
         enterDateOfBirth.sendKeys(sDate);
         clickNextButton();
-//        need to add ASSERTION when defect will get fixed
+        Assert.fail(" need to add ASSERTION when defect will get fixed");
     }
 }

@@ -1,7 +1,7 @@
 Feature: overdue patients test
 
   Background:
-    Given User registers new user through api
+    Given User registers new user from api
     Given User registers new patient with bp from api
     Given User creates overdue patient
     And User taps on GetStarted button
@@ -36,14 +36,14 @@ Feature: overdue patients test
     And User on Homepage taps on Overdue Tab
     Then User on Overdue Tab verifies patient info present in overdue list
     And User on Homepage taps on Patients Tab
-    And User searched for Registered Patient
-    And User select patient form search list
-    And User taps on Add new Bp button
-    And User enters new Bp Info
-    And User taps on next ArrowButton
-    And User enters date
-    And User taps on save Button
-    And User taps on appointment
+    And User on Search page searched for Registered Patient
+    And User on Search page selects patient form search list
+    And User on Patient summary page taps on Add new Bp button
+    And User on Patient summary page enters new Bp Info
+    And User on Patient summary page taps on next ArrowButton
+    And User on Patient summary page enters date
+    And User on Patient summary page taps on save Button
+    And User on Patient summary page taps on appointment
     And User on Homepage taps on Overdue Tab
     Then User on Overdue tab verifies patient info removed from overdue list
 
@@ -67,12 +67,11 @@ Feature: overdue patients test
     And User enters registered security pin
     Then User on Overdue tab verifies patient info removed from overdue list
     And User on Homepage taps on Patients Tab
-    And User searched for Registered Patient
-    And User select patient form search list
-    And User verifies update phone number pop up
-    And User updates phone number
-    And User taps on save Button
-    And User taps on appointment
+    And User on Search page searched for Registered Patient
+    And User on Search page selects patient form search list
+    And User on Patient summary page updates phone number
+    And User on Patient summary page taps on save Button
+    And User on Patient summary page taps on appointment
     And User on Patient tab taps on sync link
 
     Examples:
@@ -90,12 +89,12 @@ Feature: overdue patients test
     And User enters registered security pin
     Then User on Overdue tab verifies patient info removed from overdue list
     And User on Homepage taps on Patients Tab
-    And User searched for Registered Patient
-    And User select patient form search list
-    And User verifies update phone number pop up
-    And User taps on skip button
-    And User taps on save Button
-    And User taps on appointment
+    And User on Search page searched for Registered Patient
+    And User on Search page selects patient form search list
+    And User on Patient summary page verifies update phone number pop up
+    And User on Patient summary page taps on skip button
+    And User on Patient summary page taps on save Button
+    And User on Patient summary page taps on appointment
     And User on Patient tab taps on sync link
 
     Examples:

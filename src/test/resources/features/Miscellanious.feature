@@ -2,7 +2,7 @@ Feature: Miscellaniuos feature
 
   @overdue
   Scenario: Verify patient info for whose appointment is scheduled for today
-    Given User registers new user through api
+    Given User registers new user from api
     Given User registers new patient with bp from api
     Given User creates overdue patient with appointment as of today
     And User Launches app
