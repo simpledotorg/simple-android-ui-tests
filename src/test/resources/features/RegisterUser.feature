@@ -2,7 +2,6 @@ Feature: Register Nurse
 
   @register
   Scenario: Register New Nurse/User
-    Given User Launches app
     And User taps on GetStarted button
     And User enters registration phone number
     And User enters registration name
@@ -14,7 +13,6 @@ Feature: Register Nurse
 
   @register  @smoke
     Scenario Outline: Register New Nurse/User with invalid phone number
-      Given User Launches app
       And User taps on GetStarted button
       And User enters invalid registration phone number as <phoneNumber>
     Examples:
@@ -25,7 +23,6 @@ Feature: Register Nurse
 
    @register @smokey
      Scenario Outline: Register New Nurse/User with invalid confirm PIN
-     Given User Launches app
      And User taps on GetStarted button
      And User enters registration phone number
      And User enters registration name
@@ -39,7 +36,6 @@ Feature: Register Nurse
 
   @register @smokey
   Scenario: New Nurse/User reset pin at the time of registration
-    Given User Launches app
     And User taps on GetStarted button
     And User enters registration phone number
     And User enters registration name
@@ -48,7 +44,6 @@ Feature: Register Nurse
 
    @register @smokey
      Scenario: Register New Nurse/User with invalid facility
-     Given User Launches app
      And User taps on GetStarted button
      And User enters registration phone number
      And User enters registration name

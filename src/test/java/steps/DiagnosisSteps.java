@@ -1,11 +1,13 @@
 package steps;
 
+import cucumber.api.PendingException;
 import cucumber.api.java.en.And;
 import pages.DiagnosisPage;
 
 public class DiagnosisSteps extends BaseSteps {
-    @And("^(\\w+) clicks on next Button at diagnosis screen$")
-    public void userClicksOnNextButtonAtDiagnosisScreen(String User) {
+    @And("^(\\w+) on Diagnosis page taps on next Button$")
+    public void userOnDiagnosisPageTapsOnNextButton(String User) throws Throwable {
         new DiagnosisPage(getDriverInstanceFor(User)).tapsOnNextButton();
+
     }
 }

@@ -13,8 +13,9 @@ import java.util.List;
 
 public class PatientTabPage extends BasePage {
     private AppiumDriver driver;
-    private SearchSection searchSection;
-    private RecentPatientSection recentPatientSection;
+
+    private SearchPage searchSection;
+    private RecentPatientPage recentPatientSection;
 
     @FindBy(id = "patients_scan_simple_card")
     private WebElement scanBPPassportButton;
@@ -33,8 +34,8 @@ public class PatientTabPage extends BasePage {
         super(driver);
         PageFactory.initElements(driver, this);
         this.driver = driver;
-        searchSection = new SearchSection(driver);
-        recentPatientSection = new RecentPatientSection(driver);
+        searchSection = new SearchPage(driver);
+        recentPatientSection = new RecentPatientPage(driver);
     }
 
     public void verifyPatientTab() {
@@ -42,76 +43,32 @@ public class PatientTabPage extends BasePage {
         Assert.assertTrue(GotITButton.isDisplayed());
     }
 
-    public void searchForUnRegisteredPatient(String patientName) {
-        searchSection.searchForPatientName(patientName);
-    }
-
-    public void searchForRegisteredPatient(String patientName) {
-        searchSection.searchForRegisteredPatientWithBpInfo(patientName.toUpperCase());
-    }
-
-    public void userSearchedForRegisteredPatientWithoutBPInfo(String patientName) {
-        searchSection.searchForRegisteredPatientWithoutBPInfo(patientName);
-    }
-
-    public void searchForPatientName(String patientName) {
-        searchSection.searchForPatientName(patientName);
-    }
-
-    public void tapsOnRegisteredPatientTab() {
-        searchSection.tapsOnRegisteredPatientTab();
-    }
-
-    public void verifiesRecentPatientList(String patientName) {
-
-//        waitForElementToBeVisible(recentPatientNameList.get(0));
-//        String status = "false";
-//
-//        String actualValue = patientName.replaceAll("\\s", "").toUpperCase();
-//
-//
-//        for (WebElement ele : recentPatientNameList) {
-//            String[] str = ele.getText().split(",");
-//
-//            String expectedValue = str[0].replaceAll("\\s", "");
-//
-//            System.out.println(actualValue+"value");
-//            System.out.println(expectedValue);
-//
-//            if (expectedValue.contains(actualValue)) {
-//                status = "true";
-//            }
-//        }
-//        Assert.assertEquals(status, "true", "patient Name is  not present in recent patient list");
-    }
-
-
-//    public void verifiesRecentPatientListForWithoutBpInfo(String patientName) {
-//
-////        String status = "true";
-////
-////        String actualValue = patientName.replaceAll("\\s", "").toUpperCase();
-////
-////        for (WebElement ele : recentPatientNameList) {
-////
-////            String[] str = ele.getText().split(",");
-////
-////            String expectedValue = str[0].replaceAll("\\s", "");
-////
-////            if (expectedValue.contains(actualValue)) {
-////                status = "false";
-////            }
-////        }
-////        Assert.assertEquals(status, "true", "patient without bp info is present in recent patient list");
-//    }
-
-
     public void selectPatientFromSearchList() {
         String patientName = ScenarioContext.getData("User", ScenarioContextKeys.PATIENT_NAME);
-        searchSection.selectPatientFromSearchList(patientName);
+        searchSection.selectsPatientFromSearchList(patientName);
     }
 
     public void tapsOnSyncLink() {
         syncLink.click();
+    }
+
+    public void verifiesSeeAllOption() {
+        recentPatientSection.verifiesSeeAllOption();
+    }
+
+    public void selectPatientFromRecentPatientList() {
+        recentPatientSection.selectPatientFromRecentPatientList();
+    }
+
+    public void tapsOnSearchTextBox() {
+        searchSection.tapsOnSearchTextBox();
+    }
+
+    public void isPatientPresent(String patientName) {
+        recentPatientSection.isPatientPresent(patientName);
+    }
+
+    public void isPatientNotPresent(String patientName) {
+        recentPatientSection.isPatientNotPresent(patientName);
     }
 }

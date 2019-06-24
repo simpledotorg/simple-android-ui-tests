@@ -74,7 +74,7 @@ public class RegisterUserSteps extends BaseSteps {
         new RegisterUserPage((getDriverInstanceFor(User))).clicksOnGotItButton();
     }
 
-    @Given("^(\\w+) registers new user through api$")
+    @Given("^(\\w+) registers new user from api$")
     public void userRegistersNewUser(String User) {
         new RegisterUserPage(getDriverInstanceFor(User)).registerNewUser();
     }
@@ -111,7 +111,7 @@ public class RegisterUserSteps extends BaseSteps {
         new RegisterUserPage(getDriverInstanceFor(User)).reEnterPin(pin);
     }
 
-    @And("^(\\w+) registers new patient without phonenumber through api$")
+    @And("^(\\w+) registers new patient without phonenumber from api$")
     public void userRegistersNewPatientWithoutPhonenumberThroughAPI(String User) {
         new RegisterUserPage(getDriverInstanceFor(User)).registerNewPatientWithoutPhoneNumber();
     }
