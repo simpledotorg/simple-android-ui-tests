@@ -49,5 +49,11 @@ public class SearchSteps extends BaseSteps {
         String patientName=ScenarioContext.getData("User", ScenarioContextKeys.PATIENT_NAME);
         new SearchPage(getDriverInstanceFor(User)).searchForRegisteredPatientWithBpInfo(patientName);
     }
+
+    @And("^(\\w+) on Search page verfies patient name should not be displayed$")
+    public void userOnSearchPageVerfiesPatientNameShouldNotBeDisplayed(String User) {
+        String name=ScenarioContext.getData("User", ScenarioContextKeys.PATIENT_NAME);
+        new SearchPage(getDriverInstanceFor(User)).searchForPatientName(name);
+    }
 }
 

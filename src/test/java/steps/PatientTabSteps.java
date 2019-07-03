@@ -20,8 +20,9 @@ public class PatientTabSteps extends BaseSteps {
     }
 
     @Then("^(\\w+) on Patient tab select patient from recent patient list$")
-    public void userSelectPatientFromRecentPatientList(String User) {
-        new PatientTabPage(getDriverInstanceFor(User)).selectPatientFromRecentPatientList();
+    public void userSelectPatientFromRecentPatientList(String User) throws Exception {
+        String patientName = ScenarioContext.getData("User", ScenarioContextKeys.PATIENT_NAME);
+        new PatientTabPage(getDriverInstanceFor(User)).selectPatientFromRecentPatientList(patientName);
     }
 
     @And("^(\\w+) on Patient tab taps on search text box$")
@@ -30,7 +31,7 @@ public class PatientTabSteps extends BaseSteps {
     }
 
     @Then("^(\\w+) on Patient tab verifies patient info present in recent patients list$")
-    public void userOnPatientTabVerifiesPatientInfoPresentInRecentPatientsList(String User) {
+    public void userOnPatientTabVerifiesPatientInfoPresentInRecentPatientsList(String User) throws Exception {
         String patientName = ScenarioContext.getData("User", ScenarioContextKeys.PATIENT_NAME);
         new PatientTabPage(getDriverInstanceFor(User)).isPatientPresent(patientName);
     }
@@ -40,9 +41,35 @@ public class PatientTabSteps extends BaseSteps {
         new PatientTabPage(getDriverInstanceFor(User)).tapsOnSyncLink();
     }
 
-    @Then("^(\\w+) on Patient tab verifies patient info not present in recent patients list$")
+    @Then("^(\\w+) on Patient tab verifies patient info should not be present in recent patients list$")
     public void userOnPatientTabVerifiesPatientInfoNotPresentInRecentPatientsList(String User){
         String patientName = ScenarioContext.getData("User", ScenarioContextKeys.PATIENT_NAME);
         new PatientTabPage(getDriverInstanceFor(User)).isPatientNotPresent(patientName);
+    }
+
+    @And("^(\\w+) on Patient tab verifies SEEALL button$")
+    public void userOnPatientTabVerifiesSEEALLButton(String User) {
+        new PatientTabPage(getDriverInstanceFor(User)).verifiesSeeAllOption();
+    }
+
+
+    @And("^(\\w+) on Patient tab any patient from recent patient list$")
+    public void userOnPatientTabAnyPatientFromRecentPatientList(String User) throws Throwable {
+        new PatientTabPage(getDriverInstanceFor(User)).selectAnyPatient();
+    }
+
+    @And("^(\\w+) on Patient tab verifies patient info should not show up on top of recent patient section$")
+    public void userOnPatientTabVerifiesPatientInfoShouldNotShowUpOnTopOfRecentPatientSection(String User)  {
+        new PatientTabPage(getDriverInstanceFor(User)).shouldNotShowUpOnTopOfList();
+    }
+
+    @And("^(\\w+) on Patient tab verifies patient info should show up on top of recent patient section$")
+    public void userOnPatientTabVerifiesPatientInfoShouldShowUpOnTopOfRecentPatientSection(String User) {
+        new PatientTabPage(getDriverInstanceFor(User)).shouldShowUpOnTopOfList();
+    }
+
+    @And("^(\\w+) on Patient tab verifies no recent patient text$")
+    public void userOnPatientTabVerifiesNoRecentPatientText(String User)  {
+        new PatientTabPage(getDriverInstanceFor(User)).verifyNoRecentPatientText();
     }
 }

@@ -1,6 +1,8 @@
 package pages;
 
 import appointments.CreateAppointment;
+import bloodPressure.CreateBp;
+import com.github.javafaker.Faker;
 import io.appium.java_client.AppiumDriver;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
@@ -8,6 +10,7 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.FindBys;
 import org.openqa.selenium.support.PageFactory;
 import org.testng.Assert;
+import patients.CreatePatients;
 import utils.Date;
 
 import java.util.List;
@@ -77,10 +80,6 @@ public class OverduePage extends BasePage {
     @FindBy(xpath = "//android.widget.TextView[contains(@text,'Secure calls hide your number and are toll free')]")
     private WebElement phoneMaskText;
 
-
-    public void createOverduePatientFromApi() {
-        new CreateAppointment().createAppointment();
-    }
 
     public void tapsOnPatientName(String patientName) {
         for (WebElement ele : patientDetail) {
@@ -158,7 +157,7 @@ public class OverduePage extends BasePage {
     }
 
     public void selectReason(String reason) {
-
+        waitForElementToBeVisible(appointmentReminderDoneButton);
         driver.findElement(By.xpath("//android.widget.RadioButton[contains(@text,'"+reason+"')]")).click();
     }
 
@@ -167,7 +166,7 @@ public class OverduePage extends BasePage {
     }
 
     public void createOverduePatientForTodayFromApi() {
-        new CreateAppointment().createAppointment(Date.getCurrentDateINYYYY_MM_DD());
+        new CreateAppointment().createAppointment(Date.getCurrentDate_In_YYYY_MM_DD());
     }
 
     public void tapsOnCallIcon(String patientName) {
@@ -187,5 +186,12 @@ public class OverduePage extends BasePage {
         Assert.assertTrue(normalCallButton.isDisplayed());
         Assert.assertTrue(secureCallButton.isDisplayed());
         Assert.assertTrue(phoneMaskText.isDisplayed());
+    }
+
+    public void createAppointmentForOverduePatient() {
+        int dd = new Faker().random().nextInt(40,90);
+        new CreatePatients().createPatientWithBackDate(dd);
+        new CreateBp().createBpWithBackDate(dd);
+        new CreateAppointment().createAppointmentForOverduePatient(dd);
     }
 }

@@ -14,4 +14,6 @@ public interface ScenarioContextKeys {
     String DRUG_NAME="drug_name";
     String DRUG_INFO="drug_info";
 
+    String READING="reading";
+
 }

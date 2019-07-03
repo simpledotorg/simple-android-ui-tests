@@ -1,15 +1,18 @@
 Feature: Register Nurse
 
-  @register
-  Scenario: Register New Nurse/User
+  @register1
+  Scenario Outline: Register New Nurse/User
     And User taps on GetStarted button
     And User enters registration phone number
     And User enters registration name
     And User enters security pin number
     And User enters confirm pin number
-    And User search for facility
+    And User search for facility as <facilityName>
     And User verifies homepage
     Then User verifies Patient tab
+    Examples:
+    |facilityName|
+    | CHC Bagta  |
 
   @register  @smoke
     Scenario Outline: Register New Nurse/User with invalid phone number
@@ -50,3 +53,16 @@ Feature: Register Nurse
      And User enters security pin number
      Then User search for invalid facility
      And User verifies error message
+
+  @recentPatient
+  Scenario Outline: verify no recent patient text
+    And User taps on GetStarted button
+    And User enters registration phone number
+    And User enters registration name
+    And User enters security pin number
+    And User enters confirm pin number
+    And User search for facility as <facilityName>
+    And User on Patient tab verifies no recent patient text
+    Examples:
+    |facilityName|
+    |CHC Buccho  |

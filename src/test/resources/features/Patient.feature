@@ -21,7 +21,7 @@ Feature: Create Patient
     And User on Patient summary page taps on next ArrowButton
     And User on Patient summary page enters date
     And User on Patient summary page taps on save Button
-    And User on Patient summary page taps on appointment
+    And User on Patient summary page taps on appointment done button
     Then User on Patient tab verifies patient info present in recent patients list
     And User on Patient tab taps on search text box
     Then User on Search page searched for Registered Patient with BP info
@@ -36,12 +36,12 @@ Feature: Create Patient
     And User on Patient summary page taps on next ArrowButton
     And User on Patient summary page enters date
     And User on Patient summary page taps on save Button
-    And User on Patient summary page taps on appointment
+    And User on Patient summary page taps on appointment done button
     Then User on Patient tab verifies patient info present in recent patients list
     And User on Patient tab taps on search text box
     Then User on Search page searched for Registered Patient with BP info
 
-  @createPatient @smoke
+  @createPatient @smokey
   Scenario: Create New Patient Without blood Pressure info
     And User on search page searches for Patient name
     And User on search page taps on registered patient button
@@ -49,7 +49,7 @@ Feature: Create Patient
     And User on Diagnosis page taps on next Button
     And User on Patient summary page navigates back
     And User on Patient summary page taps on save Button
-    Then User on Patient tab verifies patient info not present in recent patients list
+    Then User on Patient tab verifies patient info should not be present in recent patients list
     And User on Patient tab taps on search text box
     Then User on search page searched for Registered Patient without BP info
 
@@ -61,7 +61,7 @@ Feature: Create Patient
     And User on Diagnosis page taps on next Button
     And User on Patient summary page navigates back
     And User on Patient summary page taps on save Button
-    Then User on Patient tab verifies patient info not present in recent patients list
+    Then User on Patient tab verifies patient info should not be present in recent patients list
     And User on Patient tab taps on search text box
     Then User on search page searched for Registered Patient without BP info
 

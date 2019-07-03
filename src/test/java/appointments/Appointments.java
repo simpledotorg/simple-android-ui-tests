@@ -2,6 +2,7 @@ package appointments;
 
 import lombok.Getter;
 import lombok.Setter;
+import utils.Date;
 import utils.RandomValue;
 
 @Getter
@@ -40,13 +41,13 @@ public class Appointments {
     }
 
     public static class Builder{
-        private String updated_at="2019-06-17T07:52:03Z";
+        private String updated_at=Date.getCurrentDateIn_RFC339_Format();
         private String appointment_type="manual";
         private String patient_id;
         private String facility_id;
-        private String created_at="2019-06-17T07:52:03Z";
+        private String created_at=Date.getCurrentDateIn_RFC339_Format();
         private String id=RandomValue.getRandomAppointmentId();
-        private String scheduled_date="2019-06-17";
+        private String scheduled_date=Date.appointmentScheduleDate();
         private String deleted_at="";
         private String status="scheduled";
         private String cancel_reason;
@@ -81,6 +82,16 @@ public class Appointments {
             return  this;
         }
         public Builder withScheduled_date(String value){
+            this.scheduled_date=value;
+            return this;
+        }
+
+        public Builder withUpdatedAt(String value){
+            this.scheduled_date=value;
+            return this;
+        }
+
+        public Builder withCreatedAt(String value){
             this.scheduled_date=value;
             return this;
         }

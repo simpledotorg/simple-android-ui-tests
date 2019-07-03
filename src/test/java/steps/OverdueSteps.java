@@ -1,16 +1,20 @@
 package steps;
 
+import appointments.CreateAppointment;
+import bloodPressure.CreateBp;
 import com.embibe.optimus.utils.ScenarioContext;
+import com.github.javafaker.Faker;
 import cucumber.api.java.en.And;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import pages.OverduePage;
+import patients.CreatePatients;
 import utils.ScenarioContextKeys;
 
 public class OverdueSteps extends BaseSteps {
-    @Given("^(\\w+) creates overdue patient$")
-    public void userCreatesOverduePatient(String User) {
-        new OverduePage(getDriverInstanceFor(User)).createOverduePatientFromApi();
+    @And("^(\\w+) registers overdue patient$")
+    public void userRegistersOverduePatient(String User) {
+        new OverduePage(getDriverInstanceFor(User)).createAppointmentForOverduePatient();
     }
 
     @And("^(\\w+) on Overdue tab taps on patient detail$")

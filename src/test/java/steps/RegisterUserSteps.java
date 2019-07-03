@@ -37,9 +37,8 @@ public class RegisterUserSteps extends BaseSteps {
         new RegisterUserPage(getDriverInstanceFor(User)).enterPin(Integer.toString(pin));
     }
 
-    @And("^(\\w+) search for facility$")
-    public void userSearchForFacility(String User) {
-        String facility="CHC Bagta";
+    @And("^(\\w+) search for facility as (.*)$")
+    public void userSearchForFacility(String User,String facility) {
         new RegisterUserPage(getDriverInstanceFor(User)).searchFacility(facility);
     }
 

@@ -56,19 +56,35 @@ public class PatientTabPage extends BasePage {
         recentPatientSection.verifiesSeeAllOption();
     }
 
-    public void selectPatientFromRecentPatientList() {
-        recentPatientSection.selectPatientFromRecentPatientList();
+    public void selectPatientFromRecentPatientList(String patientNAme) throws Exception {
+        recentPatientSection.selectPatientFromRecentPatientList(patientNAme);
     }
 
     public void tapsOnSearchTextBox() {
         searchSection.tapsOnSearchTextBox();
     }
 
-    public void isPatientPresent(String patientName) {
+    public void isPatientPresent(String patientName) throws Exception {
         recentPatientSection.isPatientPresent(patientName);
     }
 
     public void isPatientNotPresent(String patientName) {
         recentPatientSection.isPatientNotPresent(patientName);
+    }
+
+    public void selectAnyPatient() {
+        recentPatientSection.selectAnyPatientFromRecentPatientSection();
+    }
+
+    public void shouldNotShowUpOnTopOfList() {
+        recentPatientSection.shouldNotShowUpOnTopOfList();
+    }
+
+    public void shouldShowUpOnTopOfList() {
+        recentPatientSection.shouldShowUpOnTopOfRecentPatinetList();
+    }
+
+    public void verifyNoRecentPatientText() {
+        recentPatientSection.verifyNoRecentPatientText();
     }
 }
