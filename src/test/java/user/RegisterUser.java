@@ -7,8 +7,10 @@ import utils.ScenarioContextKeys;
 public class RegisterUser {
 
     public void registerNewUser(){
-        UserRequestBody userRequestBody=new UserRequestBody.Builder().build();
-        UserResponse userResponse=new UserClient().registerNewUser(userRequestBody);
+        User build=new User.Builder().build();
+        UserPostRequest userPostRequest= new UserPostRequest(build);
+
+        UserResponse userResponse=new UserClient().registerNewUser(userPostRequest);
 
         ScenarioContext.putData("User", ScenarioContextKeys.USER_ID, userResponse.getUser().getId());
         ScenarioContext.putData("User", ScenarioContextKeys.USER_PHONENUMBER, userResponse.getUser().getPhone_number());

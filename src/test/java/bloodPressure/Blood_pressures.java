@@ -2,6 +2,7 @@ package bloodPressure;
 
 import lombok.Getter;
 import lombok.Setter;
+import utils.Date;
 import utils.RandomValue;
 
 @Setter
@@ -30,10 +31,10 @@ public class Blood_pressures {
     public static class Builder {
         int systolic = 120;
         int diastolic = 111;
-        String updated_at = "2019-06-12T05:34:44Z";
+        String updated_at =Date.getCurrentDateIn_RFC339_Format();
         String user_id;
         String patient_id;
-        String created_at = "2019-06-12T05:34:44Z";
+        String created_at = Date.getCurrentDateIn_RFC339_Format();
         String facility_id;
         String id=RandomValue.getRandomBpId();
 
@@ -67,6 +68,16 @@ public class Blood_pressures {
 
         public Builder withFacilityId(String value) {
             this.facility_id = value;
+            return this;
+        }
+
+        public Builder withCreatedAt(String value) {
+            this.created_at= value;
+            return this;
+        }
+
+        public Builder withUpdatedAt(String value) {
+            this.updated_at= value;
             return this;
         }
 

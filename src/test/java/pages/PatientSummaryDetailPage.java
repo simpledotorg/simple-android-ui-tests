@@ -1,10 +1,12 @@
 package pages;
 
+import com.embibe.optimus.utils.ScenarioContext;
 import protocolDrug.CreateDrug;
 import io.appium.java_client.AppiumDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import utils.ScenarioContextKeys;
 
 import java.util.HashSet;
 
@@ -20,6 +22,13 @@ public class PatientSummaryDetailPage extends BasePage {
 
     @FindBy(id = "scheduleappointment_done")
     private WebElement scheduleAppointmentDoneButton;
+
+
+    @FindBy(id = "scheduleappointment_not_now")
+    private WebElement scheduleAppointmentNotNowButton;
+
+    @FindBy(id="patientsummary_fullname")
+    private WebElement patientSummaryFullname;
 
     public PatientSummaryDetailPage(AppiumDriver driver) {
         super(driver);
@@ -87,13 +96,13 @@ public class PatientSummaryDetailPage extends BasePage {
         bpSection.tapsOnSkipButton();
     }
 
-    public void enterPastDate() {
-
-        bpSection.enterPastDate();
+    public void enterBackDate() {
+        bpSection.enterBackDate();
     }
 
-    public void verifiesDaysInformation() {
-        bpSection.verifiesDaysInformation();
+    public void verifiesDaysInformationForBackDate() {
+        String reading=ScenarioContext.getData("User",ScenarioContextKeys.READING);
+        bpSection.verifiesDaysInformationForBackDate(reading);
     }
 
     public void tapsOnEditBpLink() {
@@ -145,7 +154,7 @@ public class PatientSummaryDetailPage extends BasePage {
     }
 
     public void addInvalidData() {
-        medicineSection.addInvalidData("Test");
+        medicineSection.addInvalidData("25");
     }
 
     public void tapsOnUpdateMedicine() {
@@ -156,8 +165,8 @@ public class PatientSummaryDetailPage extends BasePage {
         medicineSection.selectMedicineFromList(drug_name);
     }
 
-    public void verifyCustumDrugList(String name,String status,String message) {
-        medicineSection.verifyCustumDrugList(name,status,message);
+    public void isCutumDrugPresent(String name) {
+        medicineSection.isCutumDrugPresent(name);
     }
 
     public void modifyCustomizeMadicineName(String name) {
@@ -195,4 +204,18 @@ public class PatientSummaryDetailPage extends BasePage {
     public void updatePhoneNumber() {
         bpSection.updatePhonenumber();
     }
+
+    public void isCutumDrugRemoved(String drug_name) {
+        medicineSection.isCutumDrugRemoved(drug_name);
+    }
+
+    public void verifiesDaysInfo(String bpReading) {
+        bpSection.verifiesDaysInfo(bpReading);
+    }
+
+    public void clickOnAppointmentNotNowButton() {
+        scheduleAppointmentNotNowButton.click();
+    }
+
+    public String getFullName(){ return patientSummaryFullname.getText();}
 }

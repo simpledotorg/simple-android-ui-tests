@@ -2,6 +2,7 @@ package patients;
 
 import lombok.Getter;
 import lombok.Setter;
+import utils.Date;
 import utils.RandomValue;
 
 import java.util.List;
@@ -22,6 +23,13 @@ public class Patients {
     private String updated_at;
     private Address address;
     private List<Phone_numbers> phone_numbers;
+    private String contacted_by_counsellor;
+    private String could_not_contact_reason;
+    private String recorded_at;
+    private List<Business_identifiers> business_identifiers;
+    private String call_result;
+
+    public Patients(){}
 
     public Patients(String id, String gender, String full_name, String status, String date_of_birth, int age, String age_updated_at, String deleted_at, String created_at, String updated_at, Address address, List<Phone_numbers> phone_numbers) {
         this.id = id;
@@ -46,10 +54,10 @@ public class Patients {
         private String status;
         private String date_of_birth;
         private int age;
-        private String age_updated_at = "2019-06-12T05:39:35Z";
+        private String age_updated_at = Date.getCurrentDateIn_RFC339_Format();
         private String deleted_at = "";
-        private String created_at = "2019-06-12T05:39:35Z";
-        private String updated_at = "2019-06-12T05:39:35Z";
+        private String created_at = Date.getCurrentDateIn_RFC339_Format();
+        private String updated_at = Date.getCurrentDateIn_RFC339_Format();
         private Address address;
         private List<Phone_numbers> phone_numbers;
 
@@ -80,6 +88,16 @@ public class Patients {
 
         public Builder withAge(int value) {
             this.age = value;
+            return this;
+        }
+
+        public Builder withCreatedAt(String value) {
+            this.created_at = value;
+            return this;
+        }
+
+        public Builder withUpdatedAt(String value) {
+            this.updated_at = value;
             return this;
         }
 

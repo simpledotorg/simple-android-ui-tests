@@ -2,6 +2,7 @@ package patients;
 
 import lombok.Getter;
 import lombok.Setter;
+import utils.Date;
 import utils.RandomValue;
 
 @Getter
@@ -14,6 +15,8 @@ public class Phone_numbers {
     private String created_at;
     private String id;
     private String deleted_at;
+
+    public Phone_numbers(){}
 
     public Phone_numbers(String number, String phone_type, String updated_at, Boolean active, String created_at, String id, String deleted_at) {
         this.number = number;
@@ -29,9 +32,9 @@ public class Phone_numbers {
 
         private String number=RandomValue.getRandomPhoneNumber();
         private String phone_type;
-        private String updated_at = "2019-05-29T05:39:35Z";
+        private String updated_at = Date.getCurrentDateIn_RFC339_Format();;
         private Boolean active = true;
-        private String created_at = "2019-05-29T05:39:35Z";
+        private String created_at = Date.getCurrentDateIn_RFC339_Format();;
         private String id = RandomValue.getRandomPhoneNumberId();
         private String deleted_at = "";
 

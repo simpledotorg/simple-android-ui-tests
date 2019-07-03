@@ -7,10 +7,10 @@ import java.util.List;
 
 @Getter
 @Setter
-public class PatientRequestBody {
+public class PatientPostRequestBody {
     private List<Patients> patients;
 
-    public PatientRequestBody(List<Patients> patients) {
+    public PatientPostRequestBody(List<Patients> patients) {
         this.patients = patients;
     }
 }

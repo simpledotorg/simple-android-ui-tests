@@ -1,6 +1,6 @@
 Feature: Add protocol drug
 
-  @smoke @custom_drug
+   @custom_drug
   Scenario: create drug from api and validate it in UI
     Given User registers new user from api
     And User registers new patient with bp from api
@@ -15,5 +15,5 @@ Feature: Add protocol drug
     Then User on Search page searched for Registered Patient
     And User on Search page selects patient form search list
     Then User on patient summary detail page verifies medicine info
-    And User on Patient summary page taps on Add new medicine button
+    And User on Patient summary page taps on Update Medicine info
     Then User on Patient summary page verifies custum drug list

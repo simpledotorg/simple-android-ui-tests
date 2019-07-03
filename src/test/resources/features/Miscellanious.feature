@@ -1,6 +1,6 @@
 Feature: Miscellaniuos feature
 
-  @overdue
+  @overdue @smoke
   Scenario: Verify patient info for whose appointment is scheduled for today
     Given User registers new user from api
     Given User registers new patient with bp from api

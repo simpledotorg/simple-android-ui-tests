@@ -1,13 +1,13 @@
 package pages;
 
+import bloodPressure.CreateBp;
 import com.embibe.optimus.utils.ScenarioContext;
-import bloodPressure.*;
-import patients.*;
 import io.appium.java_client.AppiumDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.testng.Assert;
+import patients.CreatePatients;
 import user.RegisterUser;
 import utils.ScenarioContextKeys;
 
@@ -100,11 +100,11 @@ public class RegisterUserPage extends BasePage {
     }
 
     public void enterRegistrationName(String name) {
-        registrationNameTextBox.sendKeys(name + "\n");
+        registrationNameTextBox.sendKeys(name +"\n");
     }
 
     private void skipLocationAccess() {
-        skipLocationAccess.click();
+         skipLocationAccess.click();
     }
 
     public void searchFacility(String facility) {
@@ -114,6 +114,7 @@ public class RegisterUserPage extends BasePage {
     }
 
     public void enterPinForRegisteredUser(String pin) {
+        waitForElementToBeVisible(registeredUserPin);
         registeredUserPin.sendKeys(pin);
     }
 

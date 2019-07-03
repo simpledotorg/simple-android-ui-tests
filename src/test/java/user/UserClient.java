@@ -8,7 +8,7 @@ import static io.restassured.RestAssured.given;
 
 public class UserClient {
 
-    public UserResponse registerNewUser(UserRequestBody requestBody) {
+    public UserResponse registerNewUser(UserPostRequest requestBody) {
         Response response = given()
                 .contentType(ContentType.JSON)
                 .body(requestBody)

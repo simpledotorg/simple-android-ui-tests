@@ -204,11 +204,10 @@ public class BasePage {
 
     public void scrollDown() {
 
-        System.out.println(" m here");
         Dimension size = driver.manage().window().getSize();
 
-        int startY = (int) (size.height * 0.7);
-        int endY = (int) (size.height * 0.3);
+        int startY = (int) (size.height * 0.8);
+        int endY = (int) (size.height * 0.4);
         int x = (size.width / 2);
 
         System.out.println(startY+""+endY+""+x);

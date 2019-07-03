@@ -5,6 +5,6 @@ import lombok.Setter;
 
 @Getter
 @Setter
-public class PatientResponse {
+public class PatientPostRequestResponse {
     private String[] errors;
 }

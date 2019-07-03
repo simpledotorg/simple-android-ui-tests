@@ -2,7 +2,11 @@ package pages;
 
 import com.embibe.optimus.utils.ScenarioContext;
 import io.appium.java_client.AppiumDriver;
+import io.appium.java_client.MobileElement;
+import io.appium.java_client.android.AndroidElement;
+import io.appium.java_client.pagefactory.AppiumFieldDecorator;
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.FindBys;
@@ -19,7 +23,7 @@ public class MedicineSection extends BasePage {
 
     public MedicineSection(AppiumDriver driver) {
         super(driver);
-        PageFactory.initElements(driver, this);
+        PageFactory.initElements(new AppiumFieldDecorator(driver), this);
         this.driver = driver;
     }
 
@@ -83,7 +87,9 @@ public class MedicineSection extends BasePage {
     }
 
     public void enterDosageInfo(String dosage) {
+        dosageName.clear();
         dosageName.sendKeys(dosage);
+
     }
 
     public void tapsOnSavePrescriptionButton() {
@@ -91,7 +97,6 @@ public class MedicineSection extends BasePage {
     }
 
     public void addCustomizeMedicine(String name, String dosage) {
-
         enterDrugName(name);
         enterDosageInfo(dosage);
         tapsOnSavePrescriptionButton();
@@ -121,11 +126,11 @@ public class MedicineSection extends BasePage {
         expectedMedicineInfo.add("Today");
 
 
-        Assert.assertTrue(expectedMedicineInfo.containsAll(actualmedicineInfo));
+        Assert.assertTrue(expectedMedicineInfo.containsAll(actualmedicineInfo), "updated medicine info is not displayed");
     }
 
-    public void addInvalidData(String name) {
-        enterDrugName(name);
+    public void addInvalidData(String value) {
+        enterDosageInfo(value);
         tapsOnSavePrescriptionButton();
         Assert.fail("failed because of defect id -166605165 ");
     }
@@ -145,20 +150,30 @@ public class MedicineSection extends BasePage {
         }
     }
 
-    public void verifyCustumDrugList(String name, String expectedStatus, String failureMessage) {
-
-        if(customDrugNameList.size()==0){
-            Assert.fail("custun drug list is not present");
+    public void isCutumDrugPresent(String name) {
+        if (customDrugNameList.size() == 0) {
+            Assert.fail("custum drug list is not present");
         }
 
         String status = "false";
         for (WebElement ele : customDrugNameList) {
             if (ele.getText().toUpperCase().equals(name.toUpperCase())) {
                 status = "true";
+                break;
             }
         }
-        Assert.assertEquals(status, expectedStatus, failureMessage);
+        Assert.assertEquals(status, "true", "Custum drug is not present in bp medicine page" + name);
+    }
 
+    public void isCutumDrugRemoved(String name) {
+        String status = "true";
+        for (WebElement ele : customDrugNameList) {
+            if (ele.getText().toUpperCase().equals(name.toUpperCase())) {
+                status = "false";
+                break;
+            }
+        }
+        Assert.assertEquals(status, "true", "Custum drug should get removed from bp medicine page" + name);
     }
 
     public void modifyCustomizeMadicineName(String name) {

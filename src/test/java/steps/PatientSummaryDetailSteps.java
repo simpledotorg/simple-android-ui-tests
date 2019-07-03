@@ -1,6 +1,5 @@
 package steps;
 
-import cucumber.api.PendingException;
 import facility.FacilityClient;
 import facility.FacilityResponse;
 import protocol.ProtocolClient;
@@ -25,7 +24,7 @@ public class PatientSummaryDetailSteps extends BaseSteps {
 
     @And("^(\\w+) on Patient summary page enters new Bp Info$")
     public void userEntersNewBpInfo(String User) {
-        new PatientSummaryDetailPage(getDriverInstanceFor(User)).enterBpInfo(" ", "2001159");
+        new PatientSummaryDetailPage(getDriverInstanceFor(User)).enterBpInfo("200", "159");
     }
 
     @And("^(\\w+) on Patient summary page taps on next ArrowButton$")
@@ -35,7 +34,7 @@ public class PatientSummaryDetailSteps extends BaseSteps {
 
     @And("^(\\w+) on Patient summary page enters date$")
     public void userEntersDate(String User) throws Throwable {
-        String date = Date.getCurrentDate();
+        String date = Date.getCurrentDate_In_YYYY_MM_DD();
         new PatientSummaryDetailPage(getDriverInstanceFor(User)).entersDate(date);
     }
 
@@ -44,7 +43,7 @@ public class PatientSummaryDetailSteps extends BaseSteps {
         new PatientSummaryDetailPage(getDriverInstanceFor(User)).clickOnSaveButton();
     }
 
-    @And("^(\\w+) on Patient summary page taps on appointment$")
+    @And("^(\\w+) on Patient summary page taps on appointment done button$")
     public void userTapsOnAppointment(String User) {
         new PatientSummaryDetailPage(getDriverInstanceFor(User)).clickOnAppointmentDoneButton();
     }
@@ -97,14 +96,14 @@ public class PatientSummaryDetailSteps extends BaseSteps {
         new PatientSummaryDetailPage(getDriverInstanceFor(User)).tapsOnSkipButton();
     }
 
-    @And("^(\\w+) on Patient summary page enters past date$")
+    @And("^(\\w+) on Patient summary page enters back date$")
     public void userEntersPastDate(String User) {
-        new PatientSummaryDetailPage(getDriverInstanceFor(User)).enterPastDate();
+        new PatientSummaryDetailPage(getDriverInstanceFor(User)).enterBackDate();
     }
 
-    @And("^(\\w+) on Patient summary page verifies days information$")
-    public void userVerifiesDaysInformation(String User) {
-        new PatientSummaryDetailPage(getDriverInstanceFor(User)).verifiesDaysInformation();
+    @And("^(\\w+) on Patient summary page verifies days information for back date$")
+    public void userVerifiesDaysInformationForBackDate(String User) {
+        new PatientSummaryDetailPage(getDriverInstanceFor(User)).verifiesDaysInformationForBackDate();
     }
 
     @And("^(\\w+) on Patient summary page taps on Edit Bp Link$")
@@ -114,7 +113,7 @@ public class PatientSummaryDetailSteps extends BaseSteps {
 
     @And("^(\\w+) on Patient summary page updates Bp Info$")
     public void userUpdatesBpInfo(String User) {
-        new PatientSummaryDetailPage(getDriverInstanceFor(User)).enterBpInfo("250", "1159");
+        new PatientSummaryDetailPage(getDriverInstanceFor(User)).enterBpInfo("250", "90");
     }
 
     @And("^(\\w+) on Patient summary page taps on Remove Link$")
@@ -157,7 +156,7 @@ public class PatientSummaryDetailSteps extends BaseSteps {
     public void userAddNewCustomizedMedicine(String User) {
         String drugname = "Test";
         ScenarioContext.putData("User", ScenarioContextKeys.DRUG_NAME, drugname);
-        String dosage = "10 mg";
+        String dosage = "10";
 
         String drugInfo = dosage + "   " + drugname;
         ScenarioContext.putData("User", ScenarioContextKeys.DRUG_INFO, drugInfo);
@@ -200,7 +199,7 @@ public class PatientSummaryDetailSteps extends BaseSteps {
     @And("^(\\w+) on Patient summary page verifies custum drug list$")
     public void userVerifiesCustumDrugList(String User) {
         String drug_name = ScenarioContext.getData("User", ScenarioContextKeys.DRUG_NAME);
-        new PatientSummaryDetailPage(getDriverInstanceFor(User)).verifyCustumDrugList(drug_name, "true", drug_name+"custum drug should be present in bp medicine page");
+        new PatientSummaryDetailPage(getDriverInstanceFor(User)).isCutumDrugPresent(drug_name);
     }
 
     @And("^(\\w+) on Patient summary page update medicine info$")
@@ -230,7 +229,7 @@ public class PatientSummaryDetailSteps extends BaseSteps {
     public void userVerifiesCustumDrugListForDeletedCustomizedDrug(String User) {
         String drug_name = ScenarioContext.getData("User", ScenarioContextKeys.DRUG_NAME);
 
-        new PatientSummaryDetailPage(getDriverInstanceFor(User)).verifyCustumDrugList(drug_name, "false", "cusromized drug name should not be displayed");
+        new PatientSummaryDetailPage(getDriverInstanceFor(User)).isCutumDrugRemoved(drug_name);
     }
 
     @Then("^(\\w+) on Patient summary page verifies add medicine button$")
@@ -271,6 +270,17 @@ public class PatientSummaryDetailSteps extends BaseSteps {
     @And("^(\\w+) on Patient summary page updates phone number$")
     public void userOnPatientSummaryUpdatesPhoneNumber(String User) throws Throwable {
         new PatientSummaryDetailPage(getDriverInstanceFor(User)).updatePhoneNumber();
+    }
+
+    @And("^(\\w+) on Patient summary page verifies days information$")
+    public void userOnPatientSummaryPageVerifiesDaysInformation(String User) {
+        String bpreading=ScenarioContext.getData("User",ScenarioContextKeys.READING);
+        new PatientSummaryDetailPage(getDriverInstanceFor(User)).verifiesDaysInfo(bpreading);
+    }
+
+    @And("^(\\w+) on Patient summary page taps on appointment not now button$")
+    public void userOnPatientSummaryPageTapsOnAppointmentNotNowButton(String User) {
+        new PatientSummaryDetailPage(getDriverInstanceFor(User)).clickOnAppointmentNotNowButton();
     }
 }
 

@@ -1,11 +1,18 @@
 package pages;
 
+import com.embibe.optimus.utils.ScenarioContext;
 import io.appium.java_client.AppiumDriver;
+import io.appium.java_client.MobileElement;
+import io.appium.java_client.pagefactory.AppiumFieldDecorator;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.FindBys;
 import org.openqa.selenium.support.PageFactory;
 import org.testng.Assert;
+import utils.Date;
 import utils.RandomValue;
+import utils.ScenarioContextKeys;
 
 import java.util.List;
 
@@ -13,10 +20,10 @@ public class BpSection extends BasePage {
     private AppiumDriver driver;
 
     @FindBy(id = "bloodpressureentry_systolic")
-    private WebElement systolicBp;
+    private MobileElement systolicBp;
 
     @FindBy(id = "bloodpressureentry_diastolic")
-    private WebElement diastolicBp;
+    private MobileElement diastolicBp;
 
     @FindBy(id = "bloodpressureentry_next_arrow")
     private WebElement nextArrow;
@@ -48,7 +55,7 @@ public class BpSection extends BasePage {
     @FindBy(id = "bloodpressureentry_remove")
     private WebElement removeLink;
 
-    @FindBy(id ="android:id/button1")
+    @FindBy(id = "android:id/button1")
     private WebElement removeButton;
 
     @FindBy(id = "android:id/button2")
@@ -60,24 +67,37 @@ public class BpSection extends BasePage {
     @FindBy(id = "patientsummary_item_layout")
     private List<WebElement> summaryLayout;
 
+    @FindBys({@FindBy(id = "patientsummary_item_bp_readings")})
+    private List<WebElement> bpReadings;
+
 
     public BpSection(AppiumDriver driver) {
         super(driver);
-        PageFactory.initElements(driver, this);
+        PageFactory.initElements(new AppiumFieldDecorator(driver),this);
         this.driver = driver;
     }
 
-    private void enterSystolicBp(String value) {
-        systolicBp.sendKeys(value);
-    }
-
-    private void enterDiastolicBp(String value) {
-        diastolicBp.sendKeys(value);
-    }
+//    private void enterSystolicBp(String value) {
+//        systolicBp.sendKeys(value);
+//    }
+//
+//    private void enterDiastolicBp(String value) {
+//        diastolicBp.clear();
+//        diastolicBp.sendKeys(value);
+//    }
+//
+//    public void updateBpInfo(String systolic, String diastolic) {
+//        systolicBp.clear();
+//        systolicBp.sendKeys(systolic);
+//    }
 
     public void enterBpInfo(String systolic, String diastolic) {
-        enterSystolicBp(systolic);
-        enterDiastolicBp(diastolic);
+
+        String reading=systolic+" / "+diastolic;
+        System.out.println(reading+"reading");
+        ScenarioContext.putData("User",ScenarioContextKeys.READING,reading);
+        systolicBp.setValue(systolic);
+        diastolicBp.setValue(diastolic);
     }
 
     public void tapsOnNextArrow() {
@@ -86,15 +106,15 @@ public class BpSection extends BasePage {
 
     public void entersDate(String sDate) {
 
-        String[] str = sDate.split("/");
+        String[] str = sDate.split("-");
         String dd = str[0];
-        System.out.println(dd + "dd");
         String mm = str[1];
         String yy = str[2];
         waitForElementToBeClickable(day);
+        day.clear();
         day.sendKeys(dd);
-        month.sendKeys(mm);
-        year.sendKeys(yy + "\n");
+        month.clear();
+        month.sendKeys(mm+"\n");
     }
 
     public void tapsOnAddNewBpButton() {
@@ -105,11 +125,11 @@ public class BpSection extends BasePage {
     @FindBy(id = "addphone_phone")
     private WebElement phoneNumberTextFeild;
 
-    @FindBy(id="updatephone_phone")
+    @FindBy(id = "updatephone_phone")
     private WebElement updatePhoneNumberTextFeild;
 
     public void addPhoneNumber() {
-        phoneNumberTextFeild.sendKeys(RandomValue.getRandomPhoneNumber()+"\n");
+        phoneNumberTextFeild.sendKeys(RandomValue.getRandomPhoneNumber() + "\n");
         savePhoneNumberButton.click();
     }
 
@@ -121,17 +141,8 @@ public class BpSection extends BasePage {
         skipPhoneNumberButton.click();
     }
 
-    public void enterPastDate() {
-//        need to add  past date function
-        String pastDate = "01/06/19";
-        entersDate(pastDate);
-    }
-
-    public void verifiesDaysInformation() {
-        waitForElementToBeVisible(daysAgoInfo);
-
-//        need to create data to assertt exact days info
-        Assert.assertTrue(daysAgoInfo.getText().contains("days ago"));
+    public void enterBackDate() {
+        entersDate(Date.getBackDateIn_DD_MM_YYYY_Format(10));
     }
 
     public void tapsOnEditBpLink() {
@@ -168,16 +179,51 @@ public class BpSection extends BasePage {
     public void removeAllBpInfo() {
 
         System.out.println(summaryLayout.size() + "size");
-        int size=summaryLayout.size();
-        for (int i = 0; i <=size-1; i++) {
+        int size = summaryLayout.size();
+        for (int i = 0; i <= size - 1; i++) {
             tapsOnEditBpLink();
             tapsOnRemoveLink();
             tapsOnRemoveButton();
         }
     }
 
-    public void updatePhonenumber(){
+    public void updatePhonenumber() {
         updatePhoneNumberTextFeild.sendKeys(RandomValue.getRandomPhoneNumber());
         savePhoneNumberButton.click();
+    }
+
+    @FindBy(id = "patientsummary_item_layout")
+    private WebElement bpLayout1;
+
+    private By heartIcon = By.id("patientsummary_bp_reading_heart");
+    private By bpLevel = By.id("patientsummary_item_bp_level");
+    private By daysAgo = By.id("patientsummary_item_bp_days_ago");
+
+    public void verifiesDaysInformationForBackDate(String reading) {
+
+        for (WebElement ele : bpReadings) {
+            if (ele.getText().equals(reading)) {
+
+                WebElement bpLayout = driver.findElement(By.xpath("//android.widget.TextView[contains(@text,'"+reading+"')]/.."));
+                Assert.assertTrue(bpLayout.findElement(By.id("patientsummary_item_bp_readings")).getText().equals(reading));
+                Assert.assertTrue(bpLayout.findElement(bpLevel).isDisplayed());
+                Assert.assertTrue(bpLayout.findElement(heartIcon).isDisplayed());
+                Assert.assertTrue(bpLayout.findElement(daysAgo).getText().replaceAll("[^a-zA-Z0-9]", "").contains("Edit10daysago"));
+            }
+        }
+    }
+
+    public void verifiesDaysInfo(String reading) {
+        System.out.println("reading"+ reading);
+        for (WebElement ele : bpReadings) {
+            System.out.println(ele.getText()+"reading");
+            if (ele.getText().equals(reading)) {
+                WebElement bpLayout = driver.findElement(By.xpath("//android.widget.TextView[contains(@text,'"+reading+"')]/.."));
+                Assert.assertTrue(bpLayout.findElement(By.id("patientsummary_item_bp_readings")).getText().equals(reading));
+                Assert.assertTrue(bpLayout.findElement(bpLevel).isDisplayed());
+                Assert.assertTrue(bpLayout.findElement(heartIcon).isDisplayed());
+                Assert.assertTrue(bpLayout.findElement(daysAgo).getText().replaceAll("[^a-zA-Z0-9]", "").contains("EditToday"));
+            }
+        }
     }
 }

@@ -4,6 +4,7 @@ package protocolDrug;
 import com.embibe.optimus.utils.ScenarioContext;
 import lombok.Getter;
 import lombok.Setter;
+import utils.Date;
 import utils.RandomValue;
 import utils.ScenarioContextKeys;
 
@@ -39,11 +40,11 @@ public class Prescription_drugs {
 
         private String dosage="10 mg";
         private Boolean is_deleted=false;
-        private String updated_at="2019-06-17T05:34:44Z";
+        private String updated_at= Date.getCurrentDateIn_RFC339_Format();
         private String rxnorm_code="testdrugcode";
         private String patient_id;
         private String name="testAutomationDrug2";
-        private String created_at="2019-06-17T05:34:44Z";
+        private String created_at=Date.getCurrentDateIn_RFC339_Format();
         private Boolean is_protocol_drug=true;
         private String facility_id;
         private String id=RandomValue.getRandomProtocolId();

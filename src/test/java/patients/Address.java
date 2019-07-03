@@ -2,6 +2,7 @@ package patients;
 
 import lombok.Getter;
 import lombok.Setter;
+import utils.Date;
 import utils.RandomValue;
 
 @Getter
@@ -17,6 +18,8 @@ public class Address {
     private String state;
     private String deleted_at;
     private String village_or_colony;
+
+    public Address(){}
 
     public Address(String street_address, String country, String pin, String updated_at, String district, String created_at, String id, String state, String deleted_at, String village_or_colony) {
         this.street_address = street_address;
@@ -36,9 +39,9 @@ public class Address {
         private String street_address="street";
         private String country="India";
         private String pin ="1234565";
-        private String updated_at="2019-05-29T05:39:35Z";
+        private String updated_at=Date.getCurrentDateIn_RFC339_Format();
         private String district="testDistrict";
-        private String created_at="2019-05-29T05:39:35Z";
+        private String created_at=Date.getCurrentDateIn_RFC339_Format();
         private String id=RandomValue.getRandomAddressId();
         private String state="state";
         private String deleted_at="";
