@@ -1,5 +1,6 @@
 package user;
 
+import constants.QaApiUrl;
 import io.restassured.http.ContentType;
 import io.restassured.response.Response;
 import org.testng.Assert;
@@ -12,7 +13,7 @@ public class UserClient {
         Response response = given()
                 .contentType(ContentType.JSON)
                 .body(requestBody)
-                .post("https://api-qa.simple.org/api/v3/users/register");
+                .post(QaApiUrl.registerUser);
 
         System.out.println(response.asString()+"User response");
 

@@ -1,5 +1,6 @@
 package protocolDrug;
 
+import constants.QaApiUrl;
 import io.restassured.response.Response;
 
 import static io.restassured.RestAssured.given;
@@ -14,7 +15,7 @@ public class DrugClient {
                 .header("X-Facility-Id", facilityId)
                 .header("Authorization", "Bearer "+token)
                 .body(requestBody)
-                .post("https://api-qa.simple.org/api/v3/prescription_drugs/sync");
+                .post(QaApiUrl.getPrescriptionDrug);
 
         System.out.println(response.asString()+"response String");
         System.out.println(response.statusCode()+"statuscode");

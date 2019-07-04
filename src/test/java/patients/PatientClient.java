@@ -1,6 +1,7 @@
 package patients;
 
 import com.google.gson.Gson;
+import constants.QaApiUrl;
 import io.restassured.response.Response;
 import org.testng.Assert;
 
@@ -18,7 +19,7 @@ public class PatientClient {
                 .header("X-Facility-Id", faciltiyId)
                 .header("Authorization", "Bearer " + token)
                 .body(json)
-                .post("https://api-qa.simple.org/api/v3/patients/sync");
+                .post(QaApiUrl.registerPatient);
 
         System.out.println(response.asString() + "response");
 

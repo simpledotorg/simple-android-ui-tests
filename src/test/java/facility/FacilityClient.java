@@ -1,5 +1,6 @@
 package facility;
 
+import constants.QaApiUrl;
 import io.restassured.http.ContentType;
 import io.restassured.response.Response;
 
@@ -10,7 +11,7 @@ public class FacilityClient {
     public FacilityResponse getAllFacilityInfo() {
         Response response = given()
                 .contentType(ContentType.JSON)
-                .get("https://api-qa.simple.org/api/v3/facilities/sync");
+                .get(QaApiUrl.getFacility);
 
 //        System.out.println(response.asString());
 

@@ -1,6 +1,7 @@
 package appointments;
 
 import com.google.gson.Gson;
+import constants.QaApiUrl;
 import io.restassured.response.Response;
 import org.testng.Assert;
 
@@ -18,7 +19,7 @@ public class ClientRequest {
                     .header("X-Facility-Id", facilityId)
                     .header("Authorization", "Bearer "+token)
                     .body(json)
-                    .post("https://api-qa.simple.org/api/v3/appointments/sync");
+                    .post(QaApiUrl.createAppointment);
 
             System.out.println("appointment Response"+response.asString());
 
