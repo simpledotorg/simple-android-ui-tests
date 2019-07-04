@@ -86,8 +86,8 @@ Feature: Add New Medicine
     And User on Patient summary page taps on save bp medicine button
     Then User on Patient summary page verifies add medicine button
 
-  @regression @medicine @smoke
-  Scenario: get all medicine info for specific facility form api and validate it in UI
-    And User on Patient summary page taps on Add new medicine button
-    Then User on Patient summary page validate medicine info at bp medicine page
+#  @regression @medicine @smoke
+#  Scenario: get all medicine info for specific facility form api and validate it in UI
+#    And User on Patient summary page taps on Add new medicine button
+#    Then User on Patient summary page validate medicine info at bp medicine page
 

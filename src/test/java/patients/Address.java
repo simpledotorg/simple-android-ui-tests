@@ -2,6 +2,7 @@ package patients;
 
 import lombok.Getter;
 import lombok.Setter;
+import utils.CreateGenerex;
 import utils.Date;
 import utils.RandomValue;
 
@@ -42,7 +43,7 @@ public class Address {
         private String updated_at=Date.getCurrentDateIn_RFC339_Format();
         private String district="testDistrict";
         private String created_at=Date.getCurrentDateIn_RFC339_Format();
-        private String id=RandomValue.getRandomAddressId();
+        private String id=CreateGenerex.generex.random();
         private String state="state";
         private String deleted_at="";
         private String village_or_colony="testVillage";

@@ -7,6 +7,7 @@ import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import pages.RegisterUserPage;
 import utils.AdbUtils;
+import utils.CreateFaker;
 import utils.RandomValue;
 import utils.ScenarioContextKeys;
 
@@ -26,7 +27,7 @@ public class RegisterUserSteps extends BaseSteps {
 
     @And("^(\\w+) enters registration name$")
     public void userEntersRegistrationName(String User) {
-        String name = RandomValue.getRandomUserName();
+        String name = new CreateFaker().faker.name().firstName();
         new RegisterUserPage(getDriverInstanceFor(User)).enterRegistrationName(name);
     }
 

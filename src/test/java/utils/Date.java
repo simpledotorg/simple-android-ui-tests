@@ -13,6 +13,12 @@ public class Date {
         DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd");
         return dtf.format(localDate);
     }
+    public static String getCurrentDate_IN_DD_MM_YY(){
+        SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
+
+        Calendar cal =Calendar.getInstance();
+        return sdf.format(cal.getTime());
+    }
 
     public static String getCurrentDateIn_RFC339_Format() {
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSXXX");

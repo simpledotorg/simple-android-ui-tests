@@ -32,7 +32,7 @@ Feature: overdue patients test
     And User on Homepage taps on Patients Tab
     And User on Patient tab taps on sync link
 
-  @overdue @smoke
+  @overdue1 @smoke
   Scenario: add new bp for an overdue patient
     And User on Homepage taps on Overdue Tab
     Then User on Overdue Tab verifies patient info present in overdue list
@@ -61,7 +61,7 @@ Feature: overdue patients test
     And User on Patient tab verifies patient info should not show up on top of recent patient section
 
 
-  @overdue1 @smokey
+  @overdue @smoke
   Scenario Outline:End to end flow of adding bp for a patient whose appointment is updated with Phone number doesn't exist
     And User on Homepage taps on Overdue Tab
     And User on Overdue tab taps on patient detail
@@ -84,7 +84,7 @@ Feature: overdue patients test
       | reasons                    |
       | Phone number does not work |
 
-  @overdue @smokey
+  @overdue @smoke
   Scenario Outline:End to end flow for a patient whose appointment is updated with Phone number doesn't exist
     And User on Homepage taps on Overdue Tab
     And User on Overdue tab taps on patient detail

@@ -1,11 +1,10 @@
 package user;
 
 import com.embibe.optimus.utils.ScenarioContext;
+import com.mifmif.common.regex.Generex;
 import lombok.Getter;
 import lombok.Setter;
-import utils.Date;
-import utils.RandomValue;
-import utils.ScenarioContextKeys;
+import utils.*;
 
 @Getter
 @Setter
@@ -35,12 +34,12 @@ public class User {
     }
 
     public static class Builder {
-        String full_name = RandomValue.getRandomUserName();
+        String full_name = new CreateFaker().faker.name().firstName();
         String registration_facility_id = "2f086ff7-83dc-4758-bd31-9d9109df9a09";
         String updated_at = Date.getCurrentDateIn_RFC339_Format();
         String created_at = Date.getCurrentDateIn_RFC339_Format();
         String phone_number = RandomValue.getRandomPhoneNumber();
-        String id = RandomValue.getRandomUserId();
+        String id =CreateGenerex.generex.random();
         String password_digest = "$2a$10$vJkbmZrjKDJh1jk1y8HJhuzLAzoY.8p0GfIpNjCNqKvOQh6.ArpYK";
         String deleted_at = "";
 
