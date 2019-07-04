@@ -1,9 +1,9 @@
 package patients;
 
+import com.embibe.optimus.utils.ScenarioContext;
 import lombok.Getter;
 import lombok.Setter;
-import utils.Date;
-import utils.RandomValue;
+import utils.*;
 
 import java.util.List;
 
@@ -48,9 +48,9 @@ public class Patients {
 
 
     public static class Builder {
-        private String id = RandomValue.getRandomPatientId();
+        private String id = CreateGenerex.generex.random();
         private String gender;
-        private String full_name = RandomValue.getRandomPatientName();
+        private String full_name = new CreateFaker().getRandomPatientName();
         private String status;
         private String date_of_birth;
         private int age;
@@ -102,6 +102,9 @@ public class Patients {
         }
 
         public Patients build(){
+
+            ScenarioContext.putData("User",ScenarioContextKeys.PATIENT_ID,id);
+            ScenarioContext.putData("User",ScenarioContextKeys.PATIENT_NAME,full_name);
             return new Patients(id,gender,full_name,status,date_of_birth,age,age_updated_at,deleted_at,created_at,updated_at,address,phone_numbers);
         }
 

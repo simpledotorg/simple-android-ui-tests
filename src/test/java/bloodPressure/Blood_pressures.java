@@ -2,6 +2,7 @@ package bloodPressure;
 
 import lombok.Getter;
 import lombok.Setter;
+import utils.CreateGenerex;
 import utils.Date;
 import utils.RandomValue;
 
@@ -36,7 +37,7 @@ public class Blood_pressures {
         String patient_id;
         String created_at = Date.getCurrentDateIn_RFC339_Format();
         String facility_id;
-        String id=RandomValue.getRandomBpId();
+        String id=CreateGenerex.generex.random();
 
         public Builder() {
         }

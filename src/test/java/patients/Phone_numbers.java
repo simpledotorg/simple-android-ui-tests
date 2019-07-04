@@ -2,6 +2,7 @@ package patients;
 
 import lombok.Getter;
 import lombok.Setter;
+import utils.CreateGenerex;
 import utils.Date;
 import utils.RandomValue;
 
@@ -35,7 +36,7 @@ public class Phone_numbers {
         private String updated_at = Date.getCurrentDateIn_RFC339_Format();;
         private Boolean active = true;
         private String created_at = Date.getCurrentDateIn_RFC339_Format();;
-        private String id = RandomValue.getRandomPhoneNumberId();
+        private String id = CreateGenerex.generex.random();
         private String deleted_at = "";
 
 

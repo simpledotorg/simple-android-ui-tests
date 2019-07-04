@@ -2,6 +2,7 @@ package appointments;
 
 import lombok.Getter;
 import lombok.Setter;
+import utils.CreateGenerex;
 import utils.Date;
 import utils.RandomValue;
 
@@ -46,7 +47,7 @@ public class Appointments {
         private String patient_id;
         private String facility_id;
         private String created_at=Date.getCurrentDateIn_RFC339_Format();
-        private String id=RandomValue.getRandomAppointmentId();
+        private String id=CreateGenerex.generex.random();
         private String scheduled_date=Date.appointmentScheduleDate();
         private String deleted_at="";
         private String status="scheduled";

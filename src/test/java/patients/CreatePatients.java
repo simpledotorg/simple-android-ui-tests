@@ -28,6 +28,7 @@ public class CreatePatients {
         patients.add(build);
         PatientPostRequestBody patientRequestBody = new PatientPostRequestBody(patients);
 
+
         new PatientClient().post(patientRequestBody, facilityId, userId, token);
     }
 

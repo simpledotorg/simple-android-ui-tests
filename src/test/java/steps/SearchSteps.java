@@ -29,7 +29,7 @@ public class SearchSteps extends BaseSteps {
 
     @And("^(\\w+) on search page searches for Patient name$")
     public void userOnSearchPageSearchesForPatientName(String User) {
-        String patientName = RandomValue.getRandomPatientName();
+        String patientName =ScenarioContext.getData("User", ScenarioContextKeys.PATIENT_NAME);
         new SearchPage(getDriverInstanceFor(User)).searchForPatientName(patientName);
     }
 

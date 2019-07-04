@@ -33,8 +33,8 @@ public class PatientSummaryDetailSteps extends BaseSteps {
     }
 
     @And("^(\\w+) on Patient summary page enters date$")
-    public void userEntersDate(String User) throws Throwable {
-        String date = Date.getCurrentDate_In_YYYY_MM_DD();
+    public void userEntersDate(String User)  {
+        String date = Date.getCurrentDate_IN_DD_MM_YY();
         new PatientSummaryDetailPage(getDriverInstanceFor(User)).entersDate(date);
     }
 

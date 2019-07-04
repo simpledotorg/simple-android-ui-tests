@@ -4,6 +4,7 @@ package protocolDrug;
 import com.embibe.optimus.utils.ScenarioContext;
 import lombok.Getter;
 import lombok.Setter;
+import utils.CreateGenerex;
 import utils.Date;
 import utils.RandomValue;
 import utils.ScenarioContextKeys;
@@ -47,7 +48,7 @@ public class Prescription_drugs {
         private String created_at=Date.getCurrentDateIn_RFC339_Format();
         private Boolean is_protocol_drug=true;
         private String facility_id;
-        private String id=RandomValue.getRandomProtocolId();
+        private String id=CreateGenerex.generex.random();
 
         public Builder() {
         }
