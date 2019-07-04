@@ -72,7 +72,7 @@ public class SearchPage extends BasePage {
 
     public void searchForPatientName(String patientName) {
         searchPatient(patientName);
-        Assert.assertEquals(emptySearchResult.getText(), "No patients match");
+        Assert.assertEquals(emptySearchResult.getText(), "No qaApiServices.patients match");
         Assert.assertEquals(registerPatientLabel.getText(), "Patient is not registered");
         Assert.assertTrue(registerAsNewPatientButton.isDisplayed());
     }

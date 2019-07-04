@@ -1,7 +1,7 @@
 package pages;
 
 import com.embibe.optimus.utils.ScenarioContext;
-import protocolDrug.CreateDrug;
+import qaApiServices.protocolDrug.CreateDrug;
 import io.appium.java_client.AppiumDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;

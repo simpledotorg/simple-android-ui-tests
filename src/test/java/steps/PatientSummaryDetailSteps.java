@@ -1,9 +1,9 @@
 package steps;
 
-import facility.FacilityClient;
-import facility.FacilityResponse;
-import protocol.ProtocolClient;
-import protocol.ProtocolResponse;
+import qaApiServices.facility.FacilityClient;
+import qaApiServices.facility.FacilityResponse;
+import qaApiServices.protocol.ProtocolClient;
+import qaApiServices.protocol.ProtocolResponse;
 import com.embibe.optimus.utils.ScenarioContext;
 import cucumber.api.DataTable;
 import cucumber.api.java.en.And;

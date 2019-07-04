@@ -1,14 +1,12 @@
 package steps;
 
-import appointments.CreateAppointment;
-import bloodPressure.CreateBp;
+import qaApiServices.appointments.CreateAppointment;
+import qaApiServices.bloodPressure.CreateBp;
 import com.embibe.optimus.utils.ScenarioContext;
-import com.github.javafaker.Faker;
 import cucumber.api.java.en.And;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import pages.OverduePage;
-import patients.CreatePatients;
 import utils.ScenarioContextKeys;
 
 public class OverdueSteps extends BaseSteps {
