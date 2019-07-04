@@ -1,15 +1,15 @@
 package pages;
 
-import appointments.CreateAppointment;
-import bloodPressure.CreateBp;
+import qaApiServices.appointments.CreateAppointment;
+import qaApiServices.bloodPressure.CreateBp;
 import com.embibe.optimus.utils.ScenarioContext;
 import io.appium.java_client.AppiumDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.testng.Assert;
-import patients.CreatePatients;
-import user.RegisterUser;
+import qaApiServices.patients.CreatePatients;
+import qaApiServices.user.RegisterUser;
 import utils.ScenarioContextKeys;
 
 public class RegisterUserPage extends BasePage {
@@ -154,7 +154,7 @@ public class RegisterUserPage extends BasePage {
     }
 
     public void verifyErorMessageForInvalidFacilitySearch() {
-//        Assertion pending becuase of defect - no proper error message is displayed for invalid facility name
+//        Assertion pending becuase of defect - no proper error message is displayed for invalid qaApiServices.facility name
         System.out.println("assertion pending");
     }
 

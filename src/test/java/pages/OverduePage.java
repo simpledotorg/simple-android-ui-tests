@@ -1,7 +1,7 @@
 package pages;
 
-import appointments.CreateAppointment;
-import bloodPressure.CreateBp;
+import qaApiServices.appointments.CreateAppointment;
+import qaApiServices.bloodPressure.CreateBp;
 import com.github.javafaker.Faker;
 import io.appium.java_client.AppiumDriver;
 import org.openqa.selenium.By;
@@ -10,7 +10,7 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.FindBys;
 import org.openqa.selenium.support.PageFactory;
 import org.testng.Assert;
-import patients.CreatePatients;
+import qaApiServices.patients.CreatePatients;
 import utils.Date;
 
 import java.util.List;
@@ -45,7 +45,7 @@ public class OverduePage extends BasePage {
     private By reasonRemoveFromList = By.id("overdue_remove_from_list");
 
 
-    @FindBy(xpath = "//android.widget.TextView[contains(@text,'No patients overdue')]")
+    @FindBy(xpath = "//android.widget.TextView[contains(@text,'No qaApiServices.patients overdue')]")
     private WebElement noPatientsOverdueMessage;
 
     @FindBy(id = "appointmentreminder_done")
