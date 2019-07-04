@@ -1,5 +1,6 @@
 package pages;
 
+import appointments.CreateAppointment;
 import bloodPressure.CreateBp;
 import com.embibe.optimus.utils.ScenarioContext;
 import io.appium.java_client.AppiumDriver;
@@ -182,6 +183,7 @@ public class RegisterUserPage extends BasePage {
     public void registerNewPatientWithBp() {
         new CreatePatients().createPatient();
         new CreateBp().registerNewBp();
+        new CreateAppointment().createAppointment();
     }
 
     public void registerNewPatientWithoutBp() {

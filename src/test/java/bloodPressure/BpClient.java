@@ -1,6 +1,7 @@
 package bloodPressure;
 
 import com.google.gson.Gson;
+import constants.QaApiUrl;
 import io.restassured.response.Response;
 
 import static io.restassured.RestAssured.given;
@@ -16,7 +17,7 @@ public class BpClient {
                 .header("X-Facility-Id", facilityId)
                 .header("Authorization", "Bearer "+token)
                 .body(json)
-                .post("https://api-qa.simple.org/api/v3/blood_pressures/sync");
+                .post(QaApiUrl.registerBp);
 
         System.out.println("bpResponse"+response.asString());
 

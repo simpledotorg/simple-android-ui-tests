@@ -1,5 +1,6 @@
 package protocol;
 
+import constants.QaApiUrl;
 import io.restassured.http.ContentType;
 import io.restassured.response.Response;
 
@@ -10,7 +11,7 @@ public class ProtocolClient {
     public ProtocolResponse getAllProtocolInfo() {
         Response response = given()
                 .contentType(ContentType.JSON)
-                .get("https://api-qa.simple.org/api/v3/protocols/sync");
+                .get(QaApiUrl.getProtocol);
 
         ProtocolResponse protocolResponse = response.as(ProtocolResponse.class);
         return protocolResponse;
