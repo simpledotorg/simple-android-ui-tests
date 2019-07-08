@@ -2,7 +2,6 @@ Feature: Add new Bp
 
   @addbp @smoke
   Scenario: Add new BP to already registered patient
-
     Given User registers new user from api
     And User registers new patient with bp from api
     And User Launches app

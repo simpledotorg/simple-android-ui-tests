@@ -16,7 +16,7 @@ public class CreateFaker {
         String name = faker.name().fullName();
         String replace = "";
 
-        String[] s = {"Mr.", "Dr.", "Miss.", "Jr.", "MS.", "MR.", "DR."};
+        String[] s = {"Mr.", "Dr.", "Miss.", "Jr.", "MS.", "MR.", "DR.","MISS"};
         for (String ss : s) {
             if (name.contains(ss)) {
                 ScenarioContext.putData("User", ScenarioContextKeys.PATIENT_NAME, name);

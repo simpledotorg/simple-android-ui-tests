@@ -45,7 +45,7 @@ public class OverduePage extends BasePage {
     private By reasonRemoveFromList = By.id("overdue_remove_from_list");
 
 
-    @FindBy(xpath = "//android.widget.TextView[contains(@text,'No qaApiServices.patients overdue')]")
+    @FindBy(xpath = "//android.widget.TextView[contains(@text,'No patients overdue')]")
     private WebElement noPatientsOverdueMessage;
 
     @FindBy(id = "appointmentreminder_done")
@@ -126,7 +126,6 @@ public class OverduePage extends BasePage {
         if (patientDetail.size() == 0) {
             Assert.assertTrue(noPatientsOverdueMessage.isDisplayed());
         }
-
         String status = "true";
         for (WebElement ele : patientDetail) {
             String[] split = ele.findElement(nameAndAge).getText().split(",");
@@ -134,7 +133,7 @@ public class OverduePage extends BasePage {
                 status = "false";
             }
         }
-        Assert.assertEquals(status, "true", "upon selecting reason,patient name should be removed from overdue list");
+        Assert.assertEquals(status, "true", "patient name should not be displayed in overdue section");
     }
 
     public void tapsOnRemindToCallLater() {
@@ -166,6 +165,9 @@ public class OverduePage extends BasePage {
     }
 
     public void createOverduePatientForTodayFromApi() {
+        int dd = new Faker().random().nextInt(40,90);
+        new CreatePatients().createPatientWithBackDate(dd);
+        new CreateBp().createBpWithBackDate(dd);
         new CreateAppointment().createAppointment(Date.getCurrentDate_In_YYYY_MM_DD());
     }
 

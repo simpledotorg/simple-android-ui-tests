@@ -48,7 +48,7 @@ Feature: Edit BP info
     Then User on Search page searched for Registered Patient without BP info
 
 
-  @editBp1 @smokey
+  @editBp @smoke
   Scenario: Edit BP info to already registered patient who has more than one recorded bp.
     Given User registers new user from api
     And User register new patient with list of bp through api

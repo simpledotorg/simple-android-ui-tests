@@ -2,7 +2,6 @@ Feature: overdue patients test
 
   Background:
     Given User registers new user from api
-    Given User registers new patient with bp from api
     And User registers overdue patient
     And User taps on GetStarted button
     And User enters registered phone number
@@ -32,7 +31,7 @@ Feature: overdue patients test
     And User on Homepage taps on Patients Tab
     And User on Patient tab taps on sync link
 
-  @overdue1 @smoke
+  @overdue @smoke
   Scenario: add new bp for an overdue patient
     And User on Homepage taps on Overdue Tab
     Then User on Overdue Tab verifies patient info present in overdue list
