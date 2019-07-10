@@ -6,6 +6,7 @@ import cucumber.api.java.en.And;
 import cucumber.api.java.en.Then;
 import pages.PatientTabPage;
 import pages.SearchPage;
+import utils.CreateFaker;
 import utils.RandomValue;
 import utils.ScenarioContextKeys;
 
@@ -53,6 +54,12 @@ public class SearchSteps extends BaseSteps {
     @And("^(\\w+) on Search page verfies patient name should not be displayed$")
     public void userOnSearchPageVerfiesPatientNameShouldNotBeDisplayed(String User) {
         String name=ScenarioContext.getData("User", ScenarioContextKeys.PATIENT_NAME);
+        new SearchPage(getDriverInstanceFor(User)).searchForPatientName(name);
+    }
+
+    @And("^(\\w+) on search page searches for new Patient name$")
+    public void userOnSearchPageSearchesForNewPatientName(String User) throws Throwable {
+        String name=new CreateFaker().getRandomPatientName();
         new SearchPage(getDriverInstanceFor(User)).searchForPatientName(name);
     }
 }
