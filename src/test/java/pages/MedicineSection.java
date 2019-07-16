@@ -100,10 +100,12 @@ public class MedicineSection extends BasePage {
         enterDrugName(name);
         enterDosageInfo(dosage);
         tapsOnSavePrescriptionButton();
+
+        //setting global value for drug info
+        setDrugInfo(name,dosage);
     }
 
     public void tapsOnSaveBpMedicineButton() {
-        waitForElementToBeVisible(saveMedicineButton);
         saveMedicineButton.click();
     }
 
@@ -113,18 +115,15 @@ public class MedicineSection extends BasePage {
         List<WebElement> elements = updatedInfo.findElements(By.className("android.widget.TextView"));
         List<String> actualmedicineInfo = new ArrayList<>();
         for (WebElement ele : elements) {
-            System.out.println(ele.getText());
             actualmedicineInfo.add(ele.getText());
         }
 
         List<String> expectedMedicineInfo = new ArrayList<>();
         String name = ScenarioContext.getData("User", ScenarioContextKeys.DRUG_INFO);
 
-        System.out.println(name + "exp");
         expectedMedicineInfo.add(name);
         expectedMedicineInfo.add("Updated");
         expectedMedicineInfo.add("Today");
-
 
         Assert.assertTrue(expectedMedicineInfo.containsAll(actualmedicineInfo), "updated medicine info is not displayed");
     }
@@ -176,9 +175,13 @@ public class MedicineSection extends BasePage {
         Assert.assertEquals(status, "true", "Custum drug should get removed from bp medicine page" + name);
     }
 
-    public void modifyCustomizeMadicineName(String name) {
+    public void modifyCustomizeMedicine(String name, String dosage) {
         enterDrugName(name);
+        enterDosageInfo(dosage);
         tapsOnSavePrescriptionButton();
+
+        //updatin global value
+        setDrugInfo(name,dosage);
     }
 
     public void tapsOnRemoveCustumPrescriptionLink() {
@@ -214,4 +217,9 @@ public class MedicineSection extends BasePage {
     }
 
 
+    private void setDrugInfo(String name, String dosage){
+        ScenarioContext.putData("User", ScenarioContextKeys.DRUG_NAME, name);
+        String drugInfo = dosage + "   " + name;
+        ScenarioContext.putData("User", ScenarioContextKeys.DRUG_INFO, drugInfo);
+    }
 }

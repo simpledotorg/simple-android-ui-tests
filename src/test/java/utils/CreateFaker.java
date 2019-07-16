@@ -16,15 +16,15 @@ public class CreateFaker {
         String name = faker.name().fullName();
         String replace = "";
 
-        String[] s = {"Mr.", "Dr.", "Miss.", "Jr.", "MS.", "MR.", "DR.","MISS."};
+        String[] s = {"Mr.", "Dr.", "Miss.", "Jr.", "MS.", "MR.", "DR.","MISS.","MISS","MS" };
         for (String ss : s) {
             if (name.contains(ss)) {
-                ScenarioContext.putData("User", ScenarioContextKeys.PATIENT_NAME, name);
                 replace = name.replace(ss, "").trim().toUpperCase();
+                ScenarioContext.putData("User", ScenarioContextKeys.PATIENT_NAME, replace);
                 return replace;
             }
         }
-        ScenarioContext.putData("User", ScenarioContextKeys.PATIENT_NAME, name);
-        return name.toUpperCase();
+        ScenarioContext.putData("User", ScenarioContextKeys.PATIENT_NAME, name.toUpperCase());
+        return name;
     }
 }

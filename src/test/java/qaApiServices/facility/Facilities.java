@@ -1,5 +1,6 @@
 package qaApiServices.facility;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -23,4 +24,8 @@ public class Facilities {
     private String village_or_colony;
     private String slug;
     private String longitude;
+    private String organization_name;
+    private String facility_group_name;
+    @JsonProperty("import")
+    private String imports;
 }

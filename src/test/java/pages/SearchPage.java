@@ -18,7 +18,7 @@ public class SearchPage extends BasePage {
         this.driver = driver;
     }
 
-    @FindBy(id = "patientsearch_fullname")
+    @FindBy(id = "fullNameEditText")
     private WebElement searchPatientName;
 
     @FindBy(id = "patientsearch_search")
@@ -50,6 +50,8 @@ public class SearchPage extends BasePage {
 
 
     private void searchPatient(String patientName) {
+        System.out.println(patientName+"patientName");
+        waitForElementToBeVisible(searchPatientName);
         searchPatientName.sendKeys(patientName);
         NextButton.click();
     }
@@ -69,7 +71,6 @@ public class SearchPage extends BasePage {
 
 //    This method should be used for
 //    invalid search or for new patient
-
     public void searchForPatientName(String patientName) {
         searchPatient(patientName);
         Assert.assertEquals(emptySearchResult.getText(), "No patients match");
@@ -79,9 +80,6 @@ public class SearchPage extends BasePage {
 
     public void searchForRegisteredPatientWithoutBPInfo(String patientName) {
         searchPatient(patientName);
-
-        // need to add has visited section code and no patient match
-//        Assert.assertEquals(emptySearchResult.isDisplayed(),false,"registered Patient name is not displayed");
 
         String status = "false";
         for (WebElement ele : header) {
