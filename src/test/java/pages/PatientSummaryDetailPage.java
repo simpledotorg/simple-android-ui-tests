@@ -169,8 +169,8 @@ public class PatientSummaryDetailPage extends BasePage {
         medicineSection.isCutumDrugPresent(name);
     }
 
-    public void modifyCustomizeMadicineName(String name) {
-        medicineSection.modifyCustomizeMadicineName(name);
+    public void modifyCustomizeMedicine(String name, String dosage) {
+        medicineSection.modifyCustomizeMedicine(name,dosage);
     }
 
     public void tapsOnRemoveCustumPrescriptionLink() {

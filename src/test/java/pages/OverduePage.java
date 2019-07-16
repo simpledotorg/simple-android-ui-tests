@@ -1,5 +1,6 @@
 package pages;
 
+import org.testng.annotations.Test;
 import qaApiServices.appointments.CreateAppointment;
 import qaApiServices.bloodPressure.CreateBp;
 import com.github.javafaker.Faker;
@@ -165,10 +166,11 @@ public class OverduePage extends BasePage {
     }
 
     public void createOverduePatientForTodayFromApi() {
-        int dd = new Faker().random().nextInt(40,90);
+        int dd=new Faker().random().nextInt(40,90);
         new CreatePatients().createPatientWithBackDate(dd);
         new CreateBp().createBpWithBackDate(dd);
-        new CreateAppointment().createAppointment(Date.getCurrentDate_In_YYYY_MM_DD());
+
+        new CreateAppointment().createAppointmentForOverduePatient(0);
     }
 
     public void tapsOnCallIcon(String patientName) {
@@ -196,4 +198,6 @@ public class OverduePage extends BasePage {
         new CreateBp().createBpWithBackDate(dd);
         new CreateAppointment().createAppointmentForOverduePatient(dd);
     }
+
+
 }

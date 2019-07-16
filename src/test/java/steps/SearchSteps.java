@@ -15,22 +15,16 @@ public class SearchSteps extends BaseSteps {
     public void userOnSearchPageSearchesForUnregisteredPatientAsInvalid(String User, String name) {
         new SearchPage(getDriverInstanceFor(User)).searchForPatientName(name);
     }
-
-    @Then("^(\\w+) on Search page searched for Registered Patient without BP info$")
-    public void userOnSearchPageSearchedForRegisteredPatientWithoutBPInfo(String User)  {
-        String patientName = ScenarioContext.getData("User", ScenarioContextKeys.PATIENT_NAME);
-        new SearchPage(getDriverInstanceFor(User)).searchForRegisteredPatientWithoutBPInfo(patientName);
-    }
-
     @Then("^(\\w+) on Search page searched for Registered Patient$")
-    public void userOnSearchPageSearchedForRegisteredPatient(String User)  {
+    public void userOnSearchPageSearchedForRegisteredPatient(String User) {
         String patientName = ScenarioContext.getData("User", ScenarioContextKeys.PATIENT_NAME);
+        System.out.println(patientName+  "patientName");
         new SearchPage(getDriverInstanceFor(User)).searchForRegisteredPatientWithBpInfo(patientName);
     }
 
     @And("^(\\w+) on search page searches for Patient name$")
     public void userOnSearchPageSearchesForPatientName(String User) {
-        String patientName =ScenarioContext.getData("User", ScenarioContextKeys.PATIENT_NAME);
+        String patientName = ScenarioContext.getData("User", ScenarioContextKeys.PATIENT_NAME);
         new SearchPage(getDriverInstanceFor(User)).searchForPatientName(patientName);
     }
 
@@ -40,27 +34,33 @@ public class SearchSteps extends BaseSteps {
     }
 
     @And("^(\\w+) on Search page selects patient form search list$")
-    public void userOnSearchPageSelectsPatientFormSearchList(String User)  {
-        String patientName=ScenarioContext.getData("User", ScenarioContextKeys.PATIENT_NAME);
+    public void userOnSearchPageSelectsPatientFormSearchList(String User) {
+        String patientName = ScenarioContext.getData("User", ScenarioContextKeys.PATIENT_NAME);
         new SearchPage(getDriverInstanceFor(User)).selectsPatientFromSearchList(patientName);
     }
 
     @Then("^(\\w+) on Search page searched for Registered Patient with BP info$")
-    public void userOnSearchPageSearchedForRegisteredPatientWithBPInfo(String User)  {
-        String patientName=ScenarioContext.getData("User", ScenarioContextKeys.PATIENT_NAME);
+    public void userOnSearchPageSearchedForRegisteredPatientWithBPInfo(String User) {
+        String patientName = ScenarioContext.getData("User", ScenarioContextKeys.PATIENT_NAME);
         new SearchPage(getDriverInstanceFor(User)).searchForRegisteredPatientWithBpInfo(patientName);
     }
 
     @And("^(\\w+) on Search page verfies patient name should not be displayed$")
     public void userOnSearchPageVerfiesPatientNameShouldNotBeDisplayed(String User) {
-        String name=ScenarioContext.getData("User", ScenarioContextKeys.PATIENT_NAME);
+        String name = ScenarioContext.getData("User", ScenarioContextKeys.PATIENT_NAME);
         new SearchPage(getDriverInstanceFor(User)).searchForPatientName(name);
     }
 
     @And("^(\\w+) on search page searches for new Patient name$")
     public void userOnSearchPageSearchesForNewPatientName(String User) throws Throwable {
-        String name=new CreateFaker().getRandomPatientName();
+        String name = new CreateFaker().getRandomPatientName();
         new SearchPage(getDriverInstanceFor(User)).searchForPatientName(name);
+    }
+
+    @Then("^(\\w+) on search page searched for Registered Patient without BP info$")
+    public void userOnSearchPageSearchedForRegisteredPatientWithoutBPInfo(String User) {
+        String patientName = ScenarioContext.getData("User", ScenarioContextKeys.PATIENT_NAME);
+        new SearchPage(getDriverInstanceFor(User)).searchForRegisteredPatientWithoutBPInfo(patientName);
     }
 }
 

@@ -1,0 +1,32 @@
+{
+  "executionDetails": {
+    "appium_js_path": "/usr/local/bin/appium",
+    "appium_node_path": "",
+    "monitoring":true
+  },
+  "testFeed":[
+    {
+      "belongsTo":"User",
+      "runsOn": "any",
+      "appDir": "app",
+      "nativeApp":true,
+      "optimusDesiredCapabilities": {
+        "appiumServerCapabilities": {
+          "app": "qaDebug.apk",
+          "platformName": "Android"
+        },
+        "androidOnlyCapabilities": {
+          "appActivity": "org.simple.clinic.activity.TheActivity",
+          "appPackage": "org.simple.clinic.qa.debug",
+          "avdLaunchTimeout": 300000,
+          "unicodeKeyboard":false,
+          "resetKeyboard":true,
+          "useKeystore": false
+        }
+      },
+      "deviceState": {
+        "captureVideo": true
+      }
+    }
+  ]
+}

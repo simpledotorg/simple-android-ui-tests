@@ -155,13 +155,7 @@ public class PatientSummaryDetailSteps extends BaseSteps {
     @And("^(\\w+) on Patient summary page add new customized medicine$")
     public void userAddNewCustomizedMedicine(String User) {
         String drugname = "Test";
-        ScenarioContext.putData("User", ScenarioContextKeys.DRUG_NAME, drugname);
         String dosage = "10";
-
-        String drugInfo = dosage + "   " + drugname;
-        ScenarioContext.putData("User", ScenarioContextKeys.DRUG_INFO, drugInfo);
-
-
         new PatientSummaryDetailPage(getDriverInstanceFor(User)).addCustomizeMedicine(drugname, dosage);
     }
 
@@ -204,10 +198,10 @@ public class PatientSummaryDetailSteps extends BaseSteps {
 
     @And("^(\\w+) on Patient summary page update medicine info$")
     public void userUpdateMedicineInfo(String User) {
-        String name = "checker";
-        ScenarioContext.putData("User", ScenarioContextKeys.DRUG_NAME, name);
+        String name = "CHECKER";
+        String dosage= "15";
 
-        new PatientSummaryDetailPage(getDriverInstanceFor(User)).modifyCustomizeMadicineName(name);
+        new PatientSummaryDetailPage(getDriverInstanceFor(User)).modifyCustomizeMedicine(name,dosage);
     }
 
     @Then("^(\\w+) on Patient summary page taps on remove custum prescription link$")

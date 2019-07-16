@@ -1,6 +1,6 @@
 Feature: Edit BP info
 
-  @editBp @smoke
+  @editBp1 @smoke
   Scenario: Edit BP info with today's date to already registered patient
     Given User registers new user from api
     And User registers new patient with bp from api
@@ -20,11 +20,11 @@ Feature: Edit BP info
     And User on Patient summary page verifies days information
     And User on Patient summary page taps on save Button
     And User on Patient summary page taps on appointment done button
-    Then User on Patient tab verifies patient info present in recent patients list
+    Then User on Patient tab verifies patient info should show up on top of recent patient section
 
 
   @editBp @smoke
-  Scenario: Remove BP info for already registered patient
+  Scenario: Remove BP info for already registered patient who has only one bp recorded
     Given User registers new user from api
     And User registers new patient with bp from api
     And User taps on GetStarted button
@@ -43,7 +43,7 @@ Feature: Edit BP info
     And User on Patient summary page taps on remove button
     Then User on Patient summary page verifies message
     And User on Patient summary page taps on save Button
-    And User on Patient tab verifies patient info should not be present in recent patients list
+    And User on Patient tab verifies patient info should show up on top of recent patient section
     And User on Patient tab taps on search text box
     Then User on Search page searched for Registered Patient without BP info
 
@@ -68,7 +68,7 @@ Feature: Edit BP info
     And User on Patient summary page verifies days information
     And User on Patient summary page taps on save Button
     And User on Patient summary page taps on appointment done button
-    And User on Patient tab verifies patient info should not be present in recent patients list
+    And User on Patient tab verifies patient info should show up on top of recent patient section
 
 
   @editBp @smoke
@@ -88,6 +88,9 @@ Feature: Edit BP info
     And User on Patient summary page taps on Remove Link
     And User on Patient summary page taps on remove button
     Then User on Patient summary page verifies list of bp info
+    And User on Patient summary page taps on save Button
+    And User on Patient tab verifies patient info should not show up on top of recent patient section
+
 
   @editBp @smoke
   Scenario: Remove all Bp info for registered patient who has more than one bp recorded.
@@ -105,6 +108,5 @@ Feature: Edit BP info
     And User on Patient summary page removes all bp info
     Then User on Patient summary page verifies message
     And User on Patient summary page taps on save Button
-    And User on Patient tab verifies patient info should not be present in recent patients list
+    And User on Patient tab verifies patient info should not show up on top of recent patient section
 
-  
