@@ -49,15 +49,6 @@ public class CreatePatients {
         new PatientClient().post(patientRequestBody, facilityId, userId, token);
     }
 
-    public PatientGetRequestResponse getAllPatient() {
-
-        String facilityId = ScenarioContext.getData("User", ScenarioContextKeys.FACILTIYID);
-        String userId = ScenarioContext.getData("User", ScenarioContextKeys.USER_ID);
-        String token = ScenarioContext.getData("User", ScenarioContextKeys.ACCESS_TOKEN);
-
-        return new PatientClient().get(facilityId, userId, token);
-    }
-
     public void createPatientWithBackDate(int dd) {
         String userId = ScenarioContext.getData("User", ScenarioContextKeys.USER_ID);
         String facilityId = ScenarioContext.getData("User", ScenarioContextKeys.FACILTIYID);

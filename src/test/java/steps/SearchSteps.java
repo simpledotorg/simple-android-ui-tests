@@ -62,5 +62,10 @@ public class SearchSteps extends BaseSteps {
         String patientName = ScenarioContext.getData("User", ScenarioContextKeys.PATIENT_NAME);
         new SearchPage(getDriverInstanceFor(User)).searchForRegisteredPatientWithoutBPInfo(patientName);
     }
+
+    @Then("^(\\w+) on Search page verifies alphabetical patient logs$")
+    public void userOnSearchPageVerifiesAlphabeticalPatientLogs(String User) throws Throwable {
+        new SearchPage(getDriverInstanceFor(User)).verifiesAlphabeticalLog();
+    }
 }
 

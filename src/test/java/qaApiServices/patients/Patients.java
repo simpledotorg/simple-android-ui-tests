@@ -26,7 +26,7 @@ public class Patients {
     private String contacted_by_counsellor;
     private String could_not_contact_reason;
     private String recorded_at;
-    private List<Business_identifiers> business_identifiers;
+    private List<BusinessIdentifiers> business_identifiers;
     private String call_result;
 
     public Patients(){}

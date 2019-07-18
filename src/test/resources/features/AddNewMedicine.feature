@@ -14,7 +14,7 @@ Feature: Add New Medicine
     Then User on Search page searched for Registered Patient
     And User on Search page selects patient form search list
 
-  @smoke @medicine1
+  @smoke @medicine
   Scenario: Add new customized Medicine to already registered patient
     Then User on Patient summary page taps on Add new medicine button
     Then User on Patient summary page taps on Add another medicine button
@@ -86,8 +86,8 @@ Feature: Add New Medicine
     And User on Patient summary page taps on save bp medicine button
     Then User on Patient summary page verifies add medicine button
 
-#  @regression @medicine @smoke
-#  Scenario: get all medicine info for specific facility form api and validate it in UI
-#    And User on Patient summary page taps on Add new medicine button
-#    Then User on Patient summary page validate medicine info at bp medicine page
+  @regression @medicine @smoke
+  Scenario: get all medicine info for specific facility form api and validate it in UI
+    And User on Patient summary page taps on Add new medicine button
+    Then User on Patient summary page validate medicine info at bp medicine page
 
