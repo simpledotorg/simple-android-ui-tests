@@ -6,6 +6,8 @@ import io.appium.java_client.AppiumDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import utils.CreateFaker;
+import utils.RandomValue;
 import utils.ScenarioContextKeys;
 
 import java.util.HashSet;
@@ -29,6 +31,9 @@ public class PatientSummaryDetailPage extends BasePage {
 
     @FindBy(id="patientsummary_fullname")
     private WebElement patientSummaryFullname;
+
+    @FindBy(id="patientsummary_edit")
+    private WebElement patientSummaryEditLink;
 
     public PatientSummaryDetailPage(AppiumDriver driver) {
         super(driver);
@@ -218,4 +223,16 @@ public class PatientSummaryDetailPage extends BasePage {
     }
 
     public String getFullName(){ return patientSummaryFullname.getText();}
+
+    public void clickOnPatientSummaryEditLink(){
+        patientSummaryEditLink.click();
+    }
+
+    public void updatePatientInfo() {
+
+        String phone=RandomValue.getRandomPhoneNumber();
+        String age=new CreateFaker().faker.random().nextInt(40,80).toString();
+        String colony=new CreateFaker().faker.address().streetName();
+        patientPrimaryInfoSection.updatePatientInfo( phone, age,colony);
+    }
 }

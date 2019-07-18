@@ -7,6 +7,7 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.testng.Assert;
 import qaApiServices.patients.CreatePatients;
+import qaApiServices.patients.GetPatientInfo;
 import qaApiServices.patients.PatientGetRequestResponse;
 import qaApiServices.user.RegisterUser;
 import utils.ScenarioContextKeys;
@@ -41,7 +42,7 @@ public class RecentPatientPage extends BasePage {
         new RegisterUser().registerNewUser();
         String expectedValue = patientName.replaceAll("\\s", "").toUpperCase();
 
-        PatientGetRequestResponse allPatient = new CreatePatients().getAllPatient();
+        PatientGetRequestResponse allPatient = new GetPatientInfo().getAllPatient();
         int size = allPatient.getPatients().size();
         int count = 0;
         String status = "true";
@@ -62,7 +63,7 @@ public class RecentPatientPage extends BasePage {
     }
 
     public void verifiesSeeAllOption() {
-        PatientGetRequestResponse allPatient = new CreatePatients().getAllPatient();
+        PatientGetRequestResponse allPatient = new GetPatientInfo().getAllPatient();
         int size = allPatient.getPatients().size();
 
         String status = "false";
@@ -91,7 +92,7 @@ public class RecentPatientPage extends BasePage {
 
         String expectedValue = patientName.replaceAll("\\s", "").toUpperCase();
 
-        PatientGetRequestResponse allPatient = new CreatePatients().getAllPatient();
+        PatientGetRequestResponse allPatient = new GetPatientInfo().getAllPatient();
         int size = allPatient.getPatients().size();
         int count = 0;
 
@@ -134,13 +135,10 @@ public class RecentPatientPage extends BasePage {
         String expected = ScenarioContext.getData("User", ScenarioContextKeys.PATIENT_NAME);
         expected = expected.split(",")[0].replaceAll("\\s", "").toUpperCase();
 
-        System.out.println("actual" + actualValue);
-        System.out.println("expected" + expected);
-
         Assert.assertTrue(actualValue.equals(expected), expected + "should be displayed on top of recent patient list");
     }
 
     public void verifyNoRecentPatientText() {
-        Assert.assertTrue(noRecentPatientText.getText().equals("No recent qaApiServices.patients"),"No recent patient message should be displayed");
+        Assert.assertTrue(noRecentPatientText.getText().equals("No recent patients"),"No recent patient message should be displayed");
     }
 }

@@ -124,14 +124,16 @@ public class OverduePage extends BasePage {
     }
 
     public void isPatientNotPresent(String patientName) {
+        String status = "true";
+
         if (patientDetail.size() == 0) {
             Assert.assertTrue(noPatientsOverdueMessage.isDisplayed());
-        }
-        String status = "true";
-        for (WebElement ele : patientDetail) {
-            String[] split = ele.findElement(nameAndAge).getText().split(",");
-            if (split[0].contains(patientName)) {
-                status = "false";
+        } else {
+            for (WebElement ele : patientDetail) {
+                String[] split = ele.findElement(nameAndAge).getText().split(",");
+                if (split[0].contains(patientName)) {
+                    status = "false";
+                }
             }
         }
         Assert.assertEquals(status, "true", "patient name should not be displayed in overdue section");
@@ -158,7 +160,7 @@ public class OverduePage extends BasePage {
 
     public void selectReason(String reason) {
         waitForElementToBeVisible(appointmentReminderDoneButton);
-        driver.findElement(By.xpath("//android.widget.RadioButton[contains(@text,'"+reason+"')]")).click();
+        driver.findElement(By.xpath("//android.widget.RadioButton[contains(@text,'" + reason + "')]")).click();
     }
 
     public void isPatientNotPresentInList(String patient) {
@@ -166,7 +168,7 @@ public class OverduePage extends BasePage {
     }
 
     public void createOverduePatientForTodayFromApi() {
-        int dd=new Faker().random().nextInt(40,90);
+        int dd = new Faker().random().nextInt(40, 90);
         new CreatePatients().createPatientWithBackDate(dd);
         new CreateBp().createBpWithBackDate(dd);
 
@@ -193,7 +195,7 @@ public class OverduePage extends BasePage {
     }
 
     public void createAppointmentForOverduePatient() {
-        int dd = new Faker().random().nextInt(40,90);
+        int dd = new Faker().random().nextInt(40, 90);
         new CreatePatients().createPatientWithBackDate(dd);
         new CreateBp().createBpWithBackDate(dd);
         new CreateAppointment().createAppointmentForOverduePatient(dd);

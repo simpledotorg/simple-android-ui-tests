@@ -2,6 +2,7 @@ package utils;
 
 import com.embibe.optimus.utils.ScenarioContext;
 import com.github.javafaker.Faker;
+import org.testng.annotations.Test;
 
 import java.util.Locale;
 
@@ -16,7 +17,7 @@ public class CreateFaker {
         String name = faker.name().fullName();
         String replace = "";
 
-        String[] s = {"Mr.", "Dr.", "Miss.", "Jr.", "MS.", "MR.", "DR.","MISS.","MISS","MS" };
+        String[] s = {"Mr.", "Dr.", "Miss.", "Jr.", "MS.", "MR.", "DR.","MISS.","MISS","MS","Miss","Ms","Ms." };
         for (String ss : s) {
             if (name.contains(ss)) {
                 replace = name.replace(ss, "").trim().toUpperCase();

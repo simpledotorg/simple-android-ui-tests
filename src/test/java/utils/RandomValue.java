@@ -20,8 +20,4 @@ public class RandomValue {
         return s.substring(0, 10);
     }
 
-    public static int getRandomPinValue() {
-        int pin = new Random().nextInt(10000);
-        return pin;
-    }
 }

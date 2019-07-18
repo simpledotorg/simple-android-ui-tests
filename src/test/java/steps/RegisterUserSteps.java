@@ -33,7 +33,7 @@ public class RegisterUserSteps extends BaseSteps {
 
     @And("^(\\w+) enters security pin number$")
     public void userEnterSecurityPinNumber(String User) {
-        int pin = RandomValue.getRandomPinValue();
+        int pin = new CreateFaker().faker.random().nextInt(10000);
          ScenarioContext.putData("User",ScenarioContextKeys.PIN,pin);
         new RegisterUserPage(getDriverInstanceFor(User)).enterPin(Integer.toString(pin));
     }

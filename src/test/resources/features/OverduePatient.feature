@@ -15,7 +15,6 @@ Feature: overdue patients test
     And User on Homepage taps on Overdue Tab
     Then User on Overdue Tab verifies patient info present in overdue list
 
-
   @overdue @smoke
   Scenario: user should be able to view information for overdue patient
     And User on Homepage taps on Overdue Tab

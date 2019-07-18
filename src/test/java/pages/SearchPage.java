@@ -6,8 +6,16 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.FindBys;
 import org.openqa.selenium.support.PageFactory;
 import org.testng.Assert;
+import qaApiServices.patients.CreatePatients;
+import qaApiServices.patients.GetPatientInfo;
+import qaApiServices.patients.PatientGetRequestResponse;
+import qaApiServices.user.RegisterUser;
+import qaApiServices.user.User;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 public class SearchPage extends BasePage {
     AppiumDriver driver;
@@ -18,7 +26,7 @@ public class SearchPage extends BasePage {
         this.driver = driver;
     }
 
-    @FindBy(id = "fullNameEditText")
+    @FindBy(id = "patientNameEditText")
     private WebElement searchPatientName;
 
     @FindBy(id = "patientsearch_search")
@@ -50,7 +58,6 @@ public class SearchPage extends BasePage {
 
 
     private void searchPatient(String patientName) {
-        System.out.println(patientName+"patientName");
         waitForElementToBeVisible(searchPatientName);
         searchPatientName.sendKeys(patientName);
         NextButton.click();
@@ -69,7 +76,7 @@ public class SearchPage extends BasePage {
         Assert.assertTrue(registerAsNewPatientButton.isDisplayed());
     }
 
-//    This method should be used for
+    //    This method should be used for
 //    invalid search or for new patient
     public void searchForPatientName(String patientName) {
         searchPatient(patientName);
@@ -98,13 +105,12 @@ public class SearchPage extends BasePage {
     public void selectsPatientFromSearchList(String patientName) {
         for (WebElement ele : patientList) {
 
-            String []str=ele.getText().split(",");
-            String name=str[0].toUpperCase();
+            String[] str = ele.getText().split(",");
+            String name = str[0].toUpperCase();
 
             if (name.contains(patientName.toUpperCase())) {
                 ele.click();
-            }
-            else{
+            } else {
                 Assert.fail("Patient Name is not displayed in search list");
             }
         }
@@ -112,5 +118,25 @@ public class SearchPage extends BasePage {
 
     public void tapsOnSearchTextBox() {
         searchPatientTextBox.click();
+    }
+
+    public void verifiesAlphabeticalLog() {
+
+        new RegisterUser().registerNewUser();
+        List<String> allPatientsName = new GetPatientInfo().getAllPatientsName();
+        List<String> expectedPatientNameSortedList = allPatientsName.stream().sorted().collect(Collectors.toList());
+
+        List<String> actualpatientName = new ArrayList<>();
+        int count = 0;
+
+        while (count <= allPatientsName.size()) {
+            for (WebElement p : patientList) {
+                actualpatientName.add(p.getText().split(",")[0].toUpperCase());
+                count++;
+            }
+            scrollDown();
+        }
+
+        expectedPatientNameSortedList.equals(actualpatientName);
     }
 }

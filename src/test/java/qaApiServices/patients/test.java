@@ -44,4 +44,14 @@ public class test {
         System.out.println(patientGetRequestResponse.toString());
         System.out.println(patientGetRequestResponse.getPatients().size());
     }
+
+    @Test
+    public void getAllPaientName(){
+        String facilityId = "2f086ff7-83dc-4758-bd31-9d9109df9a09";
+        String userId = "1AC82ddD-dD87-aEFa-EFfe-f272F1Fdf4EF";
+        String token = "90a9743da70485b9d604ec873459dcc6af9323c780c598c846a56f5b4ecc3bb5";
+
+        PatientGetRequestResponse patientGetRequestResponse = new PatientClient().get(facilityId, userId, token);
+        patientGetRequestResponse.getAllPatientsName();
+    }
 }

@@ -1,5 +1,6 @@
 package steps;
 
+import cucumber.api.PendingException;
 import qaApiServices.facility.FacilityClient;
 import qaApiServices.facility.FacilityResponse;
 import qaApiServices.protocol.ProtocolClient;
@@ -275,6 +276,16 @@ public class PatientSummaryDetailSteps extends BaseSteps {
     @And("^(\\w+) on Patient summary page taps on appointment not now button$")
     public void userOnPatientSummaryPageTapsOnAppointmentNotNowButton(String User) {
         new PatientSummaryDetailPage(getDriverInstanceFor(User)).clickOnAppointmentNotNowButton();
+    }
+
+    @And("^(\\w+) on Patient summary page taps on Edit patient info link$")
+    public void userOnPatientSummaryPageTapsOnEditPatientInfoLink(String User)  {
+        new PatientSummaryDetailPage(getDriverInstanceFor(User)).clickOnPatientSummaryEditLink();
+    }
+
+    @And("^(\\w+) on Patient summary page update patient info$")
+    public void userOnPatientSummaryPageUpdatePatientInfo(String User) {
+        new PatientSummaryDetailPage(getDriverInstanceFor(User)).updatePatientInfo();
     }
 }
 
