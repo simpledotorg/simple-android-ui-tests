@@ -10,7 +10,9 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import utils.AdbUtils;
 
+import java.io.IOException;
 import java.time.Duration;
 import java.util.List;
 
@@ -216,5 +218,14 @@ public class BasePage {
                 .waitAction(WaitOptions.waitOptions(Duration.ofMillis(1000)))
                 .moveTo(PointOption.point(x,endY))
                 .release().perform();
+    }
+
+    public void pressEnter(){
+        String[] command = new String[]{"adb shell input keyevent 61","adb shell input keyevent 66"};
+        try {
+            AdbUtils.executeCommandUsingArray(command);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 }

@@ -1,5 +1,7 @@
 package pages;
 
+import io.appium.java_client.MobileElement;
+import io.appium.java_client.pagefactory.AppiumFieldDecorator;
 import qaApiServices.appointments.CreateAppointment;
 import qaApiServices.bloodPressure.CreateBp;
 import com.embibe.optimus.utils.ScenarioContext;
@@ -12,6 +14,10 @@ import qaApiServices.patients.CreatePatients;
 import qaApiServices.user.RegisterUser;
 import utils.ScenarioContextKeys;
 
+import java.io.IOException;
+
+import static java.lang.Runtime.getRuntime;
+
 public class RegisterUserPage extends BasePage {
     private AppiumDriver driver;
 
@@ -19,13 +25,13 @@ public class RegisterUserPage extends BasePage {
     private WebElement getStartedButton;
 
     @FindBy(id = "registrationphone_phone")
-    private WebElement registrationPhoneNumber;
+    private MobileElement registrationPhoneNumber;
 
     @FindBy(className = "android.widget.TextView")
     private WebElement fullNameLabel;
 
     @FindBy(id = "registrationname_name")
-    private WebElement registrationNameTextBox;
+    private MobileElement registrationNameTextBox;
 
     @FindBy(className = "android.widget.TextView")
     private WebElement createPinLabel;
@@ -43,7 +49,7 @@ public class RegisterUserPage extends BasePage {
     private WebElement skipLocationAccess;
 
     @FindBy(id = "registrationfacilities_search")
-    private WebElement searchBar;
+    private MobileElement searchBar;
 
     @FindBy(xpath = "//androidx.recyclerview.widget.RecyclerView/android.widget.FrameLayout")
     private WebElement searchResult;
@@ -80,16 +86,17 @@ public class RegisterUserPage extends BasePage {
 
     public RegisterUserPage(AppiumDriver driver) {
         super(driver);
-        PageFactory.initElements(driver, this);
+        PageFactory.initElements(new AppiumFieldDecorator(driver), this);
         this.driver = driver;
     }
 
     public void reEnterPin(String pin) {
-        confirmPin.sendKeys(pin);
+        waitForElementToBeVisible(confirmPin);
+        confirmPin.sendKeys(pin+"/n");
     }
 
     public void enterPin(String pin) {
-        registrationPin.sendKeys(pin);
+        registrationPin.sendKeys(pin +"/n");
     }
 
     public void clicksOnGetStartedButton() {
@@ -97,11 +104,13 @@ public class RegisterUserPage extends BasePage {
     }
 
     public void enterRegistrationPhoneNumber(String phoneNumber) {
-        registrationPhoneNumber.sendKeys(phoneNumber + "\n");
+        registrationPhoneNumber.setValue(phoneNumber);
+        pressEnter();
     }
 
     public void enterRegistrationName(String name) {
-        registrationNameTextBox.sendKeys(name +"\n");
+        registrationNameTextBox.setValue(name);
+        pressEnter();
     }
 
     private void skipLocationAccess() {
@@ -110,7 +119,7 @@ public class RegisterUserPage extends BasePage {
 
     public void searchFacility(String facility) {
         skipLocationAccess();
-        searchBar.sendKeys(facility);
+        searchBar.setValue(facility);
         searchResult.click();
     }
 
