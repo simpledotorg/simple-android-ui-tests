@@ -72,7 +72,7 @@ public class RegisterUserPage extends BasePage {
     @FindBy(id = "permission_allow_button")
     private WebElement permissionAllowButton;
 
-    @FindBy(xpath = "//android.widget.LinearLayout[@id='registrationconfirmpin_error']/android.widget.TextView")
+    @FindBy(xpath = "//android.widget.LinearLayout[contains(@resource-id,'registrationconfirmpin_error')]/android.widget.TextView")
     private WebElement confirmPinErrorMsg;
 
     @FindBy(id = "registrationpin_card_content")
@@ -148,14 +148,9 @@ public class RegisterUserPage extends BasePage {
         resetPin.click();
         Assert.assertTrue(registrationPinSection.isDisplayed());
         enterPin("1234");
-
+        reEnterPin("1234");
 
         Assert.assertTrue(skipLocationAccess.isDisplayed());
-    }
-
-    public void verifyErorMessageForInvalidFacilitySearch() {
-//        Assertion pending becuase of defect - no proper error message is displayed for invalid qaApiServices.facility name
-        System.out.println("assertion pending");
     }
 
     public void denyAccess() {
@@ -203,5 +198,12 @@ public class RegisterUserPage extends BasePage {
             new CreateBp().createBpList(patientId, bpcount);
             patientcount--;
         }
+    }
+
+    public void searchInvalidFacility(String facility) {
+        skipLocationAccess();
+        searchBar.sendKeys(facility);
+        // Assertion pending becuase of defect - no proper error message is displayed for invalid qaApiServices.facility name
+       Assert.fail("defect - no proper error message is displayed for invalid facility name");
     }
 }

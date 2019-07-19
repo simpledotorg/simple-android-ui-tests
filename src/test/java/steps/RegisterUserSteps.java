@@ -96,13 +96,8 @@ public class RegisterUserSteps extends BaseSteps {
 
     @Then("^(\\w+) search for invalid facility$")
     public void userSearchForInvalidFacility(String User) {
-        String facility="invalid qaApiServices.facility";
-        new RegisterUserPage(getDriverInstanceFor(User)).searchFacility(facility);
-    }
-
-    @And("^(\\w+) verifies error message$")
-    public void userVerifiesErrorMessage(String User){
-        new RegisterUserPage(getDriverInstanceFor(User)).verifyErorMessageForInvalidFacilitySearch();
+        String facility="invalid facility";
+        new RegisterUserPage(getDriverInstanceFor(User)).searchInvalidFacility(facility);
     }
 
     @And("^(\\w+) enters confirm pin number$")

@@ -19,7 +19,7 @@
           "appActivity": "org.simple.clinic.activity.TheActivity",
           "appPackage": "org.simple.clinic.qa.debug",
           "avdLaunchTimeout": 300000,
-          "unicodeKeyboard":false,
+          "unicodeKeyboard":true,
           "resetKeyboard":true,
           "useKeystore": false
         }
