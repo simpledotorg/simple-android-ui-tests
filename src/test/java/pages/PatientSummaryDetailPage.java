@@ -235,4 +235,8 @@ public class PatientSummaryDetailPage extends BasePage {
         String colony=new CreateFaker().faker.address().streetName();
         patientPrimaryInfoSection.updatePatientInfo( phone, age,colony);
     }
+
+    public void preeKeyboardDoneButton() {
+        pressEnter();
+    }
 }

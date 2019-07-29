@@ -4,7 +4,6 @@ Feature: Miscellaniuos feature
   Scenario: Verify patient info for whose appointment is scheduled for today
     Given User registers new user from api
     Given User creates overdue patient with appointment as of today
-    And User Launches app
     And User taps on GetStarted button
     And User enters registered phone number
     And User enters registered security pin
@@ -15,3 +14,4 @@ Feature: Miscellaniuos feature
     Then User on Overdue tab verifies patient info is not present in list
     And User on Homepage taps on Patients Tab
     And User on Patient tab taps on sync link
+

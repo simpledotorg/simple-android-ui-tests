@@ -33,8 +33,8 @@ Feature: Register Nurse
      And User enters invalid security pin as <PIN>
      Examples:
      |PIN|
-     | 4321  |
-     |       |
+     |4321|
+
 
 
   @register @smoke
@@ -46,7 +46,7 @@ Feature: Register Nurse
     And User enters invalid security pin as 4321
     And User taps on reset pin
 
-   @register1 @smoke
+   @register @smoke
      Scenario: Register New Nurse/User with invalid facility
      And User taps on GetStarted button
      And User enters registration phone number

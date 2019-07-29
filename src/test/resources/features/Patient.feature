@@ -18,8 +18,7 @@ Feature: Create Patient
     And User on Patient summary page enters new patient info
     And User on Diagnosis page taps on next Button
     And User on Patient summary page enters new Bp Info
-    And User on Patient summary page taps on next ArrowButton
-    And User on Patient summary page enters date
+    And User on Patient summary page selects done button
     And User on Patient summary page taps on save Button
     And User on Patient summary page taps on appointment done button
     Then User on Patient tab verifies patient info present in recent patients list
@@ -33,8 +32,7 @@ Feature: Create Patient
     And User on Patient summary page enters new patient info Without phone number
     And User on Diagnosis page taps on next Button
     And User on Patient summary page enters new Bp Info
-    And User on Patient summary page taps on next ArrowButton
-    And User on Patient summary page enters date
+    And User on Patient summary page selects done button
     And User on Patient summary page taps on save Button
     And User on Patient summary page taps on appointment done button
     Then User on Patient tab verifies patient info present in recent patients list

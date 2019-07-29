@@ -114,7 +114,6 @@ public class RecentPatientPage extends BasePage {
     public void selectAnyPatientFromRecentPatientSection() {
         scrollDown();
         int size = recentPatientViewLst.size();
-        System.out.println(size + "size");
         recentPatientViewLst.get(size - 1).click();
 
         PatientSummaryDetailPage patientSummaryDetailPage = new PatientSummaryDetailPage(driver);

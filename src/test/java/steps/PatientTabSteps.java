@@ -53,8 +53,8 @@ public class PatientTabSteps extends BaseSteps {
     }
 
 
-    @And("^(\\w+) on Patient tab any patient from recent patient list$")
-    public void userOnPatientTabAnyPatientFromRecentPatientList(String User) throws Throwable {
+    @And("^(\\w+) on Patient tab select any patient from recent patient list$")
+    public void userOnPatientTabSelectAnyPatientFromRecentPatientList(String User) throws Throwable {
         new PatientTabPage(getDriverInstanceFor(User)).selectAnyPatient();
     }
 

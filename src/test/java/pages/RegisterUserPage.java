@@ -92,14 +92,15 @@ public class RegisterUserPage extends BasePage {
 
     public void reEnterPin(String pin) {
         waitForElementToBeVisible(confirmPin);
-        confirmPin.sendKeys(pin+"/n");
+        confirmPin.sendKeys(pin + "/n");
     }
 
     public void enterPin(String pin) {
-        registrationPin.sendKeys(pin +"/n");
+        registrationPin.sendKeys(pin + "/n");
     }
 
     public void clicksOnGetStartedButton() {
+        waitForElementToBeVisible(getStartedButton);
         getStartedButton.click();
     }
 
@@ -114,7 +115,7 @@ public class RegisterUserPage extends BasePage {
     }
 
     private void skipLocationAccess() {
-         skipLocationAccess.click();
+        skipLocationAccess.click();
     }
 
     public void searchFacility(String facility) {
@@ -177,7 +178,7 @@ public class RegisterUserPage extends BasePage {
 
 
     public void registerNewPatientWithoutPhoneNumber() {
-       new CreatePatients().createPatientWithoutPhoneNumber();
+        new CreatePatients().createPatientWithoutPhoneNumber();
     }
 
     public void registerNewUser() {
@@ -194,8 +195,8 @@ public class RegisterUserPage extends BasePage {
         new CreatePatients().createPatient();
     }
 
-    public void registerNewPatientWithListOfBps(int patientCount,int bpcount) {
-        createPatientWithListOfBP(1,2);
+    public void registerNewPatientWithListOfBps(int patientCount, int bpcount) {
+        createPatientWithListOfBP(1, 2);
     }
 
 
@@ -203,8 +204,7 @@ public class RegisterUserPage extends BasePage {
 
         while (patientcount > 0) {
             new CreatePatients().createPatient();
-            String patientId=ScenarioContext.getData("User",ScenarioContextKeys.PATIENT_ID);
-            new CreateBp().createBpList(patientId, bpcount);
+            new CreateBp().createBpList(bpcount);
             patientcount--;
         }
     }
@@ -213,6 +213,6 @@ public class RegisterUserPage extends BasePage {
         skipLocationAccess();
         searchBar.sendKeys(facility);
         // Assertion pending becuase of defect - no proper error message is displayed for invalid qaApiServices.facility name
-       Assert.fail("defect - no proper error message is displayed for invalid facility name");
+        Assert.fail("defect - no proper error message is displayed for invalid facility name");
     }
 }

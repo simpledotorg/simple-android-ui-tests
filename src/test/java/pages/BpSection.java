@@ -70,6 +70,9 @@ public class BpSection extends BasePage {
     @FindBys({@FindBy(id = "patientsummary_item_bp_readings")})
     private List<WebElement> bpReadings;
 
+    @FindBy(id="bloodpressureentry_bp_date")
+    private WebElement bpDate;
+
 
     public BpSection(AppiumDriver driver) {
         super(driver);
@@ -105,11 +108,12 @@ public class BpSection extends BasePage {
     }
 
     public void entersDate(String sDate) {
-
         String[] str = sDate.split("-");
         String dd = str[0];
         String mm = str[1];
         String yy = str[2];
+
+        bpDate.click();
         waitForElementToBeClickable(day);
         day.clear();
         day.sendKeys(dd);

@@ -35,11 +35,10 @@ Feature: Recent patient list
     And User taps on Enter code link
     And User enters otp
     And User taps on Got It Button
-    And User on Patient tab any patient from recent patient list
+    And User on Patient tab select any patient from recent patient list
     And User on Patient summary page taps on Add new Bp button
     And User on Patient summary page enters new Bp Info
-    And User on Patient summary page taps on next ArrowButton
-    And User on Patient summary page enters date
+    And User on Patient summary page selects done button
     And User on Patient summary page taps on save Button
     And User on Patient summary page taps on appointment done button
     And User on Patient tab verifies patient info should show up on top of recent patient section
@@ -53,13 +52,12 @@ Feature: Recent patient list
     And User taps on Enter code link
     And User enters otp
     And User taps on Got It Button
-    And User on Patient tab any patient from recent patient list
+    And User on Patient tab select any patient from recent patient list
     And User on Patient summary page taps on Edit Bp Link
     And User on Patient summary page taps on Remove Link
     And User on Patient summary page taps on remove button
     Then User on Patient summary page verifies message
     And User on Patient summary page taps on save Button
-    And User on Patient summary page taps on appointment done button
     And User on Patient tab verifies patient info should not show up on top of recent patient section
 
   @recentPatient @smoke
@@ -71,7 +69,7 @@ Feature: Recent patient list
     And User taps on Enter code link
     And User enters otp
     And User taps on Got It Button
-    And User on Patient tab any patient from recent patient list
+    And User on Patient tab select any patient from recent patient list
     And User on Patient summary page taps on Add new medicine button
     And User on Patient summary page select prescribed medicine
     And User on Patient summary page taps on save bp medicine button
@@ -107,7 +105,7 @@ Feature: Recent patient list
     And User enters otp
     And User taps on Got It Button
     And User on Patient tab verifies patient info present in recent patients list
-    And User on Patient tab any patient from recent patient list
+    And User on Patient tab select any patient from recent patient list
     And User on Patient summary page taps on save Button
     And  User on Patient summary page taps on appointment not now button
     And User on Patient tab verifies patient info should not show up on top of recent patient section
@@ -123,7 +121,7 @@ Feature: Recent patient list
     And User taps on Enter code link
     And User enters otp
     And User taps on Got It Button
-    And User on Patient tab any patient from recent patient list
+    And User on Patient tab select any patient from recent patient list
     And User on Patient summary page taps on Edit patient info link
     And User on Patient summary page update patient info
     And User on Patient summary page taps on save Button

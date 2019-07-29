@@ -29,7 +29,7 @@ Feature: Search for Patient information
     And User on Patient tab taps on search text box
     Then User on Search page searched for Registered Patient without BP info
 
-  @search  @smoke
+  @search1  @smoke
   Scenario: Search for patient with BP info
     Given User registers new user from api
     And User registers new patient with bp from api
@@ -40,7 +40,7 @@ Feature: Search for Patient information
     And User enters otp
     And User taps on Got It Button
     And User on Patient tab taps on search text box
-    Then User on Search page searched for Registered Patient
+    Then User on Search page searched for Registered Patient with BP info
 
 
     @search @smoke

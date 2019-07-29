@@ -194,12 +194,11 @@ public class OverduePage extends BasePage {
         Assert.assertTrue(phoneMaskText.isDisplayed());
     }
 
-    public void createAppointmentForOverduePatient() {
+    public void createOverduePatient() {
         int dd = new Faker().random().nextInt(40, 90);
         new CreatePatients().createPatientWithBackDate(dd);
         new CreateBp().createBpWithBackDate(dd);
         new CreateAppointment().createAppointmentForOverduePatient(dd);
     }
-
 
 }

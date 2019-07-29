@@ -40,8 +40,7 @@ Feature: overdue patients test
     And User on Search page selects patient form search list
     And User on Patient summary page taps on Add new Bp button
     And User on Patient summary page enters new Bp Info
-    And User on Patient summary page taps on next ArrowButton
-    And User on Patient summary page enters date
+    And User on Patient summary page selects done button
     And User on Patient summary page taps on save Button
     And User on Patient summary page taps on appointment done button
     And User on Homepage taps on Overdue Tab

@@ -1,6 +1,7 @@
 package qaApiServices.bloodPressure;
 
 import com.embibe.optimus.utils.ScenarioContext;
+import com.github.javafaker.Faker;
 import utils.Date;
 import utils.ScenarioContextKeys;
 
@@ -27,11 +28,11 @@ public class CreateBp {
         new BpClient().Post(bpRequestBody,facilityId,userId,token);
     }
 
-    public void createBpList( String id, int count){
+    public void createBpList(int count){
         String userId = ScenarioContext.getData("User", ScenarioContextKeys.USER_ID);
         String facilityId = ScenarioContext.getData("User", ScenarioContextKeys.FACILTIYID);
         String token = ScenarioContext.getData("User", ScenarioContextKeys.ACCESS_TOKEN);
-        String patientId=id;
+        String patientId=ScenarioContext.getData("User", ScenarioContextKeys.PATIENT_ID);
         List<Blood_pressures> bp = new ArrayList<>();
 
         while(count>0){
@@ -67,4 +68,5 @@ public class CreateBp {
 
         new BpClient().Post(bpRequestBody,facilityId,userId,token);
     }
+
 }

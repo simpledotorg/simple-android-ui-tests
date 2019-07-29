@@ -129,6 +129,8 @@ public class SearchPage extends BasePage {
         List<String> actualpatientName = new ArrayList<>();
         int count = 0;
 
+        hideKeyboard();
+
         while (count <= allPatientsName.size()) {
             for (WebElement p : patientList) {
                 actualpatientName.add(p.getText().split(",")[0].toUpperCase());

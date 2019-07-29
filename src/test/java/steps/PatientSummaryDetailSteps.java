@@ -28,11 +28,6 @@ public class PatientSummaryDetailSteps extends BaseSteps {
         new PatientSummaryDetailPage(getDriverInstanceFor(User)).enterBpInfo("200", "159");
     }
 
-    @And("^(\\w+) on Patient summary page taps on next ArrowButton$")
-    public void usersTapsOnNextArrowButton(String User) {
-        new PatientSummaryDetailPage(getDriverInstanceFor(User)).tapsOnNextArrow();
-    }
-
     @And("^(\\w+) on Patient summary page enters date$")
     public void userEntersDate(String User)  {
         String date = Date.getCurrentDate_IN_DD_MM_YY();
@@ -286,6 +281,11 @@ public class PatientSummaryDetailSteps extends BaseSteps {
     @And("^(\\w+) on Patient summary page update patient info$")
     public void userOnPatientSummaryPageUpdatePatientInfo(String User) {
         new PatientSummaryDetailPage(getDriverInstanceFor(User)).updatePatientInfo();
+    }
+
+    @And("^(\\w+) on Patient summary page selects done button$")
+    public void userOnPatientSummaryPageSelectsDoneButton(String User)  {
+        new PatientSummaryDetailPage(getDriverInstanceFor(User)).preeKeyboardDoneButton();
     }
 }
 

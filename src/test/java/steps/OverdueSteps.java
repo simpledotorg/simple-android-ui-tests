@@ -1,7 +1,5 @@
 package steps;
 
-import qaApiServices.appointments.CreateAppointment;
-import qaApiServices.bloodPressure.CreateBp;
 import com.embibe.optimus.utils.ScenarioContext;
 import cucumber.api.java.en.And;
 import cucumber.api.java.en.Given;
@@ -12,7 +10,7 @@ import utils.ScenarioContextKeys;
 public class OverdueSteps extends BaseSteps {
     @And("^(\\w+) registers overdue patient$")
     public void userRegistersOverduePatient(String User) {
-        new OverduePage(getDriverInstanceFor(User)).createAppointmentForOverduePatient();
+        new OverduePage(getDriverInstanceFor(User)).createOverduePatient();
     }
 
     @And("^(\\w+) on Overdue tab taps on patient detail$")
@@ -101,4 +99,5 @@ public class OverdueSteps extends BaseSteps {
     public void userVerifiesPopup(String User) {
         new OverduePage(getDriverInstanceFor(User)).verifiesPopup();
     }
+
 }

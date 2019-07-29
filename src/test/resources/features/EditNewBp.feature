@@ -15,15 +15,14 @@ Feature: Edit BP info
     And User on Search page selects patient form search list
     And User on Patient summary page taps on Edit Bp Link
     And User on Patient summary page updates Bp Info
-    And User on Patient summary page taps on next ArrowButton
-    And User on Patient summary page enters date
+    And User on Patient summary page selects done button
     And User on Patient summary page verifies days information
     And User on Patient summary page taps on save Button
     And User on Patient summary page taps on appointment done button
     Then User on Patient tab verifies patient info should show up on top of recent patient section
 
 
-  @editBp @smoke
+  @editBp1 @smoke
   Scenario: Remove BP info for already registered patient who has only one bp recorded
     Given User registers new user from api
     And User registers new patient with bp from api
@@ -45,7 +44,7 @@ Feature: Edit BP info
     And User on Patient summary page taps on save Button
     And User on Patient tab verifies patient info should show up on top of recent patient section
     And User on Patient tab taps on search text box
-    Then User on Search page searched for Registered Patient without BP info
+    Then User on search page searched for Registered Patient without BP info
 
 
   @editBp @smoke
@@ -63,8 +62,7 @@ Feature: Edit BP info
     And User on Search page selects patient form search list
     And User on Patient summary page taps on Edit Bp Link
     And User on Patient summary page updates Bp Info
-    And User on Patient summary page taps on next ArrowButton
-    And User on Patient summary page enters date
+    And User on Patient summary page selects done button
     And User on Patient summary page verifies days information
     And User on Patient summary page taps on save Button
     And User on Patient summary page taps on appointment done button

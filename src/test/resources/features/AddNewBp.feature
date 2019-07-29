@@ -16,7 +16,6 @@ Feature: Add new Bp
     And User on Search page selects patient form search list
     And User on Patient summary page taps on Add new Bp button
     And User on Patient summary page enters new Bp Info
-    And User on Patient summary page taps on next ArrowButton
     And User on Patient summary page enters date
     And User on Patient summary page verifies days information
     And User on Patient summary page taps on save Button
@@ -37,12 +36,11 @@ Feature: Add new Bp
     And User enters otp
     And User taps on Got It Button
     And User on Patient tab taps on search text box
-    Then User on Search page searched for Registered Patient without BP info
+    And User on search page searched for Registered Patient without BP info
     And User on Search page selects patient form search list
     And User on Patient summary page taps on Add new Bp button
     And User on Patient summary page enters new Bp Info
-    And User on Patient summary page taps on next ArrowButton
-    And User on Patient summary page enters date
+    And User on Patient summary page selects done button
     And User on Patient summary page taps on save Button
     And User on Patient summary page verifies update phone number pop up
     And User on Patient summary page enters phone number
@@ -69,8 +67,7 @@ Feature: Add new Bp
     And User on Search page selects patient form search list
     And User on Patient summary page taps on Add new Bp button
     And User on Patient summary page enters new Bp Info
-    And User on Patient summary page taps on next ArrowButton
-    And User on Patient summary page enters date
+    And User on Patient summary page selects done button
     And User on Patient summary page taps on save Button
     And User on Patient summary page verifies update phone number pop up
     And User on Patient summary page taps on skip button
@@ -80,7 +77,7 @@ Feature: Add new Bp
     And User on Patient tab verifies patient info present in recent patients list
 
 
-  @addbp1 @smoke
+  @addbp @smoke
   Scenario: Add new BP with back date to already registered patient
     Given User registers new user from api
     And User registers new patient with bp from api
@@ -96,7 +93,6 @@ Feature: Add new Bp
     And User on Search page selects patient form search list
     And User on Patient summary page taps on Add new Bp button
     And User on Patient summary page enters new Bp Info
-    And User on Patient summary page taps on next ArrowButton
     And User on Patient summary page enters back date
     And User on Patient summary page verifies days information for back date
     And User on Patient summary page taps on save Button
