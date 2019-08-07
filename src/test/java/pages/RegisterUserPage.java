@@ -4,7 +4,6 @@ import io.appium.java_client.MobileElement;
 import io.appium.java_client.pagefactory.AppiumFieldDecorator;
 import qaApiServices.appointments.CreateAppointment;
 import qaApiServices.bloodPressure.CreateBp;
-import com.embibe.optimus.utils.ScenarioContext;
 import io.appium.java_client.AppiumDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -12,11 +11,6 @@ import org.openqa.selenium.support.PageFactory;
 import org.testng.Assert;
 import qaApiServices.patients.CreatePatients;
 import qaApiServices.user.RegisterUser;
-import utils.ScenarioContextKeys;
-
-import java.io.IOException;
-
-import static java.lang.Runtime.getRuntime;
 
 public class RegisterUserPage extends BasePage {
     private AppiumDriver driver;
@@ -24,7 +18,7 @@ public class RegisterUserPage extends BasePage {
     @FindBy(id = "onboarding_get_started")
     private WebElement getStartedButton;
 
-    @FindBy(id = "registrationphone_phone")
+    @FindBy(id = "phoneNumberEditText")
     private MobileElement registrationPhoneNumber;
 
     @FindBy(className = "android.widget.TextView")
@@ -66,7 +60,7 @@ public class RegisterUserPage extends BasePage {
     @FindBy(id = "android:id/button1")
     private WebElement gotItButton;
 
-    @FindBy(id = "registrationphone_error")
+    @FindBy(id = "validationErrorTextView")
     private WebElement registrationPhoneNumberErrorMsg;
 
     @FindBy(id = "registrationconfirmpin_reset_pin")
@@ -84,6 +78,9 @@ public class RegisterUserPage extends BasePage {
     @FindBy(id = "registrationpin_card_content")
     private WebElement registrationPinSection;
 
+    @FindBy(id = "patients_dismiss_user_approved_status")
+    private WebElement GotItLink;
+
     public RegisterUserPage(AppiumDriver driver) {
         super(driver);
         PageFactory.initElements(new AppiumFieldDecorator(driver), this);
@@ -92,7 +89,9 @@ public class RegisterUserPage extends BasePage {
 
     public void reEnterPin(String pin) {
         waitForElementToBeVisible(confirmPin);
-        confirmPin.sendKeys(pin + "/n");
+        if(pin!=null && !pin.isEmpty()){
+        confirmPin.sendKeys(pin + "/n");}
+        else{ pressEnter(); }
     }
 
     public void enterPin(String pin) {
@@ -130,6 +129,13 @@ public class RegisterUserPage extends BasePage {
     }
 
     public void clickOnEnterCodeLink() {
+        try {
+            waitForElementToBeVisible(GotItLink);
+            GotItLink.click();
+        } catch (Exception e) {
+            }
+
+        waitForElementToBeVisible(enterCodeLink);
         enterCodeLink.click();
     }
 
@@ -140,10 +146,16 @@ public class RegisterUserPage extends BasePage {
     public void clicksOnGotItButton() {
         waitForElementToBeVisible(gotItButton);
         gotItButton.click();
+        try{ GotItLink.click();}catch(Exception e){ }
     }
 
     public void enterInvalidPhoneNumber(String phone) {
-        registrationPhoneNumber.sendKeys(phone + "\n");
+        if(phone!=null && !phone.isEmpty()){
+        registrationPhoneNumber.sendKeys(phone + "\n");}
+        else{
+            pressEnter();
+        }
+        waitForElementToBeVisible(registrationPhoneNumberErrorMsg);
         Assert.assertTrue(registrationPhoneNumberErrorMsg.getText().contains("Check phone number"));
     }
 
@@ -159,7 +171,6 @@ public class RegisterUserPage extends BasePage {
         Assert.assertTrue(registrationPinSection.isDisplayed());
         enterPin("1234");
         reEnterPin("1234");
-
         Assert.assertTrue(skipLocationAccess.isDisplayed());
     }
 
@@ -179,6 +190,8 @@ public class RegisterUserPage extends BasePage {
 
     public void registerNewPatientWithoutPhoneNumber() {
         new CreatePatients().createPatientWithoutPhoneNumber();
+        new CreateBp().registerNewBp();
+        new CreateAppointment().createAppointment();
     }
 
     public void registerNewUser() {
@@ -199,9 +212,7 @@ public class RegisterUserPage extends BasePage {
         createPatientWithListOfBP(1, 2);
     }
 
-
     private void createPatientWithListOfBP(int patientcount, int bpcount) {
-
         while (patientcount > 0) {
             new CreatePatients().createPatient();
             new CreateBp().createBpList(bpcount);
@@ -212,7 +223,13 @@ public class RegisterUserPage extends BasePage {
     public void searchInvalidFacility(String facility) {
         skipLocationAccess();
         searchBar.sendKeys(facility);
-        // Assertion pending becuase of defect - no proper error message is displayed for invalid qaApiServices.facility name
         Assert.fail("defect - no proper error message is displayed for invalid facility name");
+    }
+
+    public void registerMultiplePatientWithDuplicatePhoneNumber(int patientcount, String phoneNumber) {
+        while (patientcount > 0) {
+            new CreatePatients().createPatient(phoneNumber);
+            patientcount--;
+        }
     }
 }
