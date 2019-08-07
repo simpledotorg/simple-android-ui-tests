@@ -4,17 +4,12 @@ import com.embibe.optimus.utils.ScenarioContext;
 import cucumber.api.PendingException;
 import cucumber.api.java.en.And;
 import cucumber.api.java.en.Then;
-import pages.PatientTabPage;
 import pages.SearchPage;
 import utils.CreateFaker;
-import utils.RandomValue;
 import utils.ScenarioContextKeys;
 
 public class SearchSteps extends BaseSteps {
-    @Then("^(\\w+) on Search page searches for unregistered Patient as (.*)$")
-    public void userOnSearchPageSearchesForUnregisteredPatientAsInvalid(String User, String name) {
-        new SearchPage(getDriverInstanceFor(User)).searchForPatientName(name);
-    }
+
     @Then("^(\\w+) on Search page searched for Registered Patient$")
     public void userOnSearchPageSearchedForRegisteredPatient(String User) {
         String patientName = ScenarioContext.getData("User", ScenarioContextKeys.PATIENT_NAME);
@@ -39,12 +34,6 @@ public class SearchSteps extends BaseSteps {
         new SearchPage(getDriverInstanceFor(User)).selectsPatientFromSearchList(patientName);
     }
 
-    @Then("^(\\w+) on Search page searched for Registered Patient with BP info$")
-    public void userOnSearchPageSearchedForRegisteredPatientWithBPInfo(String User) {
-        String patientName = ScenarioContext.getData("User", ScenarioContextKeys.PATIENT_NAME);
-        new SearchPage(getDriverInstanceFor(User)).searchForRegisteredPatientWithBpInfo(patientName);
-    }
-
     @And("^(\\w+) on Search page verfies patient name should not be displayed$")
     public void userOnSearchPageVerfiesPatientNameShouldNotBeDisplayed(String User) {
         String name = ScenarioContext.getData("User", ScenarioContextKeys.PATIENT_NAME);
@@ -66,6 +55,29 @@ public class SearchSteps extends BaseSteps {
     @Then("^(\\w+) on Search page verifies alphabetical patient logs$")
     public void userOnSearchPageVerifiesAlphabeticalPatientLogs(String User) throws Throwable {
         new SearchPage(getDriverInstanceFor(User)).verifiesAlphabeticalLog();
+    }
+
+    @And("^(\\w+) on search page searched for Registered Patient by phone Number$")
+    public void userOnSearchPageSearchedForRegisteredPatientByPhoneNumber(String User){
+        String phoneNumber=ScenarioContext.getData("User",ScenarioContextKeys.PATIENT_PHONE_NUMBER);
+        new SearchPage(getDriverInstanceFor(User)).searchForRegisteredPatientByPhoneNumber(phoneNumber);
+    }
+
+    @And("^(\\w+) on search page verifies search result for duplicate phoneNumber$")
+    public void userOnSearchPageVerifiesSearchResultForDuplicatePhoneNumber(String User) {
+        String phoneNumber=ScenarioContext.getData("User",ScenarioContextKeys.PATIENT_PHONE_NUMBER);
+        new SearchPage(getDriverInstanceFor(User)).searchForRegisteredPatientByDuplicatePhoneNumber(phoneNumber);
+    }
+
+    @Then("^(\\w+) on Search page searches for new Patient as (.*)$")
+    public void userOnSearchPageSearchesForNewPatientAsName(String User,String name) {
+        new SearchPage(getDriverInstanceFor(User)).searchForPatientName(name);
+    }
+
+    @Then("^(\\w+) on Search page searches for new Patient Phonenumber as (.*)$")
+    public void userOnSearchPageSearchesForNewPatientPhonenumberAsPhoneNumber(String User,String phoneNumber)  {
+        new SearchPage(getDriverInstanceFor(User)).searchForPatientNumber(phoneNumber);
+        ScenarioContext.putData("User",ScenarioContextKeys.PATIENT_PHONE_NUMBER,phoneNumber);
     }
 }
 
