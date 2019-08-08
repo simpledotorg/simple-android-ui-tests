@@ -1,7 +1,12 @@
 package qaApiServices.patients;
 
-public class BusinessIdentifiers {
+import com.fasterxml.jackson.annotation.JsonInclude;
+import lombok.Getter;
+import lombok.Setter;
 
+@Getter
+@Setter
+public class BusinessIdentifiers {
     private String id;
     private String identifier;
     private String metadata;

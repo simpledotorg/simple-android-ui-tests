@@ -232,4 +232,8 @@ public class RegisterUserPage extends BasePage {
             patientcount--;
         }
     }
+
+    public void registerNewPatientWithoutPhoneNumberAndBP() {
+        new CreatePatients().createPatientWithoutPhoneNumber();
+    }
 }

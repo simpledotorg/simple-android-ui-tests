@@ -125,4 +125,19 @@ public class RegisterUserSteps extends BaseSteps {
     public void userRegisterNewPatientWithMlistOfBpThroughApi(String User) {
         new RegisterUserPage(getDriverInstanceFor(User)).registerNewPatientWithListOfBps(1,2);
     }
+
+    @And("^(\\w+) registers multiple patient with same phoneNumber from api$")
+    public void userRegistersMultiplePatientWithSamePhoneNumberFromApi(String User){
+        String phoneNumber=RandomValue.getRandomPhoneNumber();
+        new RegisterUserPage(getDriverInstanceFor(User)).registerMultiplePatientWithDuplicatePhoneNumber(2,phoneNumber);
+    }
+
+    @And("^(\\w+) registers a patient with multiple Bps$")
+    public void userRegistersAPatientWithMultipleBpS(String User){
+        new RegisterUserPage(getDriverInstanceFor(User)).registerNewPatientWithListOfBps(1,2); }
+
+    @And("^(\\w+) registers new patient without phonenumber and bp from api$")
+    public void userRegistersNewPatientWithoutPhonenumberAndBpFromApi(String User){
+        new RegisterUserPage(getDriverInstanceFor(User)).registerNewPatientWithoutPhoneNumberAndBP();
+    }
 }

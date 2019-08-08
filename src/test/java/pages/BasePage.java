@@ -1,5 +1,6 @@
 package pages;
 
+import com.google.common.collect.ImmutableMap;
 import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.TouchAction;
 import io.appium.java_client.touch.WaitOptions;
@@ -10,15 +11,12 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
-import utils.AdbUtils;
 
-import java.io.IOException;
 import java.time.Duration;
-import java.util.List;
+import java.util.Calendar;
 
 
 public class BasePage {
-
     private AppiumDriver driver;
     private WebDriverWait wait;
 
@@ -212,20 +210,19 @@ public class BasePage {
         int endY = (int) (size.height * 0.4);
         int x = (size.width / 2);
 
-        System.out.println(startY+""+endY+""+x);
+        System.out.println(startY + "" + endY + "" + x);
 
         new TouchAction(driver).press(PointOption.point(x, startY))
                 .waitAction(WaitOptions.waitOptions(Duration.ofMillis(1000)))
-                .moveTo(PointOption.point(x,endY))
+                .moveTo(PointOption.point(x, endY))
                 .release().perform();
     }
 
-    public void pressEnter(){
-        String[] command = new String[]{"adb shell input keyevent 61","adb shell input keyevent 66"};
-        try {
-            AdbUtils.executeCommandUsingArray(command);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+    public void pressEnter() {
+        driver.executeScript("mobile: performEditorAction", ImmutableMap.of("action", "done"));
+    }
+
+    public void pressSearchButton() {
+        driver.executeScript("mobile: performEditorAction", ImmutableMap.of("action", "search"));
     }
 }

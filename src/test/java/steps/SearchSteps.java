@@ -13,7 +13,6 @@ public class SearchSteps extends BaseSteps {
     @Then("^(\\w+) on Search page searched for Registered Patient$")
     public void userOnSearchPageSearchedForRegisteredPatient(String User) {
         String patientName = ScenarioContext.getData("User", ScenarioContextKeys.PATIENT_NAME);
-        System.out.println(patientName+  "patientName");
         new SearchPage(getDriverInstanceFor(User)).searchForRegisteredPatientWithBpInfo(patientName);
     }
 

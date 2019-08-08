@@ -1,10 +1,12 @@
 package qaApiServices.patients;
 
+import com.embibe.optimus.utils.ScenarioContext;
 import lombok.Getter;
 import lombok.Setter;
 import utils.CreateGenerex;
 import utils.Date;
 import utils.RandomValue;
+import utils.ScenarioContextKeys;
 
 @Getter
 @Setter
@@ -69,6 +71,7 @@ public class Phone_numbers {
         }
 
         public Phone_numbers Build() {
+            ScenarioContext.putData("User",ScenarioContextKeys.PATIENT_PHONE_NUMBER,number);
             return new Phone_numbers(number, phone_type, updated_at, active, created_at, id, deleted_at);
         }
     }

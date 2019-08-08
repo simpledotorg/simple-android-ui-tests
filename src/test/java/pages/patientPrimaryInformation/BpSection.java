@@ -220,9 +220,7 @@ public class BpSection extends BasePage {
     }
 
     public void verifiesDaysInfo(String reading) {
-        System.out.println("reading"+ reading);
         for (WebElement ele : bpReadings) {
-            System.out.println(ele.getText()+"reading");
             if (ele.getText().equals(reading)) {
                 WebElement bpLayout = driver.findElement(By.xpath("//android.widget.TextView[contains(@text,'"+reading+"')]/.."));
                 Assert.assertTrue(bpLayout.findElement(By.id("patientsummary_item_bp_readings")).getText().equals(reading));

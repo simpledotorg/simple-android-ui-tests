@@ -132,8 +132,7 @@ public class MedicineSection extends BasePage {
         enterDosageInfo(value);
         pressEnter();
         Assert.assertFalse(addAnotherMedicineButton.isDisplayed());
-
-//        Assert.fail("failed because of defect id -166605165 ");
+//        failed because of defect id -166605165 "
     }
 
     public void tapsOnUpdateMedicine() {

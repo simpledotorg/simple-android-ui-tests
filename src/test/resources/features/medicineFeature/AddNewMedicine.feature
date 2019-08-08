@@ -22,7 +22,7 @@ Feature: To Test "Add New" functionality for prescribed and customized Medicine.
     And User on Patient summary page taps on save bp medicine button
 #    Then User on Patient summary page verifies updated medicine info
 
-  @smokey @medicine2 @smoke
+  @smokey @medicine @smoke
   Scenario: User enter invalid data for customized medicine
     Then User on Patient summary page taps on Add new medicine button
     Then User on Patient summary page taps on Add another medicine button

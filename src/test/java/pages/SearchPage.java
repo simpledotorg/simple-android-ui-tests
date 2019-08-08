@@ -1,6 +1,9 @@
 package pages;
 
+import com.testvagrant.mdb.core.Mobile;
 import io.appium.java_client.AppiumDriver;
+import io.appium.java_client.MobileElement;
+import io.appium.java_client.pagefactory.AppiumFieldDecorator;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.FindBys;
@@ -18,12 +21,12 @@ public class SearchPage extends BasePage {
 
     public SearchPage(AppiumDriver driver) {
         super(driver);
-        PageFactory.initElements(driver, this);
+        PageFactory.initElements(new AppiumFieldDecorator(driver), this);
         this.driver = driver;
     }
 
     @FindBy(id = "patientNameEditText")
-    private WebElement searchPatientName;
+    private MobileElement searchPatientName;
 
     @FindBy(id = "patients_search_patients")
     private WebElement searchPatientTextBox;
@@ -50,7 +53,7 @@ public class SearchPage extends BasePage {
     // value could be name or phonenumber
     private void searchPatient(String value) {
         waitForElementToBeVisible(searchPatientName);
-        searchPatientName.sendKeys(value);
+        searchPatientName.setValue(value);
         pressSearchButton();
     }
 
