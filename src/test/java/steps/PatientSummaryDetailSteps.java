@@ -1,6 +1,5 @@
 package steps;
 
-import cucumber.api.PendingException;
 import qaApiServices.facility.FacilityClient;
 import qaApiServices.facility.FacilityResponse;
 import qaApiServices.protocol.ProtocolClient;
@@ -9,7 +8,8 @@ import com.embibe.optimus.utils.ScenarioContext;
 import cucumber.api.DataTable;
 import cucumber.api.java.en.And;
 import cucumber.api.java.en.Then;
-import pages.PatientSummaryDetailPage;
+import pages.patientPrimaryInformation.PatientSummaryDetailPage;
+import utils.CreateFaker;
 import utils.Date;
 import utils.RandomValue;
 import utils.ScenarioContextKeys;
@@ -20,7 +20,7 @@ import java.util.Map;
 public class PatientSummaryDetailSteps extends BaseSteps {
     @And("^(\\w+) on Patient summary page enters new patient info$")
     public void userEntersNewPateintInfo(String User) {
-        new PatientSummaryDetailPage(getDriverInstanceFor(User)).enterPatientInfo(RandomValue.getRandomPhoneNumber(), "44", "Male", "test");
+        new PatientSummaryDetailPage(getDriverInstanceFor(User)).enterPatientInfo("",RandomValue.getRandomPhoneNumber(), "44", "Male", "test");
     }
 
     @And("^(\\w+) on Patient summary page enters new Bp Info$")
@@ -29,7 +29,7 @@ public class PatientSummaryDetailSteps extends BaseSteps {
     }
 
     @And("^(\\w+) on Patient summary page enters date$")
-    public void userEntersDate(String User)  {
+    public void userEntersDate(String User) {
         String date = Date.getCurrentDate_IN_DD_MM_YY();
         new PatientSummaryDetailPage(getDriverInstanceFor(User)).entersDate(date);
     }
@@ -46,7 +46,7 @@ public class PatientSummaryDetailSteps extends BaseSteps {
 
     @And("^(\\w+) on Patient summary page enters new patient info Without phone number$")
     public void userEntersNewPatientInfoWithoutPhoneNumber(String User) {
-        new PatientSummaryDetailPage(getDriverInstanceFor(User)).enterPatientInfo("", "44", "Male", "testColony");
+        new PatientSummaryDetailPage(getDriverInstanceFor(User)).enterPatientInfo("", "", "44","Male","testcolony");
     }
 
     @And("^(\\w+) on Patient summary page navigates back$")
@@ -195,9 +195,9 @@ public class PatientSummaryDetailSteps extends BaseSteps {
     @And("^(\\w+) on Patient summary page update medicine info$")
     public void userUpdateMedicineInfo(String User) {
         String name = "CHECKER";
-        String dosage= "15";
+        String dosage = "15";
 
-        new PatientSummaryDetailPage(getDriverInstanceFor(User)).modifyCustomizeMedicine(name,dosage);
+        new PatientSummaryDetailPage(getDriverInstanceFor(User)).modifyCustomizeMedicine(name, dosage);
     }
 
     @Then("^(\\w+) on Patient summary page taps on remove custum prescription link$")
@@ -230,14 +230,12 @@ public class PatientSummaryDetailSteps extends BaseSteps {
     @Then("^(\\w+) on Patient summary page validate medicine info at bp medicine page$")
     public void validateMedicineInfoAtBpMedicinePage(String User) {
 
-        String facilityId = ScenarioContext.getData("User",ScenarioContextKeys.FACILTIYID);
+        String facilityId = ScenarioContext.getData("User", ScenarioContextKeys.FACILTIYID);
         FacilityResponse allFacilityInfo = new FacilityClient().getAllFacilityInfo();
         String protocolId = allFacilityInfo.getProtocolId(facilityId);
 
-
         ProtocolResponse protocolResponse = new ProtocolClient().getAllProtocolInfo();
         HashSet<String> protocolDrugNameList = protocolResponse.getProtocolDrugNameList(protocolId);
-
 
         new PatientSummaryDetailPage(getDriverInstanceFor(User)).validateMedicineUI(protocolDrugNameList);
     }
@@ -264,7 +262,7 @@ public class PatientSummaryDetailSteps extends BaseSteps {
 
     @And("^(\\w+) on Patient summary page verifies days information$")
     public void userOnPatientSummaryPageVerifiesDaysInformation(String User) {
-        String bpreading=ScenarioContext.getData("User",ScenarioContextKeys.READING);
+        String bpreading = ScenarioContext.getData("User", ScenarioContextKeys.READING);
         new PatientSummaryDetailPage(getDriverInstanceFor(User)).verifiesDaysInfo(bpreading);
     }
 
@@ -274,7 +272,7 @@ public class PatientSummaryDetailSteps extends BaseSteps {
     }
 
     @And("^(\\w+) on Patient summary page taps on Edit patient info link$")
-    public void userOnPatientSummaryPageTapsOnEditPatientInfoLink(String User)  {
+    public void userOnPatientSummaryPageTapsOnEditPatientInfoLink(String User) {
         new PatientSummaryDetailPage(getDriverInstanceFor(User)).clickOnPatientSummaryEditLink();
     }
 
@@ -284,8 +282,32 @@ public class PatientSummaryDetailSteps extends BaseSteps {
     }
 
     @And("^(\\w+) on Patient summary page selects done button$")
-    public void userOnPatientSummaryPageSelectsDoneButton(String User)  {
-        new PatientSummaryDetailPage(getDriverInstanceFor(User)).preeKeyboardDoneButton();
+    public void userOnPatientSummaryPageSelectsDoneButton(String User) {
+        new PatientSummaryDetailPage(getDriverInstanceFor(User)).pressKeyboardDoneButton();
+    }
+
+    @Then("^(\\w+) on Patient summary page verifies phone number$")
+    public void userOnPatientSummaryPageVerifiesPhoneNumber(String User) {
+        String phoneNumber = ScenarioContext.getData("User", ScenarioContextKeys.PATIENT_PHONE_NUMBER);
+        new PatientSummaryDetailPage(getDriverInstanceFor(User)).verifyPhoneNumber(phoneNumber);
+    }
+
+    @And("^(\\w+) on patient summary page verifies phoneNumber prefill$")
+    public void userOnPatientSummaryPageVerifiesPhoneNumberPrefill(String User) {
+        new PatientSummaryDetailPage(getDriverInstanceFor(User)).verifiesPhoneNumberPrefill();
+    }
+
+    @And("^(\\w+) on Patient summary page add new phone number$")
+    public void userOnPatientSummaryPageAddNewPhoneNumber(String User) {
+        String phoneNumber = RandomValue.getRandomPhoneNumber();
+        ScenarioContext.putData("User", ScenarioContextKeys.PATIENT_PHONE_NUMBER, phoneNumber);
+        new PatientSummaryDetailPage(getDriverInstanceFor(User)).addNewPhoneNumber(phoneNumber);
+    }
+
+    @And("^(\\w+) on Patient summary page enters new patient primary information$")
+    public void userOnPatientSummaryPageEntersNewPatientPrimaryInformation(String User) {
+        String name= new CreateFaker().faker.name().firstName();
+        new PatientSummaryDetailPage(getDriverInstanceFor(User)).enterPatientInfo(name,"","44","Male","testcolony");
     }
 }
 

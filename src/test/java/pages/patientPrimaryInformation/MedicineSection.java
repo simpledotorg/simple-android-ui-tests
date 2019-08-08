@@ -1,4 +1,4 @@
-package pages;
+package pages.patientPrimaryInformation;
 
 import com.embibe.optimus.utils.ScenarioContext;
 import io.appium.java_client.AppiumDriver;
@@ -12,6 +12,7 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.FindBys;
 import org.openqa.selenium.support.PageFactory;
 import org.testng.Assert;
+import pages.BasePage;
 import utils.ScenarioContextKeys;
 
 import java.util.ArrayList;
@@ -37,7 +38,7 @@ public class MedicineSection extends BasePage {
     private WebElement drugNameEditBox;
 
     @FindBy(id = "customprescription_drug_dosage")
-    private WebElement dosageName;
+    private MobileElement dosageName;
 
     @FindBy(id = "customprescription_save")
     private WebElement savePrescriptionButton;
@@ -88,8 +89,7 @@ public class MedicineSection extends BasePage {
 
     public void enterDosageInfo(String dosage) {
         dosageName.clear();
-        dosageName.sendKeys(dosage);
-
+        dosageName.setValue(dosage);
     }
 
     public void tapsOnSavePrescriptionButton() {
@@ -102,7 +102,7 @@ public class MedicineSection extends BasePage {
         tapsOnSavePrescriptionButton();
 
         //setting global value for drug info
-        setDrugInfo(name,dosage);
+        setDrugInfo(name, dosage);
     }
 
     public void tapsOnSaveBpMedicineButton() {
@@ -130,8 +130,9 @@ public class MedicineSection extends BasePage {
 
     public void addInvalidData(String value) {
         enterDosageInfo(value);
-        tapsOnSavePrescriptionButton();
-        Assert.fail("failed because of defect id -166605165 ");
+        pressEnter();
+        Assert.assertFalse(addAnotherMedicineButton.isDisplayed());
+//        failed because of defect id -166605165 "
     }
 
     public void tapsOnUpdateMedicine() {
@@ -181,7 +182,7 @@ public class MedicineSection extends BasePage {
         tapsOnSavePrescriptionButton();
 
         //updatin global value
-        setDrugInfo(name,dosage);
+        setDrugInfo(name, dosage);
     }
 
     public void tapsOnRemoveCustumPrescriptionLink() {
@@ -217,7 +218,7 @@ public class MedicineSection extends BasePage {
     }
 
 
-    private void setDrugInfo(String name, String dosage){
+    private void setDrugInfo(String name, String dosage) {
         ScenarioContext.putData("User", ScenarioContextKeys.DRUG_NAME, name);
         String drugInfo = dosage + "   " + name;
         ScenarioContext.putData("User", ScenarioContextKeys.DRUG_INFO, drugInfo);

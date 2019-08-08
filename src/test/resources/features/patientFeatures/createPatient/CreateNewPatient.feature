@@ -11,7 +11,7 @@ Feature: Create Patient
     And User taps on Got It Button
     And User on Patient tab taps on search text box
 
-  @createPatient @smoke
+  @createPatient1 @smoke
   Scenario: Create New Patient
     And User on search page searches for new Patient name
     And User on search page taps on registered patient button
@@ -23,7 +23,7 @@ Feature: Create Patient
     And User on Patient summary page taps on appointment done button
     Then User on Patient tab verifies patient info present in recent patients list
     And User on Patient tab taps on search text box
-    Then User on Search page searched for Registered Patient with BP info
+    Then User on Search page searched for Registered Patient
 
   @createPatient @smoke
   Scenario: Create New Patient Without phone number info
@@ -37,7 +37,7 @@ Feature: Create Patient
     And User on Patient summary page taps on appointment done button
     Then User on Patient tab verifies patient info present in recent patients list
     And User on Patient tab taps on search text box
-    Then User on Search page searched for Registered Patient with BP info
+    Then User on Search page searched for Registered Patient
 
   @createPatient @smoke
   Scenario: Create New Patient Without blood Pressure info
@@ -61,19 +61,4 @@ Feature: Create Patient
     And User on Patient tab taps on search text box
     Then User on search page searched for Registered Patient without BP info
 
-
-  @createPatient @smoke
-  Scenario:User validate error message for invalid Data
-    And User on search page searches for new Patient name
-    And User on search page taps on registered patient button
-    And User on Patient summary page enters invalid data for patients primary info
-      | phoneNumber | 98789 |
-    And User on Patient summary page verifies error message validation
-
-  @createPatient @smoke
-  Scenario: invalid Date
-    And User on search page searches for new Patient name
-    And User on search page taps on registered patient button
-    And User on Patient summary page enters invalid date
-      | Date | "31022019" |
 

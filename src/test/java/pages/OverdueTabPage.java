@@ -16,11 +16,11 @@ import utils.Date;
 
 import java.util.List;
 
-public class OverduePage extends BasePage {
+public class OverdueTabPage extends BasePage {
 
     private AppiumDriver driver;
 
-    public OverduePage(AppiumDriver driver) {
+    public OverdueTabPage(AppiumDriver driver) {
         super(driver);
         PageFactory.initElements(driver, this);
         this.driver = driver;
@@ -29,21 +29,21 @@ public class OverduePage extends BasePage {
     @FindBys({@FindBy(id = "patient_details")})
     private List<WebElement> patientDetail;
 
-    private By callIcon = By.id("overdue_patient_call");
-    private By nameAndAge = By.id("overdue_patient_name_age");
-    private By patientbp = By.id("overdue_patient_bp");
-    private By overdueDays = By.id("overdue_days");
+    private By callIcon = By.id("callButton");
+    private By nameAndAge = By.id("patientNameTextView");
+    private By patientbp = By.id("patientBPTextView");
+    private By overdueDays = By.id("overdueDaysTextView");
 
-    @FindBy(id = "overdue_patient_phone_number")
+    @FindBy(id = "phoneNumberTextView")
     private WebElement patientPhoneNumber;
 
-    @FindBy(id = "overdue_actions_container")
+    @FindBy(id = "actionsContainer")
     private WebElement overdueActionContainer;
 
     private By result = By.xpath("//android.widget.TextView[contains(@text,'Result of call')]");
-    private By reasonAgreedToVisit = By.id("overdue_agreed_to_visit");
-    private By reasonReminderLater = By.id("overdue_reminder_later");
-    private By reasonRemoveFromList = By.id("overdue_remove_from_list");
+    private By reasonAgreedToVisit = By.id("agreedToVisitTextView");
+    private By reasonReminderLater = By.id("remindLaterTextView");
+    private By reasonRemoveFromList = By.id("removeFromListTextView");
 
 
     @FindBy(xpath = "//android.widget.TextView[contains(@text,'No patients overdue')]")
@@ -65,7 +65,6 @@ public class OverduePage extends BasePage {
     private WebElement removeAppointmentToolbar;
     private By reasonText = By.xpath("//android.widget.TextView[contains(@text,'Select a Reason')]");
     private By crossButton = By.className("android.widget.ImageButton");
-
 
     @FindBy(id = "phonemask_name")
     private WebElement phoneMaskName;
@@ -155,7 +154,7 @@ public class OverduePage extends BasePage {
         Assert.assertTrue(removeAppointmentToolbar.findElement(reasonText).isDisplayed());
         Assert.assertTrue(removeAppointmentToolbar.findElement(crossButton).isDisplayed());
         Assert.assertTrue(doneButton.isDisplayed());
-        Assert.assertTrue(otherReason.size() == 7);
+        Assert.assertEquals(otherReason.size() , 7);
     }
 
     public void selectReason(String reason) {

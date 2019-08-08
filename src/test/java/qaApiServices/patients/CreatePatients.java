@@ -71,4 +71,27 @@ public class CreatePatients {
 
         new PatientClient().post(patientRequestBody, facilityId, userId, token);
     }
+
+    public void createPatient(String phoneNumber) {
+
+        String userId = ScenarioContext.getData("User", ScenarioContextKeys.USER_ID);
+        String facilityId = ScenarioContext.getData("User", ScenarioContextKeys.FACILTIYID);
+        String token = ScenarioContext.getData("User", ScenarioContextKeys.ACCESS_TOKEN);
+
+        List<Phone_numbers> ph = new ArrayList<>();
+        Phone_numbers phone_number = new Phone_numbers
+                .Builder()
+                .withPhoneNumber(phoneNumber)
+                .withPhoneType("mobile").Build();
+        ph.add(phone_number);
+        Address address = new Address.Builder().Build();
+
+        Patients build = new Patients.Builder().withAddress(address).withAge(44).withGender("male").withPhoneNumber(ph).withStatus("active").build();
+
+        List<Patients> patients = new ArrayList<>();
+        patients.add(build);
+        PatientPostRequestBody patientRequestBody = new PatientPostRequestBody(patients);
+
+        new PatientClient().post(patientRequestBody, facilityId, userId, token);
+    }
 }

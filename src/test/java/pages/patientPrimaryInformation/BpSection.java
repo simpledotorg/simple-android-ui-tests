@@ -1,4 +1,4 @@
-package pages;
+package pages.patientPrimaryInformation;
 
 import com.embibe.optimus.utils.ScenarioContext;
 import io.appium.java_client.AppiumDriver;
@@ -10,6 +10,7 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.FindBys;
 import org.openqa.selenium.support.PageFactory;
 import org.testng.Assert;
+import pages.BasePage;
 import utils.Date;
 import utils.RandomValue;
 import utils.ScenarioContextKeys;
@@ -118,7 +119,8 @@ public class BpSection extends BasePage {
         day.clear();
         day.sendKeys(dd);
         month.clear();
-        month.sendKeys(mm+"\n");
+        month.sendKeys(mm);
+        pressEnter();
     }
 
     public void tapsOnAddNewBpButton() {
@@ -218,9 +220,7 @@ public class BpSection extends BasePage {
     }
 
     public void verifiesDaysInfo(String reading) {
-        System.out.println("reading"+ reading);
         for (WebElement ele : bpReadings) {
-            System.out.println(ele.getText()+"reading");
             if (ele.getText().equals(reading)) {
                 WebElement bpLayout = driver.findElement(By.xpath("//android.widget.TextView[contains(@text,'"+reading+"')]/.."));
                 Assert.assertTrue(bpLayout.findElement(By.id("patientsummary_item_bp_readings")).getText().equals(reading));

@@ -1,11 +1,9 @@
 package steps;
 
 import com.embibe.optimus.utils.ScenarioContext;
-import cucumber.api.PendingException;
 import cucumber.api.java.en.And;
 import cucumber.api.java.en.Then;
-import pages.PatientTabPage;
-import utils.RandomValue;
+import pages.patientsTab.PatientTabPage;
 import utils.ScenarioContextKeys;
 
 public class PatientTabSteps extends BaseSteps {

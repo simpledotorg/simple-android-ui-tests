@@ -22,12 +22,10 @@ Feature: Add new Bp
     And User on Patient summary page taps on appointment done button
     And User on Patient tab verifies patient info present in recent patients list
 
-
-
-  @addbp    @smoke
+  @addbp   @smoke
   Scenario: Add new BP and phone number to already registered patient without phone number and BP
     Given User registers new user from api
-    And User registers new patient without phonenumber from api
+    And  User registers new patient without phonenumber and bp from api
     And User Launches app
     And User taps on GetStarted button
     And User enters registered phone number
@@ -49,10 +47,8 @@ Feature: Add new Bp
     And User on Patient summary page taps on appointment done button
     And User on Patient tab verifies patient info present in recent patients list
 
-
   @addbp  @smoke
   Scenario: Add new BP to already registered patient without phone number
-
     Given User registers new user from api
     And User registers new patient without phonenumber from api
     And User Launches app
@@ -76,7 +72,6 @@ Feature: Add new Bp
     And User on Patient summary page taps on appointment done button
     And User on Patient tab verifies patient info present in recent patients list
 
-
   @addbp @smoke
   Scenario: Add new BP with back date to already registered patient
     Given User registers new user from api
@@ -97,7 +92,4 @@ Feature: Add new Bp
     And User on Patient summary page verifies days information for back date
     And User on Patient summary page taps on save Button
     And User on Patient summary page taps on appointment done button
-    And User on Patient tab verifies patient info present in recent patients list
-
-
-
+    And User on Patient tab verifies patient info should show up on top of recent patient section

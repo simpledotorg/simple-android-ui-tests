@@ -15,11 +15,6 @@ public class HomePage extends BasePage {
     @FindBy(id = "home_facility_change_button")
     private WebElement faciltiyChangeButton;
 
-//    @FindBys({
-//            @FindBy(xpath = "//androidx.appcompat.app.ActionBar$Tab")
-//    })
-//    private List<WebElement> Tabs;
-
     @FindBy(xpath="//android.widget.TextView[contains(@text,'Overdue')]")
     private WebElement overdueTab;
 
@@ -34,11 +29,9 @@ public class HomePage extends BasePage {
     public void verifyHomePage() {
         waitForElementToBeVisible(faciltiyChangeButton);
         Assert.assertTrue(faciltiyChangeButton.getText().contains("CHC Bagta"));
-//        Assert.assertEquals(Tabs.size(), 3);
     }
 
     public void selectTab(String name) {
-        WebElement elements = driver.findElement(By.xpath("//android.widget.TextView[contains(@text,'"+name+"')]"));
-        elements.click();
+         driver.findElement(By.xpath("//android.widget.TextView[contains(@text,'"+name+"')]")).click();
     }
 }

@@ -1,6 +1,7 @@
-package pages;
+package pages.patientPrimaryInformation;
 
 import com.embibe.optimus.utils.ScenarioContext;
+import pages.BasePage;
 import qaApiServices.protocolDrug.CreateDrug;
 import io.appium.java_client.AppiumDriver;
 import org.openqa.selenium.WebElement;
@@ -15,16 +16,15 @@ import java.util.HashSet;
 public class PatientSummaryDetailPage extends BasePage {
     private AppiumDriver driver;
     PatientPrimaryInfoSection patientPrimaryInfoSection;
+    PatientPrimaryInformationEditPage patientPrimaryInformationEditPage;
     BpSection bpSection;
     MedicineSection medicineSection;
-
 
     @FindBy(xpath = "//android.widget.Button[@text='Save']")
     private WebElement saveButton;
 
     @FindBy(id = "scheduleappointment_done")
     private WebElement scheduleAppointmentDoneButton;
-
 
     @FindBy(id = "scheduleappointment_not_now")
     private WebElement scheduleAppointmentNotNowButton;
@@ -39,21 +39,18 @@ public class PatientSummaryDetailPage extends BasePage {
         super(driver);
         PageFactory.initElements(driver, this);
         patientPrimaryInfoSection = new PatientPrimaryInfoSection(driver);
+        patientPrimaryInformationEditPage = new PatientPrimaryInformationEditPage(driver);
         bpSection = new BpSection(driver);
         medicineSection = new MedicineSection(driver);
         this.driver = driver;
     }
 
-    public void enterPatientInfo(String phone, String age, String male, String testColony) {
-        patientPrimaryInfoSection.enterPatientInfo(phone, age, male, testColony);
+    public void enterPatientInfo(String name,String phone, String age, String male, String testColony) {
+        patientPrimaryInfoSection.enterPatientInfo(name,phone, age, male, testColony);
     }
 
     public void enterBpInfo(String systollic, String diastolic) {
         bpSection.enterBpInfo(systollic, diastolic);
-    }
-
-    public void tapsOnNextArrow() {
-        bpSection.tapsOnNextArrow();
     }
 
     public void entersDate(String date) {
@@ -61,7 +58,7 @@ public class PatientSummaryDetailPage extends BasePage {
     }
 
     public void clickOnSaveButton() {
-        waitForElementToBeClickable(saveButton);
+        waitForElementToBeVisible(saveButton);
         saveButton.click();
     }
 
@@ -229,14 +226,24 @@ public class PatientSummaryDetailPage extends BasePage {
     }
 
     public void updatePatientInfo() {
-
         String phone=RandomValue.getRandomPhoneNumber();
-        String age=new CreateFaker().faker.random().nextInt(40,80).toString();
+        String age= CreateFaker.getRandomAge();
         String colony=new CreateFaker().faker.address().streetName();
-        patientPrimaryInfoSection.updatePatientInfo( phone, age,colony);
+        patientPrimaryInformationEditPage.updatePatientInfo( phone, age,colony);
     }
 
-    public void preeKeyboardDoneButton() {
+    public void pressKeyboardDoneButton() {
         pressEnter();
+    }
+
+    public void verifyPhoneNumber(String phoneNumber) {
+        patientPrimaryInfoSection.verifyPhoneNumber(phoneNumber);}
+
+    public void verifiesPhoneNumberPrefill() {
+        patientPrimaryInfoSection.verifiesPhoneNumberPrefill();
+    }
+
+    public void addNewPhoneNumber(String phone) {
+        patientPrimaryInformationEditPage.addNewPhoneNumber(phone);
     }
 }

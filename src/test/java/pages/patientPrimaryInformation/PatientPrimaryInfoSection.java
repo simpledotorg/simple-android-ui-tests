@@ -1,20 +1,28 @@
-package pages;
+package pages.patientPrimaryInformation;
 
+import com.embibe.optimus.utils.ScenarioContext;
 import io.appium.java_client.AppiumDriver;
+import lombok.Getter;
+import lombok.Setter;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.FindBys;
 import org.openqa.selenium.support.PageFactory;
 import org.testng.Assert;
+import pages.BasePage;
+import utils.ScenarioContextKeys;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
+@Getter
+@Setter
 public class PatientPrimaryInfoSection extends BasePage {
 
     private AppiumDriver driver;
-
-    @FindBy(id = "patiententry_phone_number")
+    //    patiententry_phone_number
+    @FindBy(id = "phoneNumberEditText")
     private WebElement PhoneNumberTextBox;
 
     @FindBy(id = "patiententry_age")
@@ -28,10 +36,10 @@ public class PatientPrimaryInfoSection extends BasePage {
     @FindBy(id = "patiententry_colony_or_village")
     private WebElement colonyTextBox;
 
-    @FindBy(id = "patiententry_district")
+    @FindBy(id = "districtEditText")
     private WebElement districtTextBox;
 
-    @FindBy(id = "patiententry_state")
+    @FindBy(id = "stateEditText")
     private WebElement stateTextBox;
 
     @FindBy(className = "android.widget.Button")
@@ -52,10 +60,12 @@ public class PatientPrimaryInfoSection extends BasePage {
     @FindBy(id = "patiententry_date_of_birth")
     private WebElement enterDateOfBirth;
 
-    By edit_phone_number_TextBox= By.id("patientedit_phone_number");
-    By edit_age_TextBox= By.id("patientedit_age");
-    By edit_colony_TextBox= By.id("patientedit_colony_or_village");
+    @FindBy(id = "fullNameEditText")
+    private WebElement fullNameEditText;
 
+    @FindBy(id = "patientsummary_header")
+    private WebElement patientsummary_header;
+    private By contact = By.id("patientsummary_contact");
 
     public PatientPrimaryInfoSection(AppiumDriver driver) {
         super(driver);
@@ -72,12 +82,8 @@ public class PatientPrimaryInfoSection extends BasePage {
     }
 
     private void enterGender(String value) {
-        for (WebElement ele : gender) {
-            if (ele.getText().equals(value)) {
-                ele.click();
-                break;
-            }
-        }
+        WebElement webElement = gender.stream().filter(e -> e.getText().equals(value)).findFirst().get();
+        webElement.click();
     }
 
     private void enterColony(String value) {
@@ -92,12 +98,21 @@ public class PatientPrimaryInfoSection extends BasePage {
         stateTextBox.sendKeys(value + "\n");
     }
 
+    public void enterPatientName(String value) {
+        fullNameEditText.sendKeys(value + "\n");
+    }
+
     public void clickSaveButton() {
         saveButton.click();
     }
 
-    public void enterPatientInfo(String phone, String age, String gender, String colony) {
-        enterPhoneNumber(phone);
+    public void enterPatientInfo(String name, String phone, String age, String gender, String colony) {
+        if (name != null && !name.isEmpty()) {
+            enterPatientName(name);
+        }
+        if (phone != null && !phone.isEmpty()) {
+            enterPhoneNumber(phone);
+        }
         enterAge(age);
         enterGender(gender);
         enterColony(colony);
@@ -125,12 +140,15 @@ public class PatientPrimaryInfoSection extends BasePage {
         Assert.fail(" need to add ASSERTION when defect will get fixed");
     }
 
-    public void updatePatientInfo(String phone, String age, String colony) {
-        waitForElementToBeVisible(saveButton);
-        driver.findElement(edit_phone_number_TextBox).sendKeys(phone);
-        driver.findElement(edit_age_TextBox).sendKeys(age);
-        driver.findElement(edit_colony_TextBox).sendKeys(colony);
+    public void verifyPhoneNumber(String phoneNumber) {
+        patientsummary_header.findElement(contact).getText().equals(phoneNumber);
+    }
 
-        clickSaveButton();
+    public void verifiesPhoneNumberPrefill() {
+        String expectedValue = ScenarioContext.getData("User", ScenarioContextKeys.PATIENT_PHONE_NUMBER);
+        Assert.assertEquals(PhoneNumberTextBox.getText(), expectedValue, "phone number value should be prefill");
     }
 }
+
+
+
