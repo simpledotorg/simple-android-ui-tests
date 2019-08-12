@@ -68,10 +68,6 @@ public class PatientTabPage extends BasePage {
         recentPatientSection.isPatientPresent(patientName);
     }
 
-    public void isPatientNotPresent(String patientName) {
-        recentPatientSection.isPatientNotPresent(patientName);
-    }
-
     public void selectAnyPatient() {
         recentPatientSection.selectAnyPatientFromRecentPatientSection();
     }
