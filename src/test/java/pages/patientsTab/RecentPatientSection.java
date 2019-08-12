@@ -1,6 +1,7 @@
 package pages.patientsTab;
 
 import com.embibe.optimus.utils.ScenarioContext;
+import com.google.common.collect.ImmutableMap;
 import io.appium.java_client.AppiumDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -39,34 +40,9 @@ public class RecentPatientSection extends BasePage {
         getPatient(patientName);
     }
 
-    public void isPatientNotPresent(String patientName) {
-        new RegisterUser().registerNewUser();
-        String expectedValue = patientName.replaceAll("\\s", "").toUpperCase();
-
-        PatientGetRequestResponse allPatient = new GetPatientInfo().getAllPatient();
-        int size = allPatient.getPatients().size();
-        int count = 0;
-        String status = "true";
-
-        while (count <= size) {
-
-            for (WebElement ele : recentPatientViewLst) {
-                count++;
-                String text = ele.getText().split(",")[0].replaceAll("\\s", "").toUpperCase();
-                if (text.equals(expectedValue)) {
-                    status = "false";
-                }
-            }
-            scrollDown();
-        }
-
-        Assert.assertTrue(status.equals("true"), "Patient name should not be present in recent patient list" + patientName);
-    }
-
     public void verifiesSeeAllOption() {
         PatientGetRequestResponse allPatient = new GetPatientInfo().getAllPatient();
         int size = allPatient.getPatients().size();
-
         String status = "false";
         if (size > 10) {
             int count = 0;
@@ -114,14 +90,12 @@ public class RecentPatientSection extends BasePage {
 
     public void selectAnyPatientFromRecentPatientSection() {
         scrollDown();
-        int size = recentPatientViewLst.size();
-        recentPatientViewLst.get(size - 1).click();
+        recentPatientViewLst.get(recentPatientViewLst.size() - 1).click();
 
         PatientSummaryDetailPage patientSummaryDetailPage = new PatientSummaryDetailPage(driver);
         String selectedPatient = patientSummaryDetailPage.getFullName();
 
         ScenarioContext.putData("User", ScenarioContextKeys.PATIENT_NAME, selectedPatient);
-
     }
 
     public void shouldNotShowUpOnTopOfList() {
@@ -135,10 +109,10 @@ public class RecentPatientSection extends BasePage {
         String expected = ScenarioContext.getData("User", ScenarioContextKeys.PATIENT_NAME);
         expected = expected.split(",")[0].replaceAll("\\s", "").toUpperCase();
 
-        Assert.assertTrue(actualValue.equals(expected), expected + "should be displayed on top of recent patient list");
+        Assert.assertEquals(actualValue, expected, expected + "should be displayed on top of recent patient list");
     }
 
     public void verifyNoRecentPatientText() {
-        Assert.assertTrue(noRecentPatientText.getText().equals("No recent patients"),"No recent patient message should be displayed");
+        Assert.assertEquals(noRecentPatientText.getText(), "No recent patients", "No recent patient message should be displayed");
     }
 }

@@ -15,6 +15,9 @@ import qaApiServices.patients.CreatePatients;
 import utils.Date;
 
 import java.util.List;
+import java.util.NoSuchElementException;
+import java.util.Optional;
+import java.util.stream.Stream;
 
 public class OverdueTabPage extends BasePage {
 
@@ -53,9 +56,7 @@ public class OverdueTabPage extends BasePage {
     private WebElement appointmentReminderDoneButton;
 
 
-    @FindBys({
-            @FindBy(className = "android.widget.RadioButton")
-    })
+    @FindBys({@FindBy(className = "android.widget.RadioButton")})
     private List<WebElement> otherReason;
 
     @FindBy(id = "removeappointment_done_button")
@@ -82,40 +83,28 @@ public class OverdueTabPage extends BasePage {
 
 
     public void tapsOnPatientName(String patientName) {
-        for (WebElement ele : patientDetail) {
-            String[] split = ele.findElement(nameAndAge).getText().split(",");
-
-            System.out.println("name" + split[0]);
-            if (split[0].toUpperCase().contains(patientName.toUpperCase())) {
-                ele.click();
-                break;
-            }
-        }
+        WebElement webElement = patientDetail.stream().filter(element -> element.findElement(nameAndAge).getText().toUpperCase().contains(patientName.toUpperCase())).findFirst().get();
+        webElement.click();
     }
 
     public void verifiesPatientDetailExpeandedView() {
         Assert.assertTrue(patientPhoneNumber.isDisplayed());
-        Assert.assertTrue(overdueActionContainer.findElement(result).isDisplayed());
+        Assert.assertTrue(overdueActionContainer.findElement(result).isDisplayed(), "result of call element should be displayed");
         Assert.assertTrue(overdueActionContainer.findElement(reasonAgreedToVisit).isDisplayed());
         Assert.assertTrue(overdueActionContainer.findElement(reasonReminderLater).isDisplayed());
         Assert.assertTrue(overdueActionContainer.findElement(reasonRemoveFromList).isDisplayed());
     }
 
     public void isPatientPresent(String patientName) {
-        String status = "false";
 
-        for (WebElement ele : patientDetail) {
-            String[] split = ele.findElement(nameAndAge).getText().split(",");
-            if (split[0].toUpperCase().contains(patientName.toUpperCase())) {
-                status = "true";
-                Assert.assertTrue(ele.findElement(callIcon).isDisplayed());
-                Assert.assertTrue(ele.findElement(patientbp).isDisplayed());
-                Assert.assertTrue(ele.findElement(overdueDays).isDisplayed());
-                break;
-            }
-        }
-        Assert.assertEquals(status, "true", "patient name should be present in overdue list");
+        WebElement ele = patientDetail.stream().filter(element -> element.findElement(nameAndAge).getText().toUpperCase()
+                .contains(patientName.toUpperCase()))
+                .findFirst()
+                .orElseThrow(NoSuchElementException::new);
 
+        Assert.assertTrue(ele.findElement(callIcon).isDisplayed(), "call Icon should be displayed");
+        Assert.assertTrue(ele.findElement(patientbp).isDisplayed(), "patinet bp should be displayed");
+        Assert.assertTrue(ele.findElement(overdueDays).isDisplayed(), "overDue days should be dispalyed");
     }
 
     public void tapsOnAgreeToVisit() {
@@ -123,19 +112,13 @@ public class OverdueTabPage extends BasePage {
     }
 
     public void isPatientNotPresent(String patientName) {
-        String status = "true";
-
         if (patientDetail.size() == 0) {
             Assert.assertTrue(noPatientsOverdueMessage.isDisplayed());
         } else {
-            for (WebElement ele : patientDetail) {
-                String[] split = ele.findElement(nameAndAge).getText().split(",");
-                if (split[0].contains(patientName)) {
-                    status = "false";
-                }
-            }
+            boolean b = patientDetail.stream().noneMatch(element -> element.findElement(nameAndAge).getText().toUpperCase()
+                    .contains(patientName.toUpperCase()));
+            Assert.assertEquals(b, true, "patient name should not be displayed in overdue section");
         }
-        Assert.assertEquals(status, "true", "patient name should not be displayed in overdue section");
     }
 
     public void tapsOnRemindToCallLater() {
@@ -150,11 +133,11 @@ public class OverdueTabPage extends BasePage {
         overdueActionContainer.findElement(reasonRemoveFromList).click();
     }
 
-    public void verfiyReasonScreen() {
+    public void verifyReasonScreen() {
         Assert.assertTrue(removeAppointmentToolbar.findElement(reasonText).isDisplayed());
         Assert.assertTrue(removeAppointmentToolbar.findElement(crossButton).isDisplayed());
         Assert.assertTrue(doneButton.isDisplayed());
-        Assert.assertEquals(otherReason.size() , 7);
+        Assert.assertEquals(otherReason.size(), 7);
     }
 
     public void selectReason(String reason) {
@@ -175,22 +158,18 @@ public class OverdueTabPage extends BasePage {
     }
 
     public void tapsOnCallIcon(String patientName) {
-        for (WebElement ele : patientDetail) {
-            String[] split = ele.findElement(nameAndAge).getText().split(",");
-
-            if (split[0].toUpperCase().contains(patientName.toUpperCase())) {
-                ele.findElement(callIcon).click();
-                break;
-            }
-        }
+        WebElement webElement = patientDetail.stream().filter(element -> element.findElement(nameAndAge)
+                .getText().toUpperCase().contains(patientName.toUpperCase()))
+                .findFirst().get();
+        webElement.findElement(callIcon).click();
     }
 
     public void verifiesPopup() {
-        Assert.assertTrue(phoneMaskName.isDisplayed());
-        Assert.assertTrue(phoneMaskphoneNumber.isDisplayed());
-        Assert.assertTrue(normalCallButton.isDisplayed());
-        Assert.assertTrue(secureCallButton.isDisplayed());
-        Assert.assertTrue(phoneMaskText.isDisplayed());
+        Assert.assertTrue(phoneMaskName.isDisplayed(), "phonemask name should be displayed");
+        Assert.assertTrue(phoneMaskphoneNumber.isDisplayed(), "phoneMaskphoneNumber should be displayed");
+        Assert.assertTrue(normalCallButton.isDisplayed(), "normalCallButton should be displayed");
+        Assert.assertTrue(secureCallButton.isDisplayed(), "secureCallButton should be displayed");
+        Assert.assertTrue(phoneMaskText.isDisplayed(), "phoneMaskText should be displayed");
     }
 
     public void createOverduePatient() {
@@ -199,5 +178,4 @@ public class OverdueTabPage extends BasePage {
         new CreateBp().createBpWithBackDate(dd);
         new CreateAppointment().createAppointmentForOverduePatient(dd);
     }
-
 }

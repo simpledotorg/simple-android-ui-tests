@@ -12,11 +12,6 @@ public class PatientTabSteps extends BaseSteps {
         new PatientTabPage(getDriverInstanceFor(User)).verifyPatientTab();
     }
 
-    @And("^(\\w+) on patient tab verifies SEE ALL option$")
-    public void userVerifiesSEEALLOption(String User){
-        new PatientTabPage(getDriverInstanceFor(User)).verifiesSeeAllOption();
-    }
-
     @Then("^(\\w+) on Patient tab select patient from recent patient list$")
     public void userSelectPatientFromRecentPatientList(String User) throws Exception {
         String patientName = ScenarioContext.getData("User", ScenarioContextKeys.PATIENT_NAME);
@@ -39,17 +34,10 @@ public class PatientTabSteps extends BaseSteps {
         new PatientTabPage(getDriverInstanceFor(User)).tapsOnSyncLink();
     }
 
-    @Then("^(\\w+) on Patient tab verifies patient info should not be present in recent patients list$")
-    public void userOnPatientTabVerifiesPatientInfoNotPresentInRecentPatientsList(String User){
-        String patientName = ScenarioContext.getData("User", ScenarioContextKeys.PATIENT_NAME);
-        new PatientTabPage(getDriverInstanceFor(User)).isPatientNotPresent(patientName);
-    }
-
     @And("^(\\w+) on Patient tab verifies SEEALL button$")
     public void userOnPatientTabVerifiesSEEALLButton(String User) {
         new PatientTabPage(getDriverInstanceFor(User)).verifiesSeeAllOption();
     }
-
 
     @And("^(\\w+) on Patient tab select any patient from recent patient list$")
     public void userOnPatientTabSelectAnyPatientFromRecentPatientList(String User) throws Throwable {
