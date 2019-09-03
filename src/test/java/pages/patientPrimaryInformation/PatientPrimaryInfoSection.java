@@ -2,6 +2,8 @@ package pages.patientPrimaryInformation;
 
 import com.embibe.optimus.utils.ScenarioContext;
 import io.appium.java_client.AppiumDriver;
+import io.appium.java_client.MobileElement;
+import io.appium.java_client.pagefactory.AppiumFieldDecorator;
 import lombok.Getter;
 import lombok.Setter;
 import org.openqa.selenium.By;
@@ -14,30 +16,26 @@ import pages.BasePage;
 import utils.ScenarioContextKeys;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 @Getter
 @Setter
 public class PatientPrimaryInfoSection extends BasePage {
 
     private AppiumDriver driver;
-    //    patiententry_phone_number
     @FindBy(id = "phoneNumberEditText")
     private WebElement PhoneNumberTextBox;
 
-    @FindBy(id = "patiententry_age")
-    private WebElement ageTextBox;
+    @FindBy(id = "ageEditText")
+    private MobileElement ageTextBox;
 
-    @FindBys({
-            @FindBy(className = "android.widget.RadioButton")
-    })
+    @FindBys({@FindBy(className = "android.widget.RadioButton")})
     private List<WebElement> gender;
 
-    @FindBy(id = "patiententry_colony_or_village")
-    private WebElement colonyTextBox;
+    @FindBy(id = "colonyOrVillageEditText")
+    private MobileElement colonyTextBox;
 
     @FindBy(id = "districtEditText")
-    private WebElement districtTextBox;
+    private MobileElement districtTextBox;
 
     @FindBy(id = "stateEditText")
     private WebElement stateTextBox;
@@ -45,20 +43,23 @@ public class PatientPrimaryInfoSection extends BasePage {
     @FindBy(className = "android.widget.Button")
     private WebElement saveButton;
 
-    @FindBy(xpath = "//android.widget.TextView[contains(@text,'Phone number cannot be less than 6 digits')]")
-    private WebElement phoneNumberErrorMsg;
+    @FindBy(id = "//android.widget.TextView[contains(@text,'Enter patient/’s full name')]")
+    private WebElement patientsNameValidationErrorMsg;
 
-    @FindBy(id = "patiententry_gender_validation_error")
-    private WebElement genderValidationerrorMsg;
+    @FindBy(xpath = "//android.widget.TextView[contains(@text,'Phone number cannot be less than 6 digits')]")
+    private WebElement phoneNumberValidationErrorMsg;
+
+    @FindBy(id = "genderErrorTextView")
+    private WebElement genderValidationErrorMsg;
 
     @FindBy(xpath = "//android.widget.TextView[contains(@text,'Enter colony / village / ward')]")
-    private WebElement colonyValidationerrorMsg;
+    private WebElement colonyValidationErrorMsg;
 
-//    @FindBy(xpath = "//android.widget.TextView[contains(@text,'Enter patient’s age')]")
-//    private WebElement AgeValidationerrorMsg;
+    @FindBy(xpath = "//android.widget.TextView[contains(@text,'Enter patient/’s age')]")
+    private WebElement ageValidationerrorMsg;
 
-    @FindBy(id = "patiententry_date_of_birth")
-    private WebElement enterDateOfBirth;
+    @FindBy(id = "dateOfBirthEditText")
+    private MobileElement dateOfBirthEditTextBox;
 
     @FindBy(id = "fullNameEditText")
     private WebElement fullNameEditText;
@@ -69,16 +70,22 @@ public class PatientPrimaryInfoSection extends BasePage {
 
     public PatientPrimaryInfoSection(AppiumDriver driver) {
         super(driver);
-        PageFactory.initElements(driver, this);
+        PageFactory.initElements(new AppiumFieldDecorator(driver), this);
         this.driver = driver;
     }
 
     private void enterPhoneNumber(String number) {
-        PhoneNumberTextBox.sendKeys(number + "\n");
+        PhoneNumberTextBox.sendKeys(number+"\n");
     }
 
-    private void enterAge(String age) {
-        ageTextBox.sendKeys(age + "\n");
+    private void enterAgeOrDateOfBirth(String value) {
+        if (value.contains("/")) {
+            waitForElementToBeVisible(dateOfBirthEditTextBox);
+            dateOfBirthEditTextBox.setValue(value);
+        } else {
+            ageTextBox.setValue(value);
+            pressEnter();
+        }
     }
 
     private void enterGender(String value) {
@@ -87,11 +94,13 @@ public class PatientPrimaryInfoSection extends BasePage {
     }
 
     private void enterColony(String value) {
-        colonyTextBox.sendKeys(value + "\n");
+        colonyTextBox.setValue(value);
+        pressEnter();
     }
 
     public void enterDistrict(String value) {
-        districtTextBox.sendKeys(value + "\n");
+        districtTextBox.setValue(value);
+        pressEnter();
     }
 
     public void enterState(String value) {
@@ -106,38 +115,32 @@ public class PatientPrimaryInfoSection extends BasePage {
         saveButton.click();
     }
 
-    public void enterPatientInfo(String name, String phone, String age, String gender, String colony) {
+    public void enterPatientInfo(String name, String phone, String value, String gender, String colony) {
         if (name != null && !name.isEmpty()) {
             enterPatientName(name);
         }
         if (phone != null && !phone.isEmpty()) {
             enterPhoneNumber(phone);
         }
-        enterAge(age);
-        enterGender(gender);
-        enterColony(colony);
+        if (value != null && !value.isEmpty()) {
+            enterAgeOrDateOfBirth(value);
+        }
+        if (gender != null && !gender.isEmpty()) {
+            enterGender(gender);
+        }
+        hideKeyboard();
+        if (colony != null && !colony.isEmpty()) {
+            enterColony(colony);
+        }
         Assert.assertTrue(districtTextBox.getText().equalsIgnoreCase("Bathinda"));
         Assert.assertTrue(stateTextBox.getText().equalsIgnoreCase("Punjab"));
         clickSaveButton();
-    }
-
-    public void validateErrorMessage() {
-        Assert.assertTrue(phoneNumberErrorMsg.isDisplayed());
-//        Assert.assertTrue(genderValidationerrorMsg.getText().contains("Choose gender"));
-        Assert.assertTrue(colonyValidationerrorMsg.isDisplayed());
-//        Assert.assertTrue(AgeValidationerrorMsg.isDisplayed());
     }
 
     public void enterPatientInvalidPatientInfo(String phonenumber) {
         enterPhoneNumber(phonenumber);
         clickSaveButton();
         driver.hideKeyboard();
-    }
-
-    public void enterInvalidDate(String sDate) {
-        enterDateOfBirth.sendKeys(sDate);
-        clickSaveButton();
-        Assert.fail(" need to add ASSERTION when defect will get fixed");
     }
 
     public void verifyPhoneNumber(String phoneNumber) {
@@ -147,6 +150,30 @@ public class PatientPrimaryInfoSection extends BasePage {
     public void verifiesPhoneNumberPrefill() {
         String expectedValue = ScenarioContext.getData("User", ScenarioContextKeys.PATIENT_PHONE_NUMBER);
         Assert.assertEquals(PhoneNumberTextBox.getText(), expectedValue, "phone number value should be prefill");
+    }
+
+    public void verifyValidationErrorMessages() {
+        hideKeyboard();
+        if (fullNameEditText.getText().isEmpty()) {
+            Assert.assertEquals(patientsNameValidationErrorMsg.getText().replaceAll("[^a-zA-Z\\s]", ""), "Enter patients full name");
+        }
+        if (PhoneNumberTextBox.getText().length() < 6) {
+            Assert.assertEquals(phoneNumberValidationErrorMsg.getText(), "Phone number cannot be less than 6 digits");
+        }
+        if (ageTextBox.getText().isEmpty()) {
+            Assert.assertEquals(ageValidationerrorMsg.getText().replaceAll("[^a-zA-Z\\s]", ""), "Enter patients age");
+        }
+        if (!gender.get(0).isSelected() || !gender.get(1).isSelected() || !gender.get(2).isSelected()) {
+            Assert.assertEquals(genderValidationErrorMsg.getText().replaceAll("[^a-zA-Z\\s]", ""), "Choose patients gender");
+        }
+        if (colonyTextBox.getText().isEmpty()) {
+            Assert.assertEquals(colonyValidationErrorMsg.getText(), "Enter colony / village / ward");
+        }
+    }
+
+    public void verifyValidaitonErrorMessagesForInvalidDate() {
+//        need to add check for invalid datE
+            Assert.fail("no proper error message is present for invalid date");
     }
 }
 

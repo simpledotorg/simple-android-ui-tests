@@ -78,5 +78,10 @@ public class SearchSteps extends BaseSteps {
         new SearchPage(getDriverInstanceFor(User)).searchForPatientNumber(phoneNumber);
         ScenarioContext.putData("User",ScenarioContextKeys.PATIENT_PHONE_NUMBER,phoneNumber);
     }
+
+    @Then("^(\\w+) on Search page searches for new Patient by invalid Phonenumber as (.*)$")
+    public void userOnSearchPageSearchesForNewPatientByInvalidPhonenumberAsPhoneNumber(String User,String phoneNumber) throws Throwable {
+        new SearchPage(getDriverInstanceFor(User)).searchForInvalidPhoneNumber(phoneNumber);
+    }
 }
 

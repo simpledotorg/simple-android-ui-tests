@@ -15,8 +15,12 @@ public class HomePage extends BasePage {
     @FindBy(id = "home_facility_change_button")
     private WebElement faciltiyChangeButton;
 
-    @FindBy(xpath="//android.widget.TextView[contains(@text,'Overdue')]")
+    @FindBy(xpath = "//android.widget.TextView[contains(@text,'Overdue')]")
     private WebElement overdueTab;
+
+    @FindBy(id= "backButton")
+    private WebElement backbutton;
+
 
     private AppiumDriver driver;
 
@@ -32,6 +36,11 @@ public class HomePage extends BasePage {
     }
 
     public void selectTab(String name) {
-         driver.findElement(By.xpath("//android.widget.TextView[contains(@text,'"+name+"')]")).click();
+        waitForElementToBeVisible(overdueTab);
+        driver.findElement(By.xpath("//android.widget.TextView[contains(@text,'" + name + "')]")).click();
+    }
+
+    public void tapsOnBackButton() {
+        backbutton.click();
     }
 }

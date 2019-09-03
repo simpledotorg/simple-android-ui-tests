@@ -13,12 +13,13 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
-import java.util.Calendar;
 
 
 public class BasePage {
     private AppiumDriver driver;
     private WebDriverWait wait;
+    protected WebDriver wd;
+
 
     @FindBy(xpath = "//android.widget.ImageButton[@content-desc = 'Navigate up']")
     protected WebElement backButton;
@@ -26,6 +27,11 @@ public class BasePage {
     public BasePage(AppiumDriver driver) {
         this.driver = driver;
         wait = new WebDriverWait(this.driver, 30);
+    }
+
+    public BasePage(WebDriver driver) {
+        this.wd = driver;
+        wait = new WebDriverWait(wd, 30);
     }
 
     public boolean allowPermissionPopup() {
@@ -224,5 +230,9 @@ public class BasePage {
 
     public void pressSearchButton() {
         driver.executeScript("mobile: performEditorAction", ImmutableMap.of("action", "search"));
+    }
+
+    public void runAppInBackgroudAndrelaunch() {
+        driver.runAppInBackground(Duration.ofSeconds(10));
     }
 }

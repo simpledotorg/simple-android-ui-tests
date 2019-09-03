@@ -49,7 +49,10 @@ public class MedicineSection extends BasePage {
     @FindBy(id = "patientsummary_prescriptions_update")
     private WebElement updateMedicine;
 
-    @FindBy(xpath = "//android.widget.LinearLayout[contains(@resource-id,'patientsummary_prescriptions_summary_container')]")
+//    @FindBy(xpath = "//android.widget.LinearLayout[contains(@resource-id,'patientsummary_prescriptions_summary_container')]")
+//    private WebElement updatedInfo;
+
+    @FindBy(id="patientsummary_prescriptions_summary_container")
     private WebElement updatedInfo;
 
     @FindBys({
@@ -89,6 +92,7 @@ public class MedicineSection extends BasePage {
 
     public void enterDosageInfo(String dosage) {
         dosageName.clear();
+        waitForElementToBeClickable(dosageName);
         dosageName.setValue(dosage);
     }
 
@@ -115,15 +119,14 @@ public class MedicineSection extends BasePage {
         List<WebElement> elements = updatedInfo.findElements(By.className("android.widget.TextView"));
         List<String> actualmedicineInfo = new ArrayList<>();
         for (WebElement ele : elements) {
-            actualmedicineInfo.add(ele.getText());
+            actualmedicineInfo.add(ele.getText().toUpperCase());
         }
 
         List<String> expectedMedicineInfo = new ArrayList<>();
         String name = ScenarioContext.getData("User", ScenarioContextKeys.DRUG_INFO);
 
         expectedMedicineInfo.add(name);
-        expectedMedicineInfo.add("Updated");
-        expectedMedicineInfo.add("Today");
+        expectedMedicineInfo.add(driver.findElement(By.id("patientsummary_prescriptions_last_updated_timestamp")).getText().toUpperCase());
 
         Assert.assertTrue(expectedMedicineInfo.containsAll(actualmedicineInfo), "updated medicine info is not displayed");
     }
@@ -194,9 +197,8 @@ public class MedicineSection extends BasePage {
         drugNameList.get(0).click();
         String dosage = prescribedDosageName.get(0).getText();
         prescribedDosageName.get(0).click();
-        String drug_info = dosage + "   " + name;
 
-        ScenarioContext.putData("User", ScenarioContextKeys.DRUG_INFO, drug_info);
+        setDrugInfo(name,dosage);
     }
 
     public void selectNoneAsDosage() {
@@ -220,7 +222,7 @@ public class MedicineSection extends BasePage {
 
     private void setDrugInfo(String name, String dosage) {
         ScenarioContext.putData("User", ScenarioContextKeys.DRUG_NAME, name);
-        String drugInfo = dosage + "   " + name;
+        String drugInfo = name.toUpperCase() + "  " +dosage.toUpperCase();
         ScenarioContext.putData("User", ScenarioContextKeys.DRUG_INFO, drugInfo);
     }
 }

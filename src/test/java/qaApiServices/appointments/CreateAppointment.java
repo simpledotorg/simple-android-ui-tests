@@ -52,5 +52,14 @@ public class CreateAppointment {
        new ClientRequest().POST(request, facilityId, userId, token);
    }
 
+   public int getAllScheduledAppointment(){
+       String userId = ScenarioContext.getData("User", ScenarioContextKeys.USER_ID);
+       String facilityId = ScenarioContext.getData("User", ScenarioContextKeys.FACILTIYID);
+       String token = ScenarioContext.getData("User", ScenarioContextKeys.ACCESS_TOKEN);
 
+       AppointmentGetResponse repsonse = new ClientRequest().GET(facilityId, userId, token);
+       System.out.println(repsonse.toString());
+
+       return repsonse.getCountOfScheduledAppointment();
+   }
 }

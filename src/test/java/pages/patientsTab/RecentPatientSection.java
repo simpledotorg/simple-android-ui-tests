@@ -41,6 +41,7 @@ public class RecentPatientSection extends BasePage {
     }
 
     public void verifiesSeeAllOption() {
+        new RegisterUser().registerNewUser();
         PatientGetRequestResponse allPatient = new GetPatientInfo().getAllPatient();
         int size = allPatient.getPatients().size();
         String status = "false";
@@ -67,6 +68,7 @@ public class RecentPatientSection extends BasePage {
 
     public WebElement getPatient(String patientName) throws Exception {
 
+        new RegisterUser().registerNewUser();
         String expectedValue = patientName.replaceAll("\\s", "").toUpperCase();
 
         PatientGetRequestResponse allPatient = new GetPatientInfo().getAllPatient();
@@ -97,6 +99,7 @@ public class RecentPatientSection extends BasePage {
 
         ScenarioContext.putData("User", ScenarioContextKeys.PATIENT_NAME, selectedPatient);
     }
+
 
     public void shouldNotShowUpOnTopOfList() {
         String actualValue = recentPatientViewLst.get(0).getText();

@@ -1,8 +1,5 @@
 package pages;
 
-import org.testng.annotations.Test;
-import qaApiServices.appointments.CreateAppointment;
-import qaApiServices.bloodPressure.CreateBp;
 import com.github.javafaker.Faker;
 import io.appium.java_client.AppiumDriver;
 import org.openqa.selenium.By;
@@ -11,13 +8,12 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.FindBys;
 import org.openqa.selenium.support.PageFactory;
 import org.testng.Assert;
+import qaApiServices.appointments.CreateAppointment;
+import qaApiServices.bloodPressure.CreateBp;
 import qaApiServices.patients.CreatePatients;
-import utils.Date;
+import qaApiServices.user.RegisterUser;
 
 import java.util.List;
-import java.util.NoSuchElementException;
-import java.util.Optional;
-import java.util.stream.Stream;
 
 public class OverdueTabPage extends BasePage {
 
@@ -42,7 +38,6 @@ public class OverdueTabPage extends BasePage {
 
     @FindBy(id = "actionsContainer")
     private WebElement overdueActionContainer;
-
     private By result = By.xpath("//android.widget.TextView[contains(@text,'Result of call')]");
     private By reasonAgreedToVisit = By.id("agreedToVisitTextView");
     private By reasonReminderLater = By.id("remindLaterTextView");
@@ -81,9 +76,12 @@ public class OverdueTabPage extends BasePage {
     @FindBy(xpath = "//android.widget.TextView[contains(@text,'Secure calls hide your number and are toll free')]")
     private WebElement phoneMaskText;
 
+    @FindBys({@FindBy(xpath = "//android.widget.RadioButton")})
+    private List<WebElement> overdueReasonList;
 
-    public void tapsOnPatientName(String patientName) {
-        WebElement webElement = patientDetail.stream().filter(element -> element.findElement(nameAndAge).getText().toUpperCase().contains(patientName.toUpperCase())).findFirst().get();
+
+    public void tapsOnPatientName(String patientName) throws Exception {
+        WebElement webElement = isPatientPresent(patientName);
         webElement.click();
     }
 
@@ -95,30 +93,46 @@ public class OverdueTabPage extends BasePage {
         Assert.assertTrue(overdueActionContainer.findElement(reasonRemoveFromList).isDisplayed());
     }
 
-    public void isPatientPresent(String patientName) {
-
-        WebElement ele = patientDetail.stream().filter(element -> element.findElement(nameAndAge).getText().toUpperCase()
-                .contains(patientName.toUpperCase()))
-                .findFirst()
-                .orElseThrow(NoSuchElementException::new);
-
-        Assert.assertTrue(ele.findElement(callIcon).isDisplayed(), "call Icon should be displayed");
-        Assert.assertTrue(ele.findElement(patientbp).isDisplayed(), "patinet bp should be displayed");
-        Assert.assertTrue(ele.findElement(overdueDays).isDisplayed(), "overDue days should be dispalyed");
+    private WebElement isPatientPresent(String patientName) throws Exception {
+        new RegisterUser().registerNewUser();
+        int allScheduledAppointment = new CreateAppointment().getAllScheduledAppointment();
+        int count = 0;
+        while (count < allScheduledAppointment) {
+            for (WebElement element : patientDetail) {
+                String text = element.findElement(nameAndAge).getText().replace("^[a-z,A-Z]", " ");
+                if (text.toUpperCase().contains(patientName.toUpperCase()))
+                    return element;
+            }
+            scrollDown();
+            count++;
+        }
+        String message = String.format(patientName + " :is not present in overdue list");
+        throw new Exception(message);
     }
 
     public void tapsOnAgreeToVisit() {
         overdueActionContainer.findElement(reasonAgreedToVisit).click();
     }
 
-    public void isPatientNotPresent(String patientName) {
+    private boolean isPatientNotPresent(String patientName) throws Exception {
         if (patientDetail.size() == 0) {
             Assert.assertTrue(noPatientsOverdueMessage.isDisplayed());
         } else {
-            boolean b = patientDetail.stream().noneMatch(element -> element.findElement(nameAndAge).getText().toUpperCase()
-                    .contains(patientName.toUpperCase()));
-            Assert.assertEquals(b, true, "patient name should not be displayed in overdue section");
+            new RegisterUser().registerNewUser();
+            int allScheduledAppointment = new CreateAppointment().getAllScheduledAppointment();
+            int count = 1;
+            while (count < allScheduledAppointment) {
+                List<WebElement> elements = driver.findElements(nameAndAge);
+                for (WebElement element : elements) {
+                    String text = element.getText().replace("^[a-z,A-Z]", " ");
+                    if (text.toUpperCase().contains(patientName.toUpperCase()))
+                        return false;
+                    count++;
+                }
+                scrollDown();
+            }
         }
+        return true;
     }
 
     public void tapsOnRemindToCallLater() {
@@ -145,8 +159,8 @@ public class OverdueTabPage extends BasePage {
         driver.findElement(By.xpath("//android.widget.RadioButton[contains(@text,'" + reason + "')]")).click();
     }
 
-    public void isPatientNotPresentInList(String patient) {
-        isPatientNotPresent(patient);
+    public void shouldNotPresentInOverdueList(String patient) throws Exception {
+        Assert.assertTrue(isPatientNotPresent(patient), patient + " : should not be present in overdue list");
     }
 
     public void createOverduePatientForTodayFromApi() {
@@ -157,11 +171,9 @@ public class OverdueTabPage extends BasePage {
         new CreateAppointment().createAppointmentForOverduePatient(0);
     }
 
-    public void tapsOnCallIcon(String patientName) {
-        WebElement webElement = patientDetail.stream().filter(element -> element.findElement(nameAndAge)
-                .getText().toUpperCase().contains(patientName.toUpperCase()))
-                .findFirst().get();
-        webElement.findElement(callIcon).click();
+    public void tapsOnCallIcon(String patientName) throws Exception {
+        WebElement patient = isPatientPresent(patientName);
+        patient.findElement(callIcon).click();
     }
 
     public void verifiesPopup() {
@@ -177,5 +189,13 @@ public class OverdueTabPage extends BasePage {
         new CreatePatients().createPatientWithBackDate(dd);
         new CreateBp().createBpWithBackDate(dd);
         new CreateAppointment().createAppointmentForOverduePatient(dd);
+    }
+
+    public void shouldPresentInOverdueList(String patientName) throws Exception {
+
+        WebElement patientPresent = isPatientPresent(patientName);
+        Assert.assertTrue(patientPresent.findElement(callIcon).isDisplayed(), "call Icon should be displayed");
+        Assert.assertTrue(patientPresent.findElement(patientbp).isDisplayed(), "patinet bp should be displayed");
+        Assert.assertTrue(patientPresent.findElement(overdueDays).isDisplayed(), "overDue days should be dispalyed");
     }
 }

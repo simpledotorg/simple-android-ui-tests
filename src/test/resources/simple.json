@@ -21,7 +21,8 @@
           "avdLaunchTimeout": 300000,
           "unicodeKeyboard":false,
           "resetKeyboard":true,
-          "useKeystore": false
+          "useKeystore": false,
+          "fullreset": true
         }
       },
       "deviceState": {

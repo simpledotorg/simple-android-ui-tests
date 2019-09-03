@@ -1,6 +1,7 @@
 package steps;
 
 import com.embibe.optimus.utils.ScenarioContext;
+import cucumber.api.PendingException;
 import cucumber.api.java.en.And;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
@@ -14,7 +15,7 @@ public class OverdueSteps extends BaseSteps {
     }
 
     @And("^(\\w+) on Overdue tab taps on patient detail$")
-    public void userTapsOnPatientDetail(String User) {
+    public void userTapsOnPatientDetail(String User) throws Exception {
         String patientName = ScenarioContext.getData("User", ScenarioContextKeys.PATIENT_NAME);
         new OverdueTabPage(getDriverInstanceFor(User)).tapsOnPatientName(patientName);
     }
@@ -30,15 +31,15 @@ public class OverdueSteps extends BaseSteps {
     }
 
     @Then("^(\\w+) on Overdue Tab verifies patient info present in overdue list$")
-    public void userVerifiesPatientInfoPresentInOverdueList(String User) {
+    public void userVerifiesPatientInfoPresentInOverdueList(String User) throws Exception {
         String patientName = ScenarioContext.getData("User", ScenarioContextKeys.PATIENT_NAME);
-        new OverdueTabPage(getDriverInstanceFor(User)).isPatientPresent(patientName);
+        new OverdueTabPage(getDriverInstanceFor(User)).shouldPresentInOverdueList(patientName);
     }
 
     @Then("^(\\w+) on Overdue tab verifies patient info removed from overdue list$")
-    public void userVerifiesPatientInfoIsRemovedFromOverdueList(String User) {
+    public void userVerifiesPatientInfoIsRemovedFromOverdueList(String User) throws Exception {
         String patientName = ScenarioContext.getData("User", ScenarioContextKeys.PATIENT_NAME);
-        new OverdueTabPage(getDriverInstanceFor(User)).isPatientNotPresent(patientName);
+        new OverdueTabPage(getDriverInstanceFor(User)).shouldNotPresentInOverdueList(patientName);
 
     }
 
@@ -59,7 +60,7 @@ public class OverdueSteps extends BaseSteps {
 
     @Then("^(\\w+) on Overdue tab Verifies reason screen$")
     public void userVerifiesReasonScreen(String User) {
-        new OverdueTabPage(getDriverInstanceFor(User)).verfiyReasonScreen();
+        new OverdueTabPage(getDriverInstanceFor(User)).verifyReasonScreen();
     }
 
     @And("^(\\w+) on Overdue tab selects invalid phone number as reason$")
@@ -79,9 +80,9 @@ public class OverdueSteps extends BaseSteps {
     }
 
     @Then("^(\\w+) on Overdue tab verifies patient info is not present in list$")
-    public void userVerfiesInfoIsNotPresentInList(String User){
+    public void userVerfiesInfoIsNotPresentInList(String User) throws Exception {
         String patientname=ScenarioContext.getData("User",ScenarioContextKeys.PATIENT_NAME);
-        new OverdueTabPage(getDriverInstanceFor(User)).isPatientNotPresentInList(patientname);
+        new OverdueTabPage(getDriverInstanceFor(User)).shouldNotPresentInOverdueList(patientname);
     }
 
     @Given("^(\\w+) creates overdue patient with appointment as of today$")
@@ -90,7 +91,7 @@ public class OverdueSteps extends BaseSteps {
     }
 
     @And("^(\\w+) on Overdue tab taps on call Icon$")
-    public void userTapsOnCallIcon(String User){
+    public void userTapsOnCallIcon(String User) throws Exception {
         String patientname=ScenarioContext.getData("User",ScenarioContextKeys.PATIENT_NAME);
         new OverdueTabPage(getDriverInstanceFor(User)).tapsOnCallIcon(patientname);
     }

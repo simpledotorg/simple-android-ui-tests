@@ -1,5 +1,6 @@
 package steps;
 
+import cucumber.api.PendingException;
 import qaApiServices.facility.FacilityClient;
 import qaApiServices.facility.FacilityResponse;
 import qaApiServices.protocol.ProtocolClient;
@@ -20,7 +21,7 @@ import java.util.Map;
 public class PatientSummaryDetailSteps extends BaseSteps {
     @And("^(\\w+) on Patient summary page enters new patient info$")
     public void userEntersNewPateintInfo(String User) {
-        new PatientSummaryDetailPage(getDriverInstanceFor(User)).enterPatientInfo("",RandomValue.getRandomPhoneNumber(), "44", "Male", "test");
+        new PatientSummaryDetailPage(getDriverInstanceFor(User)).enterPatientInfo("",RandomValue.getRandomPhoneNumber(), CreateFaker.getRandomAge(), CreateFaker.getGender(), "testcolony");
     }
 
     @And("^(\\w+) on Patient summary page enters new Bp Info$")
@@ -46,7 +47,7 @@ public class PatientSummaryDetailSteps extends BaseSteps {
 
     @And("^(\\w+) on Patient summary page enters new patient info Without phone number$")
     public void userEntersNewPatientInfoWithoutPhoneNumber(String User) {
-        new PatientSummaryDetailPage(getDriverInstanceFor(User)).enterPatientInfo("", "", "44","Male","testcolony");
+        new PatientSummaryDetailPage(getDriverInstanceFor(User)).enterPatientInfo("", "", CreateFaker.getRandomAge(),CreateFaker.getGender(),"testcolony");
     }
 
     @And("^(\\w+) on Patient summary page navigates back$")
@@ -54,21 +55,14 @@ public class PatientSummaryDetailSteps extends BaseSteps {
         new PatientSummaryDetailPage(getDriverInstanceFor(User)).userNavigatesBack();
     }
 
-    @And("^(\\w+) on Patient summary page verifies error message validation$")
-    public void userVerifiesErrorMessageValidation(String User) {
-        new PatientSummaryDetailPage(getDriverInstanceFor(User)).validateErrorMessage();
-    }
-
     @And("^(\\w+) on Patient summary page enters invalid data for patients primary info$")
-    public void userEntersInvalidDataForPatientsPrimaryInfo(String User, DataTable dataTable) {
-        Map<String, String> map = dataTable.asMap(String.class, String.class);
-        new PatientSummaryDetailPage(getDriverInstanceFor(User)).enterPatientInvalidPatientInfo(map.get("phoneNumber"));
+    public void userEntersInvalidDataForPatientsPrimaryInfo(String User) {
+        new PatientSummaryDetailPage(getDriverInstanceFor(User)).enterPatientInfo("","19208","", "", "");
     }
 
     @And("^(\\w+) on Patient summary page enters invalid date$")
-    public void userEntersInvalidDate(String User, DataTable dataTable) {
-        Map<String, String> map = dataTable.asMap(String.class, String.class);
-        new PatientSummaryDetailPage(getDriverInstanceFor(User)).enterInvalidDate(map.get("Date"));
+    public void userEntersInvalidDate(String User) {
+        new PatientSummaryDetailPage(getDriverInstanceFor(User)).enterPatientInfo("",RandomValue.getRandomPhoneNumber(),"31 / 02 /2019", CreateFaker.getGender(), "test");
     }
 
     @And("^(\\w+) on Patient summary page taps on Add new Bp button$")
@@ -150,7 +144,7 @@ public class PatientSummaryDetailSteps extends BaseSteps {
 
     @And("^(\\w+) on Patient summary page add new customized medicine$")
     public void userAddNewCustomizedMedicine(String User) {
-        String drugname = "Test";
+        String drugname = "Customize Medicine";
         String dosage = "10";
         new PatientSummaryDetailPage(getDriverInstanceFor(User)).addCustomizeMedicine(drugname, dosage);
     }
@@ -308,6 +302,16 @@ public class PatientSummaryDetailSteps extends BaseSteps {
     public void userOnPatientSummaryPageEntersNewPatientPrimaryInformation(String User) {
         String name= new CreateFaker().faker.name().firstName();
         new PatientSummaryDetailPage(getDriverInstanceFor(User)).enterPatientInfo(name,"","44","Male","testcolony");
+    }
+
+    @And("^(\\w+) on Patient summary page verifies error message for invalid data entry$")
+    public void userOnPatientSummaryPageVerifiesErrorMessageForInvalidDataEntry(String User) {
+        new PatientSummaryDetailPage(getDriverInstanceFor(User)).verifyValidaitonErrorMessages();
+    }
+
+    @And("^(\\w+) on Patient summary page verifies error message for invalid date entry$")
+    public void userOnPatientSummaryPageVerifiesErrorMessageForInvalidDateEntry(String User)  {
+        new PatientSummaryDetailPage(getDriverInstanceFor(User)).verifyValidaitonErrorMessagesForInvalidDate();
     }
 }
 

@@ -3,6 +3,7 @@ package qaApiServices.patients;
 import com.google.gson.Gson;
 import constants.QaApiUrl;
 import io.restassured.response.Response;
+import io.restassured.specification.RequestSpecification;
 import org.testng.Assert;
 
 import static io.restassured.RestAssured.given;
@@ -12,14 +13,17 @@ public class PatientClient {
 
         String json = new Gson().toJson(requestBody);
 
-        Response response = given()
+        RequestSpecification body = given()
                 .contentType("application/json; charset=utf-8")
                 .header("Accept", "application/json")
                 .header("X-User-Id", userId)
                 .header("X-Facility-Id", faciltiyId)
                 .header("Authorization", "Bearer " + token)
-                .body(json)
-                .post(QaApiUrl.patient);
+                .body(json);
+
+        System.out.println(body.log().all()+"patientRequest");
+
+        Response response = body.post(QaApiUrl.patient);
 
         System.out.println(response.asString() + "response");
 

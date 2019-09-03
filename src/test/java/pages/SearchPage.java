@@ -1,6 +1,5 @@
 package pages;
 
-import com.testvagrant.mdb.core.Mobile;
 import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.MobileElement;
 import io.appium.java_client.pagefactory.AppiumFieldDecorator;
@@ -25,16 +24,16 @@ public class SearchPage extends BasePage {
         this.driver = driver;
     }
 
-    @FindBy(id = "patientNameEditText")
+    @FindBy(id = "searchQueryEditText")
     private MobileElement searchPatientName;
 
     @FindBy(id = "patients_search_patients")
     private WebElement searchPatientTextBox;
 
-    @FindBy(id = "searchresults_new_patient")
+    @FindBy(id = "newPatientButton")
     private WebElement registerAsNewPatientButton;
 
-    @FindBy(id = "searchresults_new_patient_rationale")
+    @FindBy(id = "newPatientRationaleTextView")
     private WebElement registerPatientLabel;
 
     @FindBy(id = "searchresults_empty_state_text")
@@ -50,11 +49,14 @@ public class SearchPage extends BasePage {
     @FindBy(id = "facilityLabel")
     private WebElement facilityLabel;
 
+    @FindBy(id = "patientsearch_search")
+    private WebElement nextButton;
+
     // value could be name or phonenumber
     private void searchPatient(String value) {
         waitForElementToBeVisible(searchPatientName);
         searchPatientName.setValue(value);
-        pressSearchButton();
+        nextButton.click();
     }
 
     public void searchForRegisteredPatientWithBpInfo(String patientName) {
@@ -118,7 +120,7 @@ public class SearchPage extends BasePage {
         Assert.assertTrue(facilityLabel.getText().toUpperCase().contains("ALL PATIENTS"), "All Patient label is not displayed");
 
         new RegisterUser().registerNewUser();
-        List<String> allPatientsName = new GetPatientInfo().getAllPatientsName();
+        List<String> allPatientsName = new GetPatientInfo().getAllPatientsInfo();
         List<String> expectedPatientNameSortedList = allPatientsName.stream().sorted().collect(Collectors.toList());
 
         List<String> actualpatientName = new ArrayList<>();
@@ -133,7 +135,6 @@ public class SearchPage extends BasePage {
             }
             scrollDown();
         }
-
         expectedPatientNameSortedList.equals(actualpatientName);
     }
 
@@ -149,6 +150,13 @@ public class SearchPage extends BasePage {
     }
 
     public void searchForPatientNumber(String phoneNumber) {
+        searchPatient(phoneNumber);
+        Assert.assertEquals(emptySearchResult.getText(), "No patients match");
+        Assert.assertEquals(registerPatientLabel.getText(), "Patient is not registered");
+        Assert.assertTrue(registerAsNewPatientButton.isDisplayed());
+    }
+
+    public void searchForInvalidPhoneNumber(String phoneNumber) {
         searchPatient(phoneNumber);
         Assert.assertEquals(emptySearchResult.getText(), "No patients match");
         Assert.assertEquals(registerPatientLabel.getText(), "Patient is not registered");

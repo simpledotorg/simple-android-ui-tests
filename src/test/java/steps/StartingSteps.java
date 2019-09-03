@@ -31,5 +31,8 @@ public class StartingSteps extends BaseSteps {
             scenario.embed(failedScreens, "image/png");
         }
         controller.deRegisterSmartBOTs(smartBOTs);
+
+        try{
+        getChromeDriver().quit();}catch (Exception e){}
     }
 }
