@@ -101,4 +101,6 @@ public class Appointments {
             return new Appointments( updated_at, appointment_type, patient_id, facility_id, created_at, id, scheduled_date, deleted_at, status,cancel_reason,agreed_to_visit,remind_on);
         }
     }
+
+
 }

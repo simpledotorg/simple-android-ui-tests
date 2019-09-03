@@ -193,7 +193,7 @@ public class BpSection extends BasePage {
                 bpLayout.findElement(reading).getText().equals(value);
                 bpLayout.findElement(bpLevel).isDisplayed();
                 bpLayout.findElement(heartIcon).isDisplayed();
-                Assert.assertTrue(bpLayout.findElement(daysAgo).getText().replaceAll("[^a-zA-Z0-9]", "").contains("Edit10daysago"));
+                Assert.assertTrue(bpLayout.findElement(daysAgo).getText().replaceAll("[^a-zA-Z0-9]", "").contains("10daysago"));
             }
         }
     }
@@ -205,7 +205,7 @@ public class BpSection extends BasePage {
                 bpLayout.findElement(reading).getText().equals(value);
                 bpLayout.findElement(bpLevel).isDisplayed();
                 bpLayout.findElement(heartIcon).isDisplayed();
-                Assert.assertTrue(bpLayout.findElement(daysAgo).getText().replaceAll("[^a-zA-Z0-9]", "").contains("EditToday"));
+                Assert.assertTrue(bpLayout.findElement(daysAgo).getText().replaceAll("[^a-zA-Z0-9]", "").contains("Today"));
             }
         }
     }

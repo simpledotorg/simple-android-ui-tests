@@ -7,7 +7,7 @@ import java.util.List;
 
 public class GetPatientInfo {
 
-    public List<String> getAllPatientsName() {
+    public List<String> getAllPatientsInfo() {
 
         String facilityId = ScenarioContext.getData("User", ScenarioContextKeys.FACILTIYID);
         String userId = ScenarioContext.getData("User", ScenarioContextKeys.USER_ID);
@@ -25,4 +25,5 @@ public class GetPatientInfo {
 
         return new PatientClient().get(facilityId, userId, token);
     }
+
 }

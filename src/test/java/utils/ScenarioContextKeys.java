@@ -7,6 +7,7 @@ public interface ScenarioContextKeys {
     String ACCESS_TOKEN="access_token";
     String PIN="pin";
     String FACILTIYID="facililty_id";
+    String USER_NAME="use_name";
 
     String PATIENT_NAME="patient_name";
     String PATIENT_ID="patinet_id";

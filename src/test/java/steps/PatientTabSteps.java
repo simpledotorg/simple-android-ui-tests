@@ -1,6 +1,7 @@
 package steps;
 
 import com.embibe.optimus.utils.ScenarioContext;
+import cucumber.api.PendingException;
 import cucumber.api.java.en.And;
 import cucumber.api.java.en.Then;
 import pages.patientsTab.PatientTabPage;
@@ -23,11 +24,11 @@ public class PatientTabSteps extends BaseSteps {
         new PatientTabPage(getDriverInstanceFor(User)).tapsOnSearchTextBox();
     }
 
-    @Then("^(\\w+) on Patient tab verifies patient info present in recent patients list$")
-    public void userOnPatientTabVerifiesPatientInfoPresentInRecentPatientsList(String User) throws Exception {
-        String patientName = ScenarioContext.getData("User", ScenarioContextKeys.PATIENT_NAME);
-        new PatientTabPage(getDriverInstanceFor(User)).isPatientPresent(patientName);
-    }
+//    @Then("^(\\w+) on Patient tab verifies patient info present in recent patients list$")
+//    public void userOnPatientTabVerifiesPatientInfoPresentInRecentPatientsList(String User) throws Exception {
+//        String patientName = ScenarioContext.getData("User", ScenarioContextKeys.PATIENT_NAME);
+//        new PatientTabPage(getDriverInstanceFor(User)).isPatientPresent(patientName);
+//    }
 
     @And("^(\\w+) on Patient tab taps on sync link$")
     public void userTapsOnSyncLink(String User) {
@@ -57,5 +58,36 @@ public class PatientTabSteps extends BaseSteps {
     @And("^(\\w+) on Patient tab verifies no recent patient text$")
     public void userOnPatientTabVerifiesNoRecentPatientText(String User)  {
         new PatientTabPage(getDriverInstanceFor(User)).verifyNoRecentPatientText();
+    }
+
+
+    @Then("^(\\w+) on patient tab verifies sync link should not be present$")
+    public void userOnPatientTabVerifiesSyncLinkShouldNotBePresent(String User){
+        new PatientTabPage(getDriverInstanceFor(User)).syncLinkShouldNotBePresent();
+    }
+
+    @Then("^(\\w+) on patient tab verifies sync error message$")
+    public void userOnPatientTabVerifiesSyncErrorMessage(String User) {
+        new PatientTabPage(getDriverInstanceFor(User)).verifiesSyncErrorMessage();
+    }
+
+    @And("^(\\w+) on Patient tab taps on okay button$")
+    public void userOnPatientTabTapsOnOpkayButton(String User) {
+        new PatientTabPage(getDriverInstanceFor(User)).tapsOnOkayButton();
+    }
+
+    @Then("^(\\w+) on patient tab verifies sync pending status should be present$")
+    public void userOnPatientTabVerifiesSyncPendingLinkShouldBePresent(String User) {
+        new PatientTabPage(getDriverInstanceFor(User)).verifySyncPendingLinkShouldBePresent();
+    }
+
+    @Then("^(\\w+) on Patient tab verify patient data got synced in server$")
+    public void userOnPatientTabVerifyPatientDataGotSyncedInServer(String User) {
+        new PatientTabPage(getDriverInstanceFor(User)).verifyPatientInfoIsSyncedInServer();
+    }
+
+    @Then("^(\\w+) on Patient tab verify patient data should not get synced in server$")
+    public void userOnPatientTabVerifyPatientDataShouldNotGetSyncedInServer(String User) {
+        new PatientTabPage(getDriverInstanceFor(User)).verifyPatientInfoshouldNotSyncedInServer();
     }
 }

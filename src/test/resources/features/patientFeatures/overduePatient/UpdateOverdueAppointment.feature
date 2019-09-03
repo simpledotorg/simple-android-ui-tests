@@ -3,12 +3,7 @@ Feature: Update Overdue appointment
   Background:
     Given User registers new user from api
     And User registers overdue patient
-    And User taps on GetStarted button
-    And User enters registered phone number
-    And User enters registered security pin
-    And User taps on Enter code link
-    And User enters otp
-    And User taps on Got It Button
+    And User LogsIn in app
 
   @updateAppointment @smoke
   Scenario: update appointment with agreed to visit
@@ -18,7 +13,6 @@ Feature: Update Overdue appointment
     Then User on Overdue tab verifies patient info removed from overdue list
     And User on Homepage taps on Patients Tab
     And User on Patient tab taps on sync link
-
 
   @updateAppointment @smoke
   Scenario: update appointment with remind to call later
@@ -31,7 +25,7 @@ Feature: Update Overdue appointment
     And User on Patient tab taps on sync link
     And User on Patient tab verifies patient info should not show up on top of recent patient section
 
-  @updateAppointment @smoke
+  @updateAppointment  @regression
   Scenario Outline: update appointment with other reason
     And User on Homepage taps on Overdue Tab
     And User on Overdue tab taps on patient detail
@@ -51,7 +45,7 @@ Feature: Update Overdue appointment
       |Moved to private practitioner|
 
 
-  @updateAppointment @smoke
+  @updateAppointment  @regression
   Scenario Outline: verify Search for a patient whose appointment is updated as died
     And User on Homepage taps on Overdue Tab
     And User on Overdue tab taps on patient detail

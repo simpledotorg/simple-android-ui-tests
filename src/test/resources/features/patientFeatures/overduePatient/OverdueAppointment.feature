@@ -3,12 +3,7 @@ Feature: overdue patients test
   Background:
     Given User registers new user from api
     And User registers overdue patient
-    And User taps on GetStarted button
-    And User enters registered phone number
-    And User enters registered security pin
-    And User taps on Enter code link
-    And User enters otp
-    And User taps on Got It Button
+    And User LogsIn in app
 
   @overdue @smoke
   Scenario: create overdue patient from api and validate it in ui
@@ -21,11 +16,8 @@ Feature: overdue patients test
     And User on Overdue tab taps on patient detail
     Then User on Overdue tab verifies expanded view of patient information
 
-  @overdue @smoke
+  @overdue1 @smoke
   Scenario: add new bp for an overdue patient
-    And User on Homepage taps on Overdue Tab
-    Then User on Overdue Tab verifies patient info present in overdue list
-    And User on Homepage taps on Patients Tab
     And User on Patient tab taps on search text box
     And User on Search page searched for Registered Patient
     And User on Search page selects patient form search list
@@ -34,10 +26,11 @@ Feature: overdue patients test
     And User on Patient summary page selects done button
     And User on Patient summary page taps on save Button
     And User on Patient summary page taps on appointment done button
+    And User on Patient tab taps on sync link
     And User on Homepage taps on Overdue Tab
     Then User on Overdue tab verifies patient info removed from overdue list
 
-  @overdue @smoke
+  @overdue @smoke @regression
   Scenario Outline:End to end flow of adding bp for a patient whose appointment is updated with Phone number doesn't exist
     And User on Homepage taps on Overdue Tab
     And User on Overdue tab taps on patient detail
@@ -60,7 +53,7 @@ Feature: overdue patients test
       | reasons                    |
       | Phone number does not work |
 
-  @overdue @smoke
+  @overdue @smoke @regression
   Scenario Outline:End to end flow for a patient whose appointment is updated with Phone number doesn't exist
     And User on Homepage taps on Overdue Tab
     And User on Overdue tab taps on patient detail
@@ -90,8 +83,3 @@ Feature: overdue patients test
     And User on Homepage taps on Overdue Tab
     And User on Overdue tab taps on call Icon
     Then User on Overdue tab verifies popup
-
-
-
-
-

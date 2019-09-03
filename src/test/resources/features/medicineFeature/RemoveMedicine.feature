@@ -3,17 +3,12 @@ Feature: Remove medicine info from Patient summary page
   Background:
     Given User registers new user from api
     And User registers new patient with bp from api
-    And User taps on GetStarted button
-    And User enters registered phone number
-    And User enters registered security pin
-    And User taps on Enter code link
-    And User enters otp
-    And User taps on Got It Button
+    And User LogsIn in app
     And User on Patient tab taps on search text box
     Then User on Search page searched for Registered Patient
     And User on Search page selects patient form search list
 
-  @removeMedicine @medicine @smoke
+   @medicine @smoke
   Scenario: remove prescribed medicine info
     Then User on Patient summary page taps on Add new medicine button
     And User on Patient summary page select prescribed medicine
@@ -24,7 +19,7 @@ Feature: Remove medicine info from Patient summary page
     Then User on Patient summary page verifies add medicine button
 
 
-  @removeMedicine @medicine @smoke
+   @medicine @regression
   Scenario: Delete customized Medicine to already registered patient
     Then User on Patient summary page taps on Add new medicine button
     Then User on Patient summary page taps on Add another medicine button
