@@ -79,7 +79,8 @@ public class LoginPage extends BasePage {
         pressEnter();
     }
 
-    private void enterPinForRegisteredUser(String pin) {
+    public void enterRegisteredPin(String pin) {
+        waitForElementToBeVisible(registeredUserPin);
         Assert.assertTrue(isElementPresent(By.id("pinentry_pin")));
         registeredUserPin.setValue(pin);
         ScenarioContext.putData("User", ScenarioContextKeys.PIN, pin);
@@ -98,6 +99,7 @@ public class LoginPage extends BasePage {
     }
 
     private void enterOtp() {
+        waitForElementToBeVisible(Otp);
         Otp.setValue("000000");
         pressEnter();
     }
@@ -140,7 +142,7 @@ public class LoginPage extends BasePage {
     public void userLogsIn(String phoneNumber, String pin) {
         clicksOnGetStartedButton();
         enterRegistrationPhoneNumber(phoneNumber);
-        enterPinForRegisteredUser(pin);
+        enterRegisteredPin(pin);
         clickOnEnterCodeLink();
         enterOtp();
         clicksOnGotItButton();

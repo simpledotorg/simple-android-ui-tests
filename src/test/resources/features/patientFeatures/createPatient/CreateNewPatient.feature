@@ -15,7 +15,6 @@ Feature: Create Patient
     And User on Patient summary page selects done button
     And User on Patient summary page taps on save Button
     And User on Patient summary page taps on appointment done button
-#    Then User on Patient tab verifies patient info present in recent patients list
     And User on Patient tab taps on search text box
     Then User on Search page searched for Registered Patient
 
@@ -29,7 +28,6 @@ Feature: Create Patient
     And User on Patient summary page selects done button
     And User on Patient summary page taps on save Button
     And User on Patient summary page taps on appointment done button
-#    Then User on Patient tab verifies patient info present in recent patients list
     And User on Patient tab taps on search text box
     Then User on Search page searched for Registered Patient
 
