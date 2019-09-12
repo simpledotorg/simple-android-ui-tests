@@ -26,7 +26,7 @@ public class BasePage {
 
     public BasePage(AppiumDriver driver) {
         this.driver = driver;
-        wait = new WebDriverWait(this.driver, 30);
+        wait = new WebDriverWait(this.driver, 20);
     }
 
     public BasePage(WebDriver driver) {
@@ -231,6 +231,7 @@ public class BasePage {
     public void pressSearchButton() {
         driver.executeScript("mobile: performEditorAction", ImmutableMap.of("action", "search"));
     }
+
 
     public void runAppInBackgroudAndrelaunch() {
         driver.runAppInBackground(Duration.ofSeconds(10));

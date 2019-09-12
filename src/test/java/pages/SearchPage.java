@@ -27,7 +27,7 @@ public class SearchPage extends BasePage {
     @FindBy(id = "searchQueryEditText")
     private MobileElement searchPatientName;
 
-    @FindBy(id = "patients_search_patients")
+    @FindBy(id = "searchPatientsButton")
     private WebElement searchPatientTextBox;
 
     @FindBy(id = "newPatientButton")
@@ -41,7 +41,6 @@ public class SearchPage extends BasePage {
 
     @FindBys({@FindBy(id = "patientsearch_header")})
     private List<WebElement> header;
-
 
     @FindBys({@FindBy(id = "patientNameAgeGenderLabel")})
     private List<WebElement> patientList;
@@ -137,7 +136,6 @@ public class SearchPage extends BasePage {
         }
         expectedPatientNameSortedList.equals(actualpatientName);
     }
-
 
     public void searchForRegisteredPatientByPhoneNumber(String phoneNumber) {
         searchPatient(phoneNumber);

@@ -1,7 +1,7 @@
 Feature: Select patient from recent patient list,update it's primary information or schedule an appointment
   verify display order in recent patient list.
 
-  @updateRecentPatient @smoke
+  @recentPatient @smoke
   Scenario: Add new Bp for patient whose name is listed in recent patient section
     Given User registers new user from api
     And User registers new patient with bp from api
@@ -14,7 +14,7 @@ Feature: Select patient from recent patient list,update it's primary information
     And User on Patient summary page taps on appointment done button
     And User on Patient tab verifies patient info should show up on top of recent patient section
 
-  @updateRecentPatient  @regression
+  @recentPatient  @regression
   Scenario: Remove bp patient whose name is listed in recent patient section
     Given User registers new user from api
     And User registers new patient with bp from api
@@ -27,7 +27,7 @@ Feature: Select patient from recent patient list,update it's primary information
     And User on Patient summary page taps on save Button
     And User on Patient tab verifies patient info should not show up on top of recent patient section
 
-  @updateRecentPatient @smoke
+  @recentPatient @smoke
   Scenario: upon Adding new medicine for patient,it's info should get displayed in recent patient section
     Given User registers new user from api
     And User registers new patient with bp from api
@@ -41,8 +41,7 @@ Feature: Select patient from recent patient list,update it's primary information
     And User on Patient summary page taps on appointment done button
     And User on Patient tab verifies patient info should show up on top of recent patient section
 
-
-  @updateRecentPatient1  @regression
+  @recentPatient  @regression
   Scenario: upon update appointment, verify patient name show up in recent patient list
     Given User registers new user from api
     And User registers new patient with bp from api
@@ -52,8 +51,7 @@ Feature: Select patient from recent patient list,update it's primary information
     And User on Patient summary page taps on appointment done button
     And User on Patient tab verifies patient info should show up on top of recent patient section
 
-
-  @updateRecentPatient  @regression
+  @recentPatient  @regression
   Scenario: upon editing patient information,verify patient name should not show up in recent patient section
     Given User registers new user from api
     And User registers new patient with bp from api

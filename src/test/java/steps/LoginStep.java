@@ -75,6 +75,6 @@ public class LoginStep extends BaseSteps{
 
     @And("^(\\w+) enters registered security pin$")
     public void userEntersRegisteredSecurityPin(String User) {
-        new LoginPage(getDriverInstanceFor(User)).enterNewRegistrationPin("1234");
+        new LoginPage(getDriverInstanceFor(User)).enterRegisteredPin("1234");
     }
 }
