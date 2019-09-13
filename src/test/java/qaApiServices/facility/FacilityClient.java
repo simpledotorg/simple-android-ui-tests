@@ -3,6 +3,7 @@ package qaApiServices.facility;
 import constants.QaApiUrl;
 import io.restassured.http.ContentType;
 import io.restassured.response.Response;
+import qaApiServices.facility.response.FacilityResponse;
 
 import static io.restassured.RestAssured.given;
 

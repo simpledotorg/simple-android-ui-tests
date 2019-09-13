@@ -1,6 +1,10 @@
 package qaApiServices.patients;
 
 import com.embibe.optimus.utils.ScenarioContext;
+import qaApiServices.patients.builder.Address;
+import qaApiServices.patients.builder.Patients;
+import qaApiServices.patients.builder.Phone_numbers;
+import qaApiServices.patients.request.PatientPostRequestBody;
 import utils.Date;
 import utils.ScenarioContextKeys;
 

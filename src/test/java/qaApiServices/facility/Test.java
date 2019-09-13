@@ -1,6 +1,7 @@
 package qaApiServices.facility;
 
 import org.testng.Assert;
+import qaApiServices.facility.response.FacilityResponse;
 
 import java.util.ArrayList;
 import java.util.List;

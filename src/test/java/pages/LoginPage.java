@@ -18,7 +18,7 @@ public class LoginPage extends BasePage {
     @FindBy(id = "phoneNumberEditText")
     private MobileElement registrationPhoneNumber;
 
-    @FindBy(id = "patients_enter_code")
+    @FindBy(id = "enterCodeButton")
     private WebElement enterCodeLink;
 
     @FindBy(id = "enterotp_otp")
@@ -30,7 +30,7 @@ public class LoginPage extends BasePage {
     @FindBy(id = "pinentry_pin")
     private MobileElement registeredUserPin;
 
-    @FindBy(id = "patients_dismiss_user_approved_status")
+    @FindBy(id = "dismissApprovedStatusButton")
     private WebElement GotItLink;
 
     @FindBy(id = "registrationconfirmpin_pin")

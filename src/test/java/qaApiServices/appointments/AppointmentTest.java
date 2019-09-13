@@ -1,6 +1,8 @@
 package qaApiServices.appointments;
 
-import org.testng.annotations.Test;
+import qaApiServices.appointments.builder.AppointmentGetResponse;
+import qaApiServices.appointments.builder.Appointments;
+import qaApiServices.appointments.request.AppointmentPostRequest;
 
 import java.util.ArrayList;
 import java.util.List;

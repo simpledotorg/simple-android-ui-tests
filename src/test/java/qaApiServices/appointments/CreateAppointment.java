@@ -1,6 +1,9 @@
 package qaApiServices.appointments;
 
 import com.embibe.optimus.utils.ScenarioContext;
+import qaApiServices.appointments.builder.AppointmentGetResponse;
+import qaApiServices.appointments.builder.Appointments;
+import qaApiServices.appointments.request.AppointmentPostRequest;
 import utils.Date;
 import utils.ScenarioContextKeys;
 

@@ -2,6 +2,9 @@ package qaApiServices.bloodPressure;
 
 import com.google.gson.Gson;
 import org.testng.annotations.Test;
+import qaApiServices.bloodPressure.builder.Blood_pressures;
+import qaApiServices.bloodPressure.request.BpRequestBody;
+import qaApiServices.bloodPressure.response.BpResponse;
 
 import java.util.ArrayList;
 import java.util.List;
