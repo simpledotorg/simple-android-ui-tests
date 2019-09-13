@@ -5,9 +5,11 @@ import constants.QaApiUrl;
 import io.restassured.response.Response;
 import io.restassured.specification.RequestSpecification;
 import org.testng.Assert;
+import qaApiServices.appointments.builder.AppointmentGetResponse;
+import qaApiServices.appointments.request.AppointmentPostRequest;
+import qaApiServices.appointments.response.AppointmentPostResponse;
 
 import static io.restassured.RestAssured.given;
-import static io.restassured.RestAssured.requestSpecification;
 
 public class ClientRequest {
 

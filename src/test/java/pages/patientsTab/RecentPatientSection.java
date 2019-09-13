@@ -1,7 +1,6 @@
 package pages.patientsTab;
 
 import com.embibe.optimus.utils.ScenarioContext;
-import com.google.common.collect.ImmutableMap;
 import io.appium.java_client.AppiumDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -10,7 +9,7 @@ import org.testng.Assert;
 import pages.BasePage;
 import pages.patientPrimaryInformation.PatientSummaryDetailPage;
 import qaApiServices.patients.GetPatientInfo;
-import qaApiServices.patients.PatientGetRequestResponse;
+import qaApiServices.patients.response.PatientGetRequestResponse;
 import qaApiServices.user.RegisterUser;
 import utils.ScenarioContextKeys;
 

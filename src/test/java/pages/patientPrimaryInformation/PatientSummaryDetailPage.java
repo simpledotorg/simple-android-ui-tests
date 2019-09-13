@@ -1,6 +1,9 @@
 package pages.patientPrimaryInformation;
 
 import com.embibe.optimus.utils.ScenarioContext;
+import io.appium.java_client.pagefactory.AndroidFindBy;
+import io.appium.java_client.pagefactory.AndroidFindBys;
+import org.openqa.selenium.support.FindBys;
 import pages.BasePage;
 import qaApiServices.protocolDrug.CreateDrug;
 import io.appium.java_client.AppiumDriver;
@@ -12,6 +15,7 @@ import utils.RandomValue;
 import utils.ScenarioContextKeys;
 
 import java.util.HashSet;
+import java.util.List;
 
 public class PatientSummaryDetailPage extends BasePage {
     private AppiumDriver driver;
@@ -20,19 +24,19 @@ public class PatientSummaryDetailPage extends BasePage {
     BpSection bpSection;
     MedicineSection medicineSection;
 
-    @FindBy(xpath = "//android.widget.Button[@text='Save']")
+    @FindBy(id="patientsummary_done")
     private WebElement saveButton;
 
-    @FindBy(id = "scheduleappointment_done")
+    @FindBy(id = "doneButton")
     private WebElement scheduleAppointmentDoneButton;
 
-    @FindBy(id = "scheduleappointment_not_now")
+    @FindBy(id = "notNowButton")
     private WebElement scheduleAppointmentNotNowButton;
 
-    @FindBy(id="patientsummary_fullname")
+    @FindBy(id = "patientsummary_fullname")
     private WebElement patientSummaryFullname;
 
-    @FindBy(id="patientsummary_edit")
+    @FindBy(id = "patientsummary_edit")
     private WebElement patientSummaryEditLink;
 
     public PatientSummaryDetailPage(AppiumDriver driver) {
@@ -45,8 +49,8 @@ public class PatientSummaryDetailPage extends BasePage {
         this.driver = driver;
     }
 
-    public void enterPatientInfo(String name,String phone, String age, String male, String testColony) {
-        patientPrimaryInfoSection.enterPatientInfo(name,phone, age, male, testColony);
+    public void enterPatientInfo(String name, String phone, String age, String male, String testColony) {
+        patientPrimaryInfoSection.enterPatientInfo(name, phone, age, male, testColony);
     }
 
     public void enterBpInfo(String systollic, String diastolic) {
@@ -95,7 +99,7 @@ public class PatientSummaryDetailPage extends BasePage {
     }
 
     public void verifiesDaysInformationForBackDate() {
-        String reading=ScenarioContext.getData("User",ScenarioContextKeys.READING);
+        String reading = ScenarioContext.getData("User", ScenarioContextKeys.READING);
         bpSection.verifiesDaysInformationForBackDate(reading);
     }
 
@@ -135,8 +139,8 @@ public class PatientSummaryDetailPage extends BasePage {
         medicineSection.tapsOnAddAnotherMedicineButton();
     }
 
-    public void addCustomizeMedicine(String drugname,String  dosage) {
-        medicineSection.addCustomizeMedicine(drugname,dosage);
+    public void addCustomizeMedicine(String drugname, String dosage) {
+        medicineSection.addCustomizeMedicine(drugname, dosage);
     }
 
     public void tapsOnSaveBpMedicineButton() {
@@ -164,7 +168,7 @@ public class PatientSummaryDetailPage extends BasePage {
     }
 
     public void modifyCustomizeMedicine(String name, String dosage) {
-        medicineSection.modifyCustomizeMedicine(name,dosage);
+        medicineSection.modifyCustomizeMedicine(name, dosage);
     }
 
     public void tapsOnRemoveCustumPrescriptionLink() {
@@ -188,7 +192,7 @@ public class PatientSummaryDetailPage extends BasePage {
     }
 
     public void createProtocolDrug() {
-      new CreateDrug().createProtocolDrugFromAPI();
+        new CreateDrug().createProtocolDrugFromAPI();
     }
 
     public void verifiesMedicineInfo() {
@@ -211,17 +215,19 @@ public class PatientSummaryDetailPage extends BasePage {
         scheduleAppointmentNotNowButton.click();
     }
 
-    public String getFullName(){ return patientSummaryFullname.getText();}
+    public String getFullName() {
+        return patientSummaryFullname.getText();
+    }
 
-    public void clickOnPatientSummaryEditLink(){
+    public void clickOnPatientSummaryEditLink() {
         patientSummaryEditLink.click();
     }
 
     public void updatePatientInfo() {
-        String phone=RandomValue.getRandomPhoneNumber();
-        String age= CreateFaker.getRandomAge();
-        String colony=new CreateFaker().faker.address().streetName();
-        patientPrimaryInformationEditPage.updatePatientInfo( phone, age,colony);
+        String phone = RandomValue.getRandomPhoneNumber();
+        String age = CreateFaker.getRandomAge();
+        String colony = new CreateFaker().faker.address().streetName();
+        patientPrimaryInformationEditPage.updatePatientInfo(phone, age, colony);
     }
 
     public void pressKeyboardDoneButton() {
@@ -229,7 +235,8 @@ public class PatientSummaryDetailPage extends BasePage {
     }
 
     public void verifyPhoneNumber(String phoneNumber) {
-        patientPrimaryInfoSection.verifyPhoneNumber(phoneNumber);}
+        patientPrimaryInfoSection.verifyPhoneNumber(phoneNumber);
+    }
 
     public void verifiesPhoneNumberPrefill() {
         patientPrimaryInfoSection.verifiesPhoneNumberPrefill();

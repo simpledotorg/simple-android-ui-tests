@@ -3,6 +3,8 @@ package qaApiServices.bloodPressure;
 import com.google.gson.Gson;
 import constants.QaApiUrl;
 import io.restassured.response.Response;
+import qaApiServices.bloodPressure.request.BpRequestBody;
+import qaApiServices.bloodPressure.response.BpResponse;
 
 import static io.restassured.RestAssured.given;
 

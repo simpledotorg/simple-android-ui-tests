@@ -1,12 +1,10 @@
 package steps;
 
-import cucumber.api.PendingException;
 import qaApiServices.facility.FacilityClient;
-import qaApiServices.facility.FacilityResponse;
+import qaApiServices.facility.response.FacilityResponse;
 import qaApiServices.protocol.ProtocolClient;
-import qaApiServices.protocol.ProtocolResponse;
+import qaApiServices.protocol.response.ProtocolResponse;
 import com.embibe.optimus.utils.ScenarioContext;
-import cucumber.api.DataTable;
 import cucumber.api.java.en.And;
 import cucumber.api.java.en.Then;
 import pages.patientPrimaryInformation.PatientSummaryDetailPage;
@@ -16,7 +14,6 @@ import utils.RandomValue;
 import utils.ScenarioContextKeys;
 
 import java.util.HashSet;
-import java.util.Map;
 
 public class PatientSummaryDetailSteps extends BaseSteps {
     @And("^(\\w+) on Patient summary page enters new patient info$")

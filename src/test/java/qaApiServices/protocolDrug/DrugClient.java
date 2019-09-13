@@ -2,12 +2,14 @@ package qaApiServices.protocolDrug;
 
 import constants.QaApiUrl;
 import io.restassured.response.Response;
+import qaApiServices.protocolDrug.request.ProtocolDrugRequestBody;
+import qaApiServices.protocolDrug.response.ProtocolDrugResponse;
 
 import static io.restassured.RestAssured.given;
 
 public class DrugClient {
 
-    public ProtocolDrugResponse PostResquest(ProtocolDrugRequestBody requestBody,String userId,String facilityId,String token) {
+    public ProtocolDrugResponse PostResquest(ProtocolDrugRequestBody requestBody, String userId, String facilityId, String token) {
         Response response = given()
                 .contentType("application/json; charset=utf-8")
                 .header("Content-Type", "application/json")

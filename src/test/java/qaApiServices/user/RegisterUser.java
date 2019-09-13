@@ -1,6 +1,9 @@
 package qaApiServices.user;
 
 import com.embibe.optimus.utils.ScenarioContext;
+import qaApiServices.user.builder.User;
+import qaApiServices.user.request.UserPostRequest;
+import qaApiServices.user.response.UserResponse;
 import utils.ScenarioContextKeys;
 
 public class RegisterUser {

@@ -1,6 +1,12 @@
 package qaApiServices.patients;
 
 import org.testng.annotations.Test;
+import qaApiServices.patients.builder.Address;
+import qaApiServices.patients.builder.Patients;
+import qaApiServices.patients.builder.Phone_numbers;
+import qaApiServices.patients.response.PatientGetRequestResponse;
+import qaApiServices.patients.request.PatientPostRequestBody;
+import qaApiServices.patients.response.PatientPostRequestResponse;
 
 import java.util.ArrayList;
 import java.util.List;

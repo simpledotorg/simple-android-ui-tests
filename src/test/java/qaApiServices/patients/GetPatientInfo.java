@@ -1,6 +1,7 @@
 package qaApiServices.patients;
 
 import com.embibe.optimus.utils.ScenarioContext;
+import qaApiServices.patients.response.PatientGetRequestResponse;
 import utils.ScenarioContextKeys;
 
 import java.util.List;

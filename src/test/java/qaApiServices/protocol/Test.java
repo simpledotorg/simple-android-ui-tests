@@ -1,5 +1,7 @@
 package qaApiServices.protocol;
 
+import qaApiServices.protocol.response.ProtocolResponse;
+
 import java.util.HashSet;
 
 public class Test {

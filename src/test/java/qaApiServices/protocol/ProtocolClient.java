@@ -3,6 +3,7 @@ package qaApiServices.protocol;
 import constants.QaApiUrl;
 import io.restassured.http.ContentType;
 import io.restassured.response.Response;
+import qaApiServices.protocol.response.ProtocolResponse;
 
 import static io.restassured.RestAssured.given;
 

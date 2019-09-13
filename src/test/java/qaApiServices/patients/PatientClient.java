@@ -5,6 +5,9 @@ import constants.QaApiUrl;
 import io.restassured.response.Response;
 import io.restassured.specification.RequestSpecification;
 import org.testng.Assert;
+import qaApiServices.patients.response.PatientGetRequestResponse;
+import qaApiServices.patients.request.PatientPostRequestBody;
+import qaApiServices.patients.response.PatientPostRequestResponse;
 
 import static io.restassured.RestAssured.given;
 

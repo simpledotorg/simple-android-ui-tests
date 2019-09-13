@@ -1,7 +1,8 @@
 package qaApiServices.bloodPressure;
 
 import com.embibe.optimus.utils.ScenarioContext;
-import com.github.javafaker.Faker;
+import qaApiServices.bloodPressure.builder.Blood_pressures;
+import qaApiServices.bloodPressure.request.BpRequestBody;
 import utils.Date;
 import utils.ScenarioContextKeys;
 
