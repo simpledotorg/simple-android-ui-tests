@@ -16,7 +16,7 @@ Feature: Add new Bp
     And User on Patient summary page taps on appointment done button
     And User on Patient tab verifies patient info should show up on top of recent patient section
 
-  @bp   @regression
+  @bp1   @regression
   Scenario: Add new BP and phone number to already registered patient without phone number and BP
     Given User registers new user from api
     And  User registers new patient without phonenumber and bp from api
@@ -27,7 +27,6 @@ Feature: Add new Bp
     And User on Patient summary page taps on Add new Bp button
     And User on Patient summary page enters new Bp Info
     And User on Patient summary page selects done button
-    And User on Patient summary page taps on save Button
     And User on Patient summary page verifies update phone number pop up
     And User on Patient summary page enters phone number
     And User on Patient summary page verifies days information
@@ -35,7 +34,7 @@ Feature: Add new Bp
     And User on Patient summary page taps on appointment done button
     And User on Patient tab verifies patient info should show up on top of recent patient section
 
-  @bp  @regression
+  @bp1  @regression
   Scenario: Add new BP to already registered patient without phone number
     Given User registers new user from api
     And User registers new patient without phonenumber from api
@@ -46,7 +45,6 @@ Feature: Add new Bp
     And User on Patient summary page taps on Add new Bp button
     And User on Patient summary page enters new Bp Info
     And User on Patient summary page selects done button
-    And User on Patient summary page taps on save Button
     And User on Patient summary page verifies update phone number pop up
     And User on Patient summary page taps on skip button
     And User on Patient summary page verifies days information

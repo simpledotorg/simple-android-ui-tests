@@ -83,7 +83,7 @@ public class BpSection extends BasePage {
     private By reading = By.id("patientsummary_item_bp_readings");
 
     @FindBy(id = "addphone_phone")
-    private WebElement phoneNumberTextFeild;
+    private MobileElement phoneNumberTextFeild;
 
     @FindBy(id = "updatephone_phone")
     private WebElement updatePhoneNumberTextFeild;
@@ -126,7 +126,7 @@ public class BpSection extends BasePage {
     }
 
     public void addPhoneNumber() {
-        phoneNumberTextFeild.sendKeys(RandomValue.getRandomPhoneNumber() + "\n");
+        phoneNumberTextFeild.setValue(RandomValue.getRandomPhoneNumber());
         savePhoneNumberButton.click();
     }
 
