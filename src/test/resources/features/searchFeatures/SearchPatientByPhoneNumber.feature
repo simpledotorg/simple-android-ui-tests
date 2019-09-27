@@ -43,6 +43,7 @@ Feature: Search for Patient information by phone number
     And User on patient summary page verifies phoneNumber prefill
     And User on Patient summary page enters new patient primary information
     And User on Diagnosis page taps on next Button
+    And User on Patient summary page taps on Add new Bp button
     And User on Patient summary page enters new Bp Info
     And User on Patient summary page selects done button
     And User on Patient summary page taps on save Button

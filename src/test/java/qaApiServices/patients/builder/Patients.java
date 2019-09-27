@@ -33,7 +33,7 @@ public class Patients {
 
     public Patients(){}
 
-    public Patients(String id, String gender, String full_name, String status, String date_of_birth, int age, String age_updated_at, String deleted_at, String created_at, String updated_at, Address address, List<Phone_numbers> phone_numbers) {
+    public Patients(String id, String gender, String full_name, String status, String date_of_birth, int age, String age_updated_at, String deleted_at, String created_at, String updated_at, Address address, List<Phone_numbers> phone_numbers,List<BusinessIdentifiers> business_identifiers) {
         this.id = id;
         this.gender = gender;
         this.full_name = full_name;
@@ -46,6 +46,8 @@ public class Patients {
         this.updated_at = updated_at;
         this.address = address;
         this.phone_numbers = phone_numbers;
+        this.business_identifiers= business_identifiers;
+
     }
 
 
@@ -62,6 +64,8 @@ public class Patients {
         private String updated_at = Date.getCurrentDateIn_RFC339_Format();
         private Address address;
         private List<Phone_numbers> phone_numbers;
+        private List<BusinessIdentifiers> business_identifiers;
+
 
 
 
@@ -103,11 +107,16 @@ public class Patients {
             return this;
         }
 
+        public Builder withBusinessIdentifier(List<BusinessIdentifiers> value) {
+            this.business_identifiers =value;
+            return this;
+        }
+
         public Patients build(){
 
             ScenarioContext.putData("User",ScenarioContextKeys.PATIENT_ID,id);
             ScenarioContext.putData("User",ScenarioContextKeys.PATIENT_NAME,full_name);
-            return new Patients(id,gender,full_name,status,date_of_birth,age,age_updated_at,deleted_at,created_at,updated_at,address,phone_numbers);
+            return new Patients(id,gender,full_name,status,date_of_birth,age,age_updated_at,deleted_at,created_at,updated_at,address,phone_numbers,business_identifiers);
         }
 
     }

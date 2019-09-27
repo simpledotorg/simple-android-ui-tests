@@ -11,6 +11,7 @@ Feature: Create Patient
     And User on search page taps on registered patient button
     And User on Patient summary page enters new patient info
     And User on Diagnosis page taps on next Button
+    And User on Patient summary page taps on Add new Bp button
     And User on Patient summary page enters new Bp Info
     And User on Patient summary page selects done button
     And User on Patient summary page taps on save Button
@@ -24,6 +25,7 @@ Feature: Create Patient
     And User on search page taps on registered patient button
     And User on Patient summary page enters new patient info Without phone number
     And User on Diagnosis page taps on next Button
+    And User on Patient summary page taps on Add new Bp button
     And User on Patient summary page enters new Bp Info
     And User on Patient summary page selects done button
     And User on Patient summary page taps on save Button
@@ -37,6 +39,7 @@ Feature: Create Patient
     And User on search page taps on registered patient button
     And User on Patient summary page enters new patient info
     And User on Diagnosis page taps on next Button
+    And User on Patient summary page taps on Add new Bp button
     And User on Patient summary page navigates back
     And User on Patient summary page taps on save Button
     And User on Patient tab taps on search text box
@@ -48,6 +51,7 @@ Feature: Create Patient
     And User on search page taps on registered patient button
     And User on Patient summary page enters new patient info Without phone number
     And User on Diagnosis page taps on next Button
+    And User on Patient summary page taps on Add new Bp button
     And User on Patient summary page navigates back
     And User on Patient summary page taps on save Button
     And User on Patient tab taps on search text box
