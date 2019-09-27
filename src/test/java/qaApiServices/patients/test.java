@@ -60,4 +60,6 @@ public class test {
         PatientGetRequestResponse patientGetRequestResponse = new PatientClient().get(facilityId, userId, token);
         patientGetRequestResponse.getAllPatientsName();
     }
+
+
 }
