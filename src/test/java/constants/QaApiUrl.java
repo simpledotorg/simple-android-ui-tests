@@ -10,4 +10,5 @@ public class QaApiUrl {
     public static final String patient =BaseUrl+"patients/sync";
     public static final String getProtocol= BaseUrl+"protocols/sync";
     public static final String getPrescriptionDrug=BaseUrl+"prescription_drugs/sync";
+    public static final String delete="https://api-qa.simple.org/qa/purge";
 }
