@@ -16,7 +16,7 @@
           "platformName": "Android"
         },
         "androidOnlyCapabilities": {
-          "appActivity": "org.simple.clinic.activity.TheActivity",
+          "appActivity": "org.simple.clinic.setup.SetupActivity",
           "appPackage": "org.simple.clinic.qa.debug",
           "avdLaunchTimeout": 300000,
           "unicodeKeyboard":true,
