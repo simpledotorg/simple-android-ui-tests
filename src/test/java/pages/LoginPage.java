@@ -9,19 +9,24 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.testng.Assert;
+import utils.CreateFaker;
 import utils.ScenarioContextKeys;
 
 public class LoginPage extends BasePage {
     private AppiumDriver driver;
+    private CountrySelectionPage countrySelectionPage;
 
 
     @FindBy(id = "phoneNumberEditText")
     private MobileElement registrationPhoneNumber;
 
+    @FindBy(id = "isdCodeEditText")
+    private WebElement isdCode;
+
     @FindBy(id = "enterCodeButton")
     private WebElement enterCodeLink;
 
-    @FindBy(id = "enterotp_otp")
+    @FindBy(id = "otpEntryEditText")
     private MobileElement Otp;
 
     @FindBy(id = "android:id/button1")
@@ -33,16 +38,16 @@ public class LoginPage extends BasePage {
     @FindBy(id = "dismissApprovedStatusButton")
     private WebElement GotItLink;
 
-    @FindBy(id = "registrationconfirmpin_pin")
+    @FindBy(id = "confirmPinEditText")
     private WebElement confirmPin;
 
-    @FindBy(id = "registrationname_name")
+    @FindBy(id = "fullNameEditText")
     private MobileElement registrationNameTextBox;
 
-    @FindBy(id = "onboarding_get_started")
+    @FindBy(id = "getStartedButton")
     private WebElement getStartedButton;
 
-    @FindBy(id = "registrationpin_pin")
+    @FindBy(id = "pinEditText")
     private MobileElement registrationPin;
 
     @FindBy(id = "registrationconfirmpin_reset_pin")
@@ -51,16 +56,16 @@ public class LoginPage extends BasePage {
     @FindBy(id = "registrationpin_card_content")
     private WebElement registrationPinSection;
 
-    @FindBy(id = "registrationlocation_skip")
+    @FindBy(id = "skipButton")
     private WebElement skipLocationAccess;
 
-    @FindBy(xpath = "//android.widget.LinearLayout[contains(@resource-id,'registrationconfirmpin_error')]/android.widget.TextView")
+    @FindBy(xpath = "//android.widget.LinearLayout[contains(@resource-id,'errorStateViewGroup')]/android.widget.TextView")
     private WebElement confirmPinErrorMsg;
 
     @FindBy(id = "validationErrorTextView")
     private WebElement registrationPhoneNumberErrorMsg;
 
-    @FindBy(id = "registrationfacilities_search")
+    @FindBy(id = "searchEditText")
     private MobileElement searchBar;
 
     @FindBy(xpath = "//androidx.recyclerview.widget.RecyclerView/android.widget.FrameLayout")
@@ -70,11 +75,13 @@ public class LoginPage extends BasePage {
         super(driver);
         PageFactory.initElements(new AppiumFieldDecorator(driver), this);
         this.driver = driver;
-
+        countrySelectionPage = new CountrySelectionPage(driver);
     }
 
     public void enterRegistrationPhoneNumber(String phoneNumber) {
         Assert.assertTrue(isElementPresent(By.id("phoneNumberEditText")));
+        String country= ScenarioContext.getData("User",ScenarioContextKeys.COUNTRY);
+        verifyIsdCodeForSelectedCountry(country);
         registrationPhoneNumber.setValue(phoneNumber);
         pressEnter();
     }
@@ -125,8 +132,9 @@ public class LoginPage extends BasePage {
     }
 
     public void enterRegistrationName(String name) {
+        waitForElementToBeVisible(registrationNameTextBox);
         registrationNameTextBox.setValue(name);
-        ScenarioContext.putData("User",ScenarioContextKeys.USER_NAME,name);
+        ScenarioContext.putData("User", ScenarioContextKeys.USER_NAME, name);
         pressEnter();
     }
 
@@ -141,6 +149,8 @@ public class LoginPage extends BasePage {
 
     public void userLogsIn(String phoneNumber, String pin) {
         clicksOnGetStartedButton();
+        String country= CreateFaker.getCountry();
+        countrySelectionPage.selectCountry(country);
         enterRegistrationPhoneNumber(phoneNumber);
         enterRegisteredPin(pin);
         clickOnEnterCodeLink();
@@ -148,8 +158,10 @@ public class LoginPage extends BasePage {
         clicksOnGotItButton();
     }
 
-    public void newUserRegisteration(String phoneNumber,String name, String pin) {
+    public void newUserRegisteration(String phoneNumber, String name, String pin) {
         clicksOnGetStartedButton();
+        String country= CreateFaker.getCountry();
+        countrySelectionPage.selectCountry(country);
         enterRegistrationPhoneNumber(phoneNumber);
         enterRegistrationName(name);
         enterNewRegistrationPin(pin);
@@ -182,9 +194,9 @@ public class LoginPage extends BasePage {
     }
 
     public void enterInvalidPhoneNumber(String phone) {
-        if(phone!=null && !phone.isEmpty()){
-            registrationPhoneNumber.sendKeys(phone + "\n");}
-        else{
+        if (phone != null && !phone.isEmpty()) {
+            registrationPhoneNumber.sendKeys(phone + "\n");
+        } else {
             pressEnter();
         }
         waitForElementToBeVisible(registrationPhoneNumberErrorMsg);
@@ -195,5 +207,15 @@ public class LoginPage extends BasePage {
         skipLocationAccess();
         searchBar.sendKeys(facility);
         Assert.fail("defect - no proper error message is displayed for invalid facility name");
+    }
+
+    private void verifyIsdCodeForSelectedCountry(String country) {
+        if (country.equals("India")) {
+            Assert.assertEquals(isdCode.getText(), "+91", "+91 should be dispalyed for India");
+        } else if (country.equals("Bangladesh")) {
+            Assert.assertEquals(isdCode.getText(), "+880", "+880 should be dispalyed for Bangladesh");
+        } else {
+            throw new RuntimeException("other country is selected");
+        }
     }
 }
