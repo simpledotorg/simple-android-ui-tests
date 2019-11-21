@@ -1,5 +1,6 @@
 package steps;
 
+import cucumber.api.PendingException;
 import qaApiServices.facility.FacilityClient;
 import qaApiServices.facility.response.FacilityResponse;
 import qaApiServices.protocol.ProtocolClient;
@@ -309,6 +310,11 @@ public class PatientSummaryDetailSteps extends BaseSteps {
     @And("^(\\w+) on Patient summary page verifies error message for invalid date entry$")
     public void userOnPatientSummaryPageVerifiesErrorMessageForInvalidDateEntry(String User)  {
         new PatientSummaryDetailPage(getDriverInstanceFor(User)).verifyValidaitonErrorMessagesForInvalidDate();
+    }
+
+    @And("^(\\w+) on Patient summary page verifies bp passport$")
+    public void userOnPatientSummaryPageVerifiesListOfBpPassport(String User) throws Exception {
+        new PatientSummaryDetailPage(getDriverInstanceFor(User)).isBpPassportPresent();
     }
 }
 

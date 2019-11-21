@@ -1,6 +1,6 @@
 Feature: Register Nurse/User
 
-  @register1 @smoke
+  @register @smoke
   Scenario Outline: Register New Nurse/User
     And New User registers on app
     And User search for facility as <facilityName>
@@ -27,3 +27,15 @@ Feature: Register Nurse/User
     Examples:
       | facilityName |
       | CHC Buccho   |
+
+
+  @setting  @register @smoke
+  Scenario Outline: User should be able to select language while new registration
+    And New User registers on app
+    And User search for facility as <facilityName>
+    And User taps on setting Icon
+    And User taps on change button
+    Then User taps on Done button and verify language selection <lang>
+    Examples:
+      | facilityName |  lang     |
+      | CHC Buccho   |   English |

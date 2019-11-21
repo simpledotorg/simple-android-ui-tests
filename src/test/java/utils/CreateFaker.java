@@ -28,4 +28,13 @@ public class CreateFaker {
         int i = new Random().nextInt(3);
         return arr[i];
     }
+
+
+    public static String getCountry(){
+        String[] arr= {"India","Bangladesh"};
+        int i = new Random().nextInt(2);
+        ScenarioContext.putData("User",ScenarioContextKeys.COUNTRY,arr[i]);
+        return arr[i];
+    }
+
 }

@@ -90,4 +90,9 @@ public class PatientTabSteps extends BaseSteps {
     public void userOnPatientTabVerifyPatientDataShouldNotGetSyncedInServer(String User) {
         new PatientTabPage(getDriverInstanceFor(User)).verifyPatientInfoshouldNotSyncedInServer();
     }
+
+    @And("^(\\w+) on Patient tab taps on Scan Bp passport$")
+    public void userOnPatientTabTapsOnScanBpPassport(String User) {
+        new PatientTabPage(getDriverInstanceFor(User)).tapsOnScanBpPassport();
+    }
 }

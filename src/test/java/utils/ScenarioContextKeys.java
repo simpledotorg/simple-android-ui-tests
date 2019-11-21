@@ -17,4 +17,13 @@ public interface ScenarioContextKeys {
     String DRUG_INFO="drug_info";
 
     String READING="reading";
+
+    String BPPASSPORTUUID="bppassportuuid";
+    String BPSHORTCODE="bpshortcode";
+
+    String BPCREATEDAT= "bpcreatedat";
+    String BPUPDATEDAT="bpupdatedat";
+
+    String COUNTRY ="country";
+    String BPRECORDEDAT= "bprecordedat";
 }

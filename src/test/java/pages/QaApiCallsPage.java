@@ -1,15 +1,11 @@
 package pages;
 
 import com.embibe.optimus.utils.ScenarioContext;
-import io.appium.java_client.MobileElement;
 import io.appium.java_client.pagefactory.AppiumFieldDecorator;
 import qaApiServices.appointments.CreateAppointment;
 import qaApiServices.bloodPressure.CreateBp;
 import io.appium.java_client.AppiumDriver;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
-import org.testng.Assert;
 import qaApiServices.patients.CreatePatients;
 import qaApiServices.user.RegisterUser;
 import utils.ScenarioContextKeys;
@@ -68,5 +64,21 @@ public class QaApiCallsPage extends BasePage {
 
     public void registerNewPatientWithoutPhoneNumberAndBP() {
         new CreatePatients().createPatientWithoutPhoneNumber();
+    }
+
+    public void registerNewPatientWithBpPassportFromApi() {
+        new CreatePatients().createPatientWithBpPassport();
+        new CreateBp().registerNewBp();
+        new CreateAppointment().createAppointment();
+
+
+        String bpPassportUuid= ScenarioContext.getData("User",ScenarioContextKeys.BPPASSPORTUUID);
+        String allDigitsInString = getAllDigitsInString(bpPassportUuid);
+
+        // this is to fetch 7 digit short code from bp passport uuid
+        String varStr = allDigitsInString.substring(0, 7);
+        // setting a global var bpshortcode
+        ScenarioContext.putData("User",ScenarioContextKeys.BPSHORTCODE,varStr);
+
     }
 }

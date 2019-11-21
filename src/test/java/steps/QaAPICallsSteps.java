@@ -52,4 +52,9 @@ public class QaAPICallsSteps extends BaseSteps {
     public void userGetAllPatientInfo(String User) {
         int allScheduledAppointment = new CreateAppointment().getAllScheduledAppointment();
     }
+
+    @And("^(\\w+) registers new patient with bp passport from api$")
+    public void userRegistersNewPatientWithBpPassportFromApi(String User) {
+        new QaApiCallsPage(getDriverInstanceFor(User)).registerNewPatientWithBpPassportFromApi();
+    }
 }

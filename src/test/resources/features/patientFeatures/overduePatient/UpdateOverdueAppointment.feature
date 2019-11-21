@@ -7,7 +7,7 @@ Feature: Update Overdue appointment
 
   @updateAppointment @smoke
   Scenario: update appointment with agreed to visit
-    And User on Homepage taps on Overdue Tab
+    And User on Homepage taps on OVERDUE Tab
     And User on Overdue tab taps on patient detail
     And User on Overdue tab taps on agreed to visit reason
     Then User on Overdue tab verifies patient info removed from overdue list
@@ -16,7 +16,7 @@ Feature: Update Overdue appointment
 
   @updateAppointment @smoke
   Scenario: update appointment with remind to call later
-    And User on Homepage taps on Overdue Tab
+    And User on Homepage taps on OVERDUE Tab
     And User on Overdue tab taps on patient detail
     And User on Overdue tab taps on remind to call later
     And User on Overdue tab taps on done button
@@ -27,7 +27,7 @@ Feature: Update Overdue appointment
 
   @updateAppointment  @regression
   Scenario Outline: update appointment with other reason
-    And User on Homepage taps on Overdue Tab
+    And User on Homepage taps on OVERDUE Tab
     And User on Overdue tab taps on patient detail
     And User on Overdue tab taps on remove from overdue list
     And User on Overdue tab selects <reasons>
@@ -47,7 +47,7 @@ Feature: Update Overdue appointment
 
   @updateAppointment  @regression
   Scenario Outline: verify Search for a patient whose appointment is updated as died
-    And User on Homepage taps on Overdue Tab
+    And User on Homepage taps on OVERDUE Tab
     And User on Overdue tab taps on patient detail
     And User on Overdue tab taps on remove from overdue list
     And User on Overdue tab selects <reasons>
