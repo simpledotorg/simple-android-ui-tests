@@ -1,8 +1,10 @@
 package pages;
 
+import com.embibe.optimus.utils.ScenarioContext;
 import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.MobileElement;
 import io.appium.java_client.pagefactory.AppiumFieldDecorator;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.FindBys;
@@ -10,6 +12,7 @@ import org.openqa.selenium.support.PageFactory;
 import org.testng.Assert;
 import qaApiServices.patients.GetPatientInfo;
 import qaApiServices.user.RegisterUser;
+import utils.ScenarioContextKeys;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -72,7 +75,7 @@ public class SearchPage extends BasePage {
         Assert.assertTrue(registerAsNewPatientButton.isDisplayed());
     }
 
-  // This method should be used to perform search or for new patient
+    // This method should be used to perform search or for new patient
     public void searchForPatientName(String patientName) {
         searchPatient(patientName);
         Assert.assertEquals(emptySearchResult.getText(), "No patients match");
@@ -122,29 +125,29 @@ public class SearchPage extends BasePage {
         List<String> allPatientsName = new GetPatientInfo().getAllPatientsInfo();
         List<String> expectedPatientNameSortedList = allPatientsName.stream().sorted().collect(Collectors.toList());
 
-        List<String> actualpatientName = new ArrayList<>();
+        List<String> actualPatientName = new ArrayList<>();
         int count = 0;
 
         hideKeyboard();
 
         while (count <= allPatientsName.size()) {
             for (WebElement p : patientList) {
-                actualpatientName.add(p.getText().split(",")[0].toUpperCase());
+                actualPatientName.add(p.getText().split(",")[0].toUpperCase());
                 count++;
             }
             scrollDown();
         }
-        expectedPatientNameSortedList.equals(actualpatientName);
+        expectedPatientNameSortedList.equals(actualPatientName);
     }
 
     public void searchForRegisteredPatientByPhoneNumber(String phoneNumber) {
         searchPatient(phoneNumber);
-        Assert.assertTrue(patientList.size()==1," only one result should be displayed for unique phonennumber");
+        Assert.assertTrue(patientList.size() == 1, " only one result should be displayed for unique phonennumber");
     }
 
     public void searchForRegisteredPatientByDuplicatePhoneNumber(String phoneNumber) {
         searchPatient(phoneNumber);
-        Assert.assertTrue(patientList.size()==2,"only 2 patient should be forduplicate phonenNumber");
+        Assert.assertTrue(patientList.size() == 2, "only 2 patient should be forduplicate phonenNumber");
     }
 
     public void searchForPatientNumber(String phoneNumber) {
@@ -159,5 +162,42 @@ public class SearchPage extends BasePage {
         Assert.assertEquals(emptySearchResult.getText(), "No patients match");
         Assert.assertEquals(registerPatientLabel.getText(), "Patient is not registered");
         Assert.assertTrue(registerAsNewPatientButton.isDisplayed());
+    }
+
+    public void verifiesResultForRegisteredPatientWithBpPassport() {
+        String status = "false";
+        for (WebElement ele : header) {
+            if (ele.getText().toUpperCase().contains("HAS VISITED")) {
+                status = "true";
+                break;
+            }
+        }
+        Assert.assertEquals(status, "true", "has visited section isn't displayed");
+        Assert.assertTrue(registerAsNewPatientButton.isDisplayed());
+        verifyPatientInfo();
+    }
+
+    @FindBy(className = "android.widget.LinearLayout")
+    private WebElement resultBlock;
+
+    private By genderLabel = By.id("genderLabel");
+    private By nameLabel = By.id("patientNameAgeGenderLabel");
+    private By phoneNumberLabel = By.id("phoneNumberLabel");
+    private By text = By.id("android.widget.TextView");
+    private By lastBpLabel = By.id("lastBpLabel");
+    private By addressLabel = By.id("addressLabel");
+
+
+    private void verifyPatientInfo() {
+        isElementPresent(genderLabel);
+        String varName = ScenarioContext.getData("User", ScenarioContextKeys.PATIENT_NAME);
+        resultBlock.findElement(nameLabel).getText().split(",")[0].toUpperCase().equals(varName);
+        isElementPresent(addressLabel);
+        String varNumber = ScenarioContext.getData("User", ScenarioContextKeys.PATIENT_PHONE_NUMBER);
+
+        resultBlock.findElement(phoneNumberLabel).getText().equals(varNumber);
+        isElementPresent(text);
+
+//        resultBlock.findElement(lastBpLabel).getText().equals();
     }
 }

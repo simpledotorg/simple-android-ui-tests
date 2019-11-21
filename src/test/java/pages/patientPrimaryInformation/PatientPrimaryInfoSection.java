@@ -154,9 +154,9 @@ public class PatientPrimaryInfoSection extends BasePage {
 
     public void verifyValidationErrorMessages() {
         hideKeyboard();
-        if (fullNameEditText.getText().isEmpty()) {
-            Assert.assertEquals(patientsNameValidationErrorMsg.getText().replaceAll("[^a-zA-Z\\s]", ""), "Enter patients full name");
-        }
+//        if (fullNameEditText.getText().isEmpty()) {
+////            Assert.assertEquals(patientsNameValidationErrorMsg.getText().replaceAll("[^a-zA-Z\\s]", ""), "Enter patients full name");
+////        }
         if (PhoneNumberTextBox.getText().length() < 6) {
             Assert.assertEquals(phoneNumberValidationErrorMsg.getText(), "Phone number cannot be less than 6 digits");
         }
