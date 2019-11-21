@@ -16,9 +16,9 @@ public class PatientPrimaryInformationEditPage extends BasePage {
         this.driver = driver;
     }
 
-    private By edit_phone_number_TextBox = By.id("patientedit_phone_number");
-    private By edit_age_TextBox = By.id("patientedit_age");
-    private By edit_colony_TextBox = By.id("patientedit_colony_or_village");
+    private By edit_phone_number_TextBox = By.id("phoneNumberEditText");
+    private By edit_age_TextBox = By.id("ageEditText");
+    private By edit_colony_TextBox = By.id("colonyOrVillageEditText");
 
     @FindBy(className = "android.widget.Button")
     private WebElement saveButton;

@@ -3,7 +3,9 @@ package pages.patientPrimaryInformation;
 import com.embibe.optimus.utils.ScenarioContext;
 import io.appium.java_client.pagefactory.AndroidFindBy;
 import io.appium.java_client.pagefactory.AndroidFindBys;
+import org.openqa.selenium.By;
 import org.openqa.selenium.support.FindBys;
+import org.testng.Assert;
 import pages.BasePage;
 import qaApiServices.protocolDrug.CreateDrug;
 import io.appium.java_client.AppiumDriver;
@@ -24,7 +26,7 @@ public class PatientSummaryDetailPage extends BasePage {
     BpSection bpSection;
     MedicineSection medicineSection;
 
-    @FindBy(id="patientsummary_done")
+    @FindBy(id = "patientsummary_done")
     private WebElement saveButton;
 
     @FindBy(id = "doneButton")
@@ -38,6 +40,9 @@ public class PatientSummaryDetailPage extends BasePage {
 
     @FindBy(id = "patientsummary_edit")
     private WebElement patientSummaryEditLink;
+
+    @FindBy(id = "patientsummary_bp_passport")
+    private WebElement bpPassport;
 
     public PatientSummaryDetailPage(AppiumDriver driver) {
         super(driver);
@@ -252,5 +257,18 @@ public class PatientSummaryDetailPage extends BasePage {
 
     public void verifyValidaitonErrorMessagesForInvalidDate() {
         patientPrimaryInfoSection.verifyValidaitonErrorMessagesForInvalidDate();
+    }
+
+    public void isBpPassportPresent() throws Exception {
+        isElementPresent(By.id("patientsummary_bp_passport"));
+
+        // verify bpshort code length and store it in global variable
+        if (bpPassport.getText().isEmpty()) {
+            throw new Exception("bp shortcode value is not present");
+        }
+
+        String expectedString = ScenarioContext.getData("User", ScenarioContextKeys.BPSHORTCODE);
+        // need to check for space
+//        Assert.assertTrue(bpPassport.getText().contains(expectedString), "bp shortcode should match expected value" + expectedString);
     }
 }

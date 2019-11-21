@@ -38,7 +38,7 @@ public class OverdueTabPage extends BasePage {
 
     @FindBy(id = "actionsContainer")
     private WebElement overdueActionContainer;
-    private By result = By.xpath("//android.widget.TextView[contains(@text,'Result of call')]");
+    private By result = By.xpath("//android.widget.TextView[contains(@text,'RESULT OF CALL')]");
     private By reasonAgreedToVisit = By.id("agreedToVisitTextView");
     private By reasonReminderLater = By.id("remindLaterTextView");
     private By reasonRemoveFromList = By.id("removeFromListTextView");

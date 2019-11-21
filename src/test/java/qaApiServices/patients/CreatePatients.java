@@ -2,9 +2,11 @@ package qaApiServices.patients;
 
 import com.embibe.optimus.utils.ScenarioContext;
 import qaApiServices.patients.builder.Address;
+import qaApiServices.patients.builder.BusinessIdentifiers;
 import qaApiServices.patients.builder.Patients;
 import qaApiServices.patients.builder.Phone_numbers;
 import qaApiServices.patients.request.PatientPostRequestBody;
+import qaApiServices.patients.response.PatientPostRequestResponse;
 import utils.Date;
 import utils.ScenarioContextKeys;
 
@@ -97,5 +99,38 @@ public class CreatePatients {
         PatientPostRequestBody patientRequestBody = new PatientPostRequestBody(patients);
 
         new PatientClient().post(patientRequestBody, facilityId, userId, token);
+    }
+
+    public void createPatientWithBpPassport(){
+
+        String facilityId=ScenarioContext.getData("User",ScenarioContextKeys.FACILTIYID);
+        String userId=ScenarioContext.getData("User",ScenarioContextKeys.USER_ID);
+        String token= ScenarioContext.getData("User",ScenarioContextKeys.ACCESS_TOKEN);
+
+        List<Phone_numbers> ph = new ArrayList<>();
+        Phone_numbers phone_number = new Phone_numbers.Builder()
+                .withPhoneType("mobile").Build();
+        ph.add(phone_number);
+
+        Address address = new Address.Builder().Build();
+
+        List<BusinessIdentifiers> bi = new ArrayList<>();
+        BusinessIdentifiers businessIdentifiers = new BusinessIdentifiers.Builder().build();
+        bi.add(businessIdentifiers);
+
+        Patients build = new Patients.Builder().withAddress(address).withAge(44).withGender("male").withPhoneNumber(ph).withStatus("active")
+                .withBusinessIdentifier(bi)
+                .build();
+
+        List<Patients> patients = new ArrayList<>();
+        patients.add(build);
+
+        PatientPostRequestBody patientRequestBody = new PatientPostRequestBody(patients);
+        PatientPostRequestResponse response = new PatientClient().post(patientRequestBody, facilityId, userId, token);
+        System.out.println(response.toString());
+
+
+
+
     }
 }

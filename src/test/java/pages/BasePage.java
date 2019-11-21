@@ -26,7 +26,7 @@ public class BasePage {
 
     public BasePage(AppiumDriver driver) {
         this.driver = driver;
-        wait = new WebDriverWait(this.driver, 20);
+        wait = new WebDriverWait(this.driver, 30);
     }
 
     public BasePage(WebDriver driver) {
@@ -235,5 +235,15 @@ public class BasePage {
 
     public void runAppInBackgroudAndrelaunch() {
         driver.runAppInBackground(Duration.ofSeconds(10));
+    }
+
+    public String getAllDigitsInString(String str) {
+        String expStr= "";
+        for (int i = 0; i <= str.length() - 1; i++) {
+            if (Character.isDigit(str.charAt(i))) {
+                expStr = expStr +str.charAt(i);
+            }
+        }
+        return expStr;
     }
 }

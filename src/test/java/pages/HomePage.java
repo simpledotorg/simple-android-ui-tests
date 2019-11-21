@@ -4,23 +4,22 @@ import io.appium.java_client.AppiumDriver;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.FindBys;
 import org.openqa.selenium.support.PageFactory;
 import org.testng.Assert;
 
-import java.util.List;
-
 public class HomePage extends BasePage {
 
-    @FindBy(id = "home_facility_change_button")
-    private WebElement faciltiyChangeButton;
+    @FindBy(id = "facilitySelectButton")
+    private WebElement facilityChangeButton;
 
-    @FindBy(xpath = "//android.widget.TextView[contains(@text,'Overdue')]")
+    @FindBy(xpath = "//android.widget.TextView[contains(@text,'OVERDUE')]")
     private WebElement overdueTab;
 
     @FindBy(id= "backButton")
     private WebElement backbutton;
 
+    @FindBy(id="openSettings")
+    private WebElement settingIcon;
 
     private AppiumDriver driver;
 
@@ -31,8 +30,8 @@ public class HomePage extends BasePage {
     }
 
     public void verifyHomePage() {
-        waitForElementToBeVisible(faciltiyChangeButton);
-        Assert.assertTrue(faciltiyChangeButton.getText().contains("CHC Bagta"));
+        waitForElementToBeVisible(facilityChangeButton);
+        Assert.assertTrue(facilityChangeButton.getText().contains("CHC Bagta"));
     }
 
     public void selectTab(String name) {
@@ -43,4 +42,9 @@ public class HomePage extends BasePage {
     public void tapsOnBackButton() {
         backbutton.click();
     }
+
+    public void tapsOnSettingScreen() {
+        settingIcon.click();
+    }
+
 }
