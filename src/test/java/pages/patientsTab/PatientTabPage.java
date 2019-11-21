@@ -8,6 +8,7 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.testng.Assert;
 import pages.BasePage;
+import pages.ScanCardPage;
 import pages.SearchPage;
 import qaApiServices.patients.GetPatientInfo;
 import qaApiServices.user.RegisterUser;
@@ -20,8 +21,9 @@ public class PatientTabPage extends BasePage {
 
     private SearchPage searchSection;
     private RecentPatientSection recentPatientSection;
+    private ScanCardPage scanCardSection;
 
-    @FindBy(id = "patients_scan_simple_card")
+    @FindBy(id = "scanSimpleCardButton")
     private WebElement scanBPPassportButton;
 
     @FindBy(id = "patients_user_awaitingapproval_title")
@@ -42,6 +44,9 @@ public class PatientTabPage extends BasePage {
     @FindBy(id = "android:id/button1")
     private WebElement syncErrorMessageOkayButton;
 
+    @FindBy(xpath = "//android.widget.Button[contains(@text,'ALLOW')]")
+    private WebElement allow_button;
+
 
     public PatientTabPage(AppiumDriver driver) {
         super(driver);
@@ -53,7 +58,7 @@ public class PatientTabPage extends BasePage {
 
     public void verifyPatientTab() {
         hideKeyboard();
-        Assert.assertTrue(GotITButton.isDisplayed());
+        waitForElementToBeVisible(GotITButton);
         GotITButton.click();
         waitForElementToBeVisible(scanBPPassportButton);
         Assert.assertEquals(scanBPPassportButton.getText(), "Scan BP Passport");
@@ -130,5 +135,16 @@ public class PatientTabPage extends BasePage {
         List<String> allPatientsName = new GetPatientInfo().getAllPatientsInfo();
         String PatientName = ScenarioContext.getData("User", ScenarioContextKeys.PATIENT_NAME);
         Assert.assertFalse(allPatientsName.contains(PatientName), " As access is denied for user,Patient data should not get synced in server");
+    }
+
+    public void tapsOnScanBpPassport() {
+        waitForElementToBeVisible(scanBPPassportButton);
+        scanBPPassportButton.click();
+        //we are using this piece of code for high end devices as we get permission pop up
+        try {
+            allow_button.click();
+        } catch (Exception e) {
+            System.out.println("m here");
+        }
     }
 }

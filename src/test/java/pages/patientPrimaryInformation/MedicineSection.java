@@ -3,10 +3,8 @@ package pages.patientPrimaryInformation;
 import com.embibe.optimus.utils.ScenarioContext;
 import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.MobileElement;
-import io.appium.java_client.android.AndroidElement;
 import io.appium.java_client.pagefactory.AppiumFieldDecorator;
 import org.openqa.selenium.By;
-import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.FindBys;
@@ -40,19 +38,17 @@ public class MedicineSection extends BasePage {
     @FindBy(id = "customprescription_drug_dosage")
     private MobileElement dosageName;
 
-    @FindBy(id = "customprescription_save")
+    //    @FindBy(id = "prescribeddrugs_done")
+    @FindBy(xpath = "//android.widget.Button[contains(@text,'SAVE')]")
     private WebElement savePrescriptionButton;
 
-    @FindBy(xpath = "//android.widget.Button[contains(@text,'Save')]")
-    private WebElement saveMedicineButton;
+    @FindBy(id = "customprescription_save")
+    private WebElement CustumPrescriptionSaveButton;
 
     @FindBy(id = "patientsummary_prescriptions_update")
     private WebElement updateMedicine;
 
-//    @FindBy(xpath = "//android.widget.LinearLayout[contains(@resource-id,'patientsummary_prescriptions_summary_container')]")
-//    private WebElement updatedInfo;
-
-    @FindBy(id="patientsummary_prescriptions_summary_container")
+    @FindBy(id = "patientsummary_prescriptions_summary_container")
     private WebElement updatedInfo;
 
     @FindBys({
@@ -103,14 +99,14 @@ public class MedicineSection extends BasePage {
     public void addCustomizeMedicine(String name, String dosage) {
         enterDrugName(name);
         enterDosageInfo(dosage);
-        tapsOnSavePrescriptionButton();
+        tapsOnCustomizeBpSaveButton();
 
         //setting global value for drug info
         setDrugInfo(name, dosage);
     }
 
     public void tapsOnSaveBpMedicineButton() {
-        saveMedicineButton.click();
+        savePrescriptionButton.click();
     }
 
     public void verifiesUpdatedMedicineInfo() {
@@ -198,7 +194,7 @@ public class MedicineSection extends BasePage {
         String dosage = prescribedDosageName.get(0).getText();
         prescribedDosageName.get(0).click();
 
-        setDrugInfo(name,dosage);
+        setDrugInfo(name, dosage);
     }
 
     public void selectNoneAsDosage() {
@@ -222,7 +218,11 @@ public class MedicineSection extends BasePage {
 
     private void setDrugInfo(String name, String dosage) {
         ScenarioContext.putData("User", ScenarioContextKeys.DRUG_NAME, name);
-        String drugInfo = name.toUpperCase() + "  " +dosage.toUpperCase();
+        String drugInfo = name.toUpperCase() + "  " + dosage.toUpperCase();
         ScenarioContext.putData("User", ScenarioContextKeys.DRUG_INFO, drugInfo);
+    }
+
+    public void tapsOnCustomizeBpSaveButton() {
+        CustumPrescriptionSaveButton.click();
     }
 }

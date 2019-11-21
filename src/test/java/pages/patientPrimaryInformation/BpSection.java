@@ -29,13 +29,13 @@ public class BpSection extends BasePage {
     @FindBy(id = "bloodpressureentry_next_arrow")
     private WebElement nextArrow;
 
-    @FindBy(id = "bloodpressureentry_day")
+    @FindBy(id = "dayEditText")
     private WebElement day;
 
-    @FindBy(id = "bloodpressureentry_month")
+    @FindBy(id = "monthEditText")
     private WebElement month;
 
-    @FindBy(id = "bloodpressureentry_year")
+    @FindBy(id = "yearEditText")
     private WebElement year;
 
     @FindBy(id = "patientsummary_item_newbp")
@@ -71,7 +71,7 @@ public class BpSection extends BasePage {
     @FindBys({@FindBy(id = "patientsummary_item_bp_readings")})
     private List<WebElement> bpReadings;
 
-    @FindBy(id = "bloodpressureentry_bp_date")
+    @FindBy(id = "bpDateButton")
     private WebElement bpDate;
 
     @FindBy(id = "patientsummary_item_layout")

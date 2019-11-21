@@ -9,10 +9,10 @@ import utils.ScenarioContextKeys;
 
 public class BackendDashboardPage extends BasePage {
 
-    @FindBy(id = "admin_email")
+    @FindBy(id = "email_authentication_email")
     private WebElement email;
 
-    @FindBy(id="admin_password")
+    @FindBy(id="email_authentication_password")
     private WebElement password;
 
     @FindBy(css = "input.btn.btn-primary")
