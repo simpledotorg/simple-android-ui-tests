@@ -26,4 +26,8 @@ public class HomePageSteps extends BaseSteps {
         new HomePage(getDriverInstanceFor(User)).tapsOnBackButton();
     }
 
+    @And("^(\\w+) taps on setting Icon$")
+    public void userTapsOnSettingIcon(String User) {
+        new HomePage(getDriverInstanceFor(User)).tapsOnSettingScreen();
+    }
 }
