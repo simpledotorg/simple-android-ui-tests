@@ -83,5 +83,10 @@ public class SearchSteps extends BaseSteps {
     public void userOnSearchPageSearchesForNewPatientByInvalidPhonenumberAsPhoneNumber(String User,String phoneNumber) throws Throwable {
         new SearchPage(getDriverInstanceFor(User)).searchForInvalidPhoneNumber(phoneNumber);
     }
+
+    @And("^(\\w+) on Search page verifies result for registered patient with bpPassport$")
+    public void userOnSearchPageVerifiesResultForRegisteredPatientWithBpPassport(String User) {
+        new SearchPage(getDriverInstanceFor(User)).verifiesResultForRegisteredPatientWithBpPassport();
+    }
 }
 
