@@ -1,7 +1,7 @@
 Feature: Recent patient list
 
   @recentPatient @smoke
-  Scenario: User  verifies recent patient list
+  Scenario: User verifies recent patient list
     Given User registers new user from api
     And User registers new patient with bp from api
     And User LogsIn in app
@@ -15,7 +15,7 @@ Feature: Recent patient list
     And User on Patient tab verifies SEEALL button
 
   @recentPatient  @regression
-  Scenario:upon skiping appointment, verify patient name should not show up in recent patient list
+  Scenario: Upon skipping appointment, verify patient name should not show up in recent patient list
     Given User registers new user from api
     And User registers new patient with bp from api
     And User LogsIn in app

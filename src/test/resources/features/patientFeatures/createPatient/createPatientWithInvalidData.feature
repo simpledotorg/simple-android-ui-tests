@@ -1,4 +1,4 @@
-Feature: to test create Patient functionality with invalid test data
+Feature: Create Patient with invalid test data
 
   Background:
     Given User registers new user from api
@@ -6,7 +6,7 @@ Feature: to test create Patient functionality with invalid test data
     And User on Patient tab taps on search text box
 
   @createPatient @smoke
-  Scenario:User validate error message for invalid Data
+  Scenario: User validate error message for invalid Data
     And User on search page searches for new Patient name
     And User on search page taps on registered patient button
     And User on Patient summary page enters invalid data for patients primary info

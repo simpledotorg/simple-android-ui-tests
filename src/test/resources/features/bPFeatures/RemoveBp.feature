@@ -64,5 +64,5 @@ Feature: Remove bp functionality testing
     And User on Patient summary page removes all bp info
     Then User on Patient summary page verifies message
     And User on Patient summary page taps on save Button
-    And User on Patient tab verifies patient info should not show up on top of recent patient section
+#    And User on Patient tab verifies patient info should not show up on top of recent patient section
 
