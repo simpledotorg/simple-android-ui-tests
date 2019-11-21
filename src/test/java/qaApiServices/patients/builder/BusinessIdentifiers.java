@@ -4,6 +4,7 @@ import com.embibe.optimus.utils.ScenarioContext;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.Getter;
 import lombok.Setter;
+import org.testng.annotations.Test;
 import utils.CreateGenerex;
 import utils.Date;
 import utils.ScenarioContextKeys;
@@ -34,14 +35,14 @@ public class BusinessIdentifiers {
         this.metadata_version = metadata_version;
     }
 
-    public static class Builder{
+    public static class Builder {
 
         String userId = ScenarioContext.getData("User", ScenarioContextKeys.USER_ID);
         String facilityId = ScenarioContext.getData("User", ScenarioContextKeys.FACILTIYID);
 
 
         private String identifier = CreateGenerex.generex.random();
-        private String metadata = "{\"assigning_user_id\": "+userId+",\"assigning_facility_id\": "+facilityId+"}";
+        private String metadata = "{\"assigning_user_id\": \" " + userId + " \",\"assigning_facility_id\": \" " + facilityId + " \"}";
         private String updated_at = Date.getCurrentDateIn_RFC339_Format();
         private String identifier_type = "simple_bp_passport";
         private String created_at = Date.getCurrentDateIn_RFC339_Format();
@@ -49,11 +50,14 @@ public class BusinessIdentifiers {
         private String deleted_at = "";
         private String metadata_version = "org.simple.bppassport.meta.v1";
 
-        public Builder(){ }
+        public Builder() {
+        }
 
-        public BusinessIdentifiers build(){
+        public BusinessIdentifiers build() {
 
-            return new BusinessIdentifiers(identifier,metadata,updated_at,identifier_type,created_at,id,deleted_at,metadata_version);
+            // setting a global variable bpshortcode
+            ScenarioContext.putData("User", ScenarioContextKeys.BPPASSPORTUUID, identifier);
+            return new BusinessIdentifiers(identifier, metadata, updated_at, identifier_type, created_at, id, deleted_at, metadata_version);
         }
     }
 }

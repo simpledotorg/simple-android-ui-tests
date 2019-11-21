@@ -13,16 +13,17 @@ import java.util.List;
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
 public class Patients {
 
-    private String id ;
+    private String id;
     private String gender;
-    private String full_name ;
+    private String full_name;
     private String status;
     private String date_of_birth;
     private int age;
-    private String age_updated_at ;
-    private String deleted_at ;
-    private String created_at ;
+    private String age_updated_at;
+    private String deleted_at;
+    private String created_at;
     private String updated_at;
+    private String reminder_consent;
     private Address address;
     private List<Phone_numbers> phone_numbers;
     private String contacted_by_counsellor;
@@ -31,9 +32,10 @@ public class Patients {
     private List<BusinessIdentifiers> business_identifiers;
     private String call_result;
 
-    public Patients(){}
+    public Patients() {
+    }
 
-    public Patients(String id, String gender, String full_name, String status, String date_of_birth, int age, String age_updated_at, String deleted_at, String created_at, String updated_at, Address address, List<Phone_numbers> phone_numbers,List<BusinessIdentifiers> business_identifiers) {
+    public Patients(String id, String gender, String full_name, String status, String date_of_birth, int age, String age_updated_at, String deleted_at, String created_at, String updated_at, String reminder_consent, Address address, List<Phone_numbers> phone_numbers, List<BusinessIdentifiers> business_identifiers) {
         this.id = id;
         this.gender = gender;
         this.full_name = full_name;
@@ -44,10 +46,10 @@ public class Patients {
         this.deleted_at = deleted_at;
         this.created_at = created_at;
         this.updated_at = updated_at;
+        this.reminder_consent = reminder_consent;
         this.address = address;
         this.phone_numbers = phone_numbers;
-        this.business_identifiers= business_identifiers;
-
+        this.business_identifiers = business_identifiers;
     }
 
 
@@ -62,11 +64,10 @@ public class Patients {
         private String deleted_at = "";
         private String created_at = Date.getCurrentDateIn_RFC339_Format();
         private String updated_at = Date.getCurrentDateIn_RFC339_Format();
+        private String reminder_consent = "granted";
         private Address address;
         private List<Phone_numbers> phone_numbers;
         private List<BusinessIdentifiers> business_identifiers;
-
-
 
 
         public Builder() {
@@ -108,16 +109,20 @@ public class Patients {
         }
 
         public Builder withBusinessIdentifier(List<BusinessIdentifiers> value) {
-            this.business_identifiers =value;
+            this.business_identifiers = value;
             return this;
         }
 
-        public Patients build(){
-
-            ScenarioContext.putData("User",ScenarioContextKeys.PATIENT_ID,id);
-            ScenarioContext.putData("User",ScenarioContextKeys.PATIENT_NAME,full_name);
-            return new Patients(id,gender,full_name,status,date_of_birth,age,age_updated_at,deleted_at,created_at,updated_at,address,phone_numbers,business_identifiers);
+        public Builder withReminderConsent(Address address) {
+            this.address = address;
+            return this;
         }
 
+        public Patients build() {
+
+            ScenarioContext.putData("User", ScenarioContextKeys.PATIENT_ID, id);
+            ScenarioContext.putData("User", ScenarioContextKeys.PATIENT_NAME, full_name);
+            return new Patients(id, gender, full_name, status, date_of_birth, age, age_updated_at, deleted_at, created_at, updated_at,reminder_consent, address, phone_numbers, business_identifiers);
+        }
     }
 }
