@@ -42,6 +42,11 @@ public class User {
         String password_digest = "$2a$10$vJkbmZrjKDJh1jk1y8HJhuzLAzoY.8p0GfIpNjCNqKvOQh6.ArpYK";
         String deleted_at = "";
 
+        public Builder withFacility(String value){
+            this.registration_facility_id=value;
+            return this;
+        }
+
         public User build() {
             ScenarioContext.putData("User", ScenarioContextKeys.FACILTIYID, registration_facility_id);
             return new User(full_name, registration_facility_id, updated_at, created_at, phone_number, id, password_digest, deleted_at);

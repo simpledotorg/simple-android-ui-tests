@@ -37,5 +37,17 @@ Feature: Register Nurse/User
     And User taps on change button
     Then User taps on Done button and verify language selection <lang>
     Examples:
-      | facilityName |  lang     |
-      | CHC Buccho   |   English |
+      | facilityName | lang    |
+      | CHC Buccho   | English |
+
+  @smoke
+  Scenario Outline: Verify patient info sync in different facility - registration flow
+    Given User registers new user from api
+    And User registers new patient with bp from api
+    And New User registers on app
+    And User search for facility as <facilityName>
+    And User on Patient tab taps on search text box
+    And User on search page searched for patient registered in other facility
+    Examples:
+      | facilityName |
+      | CHC Buccho   |

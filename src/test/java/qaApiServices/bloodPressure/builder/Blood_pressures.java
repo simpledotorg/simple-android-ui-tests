@@ -17,8 +17,10 @@ public class Blood_pressures {
     private String facility_id;
     private String id;
     private String recorded_at;
+    private String deleted_at;
 
-    public Blood_pressures(int systolic, int diastolic, String updated_at, String user_id, String patient_id, String created_at, String facility_id, String id,String recorded_at) {
+
+    public Blood_pressures(int systolic, int diastolic, String updated_at, String user_id, String patient_id, String created_at, String facility_id, String id,String recorded_at,String deleted_at) {
         this.systolic = systolic;
         this.diastolic = diastolic;
         this.updated_at = updated_at;
@@ -28,6 +30,7 @@ public class Blood_pressures {
         this.facility_id = facility_id;
         this.id = id;
         this.recorded_at=recorded_at;
+        this.deleted_at= deleted_at;
     }
 
     public static class Builder {
@@ -40,6 +43,7 @@ public class Blood_pressures {
         String facility_id;
         String id=CreateGenerex.generex.random();
         String recorded_at =Date.getCurrentDateIn_RFC339_Format();
+        String deleted_at=null;
 
         public Builder() {
         }
@@ -90,7 +94,7 @@ public class Blood_pressures {
         }
 
         public Blood_pressures build() {
-            return new Blood_pressures(systolic, diastolic, updated_at, user_id, patient_id, created_at, facility_id, id,recorded_at);
+            return new Blood_pressures(systolic, diastolic, updated_at, user_id, patient_id, created_at, facility_id, id,recorded_at,deleted_at);
         }
     }
 }

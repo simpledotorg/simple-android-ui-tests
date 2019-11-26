@@ -57,36 +57,48 @@ public class SearchSteps extends BaseSteps {
     }
 
     @And("^(\\w+) on search page searched for Registered Patient by phone Number$")
-    public void userOnSearchPageSearchedForRegisteredPatientByPhoneNumber(String User){
-        String phoneNumber=ScenarioContext.getData("User",ScenarioContextKeys.PATIENT_PHONE_NUMBER);
+    public void userOnSearchPageSearchedForRegisteredPatientByPhoneNumber(String User) {
+        String phoneNumber = ScenarioContext.getData("User", ScenarioContextKeys.PATIENT_PHONE_NUMBER);
         new SearchPage(getDriverInstanceFor(User)).searchForRegisteredPatientByPhoneNumber(phoneNumber);
     }
 
     @And("^(\\w+) on search page verifies search result for duplicate phoneNumber$")
     public void userOnSearchPageVerifiesSearchResultForDuplicatePhoneNumber(String User) {
-        String phoneNumber=ScenarioContext.getData("User",ScenarioContextKeys.PATIENT_PHONE_NUMBER);
+        String phoneNumber = ScenarioContext.getData("User", ScenarioContextKeys.PATIENT_PHONE_NUMBER);
         new SearchPage(getDriverInstanceFor(User)).searchForRegisteredPatientByDuplicatePhoneNumber(phoneNumber);
     }
 
     @Then("^(\\w+) on Search page searches for new Patient as (.*)$")
-    public void userOnSearchPageSearchesForNewPatientAsName(String User,String name) {
+    public void userOnSearchPageSearchesForNewPatientAsName(String User, String name) {
         new SearchPage(getDriverInstanceFor(User)).searchForPatientName(name);
     }
 
     @Then("^(\\w+) on Search page searches for new Patient Phonenumber as (.*)$")
-    public void userOnSearchPageSearchesForNewPatientPhonenumberAsPhoneNumber(String User,String phoneNumber)  {
+    public void userOnSearchPageSearchesForNewPatientPhonenumberAsPhoneNumber(String User, String phoneNumber) {
         new SearchPage(getDriverInstanceFor(User)).searchForPatientNumber(phoneNumber);
-        ScenarioContext.putData("User",ScenarioContextKeys.PATIENT_PHONE_NUMBER,phoneNumber);
+        ScenarioContext.putData("User", ScenarioContextKeys.PATIENT_PHONE_NUMBER, phoneNumber);
     }
 
     @Then("^(\\w+) on Search page searches for new Patient by invalid Phonenumber as (.*)$")
-    public void userOnSearchPageSearchesForNewPatientByInvalidPhonenumberAsPhoneNumber(String User,String phoneNumber) throws Throwable {
+    public void userOnSearchPageSearchesForNewPatientByInvalidPhonenumberAsPhoneNumber(String User, String phoneNumber) throws Throwable {
         new SearchPage(getDriverInstanceFor(User)).searchForInvalidPhoneNumber(phoneNumber);
     }
 
     @And("^(\\w+) on Search page verifies result for registered patient with bpPassport$")
     public void userOnSearchPageVerifiesResultForRegisteredPatientWithBpPassport(String User) {
         new SearchPage(getDriverInstanceFor(User)).verifiesResultForRegisteredPatientWithBpPassport();
+    }
+
+    @And("^(\\w+) on search page searched for patient registered in other facility for (.*)$")
+    public void userOnSearchPageSearchedForPatientRegisteredInOtherFacility(String User, String value) {
+        String patientName = ScenarioContext.getData("User", ScenarioContextKeys.PATIENT_NAME);
+        new SearchPage(getDriverInstanceFor(User)).searchForPatientFromOtherFacility(patientName, value);
+    }
+
+    @And("^(\\w+) on search page searched for patient registered in other facility$")
+    public void userOnSearchPageSearchedForPatientRegisteredInOtherFacility(String User) {
+        String patientName = ScenarioContext.getData("User", ScenarioContextKeys.PATIENT_NAME);
+        new SearchPage(getDriverInstanceFor(User)).searchForPatientFromOtherFacility(patientName);
     }
 }
 
