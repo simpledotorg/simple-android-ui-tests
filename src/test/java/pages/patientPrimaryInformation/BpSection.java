@@ -53,7 +53,7 @@ public class BpSection extends BasePage {
     @FindBy(id = "patientsummary_item_bp_days_ago")
     private WebElement daysAgoInfo;
 
-    @FindBy(id = "bloodpressureentry_remove")
+    @FindBy(id = "removeBloodPressureButton")
     private WebElement removeLink;
 
     @FindBy(id = "android:id/button1")

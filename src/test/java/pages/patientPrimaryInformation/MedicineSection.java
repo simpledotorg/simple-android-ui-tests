@@ -38,8 +38,7 @@ public class MedicineSection extends BasePage {
     @FindBy(id = "customprescription_drug_dosage")
     private MobileElement dosageName;
 
-    //    @FindBy(id = "prescribeddrugs_done")
-    @FindBy(xpath = "//android.widget.Button[contains(@text,'SAVE')]")
+    @FindBy(id="prescribeddrugs_done")
     private WebElement savePrescriptionButton;
 
     @FindBy(id = "customprescription_save")
@@ -55,7 +54,6 @@ public class MedicineSection extends BasePage {
             @FindBy(id = "protocoldrug_item_name")
     })
     private List<WebElement> drugNameList;
-
 
     @FindBys({
             @FindBy(id = "prescribeddrug_item_customdrug_name")
@@ -90,10 +88,6 @@ public class MedicineSection extends BasePage {
         dosageName.clear();
         waitForElementToBeClickable(dosageName);
         dosageName.setValue(dosage);
-    }
-
-    public void tapsOnSavePrescriptionButton() {
-        savePrescriptionButton.click();
     }
 
     public void addCustomizeMedicine(String name, String dosage) {
@@ -178,7 +172,7 @@ public class MedicineSection extends BasePage {
     public void modifyCustomizeMedicine(String name, String dosage) {
         enterDrugName(name);
         enterDosageInfo(dosage);
-        tapsOnSavePrescriptionButton();
+        tapsOnCustomizeBpSaveButton();
 
         //updatin global value
         setDrugInfo(name, dosage);

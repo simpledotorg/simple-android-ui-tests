@@ -47,8 +47,8 @@ public class OverdueTabPage extends BasePage {
     @FindBy(xpath = "//android.widget.TextView[contains(@text,'No patients overdue')]")
     private WebElement noPatientsOverdueMessage;
 
-    @FindBy(id = "appointmentreminder_done")
-    private WebElement appointmentReminderDoneButton;
+    @FindBy(id = "removeappointment_done_button")
+    private WebElement appointmentDoneButton;
 
 
     @FindBys({@FindBy(className = "android.widget.RadioButton")})
@@ -62,12 +62,12 @@ public class OverdueTabPage extends BasePage {
     private By reasonText = By.xpath("//android.widget.TextView[contains(@text,'Select a Reason')]");
     private By crossButton = By.className("android.widget.ImageButton");
 
-    @FindBy(id = "phonemask_name")
+    @FindBy(id = "nameTextView")
     private WebElement phoneMaskName;
 
-    @FindBy(id = "phonemask_phone_number")
+    @FindBy(id = "phoneNumberTextView")
     private WebElement phoneMaskphoneNumber;
-    @FindBy(id = "phonemask_normal_call_button")
+    @FindBy(id = "normalCallButton")
     private WebElement normalCallButton;
 
     @FindBy(id = "phonemask_secure_call_button")
@@ -140,7 +140,7 @@ public class OverdueTabPage extends BasePage {
     }
 
     public void tapsOnDoneButton() {
-        appointmentReminderDoneButton.click();
+        appointmentDoneButton.click();
     }
 
     public void tapsOnRemoveFormOverdueList() {
@@ -155,7 +155,7 @@ public class OverdueTabPage extends BasePage {
     }
 
     public void selectReason(String reason) {
-        waitForElementToBeVisible(appointmentReminderDoneButton);
+        waitForElementToBeVisible(appointmentDoneButton);
         driver.findElement(By.xpath("//android.widget.RadioButton[contains(@text,'" + reason + "')]")).click();
     }
 
@@ -180,7 +180,7 @@ public class OverdueTabPage extends BasePage {
         Assert.assertTrue(phoneMaskName.isDisplayed(), "phonemask name should be displayed");
         Assert.assertTrue(phoneMaskphoneNumber.isDisplayed(), "phoneMaskphoneNumber should be displayed");
         Assert.assertTrue(normalCallButton.isDisplayed(), "normalCallButton should be displayed");
-        Assert.assertTrue(secureCallButton.isDisplayed(), "secureCallButton should be displayed");
+//        Assert.assertTrue(secureCallButton.isDisplayed(), "secureCallButton should be displayed");
         Assert.assertTrue(phoneMaskText.isDisplayed(), "phoneMaskText should be displayed");
     }
 
