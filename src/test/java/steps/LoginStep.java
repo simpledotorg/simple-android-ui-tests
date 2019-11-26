@@ -1,9 +1,11 @@
 package steps;
 
 import com.embibe.optimus.utils.ScenarioContext;
+import cucumber.api.PendingException;
 import cucumber.api.java.en.And;
 import cucumber.api.java.en.Then;
 import pages.LoginPage;
+import qaApiServices.user.RegisterUser;
 import utils.CreateFaker;
 import utils.RandomValue;
 import utils.ScenarioContextKeys;
@@ -76,5 +78,13 @@ public class LoginStep extends BaseSteps{
     @And("^(\\w+) enters registered security pin$")
     public void userEntersRegisteredSecurityPin(String User) {
         new LoginPage(getDriverInstanceFor(User)).enterRegisteredPin("1234");
+    }
+
+    @And("^(\\w+) LogsIn in app with new user in different facility$")
+    public void userLogsInInAppWithNewUserInDifferentFacility(String User) throws Throwable {
+        new RegisterUser().registerNewUserWithFacility();
+        String phoneNumber = ScenarioContext.getData("User", ScenarioContextKeys.USER_PHONENUMBER);
+        String pin="1234";
+        new LoginPage((getDriverInstanceFor(User))).userLogsIn(phoneNumber,pin);
     }
 }

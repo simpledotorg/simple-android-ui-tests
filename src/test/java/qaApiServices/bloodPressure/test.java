@@ -4,6 +4,7 @@ import com.google.gson.Gson;
 import org.testng.annotations.Test;
 import qaApiServices.bloodPressure.builder.Blood_pressures;
 import qaApiServices.bloodPressure.request.BpRequestBody;
+import qaApiServices.bloodPressure.response.BpGetRequestResponse;
 import qaApiServices.bloodPressure.response.BpResponse;
 
 import java.util.ArrayList;
@@ -38,6 +39,16 @@ public class test {
         System.out.println(s);
 
         BpResponse response = new BpClient().Post(bpRequestBody,faciltiyId,userId,token);
+        System.out.println(response.toString());
+    }
+
+    @Test
+    public void getAllBpInfo(){
+        String userId = "f621a641-1c13-4503-9c2e-877491d54e33";
+        String faciltiyId = "2f086ff7-83dc-4758-bd31-9d9109df9a09";
+        String token = "31c44fd4b74e42f092a4d9ee72fe490369d51fb5c9f24e60d20dbfb95508a7ce";
+
+        BpGetRequestResponse response = new BpClient().Get(faciltiyId,userId,token);
         System.out.println(response.toString());
     }
 }

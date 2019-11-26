@@ -88,7 +88,7 @@ public class SearchPage extends BasePage {
 
         String status = "false";
         for (WebElement ele : header) {
-            if (ele.getText().equals("Other Results")) {
+            if (ele.getText().equalsIgnoreCase("Other Results")) {
                 status = "true";
             }
         }
@@ -200,4 +200,57 @@ public class SearchPage extends BasePage {
 
 //        resultBlock.findElement(lastBpLabel).getText().equals();
     }
+
+    private void verifyPatientInfo(String value) {
+        isElementPresent(genderLabel);
+        String varName = ScenarioContext.getData("User", ScenarioContextKeys.PATIENT_NAME);
+        resultBlock.findElement(nameLabel).getText().split(",")[0].toUpperCase().equals(varName);
+        isElementPresent(addressLabel);
+
+        if (value.equals("withoutPhonenumber")) {
+            Assert.assertFalse(isElementPresent(phoneNumberLabel));
+//            resultBlock.findElement(lastBpLabel).getText().equals();
+
+        } else if (value.equals("withoutBp")) {
+            Assert.assertFalse(isElementPresent(lastBpLabel));
+            String varNumber = ScenarioContext.getData("User", ScenarioContextKeys.PATIENT_PHONE_NUMBER);
+            resultBlock.findElement(phoneNumberLabel).getText().equals(varNumber);
+
+        } else if (value.equals("withoutPhonenumberAndBp")) {
+            Assert.assertFalse(isElementPresent(phoneNumberLabel));
+            Assert.assertFalse(isElementPresent(lastBpLabel));
+
+        } else {
+
+            String varNumber = ScenarioContext.getData("User", ScenarioContextKeys.PATIENT_PHONE_NUMBER);
+            resultBlock.findElement(phoneNumberLabel).getText().equals(varNumber);
+            isElementPresent(text);
+//            resultBlock.findElement(lastBpLabel).getText().equals();
+        }
+    }
+
+    public void searchForPatientFromOtherFacility(String pName, String... paramValue) {
+        searchPatient(pName);
+        String status = "false";
+        for (WebElement ele : header) {
+            if (ele.getText().equalsIgnoreCase("Other Results")) {
+                status = "true";
+            }
+        }
+        Assert.assertEquals(status, "true", "other result section isn't displayed");
+        verifyPatientInfo(paramValue[0]);
+    }
+
+    public void searchForPatientFromOtherFacility(String pName) {
+        searchPatient(pName);
+        String status = "false";
+        for (WebElement ele : header) {
+            if (ele.getText().equalsIgnoreCase("Other Results")) {
+                status = "true";
+            }
+        }
+        Assert.assertEquals(status, "true", "other result section isn't displayed");
+        verifyPatientInfo();
+    }
 }
+

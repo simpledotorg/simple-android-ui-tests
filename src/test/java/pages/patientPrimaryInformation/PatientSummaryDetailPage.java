@@ -150,6 +150,7 @@ public class PatientSummaryDetailPage extends BasePage {
 
     public void tapsOnSaveBpMedicineButton() {
         medicineSection.tapsOnSaveBpMedicineButton();
+        Assert.assertTrue(saveButton.isDisplayed());
     }
 
     public void verifiesUpdatedMedicineInfo() {

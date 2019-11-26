@@ -4,6 +4,7 @@ import com.google.gson.Gson;
 import constants.QaApiUrl;
 import io.restassured.response.Response;
 import qaApiServices.bloodPressure.request.BpRequestBody;
+import qaApiServices.bloodPressure.response.BpGetRequestResponse;
 import qaApiServices.bloodPressure.response.BpResponse;
 
 import static io.restassured.RestAssured.given;
@@ -25,5 +26,22 @@ public class BpClient {
 
         BpResponse bpResponse = response.as(BpResponse.class);
         return bpResponse;
+    }
+
+
+    public BpGetRequestResponse Get(String facilityId, String userId, String token){
+
+        Response response = given()
+                .contentType("application/json; charset=utf-8")
+                .header("Content-Type", "application/json")
+                .header("X-User-Id", userId)
+                .header("X-Facility-Id", facilityId)
+                .header("Authorization", "Bearer "+token)
+                .get(QaApiUrl.registerBp);
+
+        System.out.println("getbpResponse"+response.asString());
+
+        BpGetRequestResponse bpGetResponse = response.as(BpGetRequestResponse.class);
+        return bpGetResponse;
     }
 }
