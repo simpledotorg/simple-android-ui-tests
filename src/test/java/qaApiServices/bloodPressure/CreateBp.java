@@ -61,6 +61,7 @@ public class CreateBp {
                 .withPatientId(patientId)
                 .withCreatedAt(Date.getBackDateIn_RFC339_Format(dd))
                 .withUpdatedAt(Date.getBackDateIn_RFC339_Format(dd))
+                .withRecordedAt(Date.getBackDateIn_RFC339_Format(dd))
                 .withFacilityId(facilityId).build();
 
         List<Blood_pressures> bp = new ArrayList<>();

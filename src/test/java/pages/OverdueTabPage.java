@@ -47,7 +47,7 @@ public class OverdueTabPage extends BasePage {
     @FindBy(xpath = "//android.widget.TextView[contains(@text,'No patients overdue')]")
     private WebElement noPatientsOverdueMessage;
 
-    @FindBy(id = "removeappointment_done_button")
+    @FindBy(id = "appointmentreminder_done")
     private WebElement appointmentDoneButton;
 
 
