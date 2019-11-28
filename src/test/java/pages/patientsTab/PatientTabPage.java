@@ -32,7 +32,7 @@ public class PatientTabPage extends BasePage {
     @FindBy(id = "dismissApprovedStatusButton")
     private WebElement GotITButton;
 
-    @FindBy(id = "sync_indicator_root_layout")
+    @FindBy(id = "sync_indicator_status_text")
     private WebElement syncLink;
 
     @FindBy(id = "sync_indicator_status_text")
@@ -69,8 +69,12 @@ public class PatientTabPage extends BasePage {
         searchSection.selectsPatientFromSearchList(patientName);
     }
 
-    public void tapsOnSyncLink() {
+    public void tapsOnSyncLink()  {
         syncLink.click();
+        try{
+            Thread.sleep(1000);
+        }
+        catch(Exception e){}
     }
 
     public void verifiesSeeAllOption() {
