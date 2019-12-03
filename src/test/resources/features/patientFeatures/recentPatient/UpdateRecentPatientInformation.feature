@@ -38,6 +38,7 @@ Feature: Select patient from recent patient list,update it's primary information
     And User on Patient summary page taps on save bp medicine button
     Then User on Patient summary page verifies updated medicine info
     And User on Patient summary page taps on save bp medicine button
+    And User on Patient summary page taps on save Button
     And User on Patient summary page taps on appointment done button
     And User on Patient tab verifies patient info should show up on top of recent patient section
 

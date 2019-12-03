@@ -236,7 +236,7 @@ public class SearchPage extends BasePage {
             }
         }
         Assert.assertEquals(status, "true", "other result section isn't displayed");
-        verifyPatientInfo(paramValue[0]);
+        verifyPatientInfo(pName,paramValue[0]);
     }
 
     public void searchForPatientFromOtherFacility(String pName) {
