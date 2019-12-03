@@ -174,7 +174,8 @@ public class SearchPage extends BasePage {
         }
         Assert.assertEquals(status, "true", "has visited section isn't displayed");
         Assert.assertTrue(registerAsNewPatientButton.isDisplayed());
-        verifyPatientInfo();
+        String patientName = ScenarioContext.getData("User", ScenarioContextKeys.PATIENT_NAME);
+        verifyPatientInfo(patientName);
     }
 
     @FindBy(className = "android.widget.LinearLayout")
@@ -188,23 +189,20 @@ public class SearchPage extends BasePage {
     private By addressLabel = By.id("addressLabel");
 
 
-    private void verifyPatientInfo() {
+    public void verifyPatientInfo(String pName) {
         isElementPresent(genderLabel);
-        String varName = ScenarioContext.getData("User", ScenarioContextKeys.PATIENT_NAME);
-        resultBlock.findElement(nameLabel).getText().split(",")[0].toUpperCase().equals(varName);
+        resultBlock.findElement(nameLabel).getText().split(",")[0].toUpperCase().equals(pName);
         isElementPresent(addressLabel);
         String varNumber = ScenarioContext.getData("User", ScenarioContextKeys.PATIENT_PHONE_NUMBER);
-
         resultBlock.findElement(phoneNumberLabel).getText().equals(varNumber);
         isElementPresent(text);
 
 //        resultBlock.findElement(lastBpLabel).getText().equals();
     }
 
-    private void verifyPatientInfo(String value) {
+    private void verifyPatientInfo(String pName ,String value) {
         isElementPresent(genderLabel);
-        String varName = ScenarioContext.getData("User", ScenarioContextKeys.PATIENT_NAME);
-        resultBlock.findElement(nameLabel).getText().split(",")[0].toUpperCase().equals(varName);
+        resultBlock.findElement(nameLabel).getText().split(",")[0].toUpperCase().equals(pName);
         isElementPresent(addressLabel);
 
         if (value.equals("withoutPhonenumber")) {
@@ -250,7 +248,7 @@ public class SearchPage extends BasePage {
             }
         }
         Assert.assertEquals(status, "true", "other result section isn't displayed");
-        verifyPatientInfo();
+        verifyPatientInfo(pName);
     }
 }
 

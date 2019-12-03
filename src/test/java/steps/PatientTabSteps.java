@@ -31,7 +31,7 @@ public class PatientTabSteps extends BaseSteps {
 //    }
 
     @And("^(\\w+) on Patient tab taps on sync link$")
-    public void userTapsOnSyncLink(String User) {
+    public void userTapsOnSyncLink(String User)  {
         new PatientTabPage(getDriverInstanceFor(User)).tapsOnSyncLink();
     }
 

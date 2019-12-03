@@ -1,4 +1,4 @@
-Feature: overdue patients test
+Feature: overdue PATIENTS test
 
   Background:
     Given User registers new user from api
@@ -37,9 +37,9 @@ Feature: overdue patients test
     And User on Overdue tab taps on remove from overdue list
     And User on Overdue tab selects <reasons>
     And User on Overdue reason page selects done button
-    And User enters registered security pin
+#    And User enters registered security pin
     Then User on Overdue tab verifies patient info removed from overdue list
-    And User on Homepage taps on Patients Tab
+    And User on Homepage taps on PATIENTS Tab
     And User on Patient tab verifies patient info should not show up on top of recent patient section
     And User on Patient tab taps on search text box
     And User on Search page searched for Registered Patient
@@ -61,9 +61,9 @@ Feature: overdue patients test
     Then User on Overdue tab Verifies reason screen
     And User on Overdue tab selects <reasons>
     And User on Overdue reason page selects done button
-    And User enters registered security pin
+#    And User enters registered security pin
     Then User on Overdue tab verifies patient info removed from overdue list
-    And User on Homepage taps on Patients Tab
+    And User on Homepage taps on PATIENTS Tab
     And User on Patient tab verifies patient info should not show up on top of recent patient section
     And User on Patient tab taps on search text box
     And User on Search page searched for Registered Patient

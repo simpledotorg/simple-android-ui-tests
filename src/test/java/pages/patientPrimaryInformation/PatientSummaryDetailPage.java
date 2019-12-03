@@ -1,10 +1,7 @@
 package pages.patientPrimaryInformation;
 
 import com.embibe.optimus.utils.ScenarioContext;
-import io.appium.java_client.pagefactory.AndroidFindBy;
-import io.appium.java_client.pagefactory.AndroidFindBys;
 import org.openqa.selenium.By;
-import org.openqa.selenium.support.FindBys;
 import org.testng.Assert;
 import pages.BasePage;
 import qaApiServices.protocolDrug.CreateDrug;
@@ -17,7 +14,6 @@ import utils.RandomValue;
 import utils.ScenarioContextKeys;
 
 import java.util.HashSet;
-import java.util.List;
 
 public class PatientSummaryDetailPage extends BasePage {
     private AppiumDriver driver;
@@ -271,5 +267,13 @@ public class PatientSummaryDetailPage extends BasePage {
         String expectedString = ScenarioContext.getData("User", ScenarioContextKeys.BPSHORTCODE);
         // need to check for space
 //        Assert.assertTrue(bpPassport.getText().contains(expectedString), "bp shortcode should match expected value" + expectedString);
+    }
+
+    public void updateBpInfo(String s, String s1) {
+        bpSection.updateBpInfo(s,s1);
+    }
+
+    public void noBpPresent() {
+        bpSection.noBpPresent();
     }
 }

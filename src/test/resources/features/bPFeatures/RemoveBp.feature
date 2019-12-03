@@ -51,7 +51,7 @@ Feature: Remove bp functionality testing
     And User on Patient summary page taps on save Button
     And User on Patient summary page taps on appointment not now button
     And User on Patient tab verifies patient info should show up on top of recent patient section
-
+    And User on Patient summary page verifies list of bp info
 
   @bp @regression
   Scenario: Remove all Bp info for registered patient who has more than one bp recorded.
@@ -64,5 +64,19 @@ Feature: Remove bp functionality testing
     And User on Patient summary page removes all bp info
     Then User on Patient summary page verifies message
     And User on Patient summary page taps on save Button
-#    And User on Patient tab verifies patient info should not show up on top of recent patient section
 
+  @bp @smoke
+  Scenario: End to End flow for Edit Bp and verify reflected changes in patient summary screen[with sync link]
+    Given User registers new user from api
+    And  User registers new patient with bp from api
+    And User LogsIn in app
+    And User on Patient tab taps on search text box
+    Then User on Search page searched for Registered Patient
+    And User on Search page selects patient form search list
+    And User on Patient summary page taps on Edit Bp Link
+    And User on Patient summary page taps on Remove Link
+    And User on Patient summary page taps on remove button
+    And User on Patient summary page taps on save Button
+    And User on Patient tab taps on sync link
+    And User on Patient tab select patient from recent patient list
+    And User on Patient summary page verifies no bp present

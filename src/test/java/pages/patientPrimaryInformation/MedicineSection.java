@@ -38,7 +38,8 @@ public class MedicineSection extends BasePage {
     @FindBy(id = "customprescription_drug_dosage")
     private MobileElement dosageName;
 
-    @FindBy(id="prescribeddrugs_done")
+//    @FindBy(id="prescribeddrugs_done")
+    @FindBy(xpath="//android.widget.FrameLayout[contains(@resource-id,'prescribeddrugs_done')]/android.widget.Button")
     private WebElement savePrescriptionButton;
 
     @FindBy(id = "customprescription_save")

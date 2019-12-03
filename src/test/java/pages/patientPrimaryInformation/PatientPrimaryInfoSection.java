@@ -118,9 +118,11 @@ public class PatientPrimaryInfoSection extends BasePage {
     public void enterPatientInfo(String name, String phone, String value, String gender, String colony) {
         if (name != null && !name.isEmpty()) {
             enterPatientName(name);
+            ScenarioContext.putData("User", ScenarioContextKeys.PATIENT_NAME,name);
         }
         if (phone != null && !phone.isEmpty()) {
             enterPhoneNumber(phone);
+            ScenarioContext.putData("User", ScenarioContextKeys.PATIENT_PHONE_NUMBER,name);
         }
         if (value != null && !value.isEmpty()) {
             enterAgeOrDateOfBirth(value);

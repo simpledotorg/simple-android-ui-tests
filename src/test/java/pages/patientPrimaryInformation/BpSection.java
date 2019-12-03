@@ -26,6 +26,12 @@ public class BpSection extends BasePage {
     @FindBy(id = "bloodpressureentry_diastolic")
     private MobileElement diastolicBp;
 
+    @FindBy(id = "systolicEditText")
+    private MobileElement systolicEditText;
+
+    @FindBy(id = "diastolicEditText")
+    private MobileElement diastolicEditText;
+
     @FindBy(id = "bloodpressureentry_next_arrow")
     private WebElement nextArrow;
 
@@ -170,6 +176,10 @@ public class BpSection extends BasePage {
         if (getSummaryLayoutCount() == 0) {
             Assert.fail("Bp list should be displayed");
         }
+        String bpCount=ScenarioContext.getData("User",ScenarioContextKeys.BPCOUNT);
+        int expectedValue=Integer.parseInt(bpCount)-1;
+        Assert.assertEquals(bpCount,Integer.toString(expectedValue),"bp count should dec by 1 as one bpvalue is removed");
+        // need to check that removed bp shou;ld not be present if we are removing one bp
     }
 
     public void removeAllBpInfo() {
@@ -208,5 +218,24 @@ public class BpSection extends BasePage {
                 Assert.assertTrue(bpLayout.findElement(daysAgo).getText().replaceAll("[^a-zA-Z0-9]", "").contains("Today"));
             }
         }
+    }
+
+    public void updateBpInfo(String systolic, String diastolic) {
+
+        String reading = systolic + " / " + diastolic;
+        ScenarioContext.putData("User", ScenarioContextKeys.READING, reading);
+
+        systolicEditText.click();
+        systolicEditText.clear();
+        diastolicEditText.click();
+        diastolicEditText.clear();
+
+
+        systolicEditText.setValue(systolic);
+        diastolicEditText.setValue(diastolic);
+    }
+
+    public void noBpPresent() {
+        Assert.assertEquals(getSummaryLayoutCount(),0);
     }
 }

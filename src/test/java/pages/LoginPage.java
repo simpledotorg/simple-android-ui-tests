@@ -218,4 +218,8 @@ public class LoginPage extends BasePage {
             throw new RuntimeException("other country is selected");
         }
     }
+
+    public void resetApp() {
+        driver.resetApp();
+    }
 }
