@@ -101,7 +101,7 @@ public class PatientSummaryDetailSteps extends BaseSteps {
 
     @And("^(\\w+) on Patient summary page updates Bp Info$")
     public void userUpdatesBpInfo(String User) {
-        new PatientSummaryDetailPage(getDriverInstanceFor(User)).enterBpInfo("250", "90");
+        new PatientSummaryDetailPage(getDriverInstanceFor(User)).updateBpInfo("250", "90");
     }
 
     @And("^(\\w+) on Patient summary page taps on Remove Link$")
@@ -315,6 +315,11 @@ public class PatientSummaryDetailSteps extends BaseSteps {
     @And("^(\\w+) on Patient summary page verifies bp passport$")
     public void userOnPatientSummaryPageVerifiesListOfBpPassport(String User) throws Exception {
         new PatientSummaryDetailPage(getDriverInstanceFor(User)).isBpPassportPresent();
+    }
+
+    @And("^(\\w+) on Patient summary page verifies no bp present$")
+    public void userOnPatientSummaryPageVerifiesNoBpPresent(String User) throws Throwable {
+        new PatientSummaryDetailPage(getDriverInstanceFor(User)).noBpPresent();
     }
 }
 

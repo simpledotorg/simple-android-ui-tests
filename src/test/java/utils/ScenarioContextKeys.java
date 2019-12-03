@@ -26,4 +26,6 @@ public interface ScenarioContextKeys {
 
     String COUNTRY ="country";
     String BPRECORDEDAT= "bprecordedat";
+
+    String BPCOUNT= "bpcount";
 }

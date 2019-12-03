@@ -87,4 +87,45 @@ Feature: miscellaneous feature -Patinet sync in different facility
     And User on Patient tab taps on search text box
     And User on search page searched for patient registered in other facility
 
+  @smoke
+  Scenario: End to End flow for Edit Bp and verify patient info sync in different facility
+    Given User registers new user from api
+    And User register new patient with list of bp through api
+    And User LogsIn in app
+    And User on Patient tab taps on search text box
+    Then User on Search page searched for Registered Patient
+    And User on Search page selects patient form search list
+    And User on Patient summary page taps on Edit Bp Link
+    And User on Patient summary page updates Bp Info
+    And User on Patient summary page selects done button
+    And User on Patient summary page taps on save Button
+    And User on Patient summary page taps on appointment done button
+    And User on Patient tab taps on sync link
+    And User resets app
+    And User LogsIn in app with new user in different facility
+    And User on Patient tab taps on search text box
+    And User on search page searched for patient registered in other facility
+    And User on Search page selects patient form search list
+    And User on Patient summary page verifies days information
 
+
+  @smoke
+  Scenario: End to End flow for Remove Bp and verify patient info sync in different facility
+    Given User registers new user from api
+    And User register new patient with list of bp through api
+    And User LogsIn in app
+    And User on Patient tab taps on search text box
+    Then User on Search page searched for Registered Patient
+    And User on Search page selects patient form search list
+    And User on Patient summary page taps on Edit Bp Link
+    And User on Patient summary page taps on Remove Link
+    And User on Patient summary page taps on remove button
+    And User on Patient summary page taps on save Button
+    And User on Patient summary page taps on appointment done button
+    And User on Patient tab taps on sync link
+    And User resets app
+    And User LogsIn in app with new user in different facility
+    And User on Patient tab taps on search text box
+    And User on search page searched for patient registered in other facility
+    And User on Search page selects patient form search list
+    And User on Patient summary page verifies no bp present

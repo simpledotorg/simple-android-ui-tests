@@ -45,6 +45,7 @@ public class QaApiCallsPage extends BasePage {
 
     public void registerNewPatientWithListOfBps(int patientCount, int bpcount) {
         createPatientWithListOfBP(1, 2);
+        ScenarioContext.putData("User",ScenarioContextKeys.BPCOUNT,bpcount);
     }
 
     private void createPatientWithListOfBP(int patientcount, int bpcount) {
