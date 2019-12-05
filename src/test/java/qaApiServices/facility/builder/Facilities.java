@@ -23,6 +23,7 @@ public class Facilities {
     private String facility_type;
     private String village_or_colony;
     private String slug;
+    private String zone;
     private String longitude;
     private String organization_name;
     private String facility_group_name;

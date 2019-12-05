@@ -2,11 +2,13 @@ package pages;
 
 import com.embibe.optimus.utils.ScenarioContext;
 import io.appium.java_client.pagefactory.AppiumFieldDecorator;
+import org.testng.Assert;
 import qaApiServices.appointments.CreateAppointment;
 import qaApiServices.bloodPressure.CreateBp;
 import io.appium.java_client.AppiumDriver;
 import org.openqa.selenium.support.PageFactory;
 import qaApiServices.patients.CreatePatients;
+import qaApiServices.patients.GetPatientInfo;
 import qaApiServices.user.RegisterUser;
 import utils.ScenarioContextKeys;
 
@@ -45,7 +47,7 @@ public class QaApiCallsPage extends BasePage {
 
     public void registerNewPatientWithListOfBps(int patientCount, int bpcount) {
         createPatientWithListOfBP(1, 2);
-        ScenarioContext.putData("User",ScenarioContextKeys.BPCOUNT,bpcount);
+        ScenarioContext.putData("User",ScenarioContextKeys.BPCOUNT,String.valueOf(bpcount));
     }
 
     private void createPatientWithListOfBP(int patientcount, int bpcount) {
@@ -81,5 +83,18 @@ public class QaApiCallsPage extends BasePage {
         // setting a global var bpshortcode
         ScenarioContext.putData("User",ScenarioContextKeys.BPSHORTCODE,varStr);
 
+    }
+
+    public void verifyReminderConsentAttribute(String value) {
+        new RegisterUser().registerNewUser();
+        String patientName= ScenarioContext.getData("User",ScenarioContextKeys.PATIENT_NAME);
+        String actualString  = new GetPatientInfo().getReminderConcentValueForPatinet(patientName);
+
+        if(value.equals("enabled")){
+            Assert.assertEquals(actualString,"granted");
+        }
+        else{
+            Assert.assertEquals(actualString,"denied");
+        }
     }
 }
