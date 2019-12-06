@@ -22,8 +22,8 @@ public class PatientSummaryDetailPage extends BasePage {
     BpSection bpSection;
     MedicineSection medicineSection;
 
-    @FindBy(id = "patientsummary_done")
-    private WebElement saveButton;
+//    @FindBy(id = "patientsummary_done")
+//    private WebElement saveButton;
 
     @FindBy(id = "doneButton")
     private WebElement scheduleAppointmentDoneButton;
@@ -63,8 +63,7 @@ public class PatientSummaryDetailPage extends BasePage {
     }
 
     public void clickOnSaveButton() {
-        waitForElementToBeVisible(saveButton);
-        saveButton.click();
+        getSaveButton().click();
     }
 
     public void clickOnAppointmentDoneButton() {
@@ -146,7 +145,7 @@ public class PatientSummaryDetailPage extends BasePage {
 
     public void tapsOnSaveBpMedicineButton() {
         medicineSection.tapsOnSaveBpMedicineButton();
-        Assert.assertTrue(saveButton.isDisplayed());
+        Assert.assertTrue(getSaveButton().isDisplayed());
     }
 
     public void verifiesUpdatedMedicineInfo() {
@@ -276,4 +275,13 @@ public class PatientSummaryDetailPage extends BasePage {
     public void noBpPresent() {
         bpSection.noBpPresent();
     }
+
+    public void setRemainderConcentToggleFor(String value) {
+        patientPrimaryInfoSection.setRemainderConcentToggleFor(value);
+    }
+     private WebElement getSaveButton(){
+
+        return driver.findElement(By.xpath("//android.widget.Button[contains(translate(@text,'ABCDEFGHIJKLMNOPQRSTUVWXYZ','abcdefghijklmnopqrstuvwxyz'),'save')]"));
+
+     }
 }
