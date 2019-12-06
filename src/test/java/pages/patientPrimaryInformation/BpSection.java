@@ -178,8 +178,8 @@ public class BpSection extends BasePage {
         }
         String bpCount=ScenarioContext.getData("User",ScenarioContextKeys.BPCOUNT);
         int expectedValue=Integer.parseInt(bpCount)-1;
-        Assert.assertEquals(bpCount,Integer.toString(expectedValue),"bp count should dec by 1 as one bpvalue is removed");
-        // need to check that removed bp shou;ld not be present if we are removing one bp
+        Assert.assertEquals(bpReadings.size(),expectedValue,"bp count should dec by 1 as one bpvalue is removed");
+        // need to check that removed bp should not be present if we are removing one bp
     }
 
     public void removeAllBpInfo() {

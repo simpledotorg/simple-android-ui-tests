@@ -39,8 +39,8 @@ public class MedicineSection extends BasePage {
     private MobileElement dosageName;
 
 //    @FindBy(id="prescribeddrugs_done")
-    @FindBy(xpath="//android.widget.FrameLayout[contains(@resource-id,'prescribeddrugs_done')]/android.widget.Button")
-    private WebElement savePrescriptionButton;
+//    @FindBy(xpath="//android.widget.FrameLayout[contains(@resource-id,'prescribeddrugs_done')]/android.widget.Button")
+//    private WebElement savePrescriptionButton;
 
     @FindBy(id = "customprescription_save")
     private WebElement CustumPrescriptionSaveButton;
@@ -101,6 +101,8 @@ public class MedicineSection extends BasePage {
     }
 
     public void tapsOnSaveBpMedicineButton() {
+
+        WebElement savePrescriptionButton = driver.findElement(By.xpath("//android.widget.Button[contains(translate(@text,'ABCDEFGHIJKLMNOPQRSTUVWXYZ','abcdefghijklmnopqrstuvwxyz'),'save')]"));
         savePrescriptionButton.click();
     }
 
