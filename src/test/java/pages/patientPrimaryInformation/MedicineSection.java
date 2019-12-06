@@ -26,7 +26,7 @@ public class MedicineSection extends BasePage {
         this.driver = driver;
     }
 
-    @FindBy(id = "patientsummary_prescriptions_update")
+    @FindBy(id = "updateButton")
     private WebElement addNewMedicineButton;
 
     @FindBy(id = "prescribeddrug_item_addnewprescription_rootlayout")
@@ -45,10 +45,10 @@ public class MedicineSection extends BasePage {
     @FindBy(id = "customprescription_save")
     private WebElement CustumPrescriptionSaveButton;
 
-    @FindBy(id = "patientsummary_prescriptions_update")
+    @FindBy(id = "updateButton")
     private WebElement updateMedicine;
 
-    @FindBy(id = "patientsummary_prescriptions_summary_container")
+    @FindBy(id = "summaryViewGroup")
     private WebElement updatedInfo;
 
     @FindBys({
@@ -119,7 +119,7 @@ public class MedicineSection extends BasePage {
         String name = ScenarioContext.getData("User", ScenarioContextKeys.DRUG_INFO);
 
         expectedMedicineInfo.add(name);
-        expectedMedicineInfo.add(driver.findElement(By.id("patientsummary_prescriptions_last_updated_timestamp")).getText().toUpperCase());
+        expectedMedicineInfo.add(driver.findElement(By.id("lastUpdatedTimestampTextView")).getText().toUpperCase());
 
         Assert.assertTrue(expectedMedicineInfo.containsAll(actualmedicineInfo), "updated medicine info is not displayed");
     }
