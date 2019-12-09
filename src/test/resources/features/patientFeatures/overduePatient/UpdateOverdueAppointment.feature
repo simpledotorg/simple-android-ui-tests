@@ -5,7 +5,7 @@ Feature: Update Overdue appointment
     And User registers overdue patient
     And User LogsIn in app
 
-  @updateAppointment @smoker1
+  @updateAppointment @smoke
   Scenario: update appointment with agreed to visit
     And User on Homepage taps on OVERDUE Tab
     And User on Overdue tab taps on patient detail

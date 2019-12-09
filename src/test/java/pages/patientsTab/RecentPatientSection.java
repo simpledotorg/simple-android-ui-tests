@@ -90,15 +90,20 @@ public class RecentPatientSection extends BasePage {
     }
 
     public void selectAnyPatientFromRecentPatientSection() {
-        scrollDown();
-        recentPatientViewLst.get(recentPatientViewLst.size() - 1).click();
+        waitFor(1000);
 
-        PatientSummaryDetailPage patientSummaryDetailPage = new PatientSummaryDetailPage(driver);
-        String selectedPatient = patientSummaryDetailPage.getFullName();
-
-        ScenarioContext.putData("User", ScenarioContextKeys.PATIENT_NAME, selectedPatient);
+        if (recentPatientViewLst.size() == 0) {
+            Assert.fail("No Patient in recent patient list");
+        } else if (recentPatientViewLst.size() == 1) {
+            ScenarioContext.putData("User",ScenarioContextKeys.PATIENT_NAME,recentPatientViewLst.get(0).getText());
+            recentPatientViewLst.get(0).click();
+        } else {
+            scrollDown();
+            String name = recentPatientViewLst.get(recentPatientViewLst.size() - 1).getText();
+            ScenarioContext.putData("User",ScenarioContextKeys.PATIENT_NAME,name);
+            recentPatientViewLst.get(recentPatientViewLst.size() - 1).click();
+        }
     }
-
 
     public void shouldNotShowUpOnTopOfList() {
         String actualValue = recentPatientViewLst.get(0).getText();
@@ -107,10 +112,8 @@ public class RecentPatientSection extends BasePage {
     }
 
     public void shouldShowUpOnTopOfRecentPatinetList() {
-        String actualValue = recentPatientViewLst.get(0).getText().split(",")[0].replaceAll("\\s", "").toUpperCase();
+        String actualValue = recentPatientViewLst.get(0).getText();
         String expected = ScenarioContext.getData("User", ScenarioContextKeys.PATIENT_NAME);
-        expected = expected.split(",")[0].replaceAll("\\s", "").toUpperCase();
-
         Assert.assertEquals(actualValue, expected, expected + "should be displayed on top of recent patient list");
     }
 

@@ -66,7 +66,7 @@ public class PatientPrimaryInfoSection extends BasePage {
 
     @FindBy(id = "patientsummary_header")
     private WebElement patientsummary_header;
-    private By contact = By.id("patientsummary_contact");
+    private By contact = By.id("contactTextView");
 
     public PatientPrimaryInfoSection(AppiumDriver driver) {
         super(driver);
@@ -176,6 +176,15 @@ public class PatientPrimaryInfoSection extends BasePage {
     public void verifyValidaitonErrorMessagesForInvalidDate() {
 //        need to add check for invalid datE
             Assert.fail("no proper error message is present for invalid date");
+    }
+
+    public void setRemainderConcentToggleFor(String value) {
+        if(value.equals("enabled")){
+
+        }
+        else{
+
+        }
     }
 }
 

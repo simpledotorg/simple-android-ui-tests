@@ -38,7 +38,7 @@ public class OverdueTabPage extends BasePage {
 
     @FindBy(id = "actionsContainer")
     private WebElement overdueActionContainer;
-    private By result = By.xpath("//android.widget.TextView[contains(@text,'RESULT OF CALL')]");
+    private By result = By.xpath("//android.widget.TextView[contains(translate(@text,'abcdefghijklmnopqrstuvwxyz','ABCDEFGHIJKLMNOPQRSTUVWXYZ'),'RESULT OF CALL')]");
     private By reasonAgreedToVisit = By.id("agreedToVisitTextView");
     private By reasonReminderLater = By.id("remindLaterTextView");
     private By reasonRemoveFromList = By.id("removeFromListTextView");
@@ -47,7 +47,7 @@ public class OverdueTabPage extends BasePage {
     @FindBy(xpath = "//android.widget.TextView[contains(@text,'No patients overdue')]")
     private WebElement noPatientsOverdueMessage;
 
-    @FindBy(id = "removeappointment_done_button")
+    @FindBy(id = "appointmentreminder_done")
     private WebElement appointmentDoneButton;
 
 
@@ -156,7 +156,7 @@ public class OverdueTabPage extends BasePage {
 
     public void selectReason(String reason) {
         waitForElementToBeVisible(appointmentDoneButton);
-        driver.findElement(By.xpath("//android.widget.RadioButton[contains(@text,'" + reason + "')]")).click();
+        driver.findElement(By.xpath("//*[@text='"+reason+"']")).click();
     }
 
     public void shouldNotPresentInOverdueList(String patient) throws Exception {

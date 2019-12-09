@@ -181,7 +181,7 @@ Feature: miscellaneous feature -Patinet sync in different facility
   | CHC Buccho   |
 
 
-  @checker1
+  @smoke @patientsync
   Scenario: End to End flow for Add customize medicine and verify patient info sync in different facility
     Given User registers new user from api
     And User registers new patient with bp from api
