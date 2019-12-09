@@ -246,4 +246,12 @@ public class BasePage {
         }
         return expStr;
     }
+
+    public void waitFor(int timeunit){
+        try {
+            Thread.sleep(timeunit);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+    }
 }

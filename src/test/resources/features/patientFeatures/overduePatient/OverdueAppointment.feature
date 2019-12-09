@@ -31,7 +31,7 @@ Feature: overdue PATIENTS test
     Then User on Overdue tab verifies patient info removed from overdue list
 
   @overdue @smoke @regression
-  Scenario Outline:End to end flow of adding bp for a patient whose appointment is updated with Phone number doesn't exist
+  Scenario Outline: End to end flow of adding bp for a patient whose appointment is updated with Phone number doesn't exist
     And User on Homepage taps on OVERDUE Tab
     And User on Overdue tab taps on patient detail
     And User on Overdue tab taps on remove from overdue list
@@ -54,7 +54,7 @@ Feature: overdue PATIENTS test
       | Phone number does not work |
 
   @overdue @smoke @regression
-  Scenario Outline:End to end flow for a patient whose appointment is updated with Phone number doesn't exist
+  Scenario Outline: End to end flow for a patient whose appointment is updated with Phone number doesn't exist
     And User on Homepage taps on OVERDUE Tab
     And User on Overdue tab taps on patient detail
     And User on Overdue tab taps on remove from overdue list

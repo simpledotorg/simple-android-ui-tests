@@ -101,9 +101,7 @@ public class MedicineSection extends BasePage {
     }
 
     public void tapsOnSaveBpMedicineButton() {
-
-        WebElement savePrescriptionButton = driver.findElement(By.xpath("//android.widget.Button[contains(translate(@text,'ABCDEFGHIJKLMNOPQRSTUVWXYZ','abcdefghijklmnopqrstuvwxyz'),'save')]"));
-        savePrescriptionButton.click();
+       driver.findElement(By.xpath("//android.widget.Button[contains(translate(@text,'ABCDEFGHIJKLMNOPQRSTUVWXYZ','abcdefghijklmnopqrstuvwxyz'),'save')]")).click();
     }
 
     public void verifiesUpdatedMedicineInfo() {

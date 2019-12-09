@@ -31,13 +31,13 @@ public class PatientSummaryDetailPage extends BasePage {
     @FindBy(id = "notNowButton")
     private WebElement scheduleAppointmentNotNowButton;
 
-    @FindBy(id = "patientsummary_fullname")
+    @FindBy(id = "fullNameTextView")
     private WebElement patientSummaryFullname;
 
     @FindBy(id = "patientsummary_edit")
     private WebElement patientSummaryEditLink;
 
-    @FindBy(id = "patientsummary_bp_passport")
+    @FindBy(id = "bpPassportTextView")
     private WebElement bpPassport;
 
     public PatientSummaryDetailPage(AppiumDriver driver) {
@@ -258,7 +258,6 @@ public class PatientSummaryDetailPage extends BasePage {
     public void isBpPassportPresent() throws Exception {
         isElementPresent(By.id("patientsummary_bp_passport"));
 
-        // verify bpshort code length and store it in global variable
         if (bpPassport.getText().isEmpty()) {
             throw new Exception("bp shortcode value is not present");
         }
