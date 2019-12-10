@@ -21,11 +21,12 @@ public class Appointments {
     private String cancel_reason;
     private String agreed_to_visit;
     private String remind_on;
+    private String creation_facility_id;
 
     public Appointments(){}
 
 
-    public Appointments(String updated_at, String appointment_type, String patient_id, String facility_id, String created_at, String id, String scheduled_date, String deleted_at, String status,String cancel_reason, String agreed_to_visit,String remind_on) {
+    public Appointments(String updated_at, String appointment_type, String patient_id, String facility_id, String created_at, String id, String scheduled_date, String deleted_at, String status,String cancel_reason, String agreed_to_visit,String remind_on,String creation_facility_id) {
         this.updated_at = updated_at;
         this.appointment_type = appointment_type;
         this.patient_id = patient_id;
@@ -38,6 +39,7 @@ public class Appointments {
         this.cancel_reason = cancel_reason;
         this.agreed_to_visit = agreed_to_visit;
         this.remind_on=remind_on;
+        this.creation_facility_id=creation_facility_id;
     }
 
     public static class Builder{
@@ -53,7 +55,7 @@ public class Appointments {
         private String cancel_reason;
         private String agreed_to_visit;
         private String remind_on;
-
+        private String creation_facility_id;
 
         public Builder(){ }
 
@@ -98,7 +100,7 @@ public class Appointments {
 
         public Appointments build()
         {
-            return new Appointments( updated_at, appointment_type, patient_id, facility_id, created_at, id, scheduled_date, deleted_at, status,cancel_reason,agreed_to_visit,remind_on);
+            return new Appointments( updated_at, appointment_type, patient_id, facility_id, created_at, id, scheduled_date, deleted_at, status,cancel_reason,agreed_to_visit,remind_on,creation_facility_id);
         }
     }
 

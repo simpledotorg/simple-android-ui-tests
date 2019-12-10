@@ -58,7 +58,7 @@ Feature: Update Overdue appointment
     And User on Patient tab taps on sync link
     And User on Patient tab verifies patient info should not show up on top of recent patient section
     And User on Patient tab taps on search text box
-    And User on Search page verfies patient name should not be displayed
+    And User on Search page verifies patient name should not be displayed
     Examples:
       | reasons |
       | Died    |

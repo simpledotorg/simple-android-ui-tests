@@ -44,7 +44,7 @@ public class BpSection extends BasePage {
     @FindBy(id = "yearEditText")
     private WebElement year;
 
-    @FindBy(id = "patientsummary_item_newbp")
+    @FindBy(id = "newBp")
     private WebElement addNewBpButton;
 
     @FindBy(id = "alertTitle")
