@@ -50,8 +50,8 @@ public class PatientSummaryDetailPage extends BasePage {
         this.driver = driver;
     }
 
-    public void enterPatientInfo(String name, String phone, String age, String male, String testColony) {
-        patientPrimaryInfoSection.enterPatientInfo(name, phone, age, male, testColony);
+    public void enterPatientInfo(String name, String phone, String age, String male, String testColony,String consentValue) {
+        patientPrimaryInfoSection.enterPatientInfo(name, phone, age, male, testColony,consentValue);
     }
 
     public void enterBpInfo(String systollic, String diastolic) {
@@ -274,10 +274,6 @@ public class PatientSummaryDetailPage extends BasePage {
 
     public void noBpPresent() {
         bpSection.noBpPresent();
-    }
-
-    public void setRemainderConcentToggleFor(String value) {
-        patientPrimaryInfoSection.setRemainderConcentToggleFor(value);
     }
 
     private WebElement getSaveButton() {

@@ -47,7 +47,7 @@ public class QaApiCallsPage extends BasePage {
 
     public void registerNewPatientWithListOfBps(int patientCount, int bpcount) {
         createPatientWithListOfBP(1, 2);
-        ScenarioContext.putData("User",ScenarioContextKeys.BPCOUNT,String.valueOf(bpcount));
+        ScenarioContext.putData("User", ScenarioContextKeys.BPCOUNT, String.valueOf(bpcount));
     }
 
     private void createPatientWithListOfBP(int patientcount, int bpcount) {
@@ -75,26 +75,34 @@ public class QaApiCallsPage extends BasePage {
         new CreateAppointment().createAppointment();
 
 
-        String bpPassportUuid= ScenarioContext.getData("User",ScenarioContextKeys.BPPASSPORTUUID);
+        String bpPassportUuid = ScenarioContext.getData("User", ScenarioContextKeys.BPPASSPORTUUID);
         String allDigitsInString = getAllDigitsInString(bpPassportUuid);
 
         // this is to fetch 7 digit short code from bp passport uuid
         String varStr = allDigitsInString.substring(0, 7);
         // setting a global var bpshortcode
-        ScenarioContext.putData("User",ScenarioContextKeys.BPSHORTCODE,varStr);
+        ScenarioContext.putData("User", ScenarioContextKeys.BPSHORTCODE, varStr);
 
     }
 
     public void verifyReminderConsentAttribute(String value) {
         new RegisterUser().registerNewUser();
-        String patientName= ScenarioContext.getData("User",ScenarioContextKeys.PATIENT_NAME);
-        String actualString  = new GetPatientInfo().getReminderConcentValueForPatinet(patientName);
+        String patientName = ScenarioContext.getData("User", ScenarioContextKeys.PATIENT_NAME);
+        String actualString = new GetPatientInfo().getReminderConcentValueForPatient(patientName);
 
-        if(value.equals("enabled")){
-            Assert.assertEquals(actualString,"granted");
+        if (value.equals("enabled")) {
+            Assert.assertEquals(actualString, "granted");
+        } else {
+            Assert.assertEquals(actualString, "denied");
         }
-        else{
-            Assert.assertEquals(actualString,"denied");
+    }
+
+    public void registerMultiplePatients(int count) {
+        while (count > 0) {
+            new CreatePatients().createPatient();
+            new CreateBp().registerNewBp();
+            new CreateAppointment().createAppointment();
+            count--;
         }
     }
 }

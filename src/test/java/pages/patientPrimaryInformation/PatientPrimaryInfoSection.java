@@ -68,6 +68,9 @@ public class PatientPrimaryInfoSection extends BasePage {
     private WebElement patientsummary_header;
     private By contact = By.id("contactTextView");
 
+    @FindBy(id = "consentSwitch")
+    private WebElement consentSwitch;
+
     public PatientPrimaryInfoSection(AppiumDriver driver) {
         super(driver);
         PageFactory.initElements(new AppiumFieldDecorator(driver), this);
@@ -75,7 +78,7 @@ public class PatientPrimaryInfoSection extends BasePage {
     }
 
     private void enterPhoneNumber(String number) {
-        PhoneNumberTextBox.sendKeys(number+"\n");
+        PhoneNumberTextBox.sendKeys(number + "\n");
     }
 
     private void enterAgeOrDateOfBirth(String value) {
@@ -115,14 +118,14 @@ public class PatientPrimaryInfoSection extends BasePage {
         saveButton.click();
     }
 
-    public void enterPatientInfo(String name, String phone, String value, String gender, String colony) {
+    public void enterPatientInfo(String name, String phone, String value, String gender, String colony, String consent) {
         if (name != null && !name.isEmpty()) {
             enterPatientName(name);
-            ScenarioContext.putData("User", ScenarioContextKeys.PATIENT_NAME,name);
+            ScenarioContext.putData("User", ScenarioContextKeys.PATIENT_NAME, name);
         }
         if (phone != null && !phone.isEmpty()) {
             enterPhoneNumber(phone);
-            ScenarioContext.putData("User", ScenarioContextKeys.PATIENT_PHONE_NUMBER,name);
+            ScenarioContext.putData("User", ScenarioContextKeys.PATIENT_PHONE_NUMBER, name);
         }
         if (value != null && !value.isEmpty()) {
             enterAgeOrDateOfBirth(value);
@@ -136,6 +139,14 @@ public class PatientPrimaryInfoSection extends BasePage {
         }
         Assert.assertTrue(districtTextBox.getText().equalsIgnoreCase("Bathinda"));
         Assert.assertTrue(stateTextBox.getText().equalsIgnoreCase("Punjab"));
+
+        scrollDown();
+
+        Assert.assertTrue(consentSwitch.getAttribute("checked").equals("true"));
+
+        if (consent.equals("disabled")) {
+            setRemainderConcentToggleFor(consent);
+        }
         clickSaveButton();
     }
 
@@ -175,16 +186,11 @@ public class PatientPrimaryInfoSection extends BasePage {
 
     public void verifyValidaitonErrorMessagesForInvalidDate() {
 //        need to add check for invalid datE
-            Assert.fail("no proper error message is present for invalid date");
+        Assert.fail("no proper error message is present for invalid date");
     }
 
-    public void setRemainderConcentToggleFor(String value) {
-        if(value.equals("enabled")){
-
-        }
-        else{
-
-        }
+    private void setRemainderConcentToggleFor(String value) {
+        consentSwitch.click();
     }
 }
 
