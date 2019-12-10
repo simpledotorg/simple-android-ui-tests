@@ -39,12 +39,30 @@ public class RecentPatientSection extends BasePage {
         getPatient(patientName);
     }
 
-    public void verifiesSeeAllOption() {
-        new RegisterUser().registerNewUser();
-        PatientGetRequestResponse allPatient = new GetPatientInfo().getAllPatient();
-        int size = allPatient.getPatients().size();
+    //    public void verifiesSeeAllOption() {
+//        new RegisterUser().registerNewUser();
+//        PatientGetRequestResponse allPatient = new GetPatientInfo().getAllPatient();
+//        int size = allPatient.getPatients().size();
+//        String status = "false";
+//        if (size > 10) {
+//            int count = 0;
+//            while (count <= 3) {
+//                try {
+//                    seeAllButton.isDisplayed();
+//                    status = "true";
+//                } catch (Exception e) {
+//                    scrollDown();
+//                }
+//                count++;
+//            }
+//            Assert.assertTrue(status.equals("true"), "SEE ALL BUTTON should be present");
+//        } else {
+//            Assert.assertEquals(status,"false", "SEE ALL BUTTON should not be present");
+//        }
+//    }
+    public void verifiesSeeAllOption(int patinetCount) {
         String status = "false";
-        if (size > 10) {
+        if (patinetCount > 10) {
             int count = 0;
             while (count <= 3) {
                 try {
@@ -56,7 +74,11 @@ public class RecentPatientSection extends BasePage {
                 count++;
             }
             Assert.assertTrue(status.equals("true"), "SEE ALL BUTTON should be present");
+            seeAllButton.click();
+        } else {
+            Assert.assertEquals(status, "false", "SEE ALL BUTTON should not be present");
         }
+
     }
 
     public void selectPatientFromRecentPatientList(String patientName) throws Exception {
@@ -93,14 +115,11 @@ public class RecentPatientSection extends BasePage {
         waitFor(1000);
 
         if (recentPatientViewLst.size() == 0) {
-            Assert.fail("No Patient in recent patient list");
-        } else if (recentPatientViewLst.size() == 1) {
-            ScenarioContext.putData("User",ScenarioContextKeys.PATIENT_NAME,recentPatientViewLst.get(0).getText());
-            recentPatientViewLst.get(0).click();
+            Assert.fail("api fail - not able to generate multiple patient");
         } else {
-            scrollDown();
+//            scrollDown();
             String name = recentPatientViewLst.get(recentPatientViewLst.size() - 1).getText();
-            ScenarioContext.putData("User",ScenarioContextKeys.PATIENT_NAME,name);
+            ScenarioContext.putData("User", ScenarioContextKeys.PATIENT_NAME, name);
             recentPatientViewLst.get(recentPatientViewLst.size() - 1).click();
         }
     }

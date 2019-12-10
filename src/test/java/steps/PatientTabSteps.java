@@ -35,9 +35,9 @@ public class PatientTabSteps extends BaseSteps {
         new PatientTabPage(getDriverInstanceFor(User)).tapsOnSyncLink();
     }
 
-    @And("^(\\w+) on Patient tab verifies SEEALL button$")
-    public void userOnPatientTabVerifiesSEEALLButton(String User) {
-        new PatientTabPage(getDriverInstanceFor(User)).verifiesSeeAllOption();
+    @And("^(\\w+) on Patient tab verifies SEEALL button for patient (.*)$")
+    public void userOnPatientTabVerifiesSEEALLButton(String User,int patinetCount) {
+        new PatientTabPage(getDriverInstanceFor(User)).verifiesSeeAllOption(patinetCount);
     }
 
     @And("^(\\w+) on Patient tab select any patient from recent patient list$")
