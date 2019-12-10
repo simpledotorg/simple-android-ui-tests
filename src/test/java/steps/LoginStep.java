@@ -87,4 +87,9 @@ public class LoginStep extends BaseSteps{
         String pin="1234";
         new LoginPage((getDriverInstanceFor(User))).userLogsIn(phoneNumber,pin);
     }
+
+    @And("^(\\w+) selects country$")
+    public void userSelectsCountry(String User) throws Throwable {
+        new LoginPage(getDriverInstanceFor(User)).selectsCountry();
+    }
 }

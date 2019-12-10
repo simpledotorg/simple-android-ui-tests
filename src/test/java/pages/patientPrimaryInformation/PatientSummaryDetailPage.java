@@ -63,6 +63,7 @@ public class PatientSummaryDetailPage extends BasePage {
     }
 
     public void clickOnSaveButton() {
+        waitFor(500);
         getSaveButton().click();
     }
 
@@ -268,7 +269,7 @@ public class PatientSummaryDetailPage extends BasePage {
     }
 
     public void updateBpInfo(String s, String s1) {
-        bpSection.updateBpInfo(s,s1);
+        bpSection.updateBpInfo(s, s1);
     }
 
     public void noBpPresent() {
@@ -278,9 +279,8 @@ public class PatientSummaryDetailPage extends BasePage {
     public void setRemainderConcentToggleFor(String value) {
         patientPrimaryInfoSection.setRemainderConcentToggleFor(value);
     }
-     private WebElement getSaveButton(){
 
+    private WebElement getSaveButton() {
         return driver.findElement(By.xpath("//android.widget.Button[contains(translate(@text,'ABCDEFGHIJKLMNOPQRSTUVWXYZ','abcdefghijklmnopqrstuvwxyz'),'save')]"));
-
-     }
+    }
 }

@@ -71,14 +71,11 @@ public class PatientTabPage extends BasePage {
 
     public void tapsOnSyncLink()  {
         syncLink.click();
-        try{
-            Thread.sleep(1000);
-        }
-        catch(Exception e){}
+        waitFor(1000);
     }
 
-    public void verifiesSeeAllOption() {
-        recentPatientSection.verifiesSeeAllOption();
+    public void verifiesSeeAllOption(int patinetCount) {
+        recentPatientSection.verifiesSeeAllOption(patinetCount);
     }
 
     public void selectPatientFromRecentPatientList(String patientNAme) throws Exception {

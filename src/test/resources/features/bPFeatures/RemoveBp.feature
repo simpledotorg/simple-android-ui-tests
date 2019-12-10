@@ -22,7 +22,7 @@ Feature: Remove bp functionality testing
   @bp @regression
   Scenario: Remove BP info to already registered patient who has more than one recorded bp.
     Given User registers new user from api
-    And User register new patient with list of bp through api
+    And User registers a patient with multiple Bps
     And User LogsIn in app
     And User on Patient tab taps on search text box
     Then User on Search page searched for Registered Patient
@@ -39,7 +39,7 @@ Feature: Remove bp functionality testing
   @bp @regression
   Scenario: Remove BP and schedule appointment to already registered patient who has multiple recorded bp
     Given User registers new user from api
-    And User register new patient with list of bp through api
+    And User registers a patient with multiple Bps
     And User LogsIn in app
     And User on Patient tab taps on search text box
     Then User on Search page searched for Registered Patient
@@ -56,7 +56,7 @@ Feature: Remove bp functionality testing
   @bp @regression
   Scenario: Remove all Bp info for registered patient who has more than one bp recorded.
     Given User registers new user from api
-    And User register new patient with list of bp through api
+    And User registers a patient with multiple Bps
     And User LogsIn in app
     And User on Patient tab taps on search text box
     Then User on Search page searched for Registered Patient

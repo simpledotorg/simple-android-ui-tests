@@ -30,7 +30,7 @@ Feature: overdue PATIENTS test
     And User on Homepage taps on OVERDUE Tab
     Then User on Overdue tab verifies patient info removed from overdue list
 
-  @overdue @smoke @regression
+  @overdue  @regression
   Scenario Outline: End to end flow of adding bp for a patient whose appointment is updated with Phone number doesn't exist
     And User on Homepage taps on OVERDUE Tab
     And User on Overdue tab taps on patient detail

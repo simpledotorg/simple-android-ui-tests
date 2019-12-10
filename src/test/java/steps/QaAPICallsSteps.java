@@ -1,5 +1,6 @@
 package steps;
 
+import cucumber.api.PendingException;
 import cucumber.api.java.en.And;
 import cucumber.api.java.en.Given;
 import pages.QaApiCallsPage;
@@ -27,11 +28,6 @@ public class QaAPICallsSteps extends BaseSteps {
         new QaApiCallsPage(getDriverInstanceFor(User)).registerNewPatientWithoutBp();
     }
 
-    @And("^(\\w+) register new patient with list of bp through api$")
-    public void userRegisterNewPatientWithMlistOfBpThroughApi(String User) {
-        new QaApiCallsPage(getDriverInstanceFor(User)).registerNewPatientWithListOfBps(1, 2);
-    }
-
     @And("^(\\w+) registers multiple patient with same phoneNumber from api$")
     public void userRegistersMultiplePatientWithSamePhoneNumberFromApi(String User) {
         String phoneNumber = RandomValue.getRandomPhoneNumber();
@@ -56,5 +52,15 @@ public class QaAPICallsSteps extends BaseSteps {
     @And("^(\\w+) registers new patient with bp passport from api$")
     public void userRegistersNewPatientWithBpPassportFromApi(String User) {
         new QaApiCallsPage(getDriverInstanceFor(User)).registerNewPatientWithBpPassportFromApi();
+    }
+
+    @And("^(\\w+) verifies reminder consent value in api service for (.*)")
+    public void userVerifiesReminderConsentValueInApiServiceForEnabled(String User,String value) {
+        new QaApiCallsPage(getDriverInstanceFor(User)).verifyReminderConsentAttribute(value);
+    }
+
+    @And("^(\\w+) registers multiple patient (.*) from api$")
+    public void userRegistersMultiplePatientCountFromApi(String User,int count) {
+        new QaApiCallsPage(getDriverInstanceFor(User)).registerMultiplePatients(count);
     }
 }
