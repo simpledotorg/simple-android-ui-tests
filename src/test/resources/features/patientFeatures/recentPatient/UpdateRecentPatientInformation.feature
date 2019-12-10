@@ -2,9 +2,9 @@ Feature: Select patient from recent patient list,update it's primary information
   verify display order in recent patient list.
 
   @recentPatient @smoke
-  Scenario: Add new Bp for patient whose name is listed in recent patient section
+  Scenario Outline: Add new Bp for patient whose name is listed in recent patient section
     Given User registers new user from api
-    And User registers new patient with bp from api
+    And User registers multiple patient <count> from api
     And User LogsIn in app
     And User on Patient tab select any patient from recent patient list
     And User on Patient summary page taps on Add new Bp button
@@ -13,11 +13,14 @@ Feature: Select patient from recent patient list,update it's primary information
     And User on Patient summary page taps on save Button
     And User on Patient summary page taps on appointment done button
     And User on Patient tab verifies patient info should show up on top of recent patient section
+    Examples:
+      | count |
+      | 2     |
 
   @recentPatient  @regression
-  Scenario: Remove bp patient whose name is listed in recent patient section
+  Scenario Outline: Remove bp patient whose name is listed in recent patient section
     Given User registers new user from api
-    And User registers new patient with bp from api
+    And User registers multiple patient <count> from api
     And User LogsIn in app
     And User on Patient tab select any patient from recent patient list
     And User on Patient summary page taps on Edit Bp Link
@@ -26,11 +29,14 @@ Feature: Select patient from recent patient list,update it's primary information
     Then User on Patient summary page verifies message
     And User on Patient summary page taps on save Button
     And User on Patient tab verifies patient info should not show up on top of recent patient section
+    Examples:
+      | count |
+      | 2     |
 
-  @recentPatient @smoke
-  Scenario: upon Adding new medicine for patient,it's info should get displayed in recent patient section
+  @recentPatient @regression
+  Scenario Outline: upon Adding new medicine for patient,it's info should get displayed in recent patient section
     Given User registers new user from api
-    And User registers new patient with bp from api
+    And User registers multiple patient <count> from api
     And User LogsIn in app
     And User on Patient tab select any patient from recent patient list
     And User on Patient summary page taps on Add new medicine button
@@ -41,21 +47,27 @@ Feature: Select patient from recent patient list,update it's primary information
     And User on Patient summary page taps on save Button
     And User on Patient summary page taps on appointment done button
     And User on Patient tab verifies patient info should show up on top of recent patient section
+    Examples:
+      | count |
+      | 2     |
 
   @recentPatient  @regression
-  Scenario: upon update appointment, verify patient name show up in recent patient list
+  Scenario Outline: upon update appointment, verify patient name show up in recent patient list
     Given User registers new user from api
-    And User registers new patient with bp from api
+    And User registers multiple patient <count> from api
     And User LogsIn in app
     And User on Patient tab select patient from recent patient list
     And User on Patient summary page taps on save Button
     And User on Patient summary page taps on appointment done button
     And User on Patient tab verifies patient info should show up on top of recent patient section
+    Examples:
+      | count |
+      | 2     |
 
   @recentPatient  @regression
-  Scenario: upon editing patient information,verify patient name should not show up in recent patient section
+  Scenario Outline: upon editing patient information,verify patient name should not show up in recent patient section
     Given User registers new user from api
-    And User registers new patient with bp from api
+    And User registers multiple patient <count> from api
     And User LogsIn in app
     And User on Patient tab select any patient from recent patient list
     And User on Patient summary page taps on Edit patient info link
@@ -63,3 +75,6 @@ Feature: Select patient from recent patient list,update it's primary information
     And User on Patient summary page taps on save Button
     And User on Patient summary page taps on appointment not now button
     And User on Patient tab verifies patient info should not show up on top of recent patient section
+    Examples:
+      | count |
+      | 2     |
