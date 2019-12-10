@@ -222,4 +222,9 @@ public class LoginPage extends BasePage {
     public void resetApp() {
         driver.resetApp();
     }
+
+    public void selectsCountry() {
+        String country= CreateFaker.getCountry();
+        countrySelectionPage.selectCountry(country);
+    }
 }

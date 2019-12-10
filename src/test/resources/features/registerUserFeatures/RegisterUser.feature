@@ -13,6 +13,7 @@ Feature: Register Nurse/User
   @register @regression
   Scenario: New Nurse/User reset pin at the time of registration
     And User taps on GetStarted button
+    And User selects country
     And User enters registration phone number
     And User enters registration name
     And User enters security pin number
