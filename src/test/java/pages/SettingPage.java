@@ -28,19 +28,22 @@ public class SettingPage extends BasePage {
     private By backButton = By.className("android.widget.ImageButton");
     private By string = By.className("android.widget.TextView");
 
-    @FindBy(xpath = "//android.widget.ScrollView/android.view.ViewGroup")
+    @FindBy(className = "android.view.View")
     private WebElement settingLayout;
 
     private By userName = By.id("userName");
     private By userNumber = By.id("userNumber");
-    private By currentLanguage = By.id("currentLanguage");
     private By changeLanguageButton = By.id("changeLanguageButton");
+
+    @FindBy(id="currentLanguage")
+    private WebElement currentLanguage;
 
 
     public void verifySettingScreen() {
         driver.findElement(userName).getText().equals(ScenarioContext.getData("User", ScenarioContextKeys.USER_NAME));
         driver.findElement(userNumber).getText().equals(ScenarioContext.getData("User", ScenarioContextKeys.USER_PHONENUMBER));
-        driver.findElement(currentLanguage).getText().equals("Select a language");
+        waitFor(500);
+        currentLanguage.getText().equals("Select a language");
         isElementPresent(changeLanguageButton);
     }
 
@@ -51,7 +54,7 @@ public class SettingPage extends BasePage {
     public void selectALanguageAndVerifyLanguageSelection(String lang) {
         settingLanguagePage.selectLanguage(lang);
         settingLanguagePage.selectDoneButton();
-        String text = settingLayout.findElement(currentLanguage).getText();
+        String text = currentLanguage.getText();
         Assert.assertEquals("selected language isn't displayed in select language screen",text,lang);
     }
 
@@ -64,7 +67,7 @@ public class SettingPage extends BasePage {
     }
 
     public void verifyDefaultText() {
-        String text = settingLayout.findElement(currentLanguage).getText();
+        String text = currentLanguage.getText();
         Assert.assertEquals("selected language isn't displayed in select language screen",text,"Select a language");
     }
 }

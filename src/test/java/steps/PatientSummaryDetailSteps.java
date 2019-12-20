@@ -19,7 +19,7 @@ import java.util.HashSet;
 public class PatientSummaryDetailSteps extends BaseSteps {
     @And("^(\\w+) on Patient summary page enters new patient info$")
     public void userEntersNewPateintInfo(String User) {
-        new PatientSummaryDetailPage(getDriverInstanceFor(User)).enterPatientInfo("",RandomValue.getRandomPhoneNumber(), CreateFaker.getRandomAge(), CreateFaker.getGender(), "testcolony");
+        new PatientSummaryDetailPage(getDriverInstanceFor(User)).enterPatientInfo("",RandomValue.getRandomPhoneNumber(), CreateFaker.getRandomAge(), CreateFaker.getGender(), "testcolony","enabled");
     }
 
     @And("^(\\w+) on Patient summary page enters new Bp Info$")
@@ -45,7 +45,7 @@ public class PatientSummaryDetailSteps extends BaseSteps {
 
     @And("^(\\w+) on Patient summary page enters new patient info Without phone number$")
     public void userEntersNewPatientInfoWithoutPhoneNumber(String User) {
-        new PatientSummaryDetailPage(getDriverInstanceFor(User)).enterPatientInfo("", "", CreateFaker.getRandomAge(),CreateFaker.getGender(),"testcolony");
+        new PatientSummaryDetailPage(getDriverInstanceFor(User)).enterPatientInfo("", "", CreateFaker.getRandomAge(),CreateFaker.getGender(),"testcolony","enabled");
     }
 
     @And("^(\\w+) on Patient summary page navigates back$")
@@ -55,12 +55,12 @@ public class PatientSummaryDetailSteps extends BaseSteps {
 
     @And("^(\\w+) on Patient summary page enters invalid data for patients primary info$")
     public void userEntersInvalidDataForPatientsPrimaryInfo(String User) {
-        new PatientSummaryDetailPage(getDriverInstanceFor(User)).enterPatientInfo("","19208","", "", "");
+        new PatientSummaryDetailPage(getDriverInstanceFor(User)).enterPatientInfo("","19208","", "", "","enabled");
     }
 
     @And("^(\\w+) on Patient summary page enters invalid date$")
     public void userEntersInvalidDate(String User) {
-        new PatientSummaryDetailPage(getDriverInstanceFor(User)).enterPatientInfo("",RandomValue.getRandomPhoneNumber(),"31 / 02 /2019", CreateFaker.getGender(), "test");
+        new PatientSummaryDetailPage(getDriverInstanceFor(User)).enterPatientInfo("",RandomValue.getRandomPhoneNumber(),"31 / 02 /2019", CreateFaker.getGender(), "test","enabled");
     }
 
     @And("^(\\w+) on Patient summary page taps on Add new Bp button$")
@@ -136,7 +136,7 @@ public class PatientSummaryDetailSteps extends BaseSteps {
     }
 
     @Then("(\\w+) on Patient summary page taps on Add another medicine button$")
-    public void userTapsOnAddAnotherMedicineButton(String User) throws Throwable {
+    public void userTapsOnAddAnotherMedicineButton(String User) {
         new PatientSummaryDetailPage(getDriverInstanceFor(User)).tapsOnAddAnotherMedicine();
     }
 
@@ -203,7 +203,7 @@ public class PatientSummaryDetailSteps extends BaseSteps {
     }
 
     @Then("^(\\w+) on Patient summary page taps on \"([^\"]*)\"$")
-    public void userTapsOn(String User, String name) throws Throwable {
+    public void userTapsOn(String User, String name) {
         new PatientSummaryDetailPage(getDriverInstanceFor(User)).selectNoneAsDosage();
     }
 
@@ -238,7 +238,7 @@ public class PatientSummaryDetailSteps extends BaseSteps {
     }
 
     @And("^(\\w+) create protocol drug from api$")
-    public void userCreateProtocolDrugFromApi(String User) throws Throwable {
+    public void userCreateProtocolDrugFromApi(String User) {
         new PatientSummaryDetailPage(getDriverInstanceFor(User)).createProtocolDrug();
     }
 
@@ -248,7 +248,7 @@ public class PatientSummaryDetailSteps extends BaseSteps {
     }
 
     @And("^(\\w+) on Patient summary page updates phone number$")
-    public void userOnPatientSummaryUpdatesPhoneNumber(String User) throws Throwable {
+    public void userOnPatientSummaryUpdatesPhoneNumber(String User) {
         new PatientSummaryDetailPage(getDriverInstanceFor(User)).updatePhoneNumber();
     }
 
@@ -299,7 +299,7 @@ public class PatientSummaryDetailSteps extends BaseSteps {
     @And("^(\\w+) on Patient summary page enters new patient primary information$")
     public void userOnPatientSummaryPageEntersNewPatientPrimaryInformation(String User) {
         String name= new CreateFaker().faker.name().firstName();
-        new PatientSummaryDetailPage(getDriverInstanceFor(User)).enterPatientInfo(name,"","44","Male","testcolony");
+        new PatientSummaryDetailPage(getDriverInstanceFor(User)).enterPatientInfo(name,"","44","Male","testcolony","enabled");
     }
 
     @And("^(\\w+) on Patient summary page verifies error message for invalid data entry$")
@@ -318,8 +318,14 @@ public class PatientSummaryDetailSteps extends BaseSteps {
     }
 
     @And("^(\\w+) on Patient summary page verifies no bp present$")
-    public void userOnPatientSummaryPageVerifiesNoBpPresent(String User) throws Throwable {
+    public void userOnPatientSummaryPageVerifiesNoBpPresent(String User) {
         new PatientSummaryDetailPage(getDriverInstanceFor(User)).noBpPresent();
+    }
+
+    @And("^(\\w+) on Patient summary page enters new patient info by disabling consent reminder toggle$")
+    public void userOnPatientSummaryPageEntersNewPatientInfoByDisablingConsentReminderToggle(String User) {
+        String name= new CreateFaker().faker.name().firstName();
+        new PatientSummaryDetailPage(getDriverInstanceFor(User)).enterPatientInfo(name,"","44","Male","testcolony","disabled");
     }
 }
 

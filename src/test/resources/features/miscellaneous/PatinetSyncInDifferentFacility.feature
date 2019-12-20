@@ -153,7 +153,7 @@ Feature: miscellaneous feature -Patinet sync in different facility
     Then User on Patient summary page verifies updated medicine info
 
 
-  @smoke @patientsync @regression
+   @patientsync @regression
   Scenario Outline: End to End flow for Add prescribed medicine and verify patient info sync in different facility -registration flow
     Given User registers new user from api
     And User registers new patient with bp from api
@@ -176,12 +176,12 @@ Feature: miscellaneous feature -Patinet sync in different facility
     And User on search page searched for patient registered in other facility
     And User on Search page selects patient form search list
     Then User on Patient summary page verifies updated medicine info
-  Examples:
-  | facilityName |
-  | CHC Buccho   |
+    Examples:
+      | facilityName |
+      | CHC Buccho   |
 
 
-  @smoke @patientsync @regression
+  @patientsync @regression
   Scenario: End to End flow for Add customize medicine and verify patient info sync in different facility
     Given User registers new user from api
     And User registers new patient with bp from api
@@ -205,5 +205,45 @@ Feature: miscellaneous feature -Patinet sync in different facility
     And User on Search page selects patient form search list
     Then User on Patient summary page verifies updated medicine info
 
+  @patientsync1 @regression
+  Scenario Outline: End to End flow ,set call result for Overdue patient as died and verify patient info sync in different facility
+    Given User registers new user from api
+    And User registers overdue patient
+    And User LogsIn in app
+    And User on Homepage taps on OVERDUE Tab
+    And User on Overdue tab taps on patient detail
+    And User on Overdue tab taps on remove from overdue list
+    And User on Overdue tab selects <reasons>
+    And User on Overdue reason page selects done button
+    And User enters registered security pin
+    And User on Homepage taps on PATIENTS Tab
+    And User on Patient tab taps on sync link
+    And User resets app
+    And User LogsIn in app with new user in different facility
+    And User on Patient tab taps on search text box
+    And User on Search page verifies patient name should not be displayed
+    Examples:
+      | reasons |
+      | Died    |
 
+  @patientsync @regression
+  Scenario: End to End flow ,add bp for Overdue patient and verify patient info sync in different facility
+    Given User registers new user from api
+    And User registers overdue patient
+    And User LogsIn in app
+    And User on Patient tab taps on search text box
+    And User on Search page searched for Registered Patient
+    And User on Search page selects patient form search list
+    And User on Patient summary page taps on Add new Bp button
+    And User on Patient summary page enters new Bp Info
+    And User on Patient summary page selects done button
+    And User on Patient summary page taps on save Button
+    And User on Patient summary page taps on appointment done button
+    And User on Patient tab taps on sync link
+    And User resets app
+    And User LogsIn in app with new user in different facility
+    And User on Patient tab taps on search text box
+    And User on search page searched for patient registered in other facility
+    And User on Search page selects patient form search list
+    And User on Patient summary page verifies days information
 

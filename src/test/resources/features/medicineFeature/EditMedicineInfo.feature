@@ -21,7 +21,7 @@ Feature: Update medicine info functionality testing
     And User on Patient summary page taps on save bp medicine button
     #    Then User on Patient summary page verifies updated medicine info
 
-   @medicine @smoke
+   @medicine @regression
   Scenario: Update prescribed medicine
     Then User on Patient summary page taps on Add new medicine button
     And User on Patient summary page select prescribed medicine

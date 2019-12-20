@@ -15,7 +15,7 @@ Feature: Test setting screen functionality
       | lang    |
       | English |
 
-  @setting @smoke
+  @setting @regression
   Scenario: Verify default text for language setting when user didn't select any language
 
     Examples:

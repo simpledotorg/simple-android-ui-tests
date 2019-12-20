@@ -32,7 +32,7 @@ Feature: Edit BP info
     And User on Patient summary page taps on appointment done button
     And User on Patient tab verifies patient info should show up on top of recent patient section
 
-  @bp @smoke
+  @bp @regression
   Scenario: End to End flow for Edit Bp and verify reflected changes in patient summary screen[without clicking on sync link]
     Given User registers new user from api
     And  User registers new patient with bp from api

@@ -19,4 +19,11 @@ public class PatientGetRequestResponse {
                 .collect(Collectors.toList());
         return collect;
     }
+
+    public String getReminderConcentValueForPatient(String patientName){
+        List<Patients> collect = patients.stream()
+                .filter(p -> p.getFull_name().toUpperCase().equals(patientName.toUpperCase()))
+                .collect(Collectors.toList());
+        return collect.get(0).getReminder_consent();
+    }
 }

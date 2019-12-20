@@ -30,7 +30,7 @@ Feature: Register Nurse/User
       | CHC Buccho   |
 
 
-  @setting  @register @smoke
+  @setting  @register @regression
   Scenario Outline: User should be able to select language while new registration
     And New User registers on app
     And User search for facility as <facilityName>

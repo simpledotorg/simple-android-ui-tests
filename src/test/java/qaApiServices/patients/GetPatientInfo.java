@@ -27,4 +27,12 @@ public class GetPatientInfo {
         return new PatientClient().get(facilityId, userId, token);
     }
 
+    public String getReminderConcentValueForPatient(String patientName) {
+        String facilityId = ScenarioContext.getData("User", ScenarioContextKeys.FACILTIYID);
+        String userId = ScenarioContext.getData("User", ScenarioContextKeys.USER_ID);
+        String token = ScenarioContext.getData("User", ScenarioContextKeys.ACCESS_TOKEN);
+
+        PatientGetRequestResponse patientGetRequestResponse = new PatientClient().get(facilityId, userId, token);
+        return patientGetRequestResponse.getReminderConcentValueForPatient(patientName);
+    }
 }
