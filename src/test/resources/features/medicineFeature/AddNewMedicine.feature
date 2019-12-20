@@ -23,7 +23,7 @@ Feature: To Test "Add New" functionality for prescribed and customized Medicine.
     Then User on Patient summary page taps on Add another medicine button
     And User on Patient summary page add new invalid customized medicine
 
-   @medicine @smoke
+   @medicine @regression
   Scenario: Add new prescribed medicine to already registered patient
     Then User on Patient summary page taps on Add new medicine button
     And User on Patient summary page select prescribed medicine
