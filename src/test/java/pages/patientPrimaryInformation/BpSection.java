@@ -56,7 +56,7 @@ public class BpSection extends BasePage {
     @FindBy(id = "android:id/button2")
     private WebElement skipPhoneNumberButton;
 
-    @FindBy(id = "patientsummary_item_bp_days_ago")
+    @FindBy(id = "daysAgoTextView")
     private WebElement daysAgoInfo;
 
     @FindBy(id = "removeBloodPressureButton")
@@ -68,25 +68,24 @@ public class BpSection extends BasePage {
     @FindBy(id = "android:id/button2")
     private WebElement cancelButton;
 
-    @FindBy(id = "patientsummary_item_bp_placeholder")
+    @FindBy(id = "placeHolderMessageTextView")
     private WebElement bpSummary;
 
     @FindBy(id = "patientsummary_item_layout")
     private List<WebElement> summaryLayout;
 
-    @FindBys({@FindBy(id = "patientsummary_item_bp_readings")})
+    @FindBys({@FindBy(id = "readingsTextView")})
     private List<WebElement> bpReadings;
 
     @FindBy(id = "bpDateButton")
     private WebElement bpDate;
-
     @FindBy(id = "patientsummary_item_layout")
     private WebElement bpLayout1;
 
-    private By heartIcon = By.id("patientsummary_bp_reading_heart");
-    private By bpLevel = By.id("patientsummary_item_bp_level");
-    private By daysAgo = By.id("patientsummary_item_bp_days_ago");
-    private By reading = By.id("patientsummary_item_bp_readings");
+    private By heartIcon = By.id("heartImageView");
+    private By bpLevel = By.id("levelTextView");
+    private By daysAgo = By.id("daysAgoTextView");
+    private By reading = By.id("readingsTextView");
 
     @FindBy(id = "addphone_phone")
     private MobileElement phoneNumberTextFeild;
@@ -176,9 +175,9 @@ public class BpSection extends BasePage {
         if (getSummaryLayoutCount() == 0) {
             Assert.fail("Bp list should be displayed");
         }
-        String bpCount=ScenarioContext.getData("User",ScenarioContextKeys.BPCOUNT);
-        int expectedValue=Integer.parseInt(bpCount)-1;
-        Assert.assertEquals(bpReadings.size(),expectedValue,"bp count should dec by 1 as one bpvalue is removed");
+        String bpCount = ScenarioContext.getData("User", ScenarioContextKeys.BPCOUNT);
+        int expectedValue = Integer.parseInt(bpCount) - 1;
+        Assert.assertEquals(bpReadings.size(), expectedValue, "bp count should dec by 1 as one bpvalue is removed");
         // need to check that removed bp should not be present if we are removing one bp
     }
 
@@ -199,23 +198,27 @@ public class BpSection extends BasePage {
         for (WebElement ele : bpReadings) {
             if (ele.getText().equals(value)) {
 
-                WebElement bpLayout = driver.findElement(By.xpath("//android.widget.TextView[contains(@text,'" + value + "')]/.."));
+                WebElement bpLayout = driver.findElement(By.xpath("//*[@text='"+value+"']/.."));
                 bpLayout.findElement(reading).getText().equals(value);
                 bpLayout.findElement(bpLevel).isDisplayed();
                 bpLayout.findElement(heartIcon).isDisplayed();
                 Assert.assertTrue(bpLayout.findElement(daysAgo).getText().replaceAll("[^a-zA-Z0-9]", "").contains("10daysago"));
+                break;
             }
         }
     }
 
     public void verifiesDaysInfo(String value) {
+
+
         for (WebElement ele : bpReadings) {
             if (ele.getText().equals(value)) {
-                WebElement bpLayout = driver.findElement(By.xpath("//android.widget.TextView[contains(@text,'" + value + "')]/.."));
+                WebElement bpLayout = driver.findElement(By.xpath("//*[@text='"+value+"']/.."));
                 bpLayout.findElement(reading).getText().equals(value);
                 bpLayout.findElement(bpLevel).isDisplayed();
                 bpLayout.findElement(heartIcon).isDisplayed();
                 Assert.assertTrue(bpLayout.findElement(daysAgo).getText().replaceAll("[^a-zA-Z0-9]", "").contains("Today"));
+                break;
             }
         }
     }
@@ -236,6 +239,6 @@ public class BpSection extends BasePage {
     }
 
     public void noBpPresent() {
-        Assert.assertEquals(getSummaryLayoutCount(),0);
+        Assert.assertEquals(getSummaryLayoutCount(), 0);
     }
 }
