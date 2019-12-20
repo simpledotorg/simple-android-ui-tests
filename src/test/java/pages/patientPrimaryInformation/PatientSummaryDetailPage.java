@@ -63,7 +63,7 @@ public class PatientSummaryDetailPage extends BasePage {
     }
 
     public void clickOnSaveButton() {
-        waitFor(500);
+        waitFor(1000);
         getSaveButton().click();
     }
 

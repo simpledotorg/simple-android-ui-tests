@@ -16,14 +16,16 @@ public class ClientRequest {
     public AppointmentPostResponse POST(AppointmentPostRequest appointmentRequest, String facilityId, String userId, String token) {
         String json = new Gson().toJson(appointmentRequest);
 
-        Response response = given()
+        RequestSpecification request = given()
                 .contentType("application/json; charset=utf-8")
                 .header("Content-Type", "application/json")
                 .header("X-User-Id", userId)
                 .header("X-Facility-Id", facilityId)
                 .header("Authorization", "Bearer " + token)
-                .body(json)
-                .post(QaApiUrl.Appointment);
+                .body(json);
+
+        System.out.println(request.log().everything());
+        Response response=request.post(QaApiUrl.Appointment);
 
         System.out.println("appointment Response" + response.asString());
 
