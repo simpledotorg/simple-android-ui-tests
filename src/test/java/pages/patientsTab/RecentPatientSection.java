@@ -39,46 +39,16 @@ public class RecentPatientSection extends BasePage {
         getPatient(patientName);
     }
 
-    //    public void verifiesSeeAllOption() {
-//        new RegisterUser().registerNewUser();
-//        PatientGetRequestResponse allPatient = new GetPatientInfo().getAllPatient();
-//        int size = allPatient.getPatients().size();
-//        String status = "false";
-//        if (size > 10) {
-//            int count = 0;
-//            while (count <= 3) {
-//                try {
-//                    seeAllButton.isDisplayed();
-//                    status = "true";
-//                } catch (Exception e) {
-//                    scrollDown();
-//                }
-//                count++;
-//            }
-//            Assert.assertTrue(status.equals("true"), "SEE ALL BUTTON should be present");
-//        } else {
-//            Assert.assertEquals(status,"false", "SEE ALL BUTTON should not be present");
-//        }
-//    }
-    public void verifiesSeeAllOption(int patinetCount) {
+    public void verifiesSeeAllOption(int patientCount) {
         String status = "false";
-        if (patinetCount > 10) {
-            int count = 0;
-            while (count <= 3) {
-                try {
-                    seeAllButton.isDisplayed();
-                    status = "true";
-                } catch (Exception e) {
-                    scrollDown();
-                }
-                count++;
-            }
-            Assert.assertTrue(status.equals("true"), "SEE ALL BUTTON should be present");
-            seeAllButton.click();
-        } else {
-            Assert.assertEquals(status, "false", "SEE ALL BUTTON should not be present");
+        if (patientCount > 10) {
+            String strn = scrollToElement("See All");
+            Assert.assertNotEquals(strn,status,"See All button should be present for "+patientCount);
         }
-
+        else{
+            String strn = scrollToElement("See All");
+            Assert.assertEquals(strn,status,"See All button should not be present for patient count"+patientCount);
+        }
     }
 
     public void selectPatientFromRecentPatientList(String patientName) throws Exception {

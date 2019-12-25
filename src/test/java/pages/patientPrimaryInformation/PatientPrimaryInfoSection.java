@@ -140,7 +140,8 @@ public class PatientPrimaryInfoSection extends BasePage {
         Assert.assertTrue(districtTextBox.getText().equalsIgnoreCase("Bathinda"));
         Assert.assertTrue(stateTextBox.getText().equalsIgnoreCase("Punjab"));
 
-        scrollDown();
+        String strn = scrollToElement("WhatsApp / SMS Reminders");
+        Assert.assertEquals(strn,"true","reminder concent toggle shold be present");
 
         Assert.assertTrue(consentSwitch.getAttribute("checked").equals("true"));
 
