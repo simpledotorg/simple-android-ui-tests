@@ -2,6 +2,8 @@ package pages;
 
 import com.google.common.collect.ImmutableMap;
 import io.appium.java_client.AppiumDriver;
+import io.appium.java_client.MobileBy;
+import io.appium.java_client.MobileElement;
 import io.appium.java_client.TouchAction;
 import io.appium.java_client.touch.WaitOptions;
 import io.appium.java_client.touch.offset.PointOption;
@@ -234,24 +236,36 @@ public class BasePage {
 
 
     public void runAppInBackgroudAndrelaunch() {
-        driver.runAppInBackground(Duration.ofSeconds(10));
+        driver.runAppInBackground(Duration.ofSeconds(1));
     }
 
     public String getAllDigitsInString(String str) {
-        String expStr= "";
+        String expStr = "";
         for (int i = 0; i <= str.length() - 1; i++) {
             if (Character.isDigit(str.charAt(i))) {
-                expStr = expStr +str.charAt(i);
+                expStr = expStr + str.charAt(i);
             }
         }
         return expStr;
     }
 
-    public void waitFor(int timeunit){
+    public void waitFor(int timeunit) {
         try {
             Thread.sleep(timeunit);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
+    }
+
+    public String scrollToElement(String text) {
+
+        try {
+            MobileElement element = (MobileElement) driver.findElement(MobileBy.AndroidUIAutomator("new UiScrollable(new UiSelector().scrollable(true).instance(0)).scrollIntoView(new UiSelector().text(\""+text+"\").instance(0))"
+            ));
+            return "true";
+        } catch (Exception e) {
+            return "false";
+        }
+
     }
 }
