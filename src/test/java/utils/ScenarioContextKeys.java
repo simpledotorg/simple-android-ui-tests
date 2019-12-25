@@ -2,6 +2,8 @@ package utils;
 
 public interface ScenarioContextKeys {
 
+    String ENV="env";
+
     String USER_ID="userId";
     String USER_PHONENUMBER="phoneNumber";
     String ACCESS_TOKEN="access_token";

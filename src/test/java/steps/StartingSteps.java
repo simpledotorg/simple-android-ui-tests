@@ -19,10 +19,11 @@ public class StartingSteps extends BaseSteps {
     @Before
     public void setUp(Scenario scenario) throws Exception {
         String testFeed = System.getProperty("testFeed") + ".json";
+        ScenarioContext.putData("User", ScenarioContextKeys.ENV, testFeed);
         String appJson = new JsonUtil().getAppJson(testFeed);
         controller = new OptimusController(appJson, scenario);
         smartBOTs = controller.registerSmartBOTs();
-        System.out.println("Appium Services are..."+smartBOTs.size());
+        System.out.println("Appium Services are..." + smartBOTs.size());
         smartBOTs.forEach(smartBOT -> System.out.println(smartBOT.getAppiumService()));
         optimus = new OptimusImpl(smartBOTs);
 
@@ -37,7 +38,9 @@ public class StartingSteps extends BaseSteps {
         controller.deRegisterSmartBOTs(smartBOTs);
         new DeleteApi().DeleteUser();
 
-        try{
-        getChromeDriver().quit();}catch (Exception e){}
+        try {
+            getChromeDriver().quit();
+        } catch (Exception e) {
+        }
     }
 }

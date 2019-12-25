@@ -1,0 +1,33 @@
+{
+  "executionDetails": {
+    "appium_js_path": "/usr/local/bin/appium",
+    "appium_node_path": "/usr/local/bin/node",
+    "monitoring":true
+  },
+  "testFeed":[
+    {
+      "belongsTo":"User",
+      "runsOn": "any",
+      "appDir": "app",
+      "nativeApp":true,
+      "optimusDesiredCapabilities": {
+        "appiumServerCapabilities": {
+          "app": "simpleSBX.apk",
+          "platformName": "Android"
+        },
+        "androidOnlyCapabilities": {
+          "appActivity": "org.simple.clinic.setup.SetupActivity",
+          "appPackage": "org.simple.clinic.sandbox",
+          "avdLaunchTimeout": 300000,
+          "unicodeKeyboard":true,
+          "resetKeyboard":true,
+          "useKeystore": false,
+          "fullreset": true
+        }
+      },
+      "deviceState": {
+        "captureVideo": true
+      }
+    }
+  ]
+}
