@@ -29,4 +29,7 @@ public class Facilities {
     private String facility_group_name;
     @JsonProperty("import")
     private String imports;
+    private String facility_size;
+    private Config config;
+
 }
