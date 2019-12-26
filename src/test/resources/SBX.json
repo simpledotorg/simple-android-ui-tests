@@ -12,7 +12,7 @@
       "nativeApp":true,
       "optimusDesiredCapabilities": {
         "appiumServerCapabilities": {
-          "app": "simpleSBX.apk",
+          "app": "oldSBX.apk",
           "platformName": "Android"
         },
         "androidOnlyCapabilities": {

@@ -10,9 +10,6 @@ import static java.lang.Runtime.getRuntime;
 
 public class AdbUtils {
     AppiumDriver driver;
-    public void relaunchApp(){
-        driver.runAppInBackground(Duration.ofSeconds(1));
-    }
 
     public static void executeCommandUsingArray(String[] command) throws IOException, InterruptedException {
         for (String arg : command) {
@@ -20,5 +17,4 @@ public class AdbUtils {
             process.waitFor();
         }
     }
-
 }

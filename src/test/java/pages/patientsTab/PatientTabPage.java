@@ -69,7 +69,7 @@ public class PatientTabPage extends BasePage {
         searchSection.selectsPatientFromSearchList(patientName);
     }
 
-    public void tapsOnSyncLink()  {
+    public void tapsOnSyncLink() {
         syncLink.click();
         waitFor(1000);
     }
@@ -147,5 +147,10 @@ public class PatientTabPage extends BasePage {
         } catch (Exception e) {
             System.out.println("m here");
         }
+    }
+
+    public void tapsOnGotItLink() {
+        waitForElementToBeVisible(GotITButton);
+        GotITButton.click();
     }
 }

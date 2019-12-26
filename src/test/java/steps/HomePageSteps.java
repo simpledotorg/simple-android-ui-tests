@@ -30,4 +30,14 @@ public class HomePageSteps extends BaseSteps {
     public void userTapsOnSettingIcon(String User) {
         new HomePage(getDriverInstanceFor(User)).tapsOnSettingScreen();
     }
+
+    @And("^(\\w+) taps on Update pop up$")
+    public void userTapsOnUpdatePopUp(String User) {
+        new HomePage(getDriverInstanceFor(User)).tapsOnUpdatePopUp();
+    }
+
+    @And("^(\\w+) run app in Background and relaunch it$")
+    public void userRunAppInBackgroundAndRelaunchIt(String User) {
+        new HomePage(getDriverInstanceFor(User)).runAppInBackgroudAndRelaunch();
+    }
 }
