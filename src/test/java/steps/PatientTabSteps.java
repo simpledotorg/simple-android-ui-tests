@@ -95,4 +95,9 @@ public class PatientTabSteps extends BaseSteps {
     public void userOnPatientTabTapsOnScanBpPassport(String User) {
         new PatientTabPage(getDriverInstanceFor(User)).tapsOnScanBpPassport();
     }
+
+    @And("^(\\w+) on patient tab taps on got it link$")
+    public void userOnPatientTabTapsOnGotItLink(String User) {
+        new PatientTabPage(getDriverInstanceFor(User)).tapsOnGotItLink();
+    }
 }

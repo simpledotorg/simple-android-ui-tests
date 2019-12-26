@@ -18,6 +18,10 @@ public class HomePage extends BasePage {
     @FindBy(id = "openSettings")
     private WebElement settingIcon;
 
+    @FindBy(id="android:id/button1")
+    private WebElement updateButton;
+
+
     private AppiumDriver driver;
 
     public HomePage(AppiumDriver driver) {
@@ -43,4 +47,12 @@ public class HomePage extends BasePage {
         settingIcon.click();
     }
 
+    public void tapsOnUpdatePopUp() {
+        waitForElementToBeVisible(updateButton);
+        updateButton.click();
+    }
+
+    public void runAppInBackgroudAndRelaunch() {
+        runAppInBackgroudAndrelaunch();
+    }
 }
