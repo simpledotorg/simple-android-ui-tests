@@ -23,18 +23,9 @@ public class CreateFaker {
         return new CreateFaker().faker.random().nextInt(40, 80).toString();
     }
 
-    public static String getGender(){
-        String[] arr= {"Male","Female","Transgender"};
+    public static String getGender() {
+        String[] arr = {"Male", "Female", "Transgender"};
         int i = new Random().nextInt(3);
         return arr[i];
     }
-
-
-    public static String getCountry(){
-        String[] arr= {"India","Bangladesh"};
-        int i = new Random().nextInt(2);
-        ScenarioContext.putData("User",ScenarioContextKeys.COUNTRY,arr[i]);
-        return arr[i];
-    }
-
 }
