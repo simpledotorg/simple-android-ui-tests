@@ -49,6 +49,7 @@ public class ServiceTest {
                         .withPatientId(patientId)
                         .withCreatedAt(Date.getBackDateIn_RFC339_Format(dd1))
                         .withUpdatedAt(Date.getBackDateIn_RFC339_Format(dd1))
+                        .withRecordedAt(Date.getBackDateIn_RFC339_Format(dd1))
                         .withFacilityId(facilityId).build();
                 bp.add(build);
                 i--;
@@ -63,14 +64,14 @@ public class ServiceTest {
 
     @Test
     public void getOverduePatientList() {
-        createOverduePatientList(2);
+        createOverduePatientList(1);
     }
 
 
     @Test
     public void getPatientlist() {
         new RegisterUser().registerNewUser();
-        createPatientList(10);
+        createPatientList(1);
     }
 
     private void createPatientList(int count) {

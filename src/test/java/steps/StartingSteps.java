@@ -18,8 +18,13 @@ public class StartingSteps extends BaseSteps {
 
     @Before
     public void setUp(Scenario scenario) throws Exception {
+        String buildEnv=System.getProperty("testFeed");
+        ScenarioContext.putData("User",ScenarioContextKeys.ENV,buildEnv);
+
+        String country= System.getProperty("env");
+        ScenarioContext.putData("User",ScenarioContextKeys.COUNTRY,country);
+
         String testFeed = System.getProperty("testFeed") + ".json";
-        ScenarioContext.putData("User", ScenarioContextKeys.ENV, testFeed);
         String appJson = new JsonUtil().getAppJson(testFeed);
         controller = new OptimusController(appJson, scenario);
         smartBOTs = controller.registerSmartBOTs();

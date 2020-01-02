@@ -149,7 +149,7 @@ public class LoginPage extends BasePage {
 
     public void userLogsIn(String phoneNumber, String pin) {
         clicksOnGetStartedButton();
-        String country= CreateFaker.getCountry();
+        String country= ScenarioContext.getData("User",ScenarioContextKeys.COUNTRY);
         countrySelectionPage.selectCountry(country);
         enterRegistrationPhoneNumber(phoneNumber);
         enterRegisteredPin(pin);
@@ -160,7 +160,7 @@ public class LoginPage extends BasePage {
 
     public void newUserRegisteration(String phoneNumber, String name, String pin) {
         clicksOnGetStartedButton();
-        String country= CreateFaker.getCountry();
+        String country= ScenarioContext.getData("User",ScenarioContextKeys.COUNTRY);
         countrySelectionPage.selectCountry(country);
         enterRegistrationPhoneNumber(phoneNumber);
         enterRegistrationName(name);
@@ -224,7 +224,7 @@ public class LoginPage extends BasePage {
     }
 
     public void selectsCountry() {
-        String country= CreateFaker.getCountry();
+        String country= ScenarioContext.getData("User",ScenarioContextKeys.COUNTRY);
         countrySelectionPage.selectCountry(country);
     }
 }

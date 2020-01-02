@@ -11,7 +11,7 @@ optimus {
     tags = System.getProperty("tags");
     devMode = System.getProperty("devMode");
     regression = System.getProperty("regression");
-    env = System.getProperty("env", "integration");
+    env = System.getProperty("env", "");
     classpath = sourceSets.test.runtimeClasspath
 }
 
