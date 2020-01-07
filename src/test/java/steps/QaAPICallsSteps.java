@@ -28,7 +28,7 @@ public class QaAPICallsSteps extends BaseSteps {
         new QaApiCallsPage(getDriverInstanceFor(User)).registerNewPatientWithoutBp();
     }
 
-    @And("^(\\w+) registers multiple patient with same phoneNumber from api$")
+    @And("^(\\w+) registers multiple patients with same phoneNumber from api$")
     public void userRegistersMultiplePatientWithSamePhoneNumberFromApi(String User) {
         String phoneNumber = RandomValue.getRandomPhoneNumber();
         new QaApiCallsPage(getDriverInstanceFor(User)).registerMultiplePatientWithDuplicatePhoneNumber(2, phoneNumber);
