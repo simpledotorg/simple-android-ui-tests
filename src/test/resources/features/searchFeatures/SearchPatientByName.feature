@@ -16,10 +16,13 @@ Feature: Search for Patient information by name
     And User on Patient tab taps on search text box
     Then User on Search page searched for Registered Patient
 
-  @search @smoke
-  Scenario: verify alphabetical Patient log in search page
+  @search @smoke  @cc
+  Scenario Outline: verify alphabetical Patient log in search page
     Given User registers new user from api
-    And User registers new patient with bp from api
+    And User registers multiple patient <count> from api
     And User LogsIn in app
     And User on Patient tab taps on search text box
     Then User on Search page verifies alphabetical patient logs
+    Examples:
+      | count |
+      | 8     |
