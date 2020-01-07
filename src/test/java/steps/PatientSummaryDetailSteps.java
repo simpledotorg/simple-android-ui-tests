@@ -327,5 +327,10 @@ public class PatientSummaryDetailSteps extends BaseSteps {
         String name= new CreateFaker().faker.name().firstName();
         new PatientSummaryDetailPage(getDriverInstanceFor(User)).enterPatientInfo(name,"","44","Male","testcolony","disabled");
     }
+
+    @And("^(\\w+) on Patient summary page enters new patient info with age as (.*)$")
+    public void userOnPatientSummaryPageEntersNewPatientInfoWithAgeAs(String User ,String arg0)  {
+        new PatientSummaryDetailPage(getDriverInstanceFor(User)).enterPatientInfo("","",arg0,"Male","testcolony","enabled");
+    }
 }
 

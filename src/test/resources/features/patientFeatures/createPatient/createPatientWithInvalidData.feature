@@ -19,4 +19,12 @@ Feature: Create Patient with invalid test data
     And User on Patient summary page enters invalid date
     And User on Patient summary page verifies error message for invalid date entry
 
+  @createPatient @regression @ccc
+  Scenario Outline: Create New Patient of age >=120
+    And User on search page searches for new Patient name
+    And User on search page taps on registered patient button
+    And User on Patient summary page enters new patient info with age as <age>
 
+    Examples:
+      | age |
+      | 125 |
