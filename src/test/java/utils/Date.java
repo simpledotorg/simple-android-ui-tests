@@ -17,8 +17,8 @@ public class Date {
         return dtf.format(localDate);
     }
 
-    public static String getCurrentDate_IN_DD_MM_YY() {
-        SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yy");
+    public static String getCurrentDate_IN_DD_MM_YYYY() {
+        SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
 
         Calendar cal = Calendar.getInstance();
         return sdf.format(cal.getTime());

@@ -29,7 +29,7 @@ public class PatientSummaryDetailSteps extends BaseSteps {
 
     @And("^(\\w+) on Patient summary page enters date$")
     public void userEntersDate(String User) {
-        String date = Date.getCurrentDate_IN_DD_MM_YY();
+        String date = Date.getCurrentDate_IN_DD_MM_YYYY();
         new PatientSummaryDetailPage(getDriverInstanceFor(User)).entersDate(date);
     }
 
