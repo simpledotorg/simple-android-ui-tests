@@ -36,7 +36,7 @@ Feature: Remove bp functionality testing
     And User on Patient tab verifies patient info should show up on top of recent patient section
 
 
-  @bp2 @regression
+  @bp @regression
   Scenario: Remove BP and schedule appointment to already registered patient who has multiple recorded bp
     Given User registers new user from api
     And User registers a patient with multiple Bps
