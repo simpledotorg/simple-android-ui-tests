@@ -58,3 +58,19 @@ Feature: Create Patient
     Then User on search page searched for Registered Patient without BP info
 
 
+  @createPatient @smoke
+  Scenario Outline: Create New Patient of age 120
+    And User on search page searches for new Patient name
+    And User on search page taps on registered patient button
+    And User on Patient summary page enters new patient info with age as <age>
+    And User on Diagnosis page taps on next Button
+    And User on Patient summary page taps on Add new Bp button
+    And User on Patient summary page enters new Bp Info
+    And User on Patient summary page selects done button
+    And User on Patient summary page taps on save Button
+    And User on Patient summary page taps on appointment done button
+    Examples:
+      | age |
+      | 120 |
+
+

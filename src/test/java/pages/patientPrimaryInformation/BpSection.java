@@ -71,7 +71,7 @@ public class BpSection extends BasePage {
     @FindBy(id = "placeHolderMessageTextView")
     private WebElement bpSummary;
 
-    @FindBy(id = "patientsummary_item_layout")
+    @FindBy(id = "itemLayout")
     private List<WebElement> summaryLayout;
 
     @FindBys({@FindBy(id = "readingsTextView")})
@@ -115,7 +115,7 @@ public class BpSection extends BasePage {
         String[] str = sDate.split("-");
         String dd = str[0];
         String mm = str[1];
-        String yy = str[2];
+        String yy = str[2].substring(2,4);
 
         bpDate.click();
         waitForElementToBeClickable(day);
@@ -123,6 +123,8 @@ public class BpSection extends BasePage {
         day.sendKeys(dd);
         month.clear();
         month.sendKeys(mm);
+        year.clear();
+        year.sendKeys(yy);
         pressEnter();
     }
 

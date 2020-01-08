@@ -29,7 +29,7 @@ public class PatientSummaryDetailSteps extends BaseSteps {
 
     @And("^(\\w+) on Patient summary page enters date$")
     public void userEntersDate(String User) {
-        String date = Date.getCurrentDate_IN_DD_MM_YY();
+        String date = Date.getCurrentDate_IN_DD_MM_YYYY();
         new PatientSummaryDetailPage(getDriverInstanceFor(User)).entersDate(date);
     }
 
@@ -326,6 +326,11 @@ public class PatientSummaryDetailSteps extends BaseSteps {
     public void userOnPatientSummaryPageEntersNewPatientInfoByDisablingConsentReminderToggle(String User) {
         String name= new CreateFaker().faker.name().firstName();
         new PatientSummaryDetailPage(getDriverInstanceFor(User)).enterPatientInfo(name,"","44","Male","testcolony","disabled");
+    }
+
+    @And("^(\\w+) on Patient summary page enters new patient info with age as (.*)$")
+    public void userOnPatientSummaryPageEntersNewPatientInfoWithAgeAs(String User ,String arg0)  {
+        new PatientSummaryDetailPage(getDriverInstanceFor(User)).enterPatientInfo("","",arg0,"Male","testcolony","enabled");
     }
 }
 

@@ -115,6 +115,7 @@ public class SearchPage extends BasePage {
     }
 
     public void tapsOnSearchTextBox() {
+        scrollToElement("Enter patient's name");
         searchPatientTextBox.click();
     }
 

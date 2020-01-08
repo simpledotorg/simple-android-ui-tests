@@ -34,7 +34,7 @@ Feature: Miscellaneous feature
     Then User on patient tab verifies sync link should not be present
 
 
-  @miscellaneous1 @regression
+  @miscellaneous @regression
   Scenario: Login as user then perform search ,denied it's access from backend then verify app UI for sync indicator .
     Given User registers new user from api
     And User registers a patient with multiple Bps

@@ -10,10 +10,10 @@ Feature: Search for Patient information by phone number
     And User on Search page selects patient form search list
     Then User on Patient summary page verifies phone number
 
-  @search  @regression
+  @search  @regression @bp1
   Scenario: Search patient by duplicate phone number
     Given User registers new user from api
-    And User registers multiple patient with same phoneNumber from api
+    And User registers multiple patients with same phoneNumber from api
     And User LogsIn in app
     And User on Patient tab taps on search text box
     And User on search page verifies search result for duplicate phoneNumber
