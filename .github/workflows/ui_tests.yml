@@ -1,0 +1,71 @@
+name: UI tests
+
+on:
+  push: 
+    branches:
+      - master
+
+jobs:
+  run_checks:
+    # reactivecircus/android-emulator-runner@v2 requires MacOS to
+    # run with H/W acceleration for Android emulators.
+    #
+    # https://github.com/ReactiveCircus/android-emulator-runner
+    runs-on: [macos-latest]
+    steps:
+      - name: Checkout UI tests
+        uses: actions/checkout@v2
+        with:
+          path: ui-tests
+
+      - name: Checkout simple-android
+        uses: actions/checkout@v2
+        with:
+          repository: simpledotorg/simple-android
+          ref: master
+          path: simple-android
+
+      - name: Setup JDK
+        uses: actions/setup-java@v1
+        with:
+          java-version: 1.8
+
+      - name: Setup NodeJs
+        uses: actions/setup-node@v1
+        with:
+          node-version: '10.x'
+
+      - name: Install mongodb
+        run: brew tap mongodb/brew && brew install mongodb-community@4.2 && brew services start mongodb-community
+
+      # This has to happen AFTER installing mongodb and setting up NodeJs
+      - name: Install Optimus
+        run: npm install -g optimus-cli@^1 && optimus doctor && optimus setup
+
+      # Optimus requires Appium and NodeJs to be present at these specific locations
+      - name: Create symbolic links for Appium
+        run: ln -sf $(which node) /usr/local/bin/node && ln -sf $(which appium) /usr/local/bin/appium
+
+      - name: Build APK
+        run: simple-android/gradlew -p simple-android app:assembleQaDebug
+
+      - name: Copy APK to test directory
+        run: cp simple-android/app/build/outputs/apk/qa/debug/app-qa-debug.apk ui-tests/app/qaDebug.apk
+
+      - name: Run UI tests
+        uses: reactivecircus/android-emulator-runner@v2
+        with:
+          api-level: 27
+          target: google_apis
+          arch: x86
+          profile: pixel
+          emulator-options: -gpu auto -no-snapshot -noaudio -no-boot-anim
+          disable-animations: true
+          script: ui-tests/gradlew -p ui-tests runFragmentation -DtestFeed=QA  -Dtags=@setting  -Denv="India"
+
+      - name: Upload test reports
+        if: failure() || success()
+        uses: actions/upload-artifact@v1
+        with:
+          name: test-reports
+          path: ui-tests/build/reports/cucumber/cucumber-html-reports
