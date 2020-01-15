@@ -1,6 +1,6 @@
 Feature: Edit BP info
 
-  @bp @smoke
+  @bp @smoke @all
   Scenario: Edit BP info with today's date to already registered patient
     Given User registers new user from api
     And User registers new patient with bp from api
@@ -16,7 +16,7 @@ Feature: Edit BP info
     And User on Patient summary page taps on appointment done button
     Then User on Patient tab verifies patient info should show up on top of recent patient section
 
-  @bp @regression
+  @bp @regression @all
   Scenario: Edit BP info to already registered patient who has more than one recorded bp.
     Given User registers new user from api
     And User registers a patient with multiple Bps
@@ -32,7 +32,7 @@ Feature: Edit BP info
     And User on Patient summary page taps on appointment done button
     And User on Patient tab verifies patient info should show up on top of recent patient section
 
-  @bp @regression
+  @bp @regression @all
   Scenario: End to End flow for Edit Bp and verify reflected changes in patient summary screen[without clicking on sync link]
     Given User registers new user from api
     And  User registers new patient with bp from api

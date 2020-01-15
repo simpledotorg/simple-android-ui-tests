@@ -1,6 +1,6 @@
 Feature: Create patient with Bp shortcode
 
-  @createPatient @bpshortcode  @smoke
+  @createPatient @bpshortcode  @smoke @all
   Scenario: verify registered patient with bp passport
     Given User registers new user from api
     And User registers new patient with bp passport from api

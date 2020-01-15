@@ -5,7 +5,7 @@ Feature: Test setting screen functionality
     And User LogsIn in app
     And User taps on setting Icon
 
-  @setting @smoke
+  @setting @smoke @all
   Scenario Outline: User should be able to select language
 
     And User taps on change button
@@ -15,7 +15,7 @@ Feature: Test setting screen functionality
       | lang    |
       | English |
 
-  @setting @regression
+  @setting @regression @all
   Scenario: Verify default text for language setting when user didn't select any language
 
     Examples:

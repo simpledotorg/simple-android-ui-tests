@@ -332,5 +332,10 @@ public class PatientSummaryDetailSteps extends BaseSteps {
     public void userOnPatientSummaryPageEntersNewPatientInfoWithAgeAs(String User ,String arg0)  {
         new PatientSummaryDetailPage(getDriverInstanceFor(User)).enterPatientInfo("","",arg0,"Male","testcolony","enabled");
     }
+
+    @And("^(\\w+) on Patient summary page verifies error message for invalid age$")
+    public void userOnPatientSummaryPageVerifiesErrorMessageForInvalidAge(String User) {
+        new PatientSummaryDetailPage(getDriverInstanceFor(User)).verifyAgeValidationMessage();
+    }
 }
 

@@ -71,7 +71,7 @@ public class PatientPrimaryInfoSection extends BasePage {
     @FindBy(id = "consentSwitch")
     private WebElement consentSwitch;
 
-    @FindBy(id="textinput_error")
+    @FindBy(id = "textinput_error")
     private WebElement ageRangeValidationErrorMsg;
 
     public PatientPrimaryInfoSection(AppiumDriver driver) {
@@ -144,7 +144,7 @@ public class PatientPrimaryInfoSection extends BasePage {
         Assert.assertTrue(stateTextBox.getText().equalsIgnoreCase("Punjab"));
 
         String strn = scrollToElement("WhatsApp / SMS Reminders");
-        Assert.assertEquals(strn,"true","reminder concent toggle shold be present");
+        Assert.assertEquals(strn, "true", "reminder concent toggle shold be present");
 
         Assert.assertTrue(consentSwitch.getAttribute("checked").equals("true"));
 
@@ -171,33 +171,35 @@ public class PatientPrimaryInfoSection extends BasePage {
 
     public void verifyValidationErrorMessages() {
         hideKeyboard();
-//        if (fullNameEditText.getText().isEmpty()) {
-////            Assert.assertEquals(patientsNameValidationErrorMsg.getText().replaceAll("[^a-zA-Z\\s]", ""), "Enter patients full name");
-////        }
         if (PhoneNumberTextBox.getText().length() < 6) {
             Assert.assertEquals(phoneNumberValidationErrorMsg.getText(), "Phone number cannot be less than 6 digits");
-        }
-        else if (ageTextBox.getText().isEmpty()) {
+        } else if (ageTextBox.getText().isEmpty()) {
             Assert.assertEquals(ageValidationerrorMsg.getText().replaceAll("[^a-zA-Z\\s]", ""), "Enter patients age");
-        }
-        else if(Integer.parseInt(ageTextBox.getText())==0 || Integer.parseInt(ageTextBox.getText())>120){
-            Assert.assertEquals(ageRangeValidationErrorMsg.getText(),"Age cannot be more than 120 years");
-        }
-        else if (!gender.get(0).isSelected() || !gender.get(1).isSelected() || !gender.get(2).isSelected()) {
+        } else if (!gender.get(0).isSelected() || !gender.get(1).isSelected() || !gender.get(2).isSelected()) {
             Assert.assertEquals(genderValidationErrorMsg.getText().replaceAll("[^a-zA-Z\\s]", ""), "Choose patients gender");
-        }
-        else if(colonyTextBox.getText().isEmpty()) {
+        } else if (colonyTextBox.getText().isEmpty()) {
             Assert.assertEquals(colonyValidationErrorMsg.getText(), "Enter colony / village / ward");
         }
     }
 
-    public void verifyValidaitonErrorMessagesForInvalidDate() {
+    public void verifyValidationErrorMessagesForInvalidDate() {
 //        need to add check for invalid datE
         Assert.fail("no proper error message is present for invalid date");
     }
 
     private void setRemainderConcentToggleFor(String value) {
         consentSwitch.click();
+    }
+
+
+    public void verifyAgeValidationErrorMessage() {
+        if (!ageTextBox.getText().isEmpty()) {
+            if (Integer.parseInt(ageTextBox.getText()) > 120) {
+                Assert.assertEquals(ageRangeValidationErrorMsg.getText(), "Age cannot be more than 120 years");
+            } else if (Integer.parseInt(ageTextBox.getText()) == 0) {
+                Assert.assertEquals(ageRangeValidationErrorMsg.getText(), "Age cannot be equal to 0 years");
+            }
+        }
     }
 }
 

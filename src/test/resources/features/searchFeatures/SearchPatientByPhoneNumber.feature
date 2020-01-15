@@ -1,6 +1,6 @@
 Feature: Search for Patient information by phone number
 
-  @search @smoke
+  @search @smoke  @all
   Scenario: search by phone number
     Given User registers new user from api
     And User registers new patient with bp from api
@@ -10,7 +10,7 @@ Feature: Search for Patient information by phone number
     And User on Search page selects patient form search list
     Then User on Patient summary page verifies phone number
 
-  @search  @regression @bp1
+  @search  @regression @all
   Scenario: Search patient by duplicate phone number
     Given User registers new user from api
     And User registers multiple patients with same phoneNumber from api
@@ -18,7 +18,7 @@ Feature: Search for Patient information by phone number
     And User on Patient tab taps on search text box
     And User on search page verifies search result for duplicate phoneNumber
 
-  @search  @regression
+  @search  @regression @all
   Scenario: add new phoneNumber to patients primary info and then search by registered phone number
     Given User registers new user from api
     And User registers new patient without phonenumber from api
@@ -33,7 +33,7 @@ Feature: Search for Patient information by phone number
     And User on Patient tab taps on search text box
     And User on search page searched for Registered Patient by phone Number
 
-  @search  @regression
+  @search  @regression @all
   Scenario Outline: Search by unregistered phone number and create new patient
     Given User registers new user from api
     And User LogsIn in app
@@ -54,7 +54,7 @@ Feature: Search for Patient information by phone number
       | PhoneNumber |
       | 4444444444  |
 
-  @search  @regression
+  @search  @regression @all
   Scenario: search by phone number for patient with multiple bps
     Given User registers new user from api
     And User registers a patient with multiple Bps

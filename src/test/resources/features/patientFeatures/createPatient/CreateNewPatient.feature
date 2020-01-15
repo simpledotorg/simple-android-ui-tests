@@ -5,7 +5,7 @@ Feature: Create Patient
     And User LogsIn in app
     And User on Patient tab taps on search text box
 
-  @createPatient @smoke
+  @createPatient @smoke @all
   Scenario: Create New Patient
     And User on search page searches for new Patient name
     And User on search page taps on registered patient button
@@ -19,7 +19,7 @@ Feature: Create Patient
     And User on Patient tab taps on search text box
     Then User on Search page searched for Registered Patient
 
-  @createPatient @regression
+  @createPatient @regression @all
   Scenario: Create New Patient Without phone number info
     And User on search page searches for new Patient name
     And User on search page taps on registered patient button
@@ -33,7 +33,7 @@ Feature: Create Patient
     And User on Patient tab taps on search text box
     Then User on Search page searched for Registered Patient
 
-  @createPatient @regression
+  @createPatient @regression @all
   Scenario: Create New Patient Without blood Pressure info
     And User on search page searches for new Patient name
     And User on search page taps on registered patient button
@@ -45,7 +45,7 @@ Feature: Create Patient
     And User on Patient tab taps on search text box
     Then User on search page searched for Registered Patient without BP info
 
-  @createPatient @regression
+  @createPatient @regression @all
   Scenario: Create New Patient Without blood Pressure and Phone number info
     And User on search page searches for new Patient name
     And User on search page taps on registered patient button
@@ -58,7 +58,7 @@ Feature: Create Patient
     Then User on search page searched for Registered Patient without BP info
 
 
-  @createPatient @smoke
+  @createPatient @smoke @all
   Scenario Outline: Create New Patient of age 120
     And User on search page searches for new Patient name
     And User on search page taps on registered patient button

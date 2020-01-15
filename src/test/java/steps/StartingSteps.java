@@ -18,11 +18,11 @@ public class StartingSteps extends BaseSteps {
 
     @Before
     public void setUp(Scenario scenario) throws Exception {
-        String buildEnv=System.getProperty("testFeed");
-        ScenarioContext.putData("User",ScenarioContextKeys.ENV,buildEnv);
+        String buildEnv = System.getProperty("testFeed");
+        ScenarioContext.putData("User", ScenarioContextKeys.ENV, buildEnv);
 
-        String country= System.getProperty("env");
-        ScenarioContext.putData("User",ScenarioContextKeys.COUNTRY,country);
+        String country = System.getProperty("env");
+        ScenarioContext.putData("User", ScenarioContextKeys.COUNTRY, country);
 
         String testFeed = System.getProperty("testFeed") + ".json";
         String appJson = new JsonUtil().getAppJson(testFeed);
@@ -40,12 +40,11 @@ public class StartingSteps extends BaseSteps {
             byte[] failedScreens = optimus.getScreenCapture();
             scenario.embed(failedScreens, "image/png");
         }
-        controller.deRegisterSmartBOTs(smartBOTs);
-        new DeleteApi().DeleteUser();
-
         try {
             getChromeDriver().quit();
         } catch (Exception e) {
         }
+        new DeleteApi().DeleteUser();
+        controller.deRegisterSmartBOTs(smartBOTs);
     }
 }

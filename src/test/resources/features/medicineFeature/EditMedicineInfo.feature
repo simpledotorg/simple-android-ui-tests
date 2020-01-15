@@ -8,7 +8,7 @@ Feature: Update medicine info functionality testing
     Then User on Search page searched for Registered Patient
     And User on Search page selects patient form search list
 
-   @medicine @regression
+   @medicine @regression @all
   Scenario: Update customized Medicine to already registered patient
     Then User on Patient summary page taps on Add new medicine button
     Then User on Patient summary page taps on Add another medicine button
@@ -21,7 +21,7 @@ Feature: Update medicine info functionality testing
     And User on Patient summary page taps on save bp medicine button
     #    Then User on Patient summary page verifies updated medicine info
 
-   @medicine @regression
+   @medicine @regression @all
   Scenario: Update prescribed medicine
     Then User on Patient summary page taps on Add new medicine button
     And User on Patient summary page select prescribed medicine

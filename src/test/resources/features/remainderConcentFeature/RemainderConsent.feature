@@ -1,6 +1,6 @@
 Feature: to test  reminder- Consent toggle button
 
-  @reminderConcent @smoke
+  @reminderConcent @smoke @all
   Scenario: create Patient and verify reminder-consent value in api service
     Given User registers new user from api
     And User LogsIn in app
@@ -18,7 +18,7 @@ Feature: to test  reminder- Consent toggle button
     And User verifies reminder consent value in api service for enabled
 
 
-  @reminderConcent @regression
+  @reminderConcent @regression @all
   Scenario: create Patient,disable SMS reminder toggle and verify reminder-consent value in api service
     Given User registers new user from api
     And User LogsIn in app

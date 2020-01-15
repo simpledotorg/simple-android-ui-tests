@@ -1,6 +1,6 @@
 Feature: Perform search for new Patient by ( name or phone number)
 
-  @search  @smoke
+  @search  @smoke @all
   Scenario Outline: Search for new Patient by name
     Given User registers new user from api
     And User LogsIn in app
@@ -10,7 +10,7 @@ Feature: Perform search for new Patient by ( name or phone number)
       | Name    |
       | newName |
 
-  @search  @regression
+  @search  @regression @all
   Scenario Outline: Search for new Patient by phoneNumber
     Given User registers new user from api
     And User LogsIn in app
@@ -20,7 +20,7 @@ Feature: Perform search for new Patient by ( name or phone number)
       | PhoneNumber |
       | 4444555555  |
 
-  @search  @regression
+  @search  @regression @all
   Scenario Outline: Search for new Patient by invalid phoneNumber
     Given User registers new user from api
     And User LogsIn in app

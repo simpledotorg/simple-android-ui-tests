@@ -1,6 +1,6 @@
 Feature: Remove bp functionality testing
 
-  @bp @smoke
+  @bp @smoke @all
   Scenario: Remove BP info for already registered patient who has only one bp recorded
     Given User registers new user from api
     And User registers new patient with bp from api
@@ -19,7 +19,7 @@ Feature: Remove bp functionality testing
     And User on Patient tab taps on search text box
     Then User on search page searched for Registered Patient without BP info
 
-  @bp @regression
+  @bp @regression @all
   Scenario: Remove BP info to already registered patient who has more than one recorded bp.
     Given User registers new user from api
     And User registers a patient with multiple Bps
@@ -36,7 +36,7 @@ Feature: Remove bp functionality testing
     And User on Patient tab verifies patient info should show up on top of recent patient section
 
 
-  @bp @regression
+  @bp @regression @all
   Scenario: Remove BP and schedule appointment to already registered patient who has multiple recorded bp
     Given User registers new user from api
     And User registers a patient with multiple Bps
