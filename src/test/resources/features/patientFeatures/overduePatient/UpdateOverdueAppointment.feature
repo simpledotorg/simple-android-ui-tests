@@ -5,7 +5,7 @@ Feature: Update Overdue appointment
     And User registers overdue patient
     And User LogsIn in app
 
-  @updateAppointment @smoke
+  @updateAppointment @smoke  @all
   Scenario: update appointment with agreed to visit
     And User on Homepage taps on OVERDUE Tab
     And User on Overdue tab taps on patient detail
@@ -14,7 +14,7 @@ Feature: Update Overdue appointment
     And User on Homepage taps on PATIENTS Tab
     And User on Patient tab taps on sync link
 
-  @updateAppointment @smoke
+  @updateAppointment @smoke @all
   Scenario: update appointment with remind to call later
     And User on Homepage taps on OVERDUE Tab
     And User on Overdue tab taps on patient detail
@@ -25,7 +25,7 @@ Feature: Update Overdue appointment
     And User on Patient tab taps on sync link
     And User on Patient tab verifies patient info should not show up on top of recent patient section
 
-  @updateAppointment  @regression
+  @updateAppointment  @regression @all
   Scenario Outline: update appointment with other reason
     And User on Homepage taps on OVERDUE Tab
     And User on Overdue tab taps on patient detail
@@ -45,7 +45,7 @@ Feature: Update Overdue appointment
       | Moved to private practitioner                 |
 
 
-  @updateAppointment  @regression
+  @updateAppointment  @regression @all
   Scenario Outline: verify Search for a patient whose appointment is updated as died
     And User on Homepage taps on OVERDUE Tab
     And User on Overdue tab taps on patient detail

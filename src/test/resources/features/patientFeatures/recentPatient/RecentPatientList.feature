@@ -1,13 +1,13 @@
 Feature: Recent patient list
 
-  @recentPatient @smoke
+  @recentPatient @smoke @all
   Scenario: User verifies recent patient list
     Given User registers new user from api
     And User registers new patient with bp from api
     And User LogsIn in app
     And User on Patient tab verifies patient info should show up on top of recent patient section
 
-  @recentPatient  @regression
+  @recentPatient  @regression @all
   Scenario Outline: User verifies SEE ALL Button
     Given User registers new user from api
     And User registers multiple patient <count> from api
@@ -19,7 +19,7 @@ Feature: Recent patient list
       | 11    |
 
 
-  @recentPatient  @regression
+  @recentPatient  @regression @all
   Scenario Outline: Upon skipping appointment, verify patient name should not show up in recent patient list
     Given User registers new user from api
     And User registers multiple patient <count> from api

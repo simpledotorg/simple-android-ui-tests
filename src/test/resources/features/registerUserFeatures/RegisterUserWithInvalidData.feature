@@ -1,6 +1,6 @@
 Feature: Register Nurse/User with invalid data
 
-  @register  @regression
+  @register  @regression  @all
   Scenario Outline: Register New Nurse/User with invalid phone number
     And User taps on GetStarted button
     And User selects country
@@ -11,7 +11,7 @@ Feature: Register Nurse/User with invalid data
       | 98988       |
 
 
-  @register @regression
+  @register @regression @all
   Scenario Outline: Register New Nurse/User with invalid confirm PIN
     And User taps on GetStarted button
     And User selects country
@@ -24,7 +24,7 @@ Feature: Register Nurse/User with invalid data
       | 4321 |
       |      |
 
-  @register @regression
+  @register @regression @all
   Scenario: Register New Nurse/User with invalid facility
     And New User registers on app
     Then User search for invalid facility

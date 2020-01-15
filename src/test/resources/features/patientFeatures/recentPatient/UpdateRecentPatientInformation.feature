@@ -1,7 +1,7 @@
 Feature: Select patient from recent patient list,update it's primary information or schedule an appointment
   verify display order in recent patient list.
 
-  @recentPatient @smoke
+  @recentPatient @smoke @all
   Scenario Outline: Add new Bp for patient whose name is listed in recent patient section
     Given User registers new user from api
     And User registers multiple patient <count> from api
@@ -17,7 +17,7 @@ Feature: Select patient from recent patient list,update it's primary information
       | count |
       | 2     |
 
-  @recentPatient  @regression
+  @recentPatient  @regression @all
   Scenario Outline: Remove bp patient whose name is listed in recent patient section
     Given User registers new user from api
     And User registers multiple patient <count> from api
@@ -33,7 +33,7 @@ Feature: Select patient from recent patient list,update it's primary information
       | count |
       | 2     |
 
-  @recentPatient @regression
+  @recentPatient @regression @all
   Scenario Outline: upon Adding new medicine for patient,it's info should get displayed in recent patient section
     Given User registers new user from api
     And User registers multiple patient <count> from api
@@ -51,7 +51,7 @@ Feature: Select patient from recent patient list,update it's primary information
       | count |
       | 2     |
 
-  @recentPatient  @regression
+  @recentPatient  @regression @all
   Scenario Outline: upon update appointment, verify patient name show up in recent patient list
     Given User registers new user from api
     And User registers multiple patient <count> from api
@@ -64,7 +64,7 @@ Feature: Select patient from recent patient list,update it's primary information
       | count |
       | 2     |
 
-  @recentPatient  @regression
+  @recentPatient  @regression @all
   Scenario Outline: upon editing patient information,verify patient name should not show up in recent patient section
     Given User registers new user from api
     And User registers multiple patient <count> from api

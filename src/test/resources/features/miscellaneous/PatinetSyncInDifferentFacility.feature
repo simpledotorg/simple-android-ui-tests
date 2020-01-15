@@ -1,6 +1,6 @@
 Feature: miscellaneous feature -Patinet sync in different facility
 
-  @smoke @patientsync
+  @smoke @patientsync @all
   Scenario: Verify patient info sync in different facility
     Given User registers new user from api
     And User registers new patient with bp from api
@@ -8,7 +8,7 @@ Feature: miscellaneous feature -Patinet sync in different facility
     And User on Patient tab taps on search text box
     And User on search page searched for patient registered in other facility
 
-  @regression @patientsync
+  @regression @patientsync @all
   Scenario: Verify patient info sync in different facility -patient without bp
     Given User registers new user from api
     And User registers new patient without bp from api
@@ -16,7 +16,7 @@ Feature: miscellaneous feature -Patinet sync in different facility
     And User on Patient tab taps on search text box
     And User on search page searched for patient registered in other facility for withoutBp
 
-  @smoke @patientsync
+  @smoke @patientsync @all
   Scenario: Verify patient info sync in different facility -patient with bp passport
     Given User registers new user from api
     And User registers new patient with bp passport from api
@@ -24,7 +24,7 @@ Feature: miscellaneous feature -Patinet sync in different facility
     And User on Patient tab taps on search text box
     And User on search page searched for patient registered in other facility for withbpPassport
 
-  @regression @patientsync
+  @regression @patientsync @all
   Scenario: Verify patient info sync in different facility -patient without phonenumber and bp
     Given User registers new user from api
     And User registers new patient without phonenumber and bp from api
@@ -32,7 +32,7 @@ Feature: miscellaneous feature -Patinet sync in different facility
     And User on Patient tab taps on search text box
     And User on search page searched for patient registered in other facility for withoutPhonenumberAndBp
 
-  @regression @patientsync
+  @regression @patientsync @all
   Scenario: Verify patient info sync in different facility-patient without phonenumber
     Given User registers new user from api
     And User registers new patient without phonenumber from api
@@ -40,7 +40,7 @@ Feature: miscellaneous feature -Patinet sync in different facility
     And User on Patient tab taps on search text box
     And User on search page searched for patient registered in other facility for withoutPhonenumber
 
-  @smoke @patientsync
+  @smoke @patientsync @all
   Scenario Outline: App End to end flow to create verify patient info sync in different facility- registration flow
     Given User registers new user from api
     And User LogsIn in app
@@ -67,7 +67,7 @@ Feature: miscellaneous feature -Patinet sync in different facility
       | CHC Buccho   |
 
 
-  @regression @patientsync
+  @regression @patientsync @all
   Scenario: App End to end flow to create verify patient info sync in different facility
     Given User registers new user from api
     And User LogsIn in app
@@ -87,7 +87,7 @@ Feature: miscellaneous feature -Patinet sync in different facility
     And User on Patient tab taps on search text box
     And User on search page searched for patient registered in other facility
 
-  @regression @patientsync
+  @regression @patientsync @all
   Scenario: End to End flow for Edit Bp and verify patient info sync in different facility
     Given User registers new user from api
     And User registers a patient with multiple Bps
@@ -109,7 +109,7 @@ Feature: miscellaneous feature -Patinet sync in different facility
     And User on Patient summary page verifies days information
 
 
-  @regression @patientsync
+  @regression @patientsync @all
   Scenario: End to End flow for Remove Bp and verify patient info sync in different facility
     Given User registers new user from api
     And User registers a patient with multiple Bps
@@ -130,7 +130,7 @@ Feature: miscellaneous feature -Patinet sync in different facility
     And User on Search page selects patient form search list
     And User on Patient summary page verifies list of bp info
 
-  @regression @patientsync
+  @regression @patientsync @all
   Scenario: End to End flow for Add prescribed medicine and verify patient info sync in different facility
     Given User registers new user from api
     And User registers new patient with bp from api
@@ -153,7 +153,7 @@ Feature: miscellaneous feature -Patinet sync in different facility
     Then User on Patient summary page verifies updated medicine info
 
 
-   @patientsync @regression
+   @patientsync @regression @all
   Scenario Outline: End to End flow for Add prescribed medicine and verify patient info sync in different facility -registration flow
     Given User registers new user from api
     And User registers new patient with bp from api
@@ -181,7 +181,7 @@ Feature: miscellaneous feature -Patinet sync in different facility
       | CHC Buccho   |
 
 
-  @patientsync @regression
+  @patientsync @regression @all
   Scenario: End to End flow for Add customize medicine and verify patient info sync in different facility
     Given User registers new user from api
     And User registers new patient with bp from api
@@ -205,7 +205,7 @@ Feature: miscellaneous feature -Patinet sync in different facility
     And User on Search page selects patient form search list
     Then User on Patient summary page verifies updated medicine info
 
-  @patientsync1 @regression
+  @patientsync1 @regression @all
   Scenario Outline: End to End flow ,set call result for Overdue patient as died and verify patient info sync in different facility
     Given User registers new user from api
     And User registers overdue patient
@@ -226,7 +226,7 @@ Feature: miscellaneous feature -Patinet sync in different facility
       | reasons |
       | Died    |
 
-  @patientsync @regression
+  @patientsync @regression @all
   Scenario: End to End flow ,add bp for Overdue patient and verify patient info sync in different facility
     Given User registers new user from api
     And User registers overdue patient

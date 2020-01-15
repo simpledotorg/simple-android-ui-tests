@@ -8,7 +8,7 @@ Feature: Remove medicine info from Patient summary page
     Then User on Search page searched for Registered Patient
     And User on Search page selects patient form search list
 
-   @medicine @smoke
+   @medicine @smoke @all
   Scenario: remove prescribed medicine info
     Then User on Patient summary page taps on Add new medicine button
     And User on Patient summary page select prescribed medicine
@@ -19,7 +19,7 @@ Feature: Remove medicine info from Patient summary page
     Then User on Patient summary page verifies add medicine button
 
 
-   @medicine @regression
+   @medicine @regression @all
   Scenario: Delete customized Medicine to already registered patient
     Then User on Patient summary page taps on Add new medicine button
     Then User on Patient summary page taps on Add another medicine button

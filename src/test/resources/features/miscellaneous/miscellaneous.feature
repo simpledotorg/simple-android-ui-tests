@@ -1,6 +1,6 @@
 Feature: Miscellaneous feature
 
-  @overdue @smoke
+  @overdue @smoke @all
   Scenario: Verify patient info for whose appointment is scheduled for today
     Given User registers new user from api
     Given User creates overdue patient with appointment as of today
@@ -10,7 +10,7 @@ Feature: Miscellaneous feature
     And User on Homepage taps on Patients Tab
     And User on Patient tab taps on sync link
 
-  @custom_drug
+  @custom_drug @all
   Scenario: create drug from api and validate it in UI
     Given User registers new user from api
     And User registers new patient with bp from api
@@ -23,7 +23,7 @@ Feature: Miscellaneous feature
     And User on Patient summary page taps on Update Medicine info
     Then User on Patient summary page verifies custum drug list
 
-  @miscellaneous @smoke
+  @miscellaneous @smoke @all
   Scenario: Registering user form api and denied it's access from backend then login as user and verify app UI .
     Given User registers new user from api
     And Login as Server Admin
@@ -34,7 +34,7 @@ Feature: Miscellaneous feature
     Then User on patient tab verifies sync link should not be present
 
 
-  @miscellaneous @regression
+  @miscellaneous @regression @all
   Scenario: Login as user then perform search ,denied it's access from backend then verify app UI for sync indicator .
     Given User registers new user from api
     And User registers a patient with multiple Bps
@@ -50,7 +50,7 @@ Feature: Miscellaneous feature
     Then User on patient tab verifies sync link should not be present
 
 
-  @miscellaneous @regression
+  @miscellaneous @regression @all
   Scenario:Registering user form api and denied it's access from backend then verify sync pending message
     Given User registers new user from api
     And User registers a patient with multiple Bps
@@ -64,7 +64,7 @@ Feature: Miscellaneous feature
     And User on Patient tab taps on okay button
     Then User on patient tab verifies sync pending status should be present
 
-  @miscellaneous1 @regression
+  @miscellaneous1 @regression @all
   Scenario:Log in as user and get its access denied from backend,add new patient data from app,allow access from backend
   then verify patient data should get synced in server.
     Given User registers new user from api
@@ -90,7 +90,7 @@ Feature: Miscellaneous feature
     Then User on Patient tab verify patient data got synced in server
 
 
-  @miscellaneous @smoke
+  @miscellaneous @smoke @all
   Scenario Outline: Register user from app ,get it's access denied from backend and then verify app ui for sync indicator.
     And New User registers on app
     And User search for facility as <facilityName>
