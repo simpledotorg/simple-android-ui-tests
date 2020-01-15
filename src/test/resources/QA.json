@@ -22,7 +22,8 @@
           "unicodeKeyboard":true,
           "resetKeyboard":true,
           "useKeystore": false,
-          "fullreset": true
+          "fullreset": true,
+          "automationName": "UiAutomator2"
         }
       },
       "deviceState": {
