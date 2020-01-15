@@ -179,7 +179,7 @@ public class SearchPage extends BasePage {
         verifyPatientInfo(patientName);
     }
 
-    @FindBy(className = "android.widget.LinearLayout")
+    @FindBy(xpath = "//android.widget.LinearLayout/android.widget.LinearLayout")
     private WebElement resultBlock;
 
     private By genderLabel = By.id("genderLabel");
@@ -188,6 +188,7 @@ public class SearchPage extends BasePage {
     private By text = By.id("android.widget.TextView");
     private By lastBpLabel = By.id("lastBpLabel");
     private By addressLabel = By.id("addressLabel");
+    
 
 
     public void verifyPatientInfo(String pName) {

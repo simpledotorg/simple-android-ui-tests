@@ -20,11 +20,11 @@ import java.util.List;
 public class BpSection extends BasePage {
     private AppiumDriver driver;
 
-    @FindBy(id = "bloodpressureentry_systolic")
-    private MobileElement systolicBp;
-
-    @FindBy(id = "bloodpressureentry_diastolic")
-    private MobileElement diastolicBp;
+//    @FindBy(id = "bloodpressureentry_systolic")
+//    private MobileElement systolicBp;
+//
+//    @FindBy(id = "bloodpressureentry_diastolic")
+//    private MobileElement diastolicBp;
 
     @FindBy(id = "systolicEditText")
     private MobileElement systolicEditText;
@@ -103,8 +103,8 @@ public class BpSection extends BasePage {
 
         String reading = systolic + " / " + diastolic;
         ScenarioContext.putData("User", ScenarioContextKeys.READING, reading);
-        systolicBp.setValue(systolic);
-        diastolicBp.setValue(diastolic);
+        systolicEditText.setValue(systolic);
+        diastolicEditText.setValue(diastolic);
     }
 
     public void tapsOnNextArrow() {

@@ -253,7 +253,7 @@ public class PatientSummaryDetailPage extends BasePage {
     }
 
     public void verifyValidaitonErrorMessagesForInvalidDate() {
-        patientPrimaryInfoSection.verifyValidaitonErrorMessagesForInvalidDate();
+        patientPrimaryInfoSection.verifyValidationErrorMessagesForInvalidDate();
     }
 
     public void isBpPassportPresent() throws Exception {
@@ -278,5 +278,9 @@ public class PatientSummaryDetailPage extends BasePage {
 
     private WebElement getSaveButton() {
         return driver.findElement(By.xpath("//android.widget.Button[contains(translate(@text,'ABCDEFGHIJKLMNOPQRSTUVWXYZ','abcdefghijklmnopqrstuvwxyz'),'save')]"));
+    }
+
+    public void verifyAgeValidationMessage() {
+        patientPrimaryInfoSection.verifyAgeValidationErrorMessage();
     }
 }
