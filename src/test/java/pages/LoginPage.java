@@ -79,7 +79,8 @@ public class LoginPage extends BasePage {
     }
 
     public void enterRegistrationPhoneNumber(String phoneNumber) {
-        Assert.assertTrue(isElementPresent(By.id("phoneNumberEditText")));
+//        Assert.assertTrue(isElementPresent(By.id("phoneNumberEditText")));
+        waitForElementToBeVisible(registrationPhoneNumber);
         String country= ScenarioContext.getData("User",ScenarioContextKeys.COUNTRY);
         verifyIsdCodeForSelectedCountry(country);
         registrationPhoneNumber.setValue(phoneNumber);
