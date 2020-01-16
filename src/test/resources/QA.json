@@ -18,7 +18,7 @@
         "androidOnlyCapabilities": {
           "appActivity": "org.simple.clinic.setup.SetupActivity",
           "appPackage": "org.simple.clinic.qa.debug",
-          "avdLaunchTimeout": 300000,
+          "avdLaunchTimeout": 1200000,
           "unicodeKeyboard":true,
           "resetKeyboard":true,
           "useKeystore": false,
