@@ -31,6 +31,7 @@ public class SettingLanguagePage extends BasePage {
     }
 
     public void selectDoneButton() {
+        waitForElementToBeVisible(doneButton);
         doneButton.click();
     }
 }

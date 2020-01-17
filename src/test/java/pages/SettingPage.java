@@ -42,18 +42,20 @@ public class SettingPage extends BasePage {
     public void verifySettingScreen() {
         driver.findElement(userName).getText().equals(ScenarioContext.getData("User", ScenarioContextKeys.USER_NAME));
         driver.findElement(userNumber).getText().equals(ScenarioContext.getData("User", ScenarioContextKeys.USER_PHONENUMBER));
-        waitFor(500);
+        waitForElementToBeVisible(currentLanguage);
         currentLanguage.getText().equals("Select a language");
         isElementPresent(changeLanguageButton);
     }
 
     public void tapsOnChangeButton() {
+        waitForElementToBeVisible(changeLanguageButton);
         driver.findElement(changeLanguageButton).click();
     }
 
     public void selectALanguageAndVerifyLanguageSelection(String lang) {
         settingLanguagePage.selectLanguage(lang);
         settingLanguagePage.selectDoneButton();
+        waitForElementToBeVisible(currentLanguage);
         String text = currentLanguage.getText();
         Assert.assertEquals("selected language isn't displayed in select language screen",text,lang);
     }

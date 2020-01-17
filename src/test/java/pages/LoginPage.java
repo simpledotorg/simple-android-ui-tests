@@ -185,12 +185,15 @@ public class LoginPage extends BasePage {
     }
 
     private void skipLocationAccess() {
+        waitForElementToBeVisible(skipLocationAccess);
         skipLocationAccess.click();
     }
 
     public void searchFacility(String facility) {
         skipLocationAccess();
+        waitForElementToBeVisible(searchBar);
         searchBar.setValue(facility);
+        waitForElementToBeVisible(searchResult);
         searchResult.click();
     }
 

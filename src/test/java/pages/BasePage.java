@@ -28,12 +28,12 @@ public class BasePage {
 
     public BasePage(AppiumDriver driver) {
         this.driver = driver;
-        wait = new WebDriverWait(this.driver, 30);
+        wait = new WebDriverWait(this.driver, 50);
     }
 
     public BasePage(WebDriver driver) {
         this.wd = driver;
-        wait = new WebDriverWait(wd, 30);
+        wait = new WebDriverWait(wd, 50);
     }
 
     public boolean allowPermissionPopup() {
