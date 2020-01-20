@@ -227,6 +227,7 @@ public class BasePage {
     }
 
     public void pressEnter() {
+        waitFor(1000);
         driver.executeScript("mobile: performEditorAction", ImmutableMap.of("action", "done"));
     }
 
