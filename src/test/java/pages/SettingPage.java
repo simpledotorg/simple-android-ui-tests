@@ -48,7 +48,7 @@ public class SettingPage extends BasePage {
     }
 
     public void tapsOnChangeButton() {
-        waitForElementToBeVisible(changeLanguageButton);
+//        waitForElementToBeVisible(changeLanguageButton);
         driver.findElement(changeLanguageButton).click();
     }
 
