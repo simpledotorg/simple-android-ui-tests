@@ -15,6 +15,7 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
+import java.util.concurrent.TimeUnit;
 
 
 public class BasePage {
@@ -28,12 +29,13 @@ public class BasePage {
 
     public BasePage(AppiumDriver driver) {
         this.driver = driver;
-        wait = new WebDriverWait(this.driver, 50);
+        this.driver.manage().timeouts().implicitlyWait(50,TimeUnit.SECONDS);
+        wait = new WebDriverWait(this.driver, 30);
     }
 
     public BasePage(WebDriver driver) {
         this.wd = driver;
-        wait = new WebDriverWait(wd, 50);
+        wait = new WebDriverWait(wd, 30);
     }
 
     public boolean allowPermissionPopup() {

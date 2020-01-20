@@ -44,7 +44,7 @@ public class HomePage extends BasePage {
     }
 
     public void tapsOnSettingScreen() {
-        waitForElementToBeVisible(settingIcon);
+//        waitForElementToBeVisible(settingIcon);
         settingIcon.click();
     }
 

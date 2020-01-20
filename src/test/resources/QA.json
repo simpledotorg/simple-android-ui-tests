@@ -18,7 +18,7 @@
         "androidOnlyCapabilities": {
           "appActivity": "org.simple.clinic.setup.SetupActivity",
           "appPackage": "org.simple.clinic.qa.debug",
-          "uiautomator2ServerInstallTimeout": 60000,
+          "uiautomator2ServerInstallTimeout": 120000,
           "unicodeKeyboard":true,
           "resetKeyboard":true,
           "useKeystore": false,
