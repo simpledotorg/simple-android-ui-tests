@@ -55,7 +55,7 @@ jobs:
       - name: Run UI tests
         uses: reactivecircus/android-emulator-runner@v2
         with:
-          api-level: 23
+          api-level: 25
           target: google_apis
           arch: x86
           profile: pixel
