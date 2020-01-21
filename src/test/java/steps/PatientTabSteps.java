@@ -24,12 +24,6 @@ public class PatientTabSteps extends BaseSteps {
         new PatientTabPage(getDriverInstanceFor(User)).tapsOnSearchTextBox();
     }
 
-//    @Then("^(\\w+) on Patient tab verifies patient info present in recent patients list$")
-//    public void userOnPatientTabVerifiesPatientInfoPresentInRecentPatientsList(String User) throws Exception {
-//        String patientName = ScenarioContext.getData("User", ScenarioContextKeys.PATIENT_NAME);
-//        new PatientTabPage(getDriverInstanceFor(User)).isPatientPresent(patientName);
-//    }
-
     @And("^(\\w+) on Patient tab taps on sync link$")
     public void userTapsOnSyncLink(String User)  {
         new PatientTabPage(getDriverInstanceFor(User)).tapsOnSyncLink();
