@@ -146,7 +146,7 @@ public class BpSection extends BasePage {
     }
 
     public void enterBackDate() {
-        entersDate(Date.getBackDateIn_DD_MM_YYYY_Format(10));
+        entersDate(Date.getBackDate("dd-MM-YYYY",10));
     }
 
     public void tapsOnEditBpLink() {
@@ -211,8 +211,6 @@ public class BpSection extends BasePage {
     }
 
     public void verifiesDaysInfo(String value) {
-
-
         for (WebElement ele : bpReadings) {
             if (ele.getText().equals(value)) {
                 WebElement bpLayout = driver.findElement(By.xpath("//*[@text='"+value+"']/.."));

@@ -2,6 +2,7 @@ package pages.patientsTab;
 
 import com.embibe.optimus.utils.ScenarioContext;
 import io.appium.java_client.AppiumDriver;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
@@ -59,12 +60,18 @@ public class RecentPatientSection extends BasePage {
 
     public WebElement getPatient(String patientName) throws Exception {
 
+        isElementPresent(By.xpath("//android.widget.TextView[text()='RECENT PATIENTS']"));
+
         new RegisterUser().registerNewUser();
         String expectedValue = patientName.replaceAll("\\s", "").toUpperCase();
 
         PatientGetRequestResponse allPatient = new GetPatientInfo().getAllPatient();
         int size = allPatient.getPatients().size();
         int count = 0;
+
+        if(size==0){
+            Assert.fail("No Patient info is present");
+        }
 
         while (count <= size) {
 
@@ -87,7 +94,6 @@ public class RecentPatientSection extends BasePage {
         if (recentPatientViewLst.size() == 0) {
             Assert.fail("api fail - not able to generate multiple patient");
         } else {
-//            scrollDown();
             String name = recentPatientViewLst.get(recentPatientViewLst.size() - 1).getText();
             ScenarioContext.putData("User", ScenarioContextKeys.PATIENT_NAME, name);
             recentPatientViewLst.get(recentPatientViewLst.size() - 1).click();
