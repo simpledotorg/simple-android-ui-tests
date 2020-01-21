@@ -49,7 +49,7 @@ public class Appointments {
         private String facility_id;
         private String created_at=Date.getCurrentDateIn_RFC339_Format();
         private String id=CreateGenerex.generex.random();
-        private String scheduled_date=Date.appointmentScheduleDate();
+        private String scheduled_date=Date.scheduleAppointmentDate();
         private String deleted_at="";
         private String status="scheduled";
         private String cancel_reason;

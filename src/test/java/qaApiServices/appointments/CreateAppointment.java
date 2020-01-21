@@ -46,7 +46,7 @@ public class CreateAppointment {
                .withPatientId(patientId)
                .withUpdatedAt(Date.getBackDateIn_RFC339_Format(dd))
                .withCreatedAt(Date.getBackDateIn_RFC339_Format(dd))
-               .withScheduled_date(Date.appointmentScheduleDate(dd)).build();
+               .withScheduled_date(Date.scheduleAppointmentWithBackDate(dd)).build();
        List<Appointments> lst = new ArrayList<>();
        lst.add(appointmentRequest);
 

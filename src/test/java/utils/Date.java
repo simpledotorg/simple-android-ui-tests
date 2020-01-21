@@ -1,41 +1,41 @@
 package utils;
 
-import org.testng.annotations.Test;
-
-import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
 import java.util.Calendar;
 import java.util.TimeZone;
 
 public class Date {
 
-    public static String getCurrentDate_In_YYYY_MM_DD() {
-        LocalDate localDate = LocalDate.now();
-        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-        return dtf.format(localDate);
-    }
+    // this method will return date in given format like "dd-MM-yy","dd-MM-yyyy",dd-MMM-yyy
+    public static String getCurrentDate(String dateFormat) {
 
-    public static String getCurrentDate_IN_DD_MM_YYYY() {
-        SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
+        SimpleDateFormat sdf = new SimpleDateFormat(dateFormat);
 
         Calendar cal = Calendar.getInstance();
-        return sdf.format(cal.getTime());
+        dateFormat = sdf.format(cal.getTime());
+        return dateFormat;
     }
 
+//     backDate value is used to create retro active bp
+//     dateFormat arg for type of date you want as output
+//     dd         arg for no of days need to subtracted from currentdate
+
+    public static String getBackDate(String dateFormat, int dd) {
+        SimpleDateFormat sdf = new SimpleDateFormat(dateFormat);
+
+        Calendar currentTime = getBackDate(dd);
+        return sdf.format(currentTime.getTime());
+    }
+
+    // this method will help to create a patient info with patient/sync api in backdate
+    // to create a patient in previous quater/month
+    // at server side we use RFC339 format for date
     public static String getCurrentDateIn_RFC339_Format() {
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSXXX");
         sdf.setTimeZone(TimeZone.getTimeZone("GMT"));
 
         Calendar currentTime = Calendar.getInstance();
         return sdf.format(currentTime.getTime());
-    }
-
-    public static String getBackDateIn_DD_MM_YYYY_Format(int dd) {
-        SimpleDateFormat dtf = new SimpleDateFormat("dd-MM-yyyy");
-        Calendar cal = getBackDate(dd);
-        return dtf.format(cal.getTime());
     }
 
     public static String getBackDateIn_RFC339_Format(int dd) {
@@ -47,7 +47,7 @@ public class Date {
     }
 
     //adding 30 days in current date to create appointment
-    public static String appointmentScheduleDate() {
+    public static String scheduleAppointmentDate() {
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
         sdf.setTimeZone(TimeZone.getTimeZone("GMT"));
 
@@ -57,7 +57,7 @@ public class Date {
         return sdf.format(cal.getTime());
     }
 
-    public static String appointmentScheduleDate(int dd) {
+    public static String scheduleAppointmentWithBackDate(int dd) {
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
         sdf.setTimeZone(TimeZone.getTimeZone("GMT"));
 
@@ -71,20 +71,5 @@ public class Date {
         Calendar cal = Calendar.getInstance();
         cal.add(Calendar.DATE, -dd);
         return cal;
-    }
-
-    public String getDate_IN_DD_MMM_YYYY(String str) throws ParseException {
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-        //converting string to date with the help of parse func
-        java.util.Date dat = sdf.parse(str);
-
-        //converting it to desired format
-        SimpleDateFormat sdf2 = new SimpleDateFormat("dd-MMM-yyyy");
-        return sdf2.format(dat);
-    }
-
-    @Test
-    public void check() throws ParseException {
-        System.out.println(getDate_IN_DD_MMM_YYYY("2019-10-15T06:48:45Z"));
     }
 }
