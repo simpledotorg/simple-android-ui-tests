@@ -27,7 +27,6 @@
           "adbExecTimeout" :50000,
           "skipServerInstallation" : true,
           "ignoreUnimportantViews" : true,
-          "skipDeviceInitialization" : true,
           "nativeWebScreenshot":true
         }
       },
