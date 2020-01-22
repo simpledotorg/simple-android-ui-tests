@@ -229,7 +229,7 @@ public class BasePage {
     }
 
     public void pressEnter() {
-        waitFor(2000);
+        waitFor(4000);
         driver.executeScript("mobile: performEditorAction", ImmutableMap.of("action", "done"));
     }
 
