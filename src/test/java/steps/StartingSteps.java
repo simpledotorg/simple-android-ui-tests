@@ -36,10 +36,10 @@ public class StartingSteps extends BaseSteps {
 
     @After
     public void tearDown(Scenario scenario) throws IOException, DeviceReleaseException {
-        if (scenario.isFailed()) {
-            byte[] failedScreens = optimus.getScreenCapture();
-            scenario.embed(failedScreens, "image/png");
-        }
+//        if (scenario.isFailed()) {
+//            byte[] failedScreens = optimus.getScreenCapture();
+//            scenario.embed(failedScreens, "image/png");
+//        }
         try {
             getChromeDriver().quit();
         } catch (Exception e) {

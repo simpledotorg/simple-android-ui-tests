@@ -211,6 +211,9 @@ public class BpSection extends BasePage {
     }
 
     public void verifiesDaysInfo(String value) {
+
+        Assert.assertTrue(bpReadings.size()>0);
+
         for (WebElement ele : bpReadings) {
             if (ele.getText().equals(value)) {
                 WebElement bpLayout = driver.findElement(By.xpath("//*[@text='"+value+"']/.."));

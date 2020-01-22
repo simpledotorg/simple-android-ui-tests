@@ -18,14 +18,14 @@
         "androidOnlyCapabilities": {
           "appActivity": "org.simple.clinic.setup.SetupActivity",
           "appPackage": "org.simple.clinic.qa.debug",
-          "uiautomator2ServerInstallTimeout": 120000,
+          "appium:uiautomator2ServerInstallTimeout": 120000,
           "unicodeKeyboard":true,
           "resetKeyboard":true,
           "useKeystore": false,
           "fullreset": true,
-          "automationName": "UiAutomator2",
-          "nativeWebScreenshot":true,
-          "adbExecTimeout" :50000
+          "appium:automationName": "UiAutomator2",
+          "appium:nativeWebScreenshot":true,
+          "appium:adbExecTimeout" :50000
         }
       },
       "deviceState": {
