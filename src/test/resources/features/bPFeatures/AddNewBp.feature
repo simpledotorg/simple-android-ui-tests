@@ -1,6 +1,6 @@
 Feature: Add new Bp
 
-  @bp @smoke @all
+  @bp1 @smoke @all
   Scenario: Add new BP to already registered patient
     Given User registers new user from api
     And User registers new patient with bp from api
@@ -16,7 +16,7 @@ Feature: Add new Bp
     And User on Patient summary page taps on appointment done button
     And User on Patient tab verifies patient info should show up on top of recent patient section
 
-  @bp   @regression @all
+  @bp  @regression @all
   Scenario: Add new BP and phone number to already registered patient without phone number and BP
     Given User registers new user from api
     And  User registers new patient without phonenumber and bp from api
