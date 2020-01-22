@@ -24,7 +24,11 @@
           "useKeystore": false,
           "fullreset": true,
           "automationName": "UiAutomator2",
-          "adbExecTimeout" :50000
+          "adbExecTimeout" :50000,
+          "skipServerInstallation" : true,
+          "ignoreUnimportantViews" : true,
+          "skipDeviceInitialization" : true,
+          "nativeWebScreenshot":true
         }
       },
       "deviceState": {
