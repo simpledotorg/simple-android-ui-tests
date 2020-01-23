@@ -1,6 +1,6 @@
 Feature: Add new Bp
 
-  @bp1 @smoke @all
+  @bp @smoke @all
   Scenario: Add new BP to already registered patient
     Given User registers new user from api
     And User registers new patient with bp from api
