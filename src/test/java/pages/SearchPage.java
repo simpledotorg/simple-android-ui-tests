@@ -86,6 +86,8 @@ public class SearchPage extends BasePage {
     public void searchForRegisteredPatientWithoutBPInfo(String patientName) {
         searchPatient(patientName);
 
+        waitFor(1000);
+
         String status = "false";
         for (WebElement ele : header) {
             if (ele.getText().equalsIgnoreCase("Other Results")) {
