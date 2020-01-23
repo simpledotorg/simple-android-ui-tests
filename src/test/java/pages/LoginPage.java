@@ -12,6 +12,8 @@ import org.testng.Assert;
 import utils.CreateFaker;
 import utils.ScenarioContextKeys;
 
+import java.util.concurrent.TimeUnit;
+
 public class LoginPage extends BasePage {
     private AppiumDriver driver;
     private CountrySelectionPage countrySelectionPage;
@@ -79,7 +81,6 @@ public class LoginPage extends BasePage {
     }
 
     public void enterRegistrationPhoneNumber(String phoneNumber) {
-//        Assert.assertTrue(isElementPresent(By.id("phoneNumberEditText")));
         waitForElementToBeVisible(registrationPhoneNumber);
         String country= ScenarioContext.getData("User",ScenarioContextKeys.COUNTRY);
         verifyIsdCodeForSelectedCountry(country);
@@ -88,7 +89,6 @@ public class LoginPage extends BasePage {
     }
 
     public void enterRegisteredPin(String pin) {
-        Assert.assertTrue(isElementPresent(By.id("pinentry_pin")));
         registeredUserPin.setValue(pin);
         ScenarioContext.putData("User", ScenarioContextKeys.PIN, pin);
         pressEnter();
@@ -114,10 +114,6 @@ public class LoginPage extends BasePage {
     private void clicksOnGotItButton() {
         waitForElementToBeVisible(gotItButton);
         gotItButton.click();
-        try {
-            GotItLink.click();
-        } catch (Exception e) {
-        }
     }
 
     public void enterNewRegistrationPin(String pin) {
@@ -127,7 +123,6 @@ public class LoginPage extends BasePage {
     }
 
     public void clicksOnGetStartedButton() {
-        waitForElementToBeVisible(getStartedButton);
         getStartedButton.click();
     }
 

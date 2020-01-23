@@ -29,7 +29,7 @@ public class BasePage {
 
     public BasePage(AppiumDriver driver) {
         this.driver = driver;
-        this.driver.manage().timeouts().implicitlyWait(50,TimeUnit.SECONDS);
+        this.driver.manage().timeouts().implicitlyWait(40,TimeUnit.SECONDS);
         wait = new WebDriverWait(this.driver, 30);
     }
 

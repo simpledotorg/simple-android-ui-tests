@@ -76,6 +76,9 @@ dependencies {
     compile group: 'com.github.mifmif', name: 'generex', version: '1.0.1'
     compile group: 'com.google.code.gson', name: 'gson', version: '2.3.1'
     implementation 'com.github.javafaker:javafaker:0.18'
+    
+    compile group: 'org.seleniumhq.selenium', name: 'selenium-server-standalone', version: '2.46.0'
+    compile group: 'commons-lang', name: 'commons-lang', version: '2.6'
 }
 
 
