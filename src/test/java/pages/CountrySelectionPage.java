@@ -28,7 +28,7 @@ public class CountrySelectionPage extends BasePage {
    }
 
    private void tapsOnNextButton(){
-//       waitForElementToBeVisible(nextButton);
+       waitForElementToBeVisible(nextButton);
        nextButton.click();
    }
 
