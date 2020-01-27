@@ -58,11 +58,14 @@ public class SearchPage extends BasePage {
     private void searchPatient(String value) {
         waitForElementToBeVisible(searchPatientName);
         searchPatientName.setValue(value);
+        waitForElementToBeVisible(nextButton);
         nextButton.click();
     }
 
     public void searchForRegisteredPatientWithBpInfo(String patientName) {
         searchPatient(patientName);
+
+        waitFor(1000);
 
         String status = "false";
         for (WebElement ele : header) {
