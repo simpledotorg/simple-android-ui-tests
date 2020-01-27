@@ -22,11 +22,11 @@
           "unicodeKeyboard":true,
           "resetKeyboard":true,
           "useKeystore": false,
-          "fullreset": true,
+          "appium:fullreset": true,
           "appium:automationName": "UiAutomator2",
           "appium:nativeWebScreenshot":true,
           "appium:adbExecTimeout" :50000,
-          "--session-override": true
+          "appium:--session-override": true
         }
       },
       "deviceState": {
