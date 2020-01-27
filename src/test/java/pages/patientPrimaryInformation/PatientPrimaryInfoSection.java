@@ -201,6 +201,18 @@ public class PatientPrimaryInfoSection extends BasePage {
             }
         }
     }
+
+    public void verifyAddressModelForCountry() {
+        String country = ScenarioContext.getData("User", ScenarioContextKeys.COUNTRY);
+        if (country.equals("India")) {
+
+        } else if (country.equals("Bangladesh")) {
+
+        }
+        else{
+            Assert.fail("No such country"+country);
+        }
+    }
 }
 
 
