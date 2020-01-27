@@ -25,7 +25,8 @@
           "fullreset": true,
           "appium:automationName": "UiAutomator2",
           "appium:nativeWebScreenshot":true,
-          "appium:adbExecTimeout" :50000
+          "appium:adbExecTimeout" :50000,
+          "--session-override": true
         }
       },
       "deviceState": {
