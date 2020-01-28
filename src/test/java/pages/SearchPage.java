@@ -58,7 +58,7 @@ public class SearchPage extends BasePage {
     private void searchPatient(String value) {
         waitForElementToBeVisible(searchPatientName);
         searchPatientName.setValue(value);
-        waitForElementToBeVisible(nextButton);
+        waitFor(2000);
         nextButton.click();
     }
 
