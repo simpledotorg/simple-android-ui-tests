@@ -34,7 +34,7 @@ public class PatientSummaryDetailPage extends BasePage {
     @FindBy(id = "fullNameTextView")
     private WebElement patientSummaryFullname;
 
-    @FindBy(id = "patientsummary_edit")
+    @FindBy(id = "editButton")
     private WebElement patientSummaryEditLink;
 
     @FindBy(id = "bpPassportTextView")

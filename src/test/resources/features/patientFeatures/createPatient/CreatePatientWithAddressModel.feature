@@ -6,7 +6,18 @@ Feature:  To test Address Model
     And User on Patient tab taps on search text box
 
   @createPatient @smoke @all
-  Scenario : Verify Address page for different country
+  Scenario: Verify Address page for different country
     And User on search page searches for new Patient name
     And User on search page taps on registered patient button
     Then User on Patient info entry page verifies address model for given country
+
+  @createPatient @smoke @all
+  Scenario: Verify Address page for different country
+    And User on search page searches for new Patient name
+    And User on search page taps on registered patient button
+    And User on Patient summary page enters new patient info
+    And User on Diagnosis page taps on next Button
+    And User on Patient summary page taps on Edit patient info link
+    Then User on Patient info entry page verifies address model for given country
+
+
