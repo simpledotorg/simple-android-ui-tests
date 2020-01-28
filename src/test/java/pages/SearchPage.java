@@ -81,6 +81,7 @@ public class SearchPage extends BasePage {
     // This method should be used to perform search or for new patient
     public void searchForPatientName(String patientName) {
         searchPatient(patientName);
+        waitForElementToBeVisible(emptySearchResult);
         Assert.assertEquals(emptySearchResult.getText(), "No patients match");
         Assert.assertEquals(registerPatientLabel.getText(), "Patient is not registered");
         Assert.assertTrue(registerAsNewPatientButton.isDisplayed());
