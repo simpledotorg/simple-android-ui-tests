@@ -92,7 +92,7 @@ public class RecentPatientSection extends BasePage {
         waitFor(1000);
 
         if (recentPatientViewLst.size() == 0) {
-            Assert.fail("api fail - not able to generate multiple patient");
+            Assert.fail("recent patient list is empty- multiple patient should be displayed as per test scenario");
         } else {
             String name = recentPatientViewLst.get(recentPatientViewLst.size() - 1).getText();
             ScenarioContext.putData("User", ScenarioContextKeys.PATIENT_NAME, name);

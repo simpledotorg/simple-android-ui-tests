@@ -81,6 +81,7 @@ public class OverdueTabPage extends BasePage {
 
 
     public void tapsOnPatientName(String patientName) throws Exception {
+        waitFor(3000);
         WebElement webElement = isPatientPresent(patientName);
         webElement.click();
     }

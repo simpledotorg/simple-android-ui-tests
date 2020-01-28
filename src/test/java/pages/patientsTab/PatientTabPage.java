@@ -60,7 +60,8 @@ public class PatientTabPage extends BasePage {
         hideKeyboard();
         waitForElementToBeVisible(GotITButton);
         GotITButton.click();
-        waitForElementToBeVisible(scanBPPassportButton);
+
+        scrollToElement("Scan BP Passport");
         Assert.assertEquals(scanBPPassportButton.getText(), "Scan BP Passport");
     }
 
