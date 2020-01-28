@@ -108,6 +108,7 @@ public class SearchPage extends BasePage {
     }
 
     public void selectsPatientFromSearchList(String patientName) {
+        waitFor(1000);
         for (WebElement ele : patientList) {
 
             String[] str = ele.getText().split(",");

@@ -9,6 +9,8 @@ import io.appium.java_client.AppiumDriver;
 import org.openqa.selenium.support.PageFactory;
 import qaApiServices.patients.CreatePatients;
 import qaApiServices.patients.GetPatientInfo;
+import qaApiServices.patients.PatientClient;
+import qaApiServices.patients.response.PatientGetRequestResponse;
 import qaApiServices.user.RegisterUser;
 import utils.ScenarioContextKeys;
 
@@ -104,5 +106,21 @@ public class QaApiCallsPage extends BasePage {
             new CreateAppointment().createAppointment();
             count--;
         }
+    }
+
+    public void isPatientInfoSyncToServer() {
+        new RegisterUser().registerNewUser();
+
+        String facilityId = ScenarioContext.getData("User", ScenarioContextKeys.FACILTIYID);
+        String userId = ScenarioContext.getData("User", ScenarioContextKeys.USER_ID);
+        String token = ScenarioContext.getData("User", ScenarioContextKeys.ACCESS_TOKEN);
+
+        PatientGetRequestResponse patientGetRequestResponse = new PatientClient().get(facilityId, userId, token);
+
+        String patientName=ScenarioContext.getData("User", ScenarioContextKeys.PATIENT_NAME);
+
+        boolean result = patientGetRequestResponse.isPatientNamePresentInResponse(patientName);
+        Assert.assertEquals(result,true);
+
     }
 }

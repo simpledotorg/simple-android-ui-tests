@@ -17,10 +17,6 @@ import utils.ScenarioContextKeys;
 import java.util.HashSet;
 
 public class PatientSummaryDetailSteps extends BaseSteps {
-    @And("^(\\w+) on Patient summary page enters new patient info$")
-    public void userEntersNewPateintInfo(String User) {
-        new PatientSummaryDetailPage(getDriverInstanceFor(User)).enterPatientInfo("",RandomValue.getRandomPhoneNumber(), CreateFaker.getRandomAge(), CreateFaker.getGender(), "testcolony","enabled");
-    }
 
     @And("^(\\w+) on Patient summary page enters new Bp Info$")
     public void userEntersNewBpInfo(String User) {
@@ -43,24 +39,9 @@ public class PatientSummaryDetailSteps extends BaseSteps {
         new PatientSummaryDetailPage(getDriverInstanceFor(User)).clickOnAppointmentDoneButton();
     }
 
-    @And("^(\\w+) on Patient summary page enters new patient info Without phone number$")
-    public void userEntersNewPatientInfoWithoutPhoneNumber(String User) {
-        new PatientSummaryDetailPage(getDriverInstanceFor(User)).enterPatientInfo("", "", CreateFaker.getRandomAge(),CreateFaker.getGender(),"testcolony","enabled");
-    }
-
     @And("^(\\w+) on Patient summary page navigates back$")
     public void userNavigatesBack(String User) {
         new PatientSummaryDetailPage(getDriverInstanceFor(User)).userNavigatesBack();
-    }
-
-    @And("^(\\w+) on Patient summary page enters invalid data for patients primary info$")
-    public void userEntersInvalidDataForPatientsPrimaryInfo(String User) {
-        new PatientSummaryDetailPage(getDriverInstanceFor(User)).enterPatientInfo("","19208","", "", "","enabled");
-    }
-
-    @And("^(\\w+) on Patient summary page enters invalid date$")
-    public void userEntersInvalidDate(String User) {
-        new PatientSummaryDetailPage(getDriverInstanceFor(User)).enterPatientInfo("",RandomValue.getRandomPhoneNumber(),"31 / 02 /2019", CreateFaker.getGender(), "test","enabled");
     }
 
     @And("^(\\w+) on Patient summary page taps on Add new Bp button$")
@@ -296,20 +277,9 @@ public class PatientSummaryDetailSteps extends BaseSteps {
         new PatientSummaryDetailPage(getDriverInstanceFor(User)).addNewPhoneNumber(phoneNumber);
     }
 
-    @And("^(\\w+) on Patient summary page enters new patient primary information$")
-    public void userOnPatientSummaryPageEntersNewPatientPrimaryInformation(String User) {
-        String name= new CreateFaker().faker.name().firstName();
-        new PatientSummaryDetailPage(getDriverInstanceFor(User)).enterPatientInfo(name,"","44","Male","testcolony","enabled");
-    }
-
     @And("^(\\w+) on Patient summary page verifies error message for invalid data entry$")
     public void userOnPatientSummaryPageVerifiesErrorMessageForInvalidDataEntry(String User) {
         new PatientSummaryDetailPage(getDriverInstanceFor(User)).verifyValidaitonErrorMessages();
-    }
-
-    @And("^(\\w+) on Patient summary page verifies error message for invalid date entry$")
-    public void userOnPatientSummaryPageVerifiesErrorMessageForInvalidDateEntry(String User)  {
-        new PatientSummaryDetailPage(getDriverInstanceFor(User)).verifyValidaitonErrorMessagesForInvalidDate();
     }
 
     @And("^(\\w+) on Patient summary page verifies bp passport$")
@@ -320,17 +290,6 @@ public class PatientSummaryDetailSteps extends BaseSteps {
     @And("^(\\w+) on Patient summary page verifies no bp present$")
     public void userOnPatientSummaryPageVerifiesNoBpPresent(String User) {
         new PatientSummaryDetailPage(getDriverInstanceFor(User)).noBpPresent();
-    }
-
-    @And("^(\\w+) on Patient summary page enters new patient info by disabling consent reminder toggle$")
-    public void userOnPatientSummaryPageEntersNewPatientInfoByDisablingConsentReminderToggle(String User) {
-        String name= new CreateFaker().faker.name().firstName();
-        new PatientSummaryDetailPage(getDriverInstanceFor(User)).enterPatientInfo(name,"","44","Male","testcolony","disabled");
-    }
-
-    @And("^(\\w+) on Patient summary page enters new patient info with age as (.*)$")
-    public void userOnPatientSummaryPageEntersNewPatientInfoWithAgeAs(String User ,String arg0)  {
-        new PatientSummaryDetailPage(getDriverInstanceFor(User)).enterPatientInfo("","",arg0,"Male","testcolony","enabled");
     }
 
     @And("^(\\w+) on Patient summary page verifies error message for invalid age$")

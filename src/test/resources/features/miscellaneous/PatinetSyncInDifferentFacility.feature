@@ -47,7 +47,7 @@ Feature: miscellaneous feature -Patinet sync in different facility
     And User on Patient tab taps on search text box
     And User on search page searches for new Patient name
     And User on search page taps on registered patient button
-    And User on Patient summary page enters new patient info
+    And User on Patient entry page enters new patient info
     And User on Diagnosis page taps on next Button
     And User on Patient summary page taps on Add new Bp button
     And User on Patient summary page enters new Bp Info
@@ -74,7 +74,7 @@ Feature: miscellaneous feature -Patinet sync in different facility
     And User on Patient tab taps on search text box
     And User on search page searches for new Patient name
     And User on search page taps on registered patient button
-    And User on Patient summary page enters new patient info
+    And User on Patient entry page enters new patient info
     And User on Diagnosis page taps on next Button
     And User on Patient summary page taps on Add new Bp button
     And User on Patient summary page enters new Bp Info
