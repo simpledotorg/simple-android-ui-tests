@@ -129,6 +129,7 @@ public class BpSection extends BasePage {
     }
 
     public void tapsOnAddNewBpButton() {
+        waitForElementToBeVisible(addNewBpButton);
         addNewBpButton.click();
     }
 

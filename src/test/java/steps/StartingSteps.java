@@ -46,5 +46,11 @@ public class StartingSteps extends BaseSteps {
         }
         new DeleteApi().DeleteUser();
         controller.deRegisterSmartBOTs(smartBOTs);
+        String cmdstr = "adb -s emulator-5554 emu kill";
+        try {
+            Runtime.getRuntime().exec(cmdstr);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }
