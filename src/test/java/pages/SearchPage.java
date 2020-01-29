@@ -65,7 +65,7 @@ public class SearchPage extends BasePage {
     public void searchForRegisteredPatientWithBpInfo(String patientName) {
         searchPatient(patientName);
 
-        waitForElementToBeVisible(header.get(0));
+        waitFor(5000);
 
         String status = "false";
         for (WebElement ele : header) {
@@ -90,9 +90,8 @@ public class SearchPage extends BasePage {
     public void searchForRegisteredPatientWithoutBPInfo(String patientName) {
         searchPatient(patientName);
 
-        waitFor(3000);
+        waitFor(5000);
 
-        waitForElementToBeVisible(header.get(0));
 
         String status = "false";
         for (WebElement ele : header) {
