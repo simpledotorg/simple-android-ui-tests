@@ -33,7 +33,7 @@ jobs:
       - name: Setup NodeJs
         uses: actions/setup-node@v1
         with:
-          node-version: '10.x'
+          node-version: '8.x'
 
       - name: Install mongodb
         run: brew tap mongodb/brew && brew install mongodb-community@4.2 && brew services start mongodb-community
