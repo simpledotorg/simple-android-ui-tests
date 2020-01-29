@@ -57,11 +57,11 @@ jobs:
         with:
           api-level: 25
           target: google_apis
-          arch: x86_64
+          arch: x86
           profile: pixel
           emulator-options: -gpu auto -no-snapshot -noaudio -no-boot-anim
           disable-animations: true
-          script: ui-tests/gradlew -p ui-tests runFragmentation -DtestFeed=QA  -Dtags=@bp1  -Denv="India"
+          script: ui-tests/gradlew -p ui-tests runFragmentation -DtestFeed=QA  -Dtags=@smoke  -Denv="India"
 
       - name: Upload test reports
         if: failure() || success()
