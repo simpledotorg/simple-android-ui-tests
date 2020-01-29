@@ -13,7 +13,8 @@
       "optimusDesiredCapabilities": {
         "appiumServerCapabilities": {
           "app": "qaDebug.apk",
-          "platformName": "Android"
+          "platformName": "Android",
+          "appium:--session-override": true
         },
         "androidOnlyCapabilities": {
           "appActivity": "org.simple.clinic.setup.SetupActivity",
@@ -25,8 +26,8 @@
           "appium:fullreset": true,
           "appium:automationName": "UiAutomator2",
           "appium:nativeWebScreenshot":true,
-          "appium:adbExecTimeout" :50000,
-          "appium:--session-override": true
+          "appium:adbExecTimeout" :120000,
+          "appium:deviceReadyTimeout": 10
         }
       },
       "deviceState": {
