@@ -28,8 +28,8 @@
           "appium:nativeWebScreenshot":true,
           "appium:adbExecTimeout" :120000,
           "appium:deviceReadyTimeout": 20,
-          "appium:avdLaunchTimeout":120000,
-          "appium:avdReadyTimeout":120000
+          "appium:avdLaunchTimeout":60000,
+          "appium:avdReadyTimeout":60000
         }
       },
       "deviceState": {
