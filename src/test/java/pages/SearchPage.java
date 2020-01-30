@@ -65,7 +65,7 @@ public class SearchPage extends BasePage {
     public void searchForRegisteredPatientWithBpInfo(String patientName) {
         searchPatient(patientName);
 
-        waitFor(5000);
+        waitFor(30000);
 
         String status = "false";
         for (WebElement ele : header) {
