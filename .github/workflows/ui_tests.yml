@@ -4,6 +4,10 @@ on:
   push: 
     branches:
       - master
+  schedule:
+    # Scheduled at 18:30 PM UTC (Sunday to Thursday)
+    # Scheduled at 12:00 AM IST (Monday to Friday)
+    - cron: "30 23 * * 0-4"
 
 jobs:
   run_checks:
