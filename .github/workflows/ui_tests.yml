@@ -57,7 +57,7 @@ jobs:
         with:
           api-level: 25
           target: google_apis
-          arch: x86
+          arch: x86_64
           profile: pixel
           emulator-options: -gpu auto -no-snapshot -noaudio -no-boot-anim
           disable-animations: true
