@@ -2,35 +2,35 @@
   "executionDetails": {
     "appium_js_path": "/usr/local/bin/appium",
     "appium_node_path": "/usr/local/bin/node",
-    "monitoring":true
+    "monitoring": true
   },
-  "testFeed":[
+  "testFeed": [
     {
-      "belongsTo":"User",
+      "belongsTo": "User",
       "runsOn": "any",
       "appDir": "app",
-      "nativeApp":true,
+      "nativeApp": true,
       "optimusDesiredCapabilities": {
         "appiumServerCapabilities": {
           "app": "qaDebug.apk",
-          "platformName": "Android",
-          "appium:--session-override": true
+          "platformName": "Android"
         },
         "androidOnlyCapabilities": {
           "appActivity": "org.simple.clinic.setup.SetupActivity",
           "appPackage": "org.simple.clinic.qa.debug",
           "appium:uiautomator2ServerInstallTimeout": 120000,
-          "unicodeKeyboard":true,
-          "resetKeyboard":true,
+          "unicodeKeyboard": true,
+          "resetKeyboard": true,
           "useKeystore": false,
-          "appium:fullreset": true,
+          "appium:fullReset": true,
           "appium:automationName": "UiAutomator2",
-          "appium:nativeWebScreenshot":true,
-          "appium:adbExecTimeout" :60000,
+          "appium:nativeWebScreenshot": true,
+          "appium:adbExecTimeout": 60000,
           "appium:deviceReadyTimeout": 10,
-          "appium:avdLaunchTimeout":60000,
-          "appium:avdReadyTimeout":60000,
-          "appium:newCommandTimeout":120
+          "appium:avdLaunchTimeout": 60000,
+          "appium:avdReadyTimeout": 60000,
+          "appium:newCommandTimeout": 100,
+          "appium:-–session-override": true
         }
       },
       "deviceState": {
