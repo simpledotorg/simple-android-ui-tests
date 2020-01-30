@@ -20,12 +20,6 @@ import java.util.List;
 public class BpSection extends BasePage {
     private AppiumDriver driver;
 
-//    @FindBy(id = "bloodpressureentry_systolic")
-//    private MobileElement systolicBp;
-//
-//    @FindBy(id = "bloodpressureentry_diastolic")
-//    private MobileElement diastolicBp;
-
     @FindBy(id = "systolicEditText")
     private MobileElement systolicEditText;
 
@@ -44,7 +38,7 @@ public class BpSection extends BasePage {
     @FindBy(id = "yearEditText")
     private WebElement year;
 
-    @FindBy(id = "newBp")
+    @FindBy(id = "addNewBP")
     private WebElement addNewBpButton;
 
     @FindBy(id = "alertTitle")
@@ -56,8 +50,8 @@ public class BpSection extends BasePage {
     @FindBy(id = "android:id/button2")
     private WebElement skipPhoneNumberButton;
 
-    @FindBy(id = "daysAgoTextView")
-    private WebElement daysAgoInfo;
+    @FindBy(id = "editButton")
+    private WebElement editButton;
 
     @FindBy(id = "removeBloodPressureButton")
     private WebElement removeLink;
@@ -71,7 +65,7 @@ public class BpSection extends BasePage {
     @FindBy(id = "placeHolderMessageTextView")
     private WebElement bpSummary;
 
-    @FindBy(id = "itemLayout")
+    @FindBy(id = "bpItemRoot")
     private List<WebElement> summaryLayout;
 
     @FindBys({@FindBy(id = "readingsTextView")})
@@ -83,9 +77,10 @@ public class BpSection extends BasePage {
     private WebElement bpLayout1;
 
     private By heartIcon = By.id("heartImageView");
-    private By bpLevel = By.id("levelTextView");
-    private By daysAgo = By.id("daysAgoTextView");
+    private By highBpLevel = By.id("bpHigh");
+    private By dateAndTimeTextView = By.id("dateTimeTextView");
     private By reading = By.id("readingsTextView");
+
 
     @FindBy(id = "addphone_phone")
     private MobileElement phoneNumberTextFeild;
@@ -115,7 +110,7 @@ public class BpSection extends BasePage {
         String[] str = sDate.split("-");
         String dd = str[0];
         String mm = str[1];
-        String yy = str[2].substring(2,4);
+        String yy = str[2].substring(2, 4);
 
         bpDate.click();
         waitForElementToBeClickable(day);
@@ -147,11 +142,11 @@ public class BpSection extends BasePage {
     }
 
     public void enterBackDate() {
-        entersDate(Date.getBackDate("dd-MM-YYYY",10));
+        entersDate(Date.getBackDate("dd-MM-YYYY", 10));
     }
 
     public void tapsOnEditBpLink() {
-        daysAgoInfo.click();
+        editButton.click();
     }
 
     public void tapsOnRemoveLink() {
@@ -201,11 +196,11 @@ public class BpSection extends BasePage {
         for (WebElement ele : bpReadings) {
             if (ele.getText().equals(value)) {
 
-                WebElement bpLayout = driver.findElement(By.xpath("//*[@text='"+value+"']/.."));
+                WebElement bpLayout = driver.findElement(By.xpath("//*[@text='" + value + "']/.."));
                 bpLayout.findElement(reading).getText().equals(value);
-                bpLayout.findElement(bpLevel).isDisplayed();
+                bpLayout.findElement(highBpLevel).isDisplayed();
                 bpLayout.findElement(heartIcon).isDisplayed();
-                Assert.assertTrue(bpLayout.findElement(daysAgo).getText().replaceAll("[^a-zA-Z0-9]", "").contains("10daysago"));
+                Assert.assertTrue(bpLayout.findElement(dateAndTimeTextView).getText().contains(Date.getCurrentDate("dd-MMM-yyyy")));
                 break;
             }
         }
@@ -213,15 +208,16 @@ public class BpSection extends BasePage {
 
     public void verifiesDaysInfo(String value) {
 
-        Assert.assertTrue(bpReadings.size()>0);
+        waitFor(1000);
+        Assert.assertTrue(bpReadings.size() > 0);
 
         for (WebElement ele : bpReadings) {
             if (ele.getText().equals(value)) {
-                WebElement bpLayout = driver.findElement(By.xpath("//*[@text='"+value+"']/.."));
+                WebElement bpLayout = driver.findElement(By.xpath("//*[@text='" + value + "']/.."));
                 bpLayout.findElement(reading).getText().equals(value);
-                bpLayout.findElement(bpLevel).isDisplayed();
+                bpLayout.findElement(highBpLevel).isDisplayed();
                 bpLayout.findElement(heartIcon).isDisplayed();
-                Assert.assertTrue(bpLayout.findElement(daysAgo).getText().replaceAll("[^a-zA-Z0-9]", "").contains("Today"));
+                Assert.assertTrue(bpLayout.findElement(dateAndTimeTextView).getText().contains(Date.getCurrentDate("dd-MMM-yyyy")));
                 break;
             }
         }
