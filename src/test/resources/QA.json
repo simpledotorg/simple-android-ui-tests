@@ -24,7 +24,7 @@
           "resetKeyboard":true,
           "useKeystore": false,
           "appium:fullreset": true,
-          "appium:automationName": "UiAutomator2",
+          "appium:automationName": "UiAutomator1",
           "appium:nativeWebScreenshot":true,
           "appium:adbExecTimeout" :60000,
           "appium:deviceReadyTimeout": 10,
