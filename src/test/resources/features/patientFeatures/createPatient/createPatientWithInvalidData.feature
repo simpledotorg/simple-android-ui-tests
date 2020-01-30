@@ -9,21 +9,14 @@ Feature: Create Patient with invalid test data
   Scenario: User validate error message for invalid Data
     And User on search page searches for new Patient name
     And User on search page taps on registered patient button
-    And User on Patient summary page enters invalid data for patients primary info
+    And User on Patient entry page enters invalid data for patients primary info
     And User on Patient summary page verifies error message for invalid data entry
-
-  @createPatient @regression @all
-  Scenario: invalid Date
-    And User on search page searches for new Patient name
-    And User on search page taps on registered patient button
-    And User on Patient summary page enters invalid date
-    And User on Patient summary page verifies error message for invalid date entry
 
   @createPatient @regression  @all
   Scenario Outline: verify age validation for age >=120 or age=0
     And User on search page searches for new Patient name
     And User on search page taps on registered patient button
-    And User on Patient summary page enters new patient info with age as <age>
+    And User on Patient entry page enters new patient info with age as <age>
     And User on Patient summary page verifies error message for invalid age
     Examples:
       | age |

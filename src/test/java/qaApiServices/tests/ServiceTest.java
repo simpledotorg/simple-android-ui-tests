@@ -2,6 +2,7 @@ package qaApiServices.tests;
 
 import com.embibe.optimus.utils.ScenarioContext;
 import com.github.javafaker.Faker;
+import org.testng.Assert;
 import org.testng.annotations.Test;
 import qaApiServices.appointments.CreateAppointment;
 import qaApiServices.bloodPressure.BpClient;
@@ -15,6 +16,7 @@ import qaApiServices.patients.builder.BusinessIdentifiers;
 import qaApiServices.patients.builder.Patients;
 import qaApiServices.patients.builder.Phone_numbers;
 import qaApiServices.patients.request.PatientPostRequestBody;
+import qaApiServices.patients.response.PatientGetRequestResponse;
 import qaApiServices.patients.response.PatientPostRequestResponse;
 import qaApiServices.user.RegisterUser;
 import utils.Date;
@@ -71,7 +73,7 @@ public class ServiceTest {
     @Test
     public void getPatientlist() {
         new RegisterUser().registerNewUser();
-        createPatientList(1);
+        createPatientList(10);
     }
 
     private void createPatientList(int count) {
@@ -113,5 +115,24 @@ public class ServiceTest {
 
         PatientPostRequestResponse response = new PatientClient().post(patientRequestBody, facilityId, userId, token);
         System.out.println(response.toString());
+    }
+
+
+    //This method will help to check whether created patient info get sync to server while doing manual testing
+
+    @Test
+    public void toCheckPatientInfoSyncToServer() {
+        new RegisterUser().registerNewUser();
+        createPatientList(1);
+
+        String facilityId = ScenarioContext.getData("User", ScenarioContextKeys.FACILTIYID);
+        String userId = ScenarioContext.getData("User", ScenarioContextKeys.USER_ID);
+        String token = ScenarioContext.getData("User", ScenarioContextKeys.ACCESS_TOKEN);
+
+        PatientGetRequestResponse patientGetRequestResponse = new PatientClient().get(facilityId, userId, token);
+
+        String patientId = ScenarioContext.getData("User", ScenarioContextKeys.PATIENT_ID);
+        boolean result = patientGetRequestResponse.isPatientIdPresentInResponse(patientId);
+        Assert.assertEquals(result, true);
     }
 }

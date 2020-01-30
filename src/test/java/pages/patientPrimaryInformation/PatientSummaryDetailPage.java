@@ -22,9 +22,6 @@ public class PatientSummaryDetailPage extends BasePage {
     BpSection bpSection;
     MedicineSection medicineSection;
 
-//    @FindBy(id = "patientsummary_done")
-//    private WebElement saveButton;
-
     @FindBy(id = "doneButton")
     private WebElement scheduleAppointmentDoneButton;
 
@@ -34,7 +31,7 @@ public class PatientSummaryDetailPage extends BasePage {
     @FindBy(id = "fullNameTextView")
     private WebElement patientSummaryFullname;
 
-    @FindBy(id = "patientsummary_edit")
+    @FindBy(id = "editButton")
     private WebElement patientSummaryEditLink;
 
     @FindBy(id = "bpPassportTextView")
@@ -48,10 +45,6 @@ public class PatientSummaryDetailPage extends BasePage {
         bpSection = new BpSection(driver);
         medicineSection = new MedicineSection(driver);
         this.driver = driver;
-    }
-
-    public void enterPatientInfo(String name, String phone, String age, String male, String testColony,String consentValue) {
-        patientPrimaryInfoSection.enterPatientInfo(name, phone, age, male, testColony,consentValue);
     }
 
     public void enterBpInfo(String systollic, String diastolic) {
@@ -252,10 +245,6 @@ public class PatientSummaryDetailPage extends BasePage {
         patientPrimaryInfoSection.verifyValidationErrorMessages();
     }
 
-    public void verifyValidaitonErrorMessagesForInvalidDate() {
-        patientPrimaryInfoSection.verifyValidationErrorMessagesForInvalidDate();
-    }
-
     public void isBpPassportPresent() throws Exception {
         isElementPresent(By.id("patientsummary_bp_passport"));
 
@@ -264,8 +253,6 @@ public class PatientSummaryDetailPage extends BasePage {
         }
 
         String expectedString = ScenarioContext.getData("User", ScenarioContextKeys.BPSHORTCODE);
-        // need to check for space
-//        Assert.assertTrue(bpPassport.getText().contains(expectedString), "bp shortcode should match expected value" + expectedString);
     }
 
     public void updateBpInfo(String s, String s1) {

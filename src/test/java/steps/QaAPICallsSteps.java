@@ -63,4 +63,9 @@ public class QaAPICallsSteps extends BaseSteps {
     public void userRegistersMultiplePatientCountFromApi(String User,int count) {
         new QaApiCallsPage(getDriverInstanceFor(User)).registerMultiplePatients(count);
     }
+
+    @And("^(\\w+) verifies patient info get synced to server$")
+    public void userVerifiesPatientInfoGetSyncedToServer(String User) {
+        new QaApiCallsPage(getDriverInstanceFor(User)).isPatientInfoSyncToServer();
+    }
 }
