@@ -28,8 +28,8 @@
           "appium:adbExecTimeout": 60000,
           "appium:deviceReadyTimeout": 10,
           "appium:avdLaunchTimeout": 60000,
-          "appium:avdReadyTimeout": 1200000,
-          "appium:newCommandTimeout": 120
+          "appium:avdReadyTimeout": 60000,
+          "appium:newCommandTimeout": 60
         }
       },
       "deviceState": {

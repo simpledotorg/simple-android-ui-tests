@@ -219,7 +219,6 @@ public class SearchPage extends BasePage {
 
         if (value.equals("withoutPhonenumber")) {
             Assert.assertFalse(isElementPresent(phoneNumberLabel));
-//            resultBlock.findElement(lastBpLabel).getText().equals();
 
         } else if (value.equals("withoutBp")) {
             Assert.assertFalse(isElementPresent(lastBpLabel));
@@ -235,7 +234,6 @@ public class SearchPage extends BasePage {
             String varNumber = ScenarioContext.getData("User", ScenarioContextKeys.PATIENT_PHONE_NUMBER);
             resultBlock.findElement(phoneNumberLabel).getText().equals(varNumber);
             isElementPresent(text);
-//            resultBlock.findElement(lastBpLabel).getText().equals();
         }
     }
 
