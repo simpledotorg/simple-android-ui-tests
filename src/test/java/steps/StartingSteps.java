@@ -4,6 +4,7 @@ import com.embibe.optimus.utils.ScenarioContext;
 import com.testvagrant.commons.utils.JsonUtil;
 import com.testvagrant.monitor.exceptions.DeviceReleaseException;
 import com.testvagrant.optimus.device.OptimusController;
+import cucumber.api.Result;
 import cucumber.api.Scenario;
 import cucumber.api.java.After;
 import cucumber.api.java.Before;
@@ -36,13 +37,16 @@ public class StartingSteps extends BaseSteps {
 
     @After
     public void tearDown(Scenario scenario) throws IOException, DeviceReleaseException {
-        try {
-            if (scenario.isFailed()) {
-                byte[] failedScreens = optimus.getScreenCapture();
-                scenario.embed(failedScreens, "image/png");
+        Result.Type status = scenario.getStatus();
+        if (status.equals(Result.Type.FAILED) || status.equals(Result.Type.UNDEFINED) || status.equals(Result.Type.PENDING)) {
+            try {
+                if (scenario.isFailed()) {
+                    byte[] failedScreens = optimus.getScreenCapture();
+                    scenario.embed(failedScreens, "image/png");
+                }
+            } catch (Exception e) {
+                System.out.println("some platform doesn't support screenshot");
             }
-        } catch (Exception e) {
-            System.out.println("some platform doesn't support screenshot");
         }
         try {
             getChromeDriver().quit();
@@ -52,7 +56,5 @@ public class StartingSteps extends BaseSteps {
             controller.deRegisterSmartBOTs(smartBOTs);
         }
     }
-
-
 }
 
