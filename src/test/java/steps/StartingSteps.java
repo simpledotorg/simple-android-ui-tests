@@ -36,16 +36,23 @@ public class StartingSteps extends BaseSteps {
 
     @After
     public void tearDown(Scenario scenario) throws IOException, DeviceReleaseException {
-        if (scenario.isFailed()) {
-            byte[] failedScreens = optimus.getScreenCapture();
-            scenario.embed(failedScreens, "image/png");
+        try {
+            if (scenario.isFailed()) {
+                byte[] failedScreens = optimus.getScreenCapture();
+                scenario.embed(failedScreens, "image/png");
+            }
+        } catch (Exception e) {
+            System.out.println("some platform doesn't support screenshot");
         }
         try {
             getChromeDriver().quit();
-        } catch (Exception e) {
+        } catch (Exception e1) {
         } finally {
             new DeleteApi().DeleteUser();
             controller.deRegisterSmartBOTs(smartBOTs);
         }
     }
+
+
 }
+

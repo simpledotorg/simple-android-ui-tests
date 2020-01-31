@@ -11,7 +11,7 @@ import utils.ScenarioContextKeys;
 public class SearchSteps extends BaseSteps {
 
     @Then("^(\\w+) on Search page searched for Registered Patient$")
-    public void userOnSearchPageSearchedForRegisteredPatient(String User) {
+    public void userOnSearchPageSearchedForRegisteredPatient(String User) throws Exception {
         String patientName = ScenarioContext.getData("User", ScenarioContextKeys.PATIENT_NAME);
         new SearchPage(getDriverInstanceFor(User)).searchForRegisteredPatientWithBpInfo(patientName);
     }
