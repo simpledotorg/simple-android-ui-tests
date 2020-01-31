@@ -29,7 +29,7 @@ public class BasePage {
 
     public BasePage(AppiumDriver driver) {
         this.driver = driver;
-        this.driver.manage().timeouts().implicitlyWait(40,TimeUnit.SECONDS);
+        this.driver.manage().timeouts().implicitlyWait(40, TimeUnit.SECONDS);
         wait = new WebDriverWait(this.driver, 20);
     }
 
@@ -61,7 +61,7 @@ public class BasePage {
         try {
             wait.until(ExpectedConditions.visibilityOfElementLocated(by));
         } catch (Exception e) {
-
+            System.out.println(e.getCause().toString());
         }
     }
 
@@ -263,7 +263,7 @@ public class BasePage {
     public String scrollToElement(String text) {
 
         try {
-            MobileElement element = (MobileElement) driver.findElement(MobileBy.AndroidUIAutomator("new UiScrollable(new UiSelector().scrollable(true).instance(0)).scrollIntoView(new UiSelector().text(\""+text+"\").instance(0))"
+            MobileElement element = (MobileElement) driver.findElement(MobileBy.AndroidUIAutomator("new UiScrollable(new UiSelector().scrollable(true).instance(0)).scrollIntoView(new UiSelector().text(\"" + text + "\").instance(0))"
             ));
             return "true";
         } catch (Exception e) {

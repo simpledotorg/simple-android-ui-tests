@@ -62,15 +62,20 @@ public class SearchPage extends BasePage {
         nextButton.click();
     }
 
-    public void searchForRegisteredPatientWithBpInfo(String patientName) {
+    public void searchForRegisteredPatientWithBpInfo(String patientName) throws Exception {
         searchPatient(patientName);
 
         String status = "false";
-        for (WebElement ele : header) {
-            if (ele.getText().toUpperCase().contains("HAS VISITED")) {
-                status = "true";
-                break;
+        try {
+            for (WebElement ele : header) {
+                if (ele.getText().toUpperCase().contains("HAS VISITED")) {
+                    status = "true";
+                    break;
+                }
             }
+        } catch (Exception e) {
+            String message = String.format("Patient name is not present in search Result", patientName);
+            throw new Exception(message);
         }
         Assert.assertEquals(status, "true", "has visited section isn't displayed");
         Assert.assertTrue(registerAsNewPatientButton.isDisplayed());
@@ -194,7 +199,6 @@ public class SearchPage extends BasePage {
     private By text = By.id("android.widget.TextView");
     private By lastBpLabel = By.id("lastBpLabel");
     private By addressLabel = By.id("addressLabel");
-    
 
 
     public void verifyPatientInfo(String pName) {
@@ -208,7 +212,7 @@ public class SearchPage extends BasePage {
 //        resultBlock.findElement(lastBpLabel).getText().equals();
     }
 
-    private void verifyPatientInfo(String pName ,String value) {
+    private void verifyPatientInfo(String pName, String value) {
         isElementPresent(genderLabel);
         resultBlock.findElement(nameLabel).getText().split(",")[0].toUpperCase().equals(pName);
         isElementPresent(addressLabel);
@@ -244,7 +248,7 @@ public class SearchPage extends BasePage {
             }
         }
         Assert.assertEquals(status, "true", "other result section isn't displayed");
-        verifyPatientInfo(pName,paramValue[0]);
+        verifyPatientInfo(pName, paramValue[0]);
     }
 
     public void searchForPatientFromOtherFacility(String pName) {
