@@ -30,8 +30,8 @@
           "appium:avdLaunchTimeout": 60000,
           "appium:avdReadyTimeout": 60000,
           "appium:newCommandTimeout": 120,
-          "ignoreUnimportantViews": true,
-          "trackScrollEvents": false
+          "appium:ignoreUnimportantViews": true,
+          "appium:trackScrollEvents": false
         }
       },
       "deviceState": {
