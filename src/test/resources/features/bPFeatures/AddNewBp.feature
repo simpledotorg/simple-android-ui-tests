@@ -34,7 +34,7 @@ Feature: Add new Bp
     And User on Patient summary page taps on appointment done button
     And User on Patient tab verifies patient info should show up on top of recent patient section
 
-  @bp  @regression @all
+  @bp1  @regression @all
   Scenario: Add new BP to already registered patient without phone number
     Given User registers new user from api
     And User registers new patient without phonenumber from api
