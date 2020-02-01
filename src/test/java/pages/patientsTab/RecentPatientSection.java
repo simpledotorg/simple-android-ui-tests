@@ -107,6 +107,7 @@ public class RecentPatientSection extends BasePage {
     }
 
     public void shouldShowUpOnTopOfRecentPatinetList() {
+        waitForElementToBeInvisible(By.id("recentpatient_item_title"));
         String actualValue = recentPatientViewLst.get(0).getText();
         String expected = ScenarioContext.getData("User", ScenarioContextKeys.PATIENT_NAME);
         Assert.assertTrue(actualValue.contains(expected), expected + "should be displayed on top of recent patient list");
