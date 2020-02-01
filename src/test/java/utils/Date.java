@@ -29,7 +29,7 @@ public class Date {
         SimpleDateFormat sdf = new SimpleDateFormat(dateFormat);
 
         Calendar currentTime = getBackDate(dd);
-        return sdf.format(currentTime.getTime());
+        return sdf.format(currentTime.getTime()).replaceFirst("^0+(?!$)", "");
     }
 
     // this method will help to create a patient info with patient/sync api in backdate
