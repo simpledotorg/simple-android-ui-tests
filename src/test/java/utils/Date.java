@@ -1,5 +1,7 @@
 package utils;
 
+import org.testng.annotations.Test;
+
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.TimeZone;
@@ -13,6 +15,9 @@ public class Date {
 
         Calendar cal = Calendar.getInstance();
         dateFormat = sdf.format(cal.getTime());
+
+        dateFormat = dateFormat.replaceFirst("^0+(?!$)", "");
+
         return dateFormat;
     }
 
@@ -24,7 +29,7 @@ public class Date {
         SimpleDateFormat sdf = new SimpleDateFormat(dateFormat);
 
         Calendar currentTime = getBackDate(dd);
-        return sdf.format(currentTime.getTime());
+        return sdf.format(currentTime.getTime()).replaceFirst("^0+(?!$)", "");
     }
 
     // this method will help to create a patient info with patient/sync api in backdate
