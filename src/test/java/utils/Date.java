@@ -1,5 +1,7 @@
 package utils;
 
+import org.testng.annotations.Test;
+
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.TimeZone;
@@ -13,6 +15,9 @@ public class Date {
 
         Calendar cal = Calendar.getInstance();
         dateFormat = sdf.format(cal.getTime());
+
+        dateFormat = dateFormat.replaceFirst("^0+(?!$)", "");
+
         return dateFormat;
     }
 

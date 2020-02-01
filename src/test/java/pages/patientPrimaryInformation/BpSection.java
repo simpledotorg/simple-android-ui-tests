@@ -217,7 +217,7 @@ public class BpSection extends BasePage {
                 bpLayout.findElement(reading).getText().equals(value);
                 bpLayout.findElement(highBpLevel).isDisplayed();
                 bpLayout.findElement(heartIcon).isDisplayed();
-                Assert.assertTrue(bpLayout.findElement(dateAndTimeTextView).getText().contains(Date.getCurrentDate("dd-MMM-yyyy")));
+                Assert.assertTrue(bpLayout.findElement(dateAndTimeTextView).getText().contains(Date.getCurrentDate("dd-MMM-yyyy")),"expected Date format is not present");
                 break;
             }
         }
