@@ -56,9 +56,9 @@ public class SearchPage extends BasePage {
 
     // value could be name or phonenumber
     private void searchPatient(String value) {
-        waitForElementToBeVisible(searchPatientName);
+        waitForElementToBeClickable(searchPatientName);
         searchPatientName.setValue(value);
-        waitFor(2000);
+        waitForElementToBeClickable(nextButton);
         nextButton.click();
     }
 
@@ -66,6 +66,7 @@ public class SearchPage extends BasePage {
         searchPatient(patientName);
 
         String status = "false";
+        waitForElementToBeVisible(By.id("patientsearch_header"));
         try {
             for (WebElement ele : header) {
                 if (ele.getText().toUpperCase().contains("HAS VISITED")) {
@@ -93,8 +94,7 @@ public class SearchPage extends BasePage {
     public void searchForRegisteredPatientWithoutBPInfo(String patientName) {
         searchPatient(patientName);
 
-        waitFor(5000);
-
+        waitForElementToBeVisible(By.id("patientsearch_header"));
 
         String status = "false";
         for (WebElement ele : header) {
@@ -111,7 +111,8 @@ public class SearchPage extends BasePage {
     }
 
     public void selectsPatientFromSearchList(String patientName) {
-        waitFor(1000);
+
+        waitForElementToBeClickable(By.id("patientNameAgeGenderLabel"));
         for (WebElement ele : patientList) {
 
             String[] str = ele.getText().split(",");
@@ -240,6 +241,7 @@ public class SearchPage extends BasePage {
     public void searchForPatientFromOtherFacility(String pName, String... paramValue) {
         searchPatient(pName);
         String status = "false";
+        waitForElementToBeVisible(By.id("patientsearch_header"));
         for (WebElement ele : header) {
             if (ele.getText().equalsIgnoreCase("Other Results")) {
                 status = "true";
@@ -252,6 +254,7 @@ public class SearchPage extends BasePage {
     public void searchForPatientFromOtherFacility(String pName) {
         searchPatient(pName);
         String status = "false";
+        waitForElementToBeVisible(By.id("patientsearch_header"));
         for (WebElement ele : header) {
             if (ele.getText().equalsIgnoreCase("Other Results")) {
                 status = "true";
