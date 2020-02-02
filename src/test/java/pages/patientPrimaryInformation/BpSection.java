@@ -193,6 +193,8 @@ public class BpSection extends BasePage {
     }
 
     public void verifiesDaysInformationForBackDate(String value) {
+        waitFor(1000);
+
         for (WebElement ele : bpReadings) {
             if (ele.getText().equals(value)) {
 
@@ -200,7 +202,13 @@ public class BpSection extends BasePage {
                 bpLayout.findElement(reading).getText().equals(value);
                 bpLayout.findElement(highBpLevel).isDisplayed();
                 bpLayout.findElement(heartIcon).isDisplayed();
-                Assert.assertTrue(bpLayout.findElement(dateAndTimeTextView).getText().contains(Date.getCurrentDate("dd-MMM-yyyy")));
+
+                System.out.println("uniq" + bpLayout.findElement(dateAndTimeTextView).getText());
+                System.out.println("uniq" + Date.getCurrentDate("dd-MMM-yyyy"));
+
+
+                // by default, uing 10 days for creating backdate testdata
+                Assert.assertTrue(bpLayout.findElement(dateAndTimeTextView).getText().contains(Date.getBackDate("dd-MMM-yyyy", 10)), "expected Date format is not present");
                 break;
             }
         }
@@ -217,7 +225,7 @@ public class BpSection extends BasePage {
                 bpLayout.findElement(reading).getText().equals(value);
                 bpLayout.findElement(highBpLevel).isDisplayed();
                 bpLayout.findElement(heartIcon).isDisplayed();
-                Assert.assertTrue(bpLayout.findElement(dateAndTimeTextView).getText().contains(Date.getCurrentDate("dd-MMM-yyyy")),"expected Date format is not present");
+                Assert.assertTrue(bpLayout.findElement(dateAndTimeTextView).getText().contains(Date.getCurrentDate("dd-MMM-yyyy")), "expected Date format is not present");
                 break;
             }
         }

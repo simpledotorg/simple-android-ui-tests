@@ -67,7 +67,7 @@ jobs:
           headless: true
           emulator-options: -gpu swiftshader_indirect -no-snapshot -noaudio -no-boot-anim -netdelay none -netspeed full -no-window
           disable-animations: true
-          script: ui-tests/gradlew -p ui-tests runFragmentation -DtestFeed=QA  -Dtags=@bp1  -Denv="India"
+          script: ui-tests/gradlew -p ui-tests runFragmentation -DtestFeed=QA  -Dtags=@smoke1  -Denv="India"
 
       - name: Upload test reports
         if: failure() || success()

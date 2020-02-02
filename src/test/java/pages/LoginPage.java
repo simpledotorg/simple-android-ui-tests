@@ -89,6 +89,7 @@ public class LoginPage extends BasePage {
     }
 
     public void enterRegisteredPin(String pin) {
+        waitForElementToBeVisible(registeredUserPin);
         registeredUserPin.setValue(pin);
         ScenarioContext.putData("User", ScenarioContextKeys.PIN, pin);
         pressEnter();
