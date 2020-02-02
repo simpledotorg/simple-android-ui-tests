@@ -8,7 +8,7 @@ Feature: To Test "Add New" functionality for prescribed and customized Medicine.
     Then User on Search page searched for Registered Patient
     And User on Search page selects patient form search list
 
-  @medicine @smoke @all
+  @medicine1 @smoke @all
   Scenario: Add new customized Medicine to already registered patient
     Then User on Patient summary page taps on Add new medicine button
     Then User on Patient summary page taps on Add another medicine button
