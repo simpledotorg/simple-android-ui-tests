@@ -25,7 +25,7 @@
           "appium:fullReset": false,
           "appium:automationName": "UiAutomator2",
           "appium:nativeWebScreenshot": true,
-          "appium:adbExecTimeout": 120000,
+          "appium:adbExecTimeout": 200000,
           "appium:deviceReadyTimeout": 10,
           "appium:avdLaunchTimeout": 60000,
           "appium:avdReadyTimeout": 60000,

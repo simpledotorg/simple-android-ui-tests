@@ -1,0 +1,66 @@
+# cucumber-java automation framework
+
+# Config require to run this framework:
+1. java - 1.8 and above
+2. Appium -1.10.0 and above
+3. Node - 8.0 and above
+4. gradle -latest
+5. java-client -latest
+6. optimus -latest
+
+all dependencies need to be define in build.gradle
+
+
+# we are using cucumber- page object models.
+
+#cucumber feature file
+created different feature directories base on different screen for eg: bpFeature
+It contains different feature files based on specific functionality for eg: AddNewBp.
+These feature file contains different scenario's which contains different tags like @bp, @smoke ,@regression ,@all
+
+#Each scenario's contain different steps and these steps are linked to its step file.
+#Each step linked to Page files.
+
+# basic gradle command to execute test.
+ gradle runFragmentation -DtestFeed=QA  -Dtags=@bp1 -Denv="India"
+ gradle runFragmentation -DtestFeed=QA  -Dtags=@all -Denv="India" to run all testcase
+
+gradle runFragmentation -DtestFeed=QA  -Dtags=@bp1 -Denv="Bangladesh" to run testcase for Bangladesh
+
+
+#gradle runFragmentation -DtestFeed=SBX  -Dtags=@bp1 -Denv="India"
+ gradle runFragmentation -DtestFeed=SBX  -Dtags=@bp1 -Denv="Bangladesh"
+
+ QA and SBX are nothing but json file in resource directory.
+
+
+# info related to test Data.
+most of testdata is generated through code
+
+# jar used to create data : faker and generex.
+# for most of scenario's ,before verifying test at ui level ,testdata is created through api.
+
+cucumber : Given User registers new user from api
+cucumber step: @Given("^(\\w+) registers new user from api$") - these steps in QaAPICallsStep
+and its method is in QaApiCallsPage.
+
+for Qa APi services , I have used builder pattern and it is in test>java>qaApiService.
+
+We have used ScenarioContext file to store data globally.
+for eg:
+ScenarioContext.getData("User", ScenarioContextKeys.BPSHORTCODE); to get dtaa from global var
+ScenarioContext.putData("User", ScenarioContextKeys.BPSHORTCODE, bpShortCode); to put data in global var
+
+
+#To understand api's manually one can go through postman collection in simple shared drive.
+It contains collection and environment variable.One can import it and run it in local system.
+
+
+#if someone want to create test data for manual testing then they can run few test from
+Java>qaApiServices>tests>ServiceTest class.
+
+
+
+
+
+
