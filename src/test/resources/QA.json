@@ -22,7 +22,7 @@
           "unicodeKeyboard": true,
           "resetKeyboard": true,
           "useKeystore": false,
-          "appium:fullReset": true,
+          "appium:fullReset": false,
           "appium:automationName": "UiAutomator2",
           "appium:nativeWebScreenshot": true,
           "appium:adbExecTimeout": 120000,

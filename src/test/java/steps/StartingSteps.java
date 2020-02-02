@@ -38,7 +38,8 @@ public class StartingSteps extends BaseSteps {
     @After
     public void tearDown(Scenario scenario) throws IOException, DeviceReleaseException {
         Result.Type status = scenario.getStatus();
-        if (status.equals(Result.Type.FAILED) || status.equals(Result.Type.UNDEFINED) || status.equals(Result.Type.PENDING)) {
+        if (status.equals(Result.Type.FAILED) || status.equals(Result.Type.UNDEFINED) || status.equals(Result.Type.PENDING)
+                || status.equals(Result.Type.AMBIGUOUS)) {
             try {
                 if (scenario.isFailed()) {
                     byte[] failedScreens = optimus.getScreenCapture();

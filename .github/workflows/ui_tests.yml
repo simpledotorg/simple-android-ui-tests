@@ -57,7 +57,7 @@ jobs:
         run: cp simple-android/app/build/outputs/apk/qa/debug/app-qa-debug.apk ui-tests/app/qaDebug.apk
 
       - name: Run UI tests
-        uses: reactivecircus/android-emulator-runner@v2
+        uses: reactivecircus/android-emulator-runner@v2.0.0
         with:
           api-level: 25
           target: google_apis
@@ -66,7 +66,7 @@ jobs:
           emulator-options: -gpu auto -gpu swiftshader_indirect -no-snapshot -noaudio -no-boot-anim -netdelay none -netspeed full -no-window
 
           disable-animations: true
-          script: ui-tests/gradlew -p ui-tests runFragmentation -DtestFeed=QA  -Dtags=@patientsync  -Denv="India"
+          script: ui-tests/gradlew -p ui-tests runFragmentation -DtestFeed=QA  -Dtags=@bp1  -Denv="India"
 
       - name: Upload test reports
         if: failure() || success()
