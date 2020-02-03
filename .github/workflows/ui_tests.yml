@@ -41,7 +41,7 @@ jobs:
           node-version: '8.x'
 
       - name: Install mongodb
-        run: update brew && brew tap mongodb/brew && brew install mongodb-community@4.2 && brew services start mongodb-community
+        run: brew tap mongodb/brew && brew install mongodb-community@4.2 && brew services start mongodb-community
 
       # This has to happen AFTER installing mongodb and setting up NodeJs
       - name: Install Optimus
