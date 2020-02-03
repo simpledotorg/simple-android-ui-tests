@@ -58,7 +58,7 @@ Feature: Create Patient
     Then User on search page searched for Registered Patient without BP info
 
 
-  @createPatient @smoke @all
+  @createPatient @all
   Scenario Outline: Create New Patient of age 120
     And User on search page searches for new Patient name
     And User on search page taps on registered patient button

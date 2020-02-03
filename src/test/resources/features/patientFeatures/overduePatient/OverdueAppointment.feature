@@ -10,13 +10,13 @@ Feature: overdue PATIENTS test
     And User on Homepage taps on OVERDUE Tab
     Then User on Overdue Tab verifies patient info present in overdue list
 
-  @overdue @smoke @all
+  @overdue  @all
   Scenario: user should be able to view information for overdue patient
     And User on Homepage taps on OVERDUE Tab
     And User on Overdue tab taps on patient detail
     Then User on Overdue tab verifies expanded view of patient information
 
-  @overdue @smoke @all
+  @overdue  @all
   Scenario: add new bp for an overdue patient
     And User on Patient tab taps on search text box
     And User on Search page searched for Registered Patient
@@ -53,7 +53,7 @@ Feature: overdue PATIENTS test
       | reasons                    |
       | Phone number does not work |
 
-  @overdue @smoke @regression @all
+  @overdue  @regression @all
   Scenario Outline: End to end flow for a patient whose appointment is updated with Phone number doesn't exist
     And User on Homepage taps on OVERDUE Tab
     And User on Overdue tab taps on patient detail
@@ -78,7 +78,7 @@ Feature: overdue PATIENTS test
       | reasons                    |
       | Phone number does not work |
 
-  @overdue @smoke @all
+  @overdue  @all
   Scenario: Verify Call pop up
     And User on Homepage taps on OVERDUE Tab
     And User on Overdue tab taps on call Icon

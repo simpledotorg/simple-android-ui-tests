@@ -23,7 +23,7 @@ Feature: Miscellaneous feature
     And User on Patient summary page taps on Update Medicine info
     Then User on Patient summary page verifies custum drug list
 
-  @miscellaneous @smoke @all
+  @miscellaneous @all
   Scenario: Registering user form api and denied it's access from backend then login as user and verify app UI .
     Given User registers new user from api
     And Login as Server Admin
@@ -90,7 +90,7 @@ Feature: Miscellaneous feature
     Then User on Patient tab verify patient data got synced in server
 
 
-  @miscellaneous @smoke @all
+  @miscellaneous @all
   Scenario Outline: Register user from app ,get it's access denied from backend and then verify app ui for sync indicator.
     And New User registers on app
     And User search for facility as <facilityName>

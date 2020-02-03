@@ -14,7 +14,7 @@ Feature: Update Overdue appointment
     And User on Homepage taps on PATIENTS Tab
     And User on Patient tab taps on sync link
 
-  @updateAppointment @smoke @all
+  @updateAppointment  @all
   Scenario: update appointment with remind to call later
     And User on Homepage taps on OVERDUE Tab
     And User on Overdue tab taps on patient detail

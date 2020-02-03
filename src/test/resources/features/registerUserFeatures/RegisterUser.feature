@@ -20,7 +20,7 @@ Feature: Register Nurse/User
     And User enters invalid security pin as 4321
     And User taps on reset pin
 
-  @register @smoke  @all
+  @register   @all
   Scenario Outline: verify no recent patient text
     And New User registers on app
     And User search for facility as <facilityName>
