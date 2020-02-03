@@ -40,8 +40,15 @@ jobs:
         with:
           node-version: '8.x'
 
+      - name: Update Homebrew
+        # This was added because a PR broke the "brew services" command, and the
+        # version of Homebrew currently on GitHub Actions runners are not updated
+        # with the fix.
+        # See https://github.com/Homebrew/homebrew-services/issues/206
+        run: brew update
+
       - name: Install mongodb
-        run:  brew tap mongodb/brew && brew install mongodb-community@4.2 && brew services start mongodb-community
+        run: brew tap mongodb/brew && brew install mongodb-community@4.2 && brew services start mongodb-community
 
       # This has to happen AFTER installing mongodb and setting up NodeJs
       - name: Install Optimus
