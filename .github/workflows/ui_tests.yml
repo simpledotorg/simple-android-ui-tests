@@ -7,7 +7,7 @@ on:
   schedule:
     # Scheduled at 18:30 PM UTC (Sunday to Thursday)
     # Scheduled at 12:00 AM IST (Monday to Friday)
-    - cron: "30 23 * * 0-4"
+    - cron: "30 18 * * 0-4"
 
 jobs:
   run_checks:
@@ -15,7 +15,16 @@ jobs:
     # run with H/W acceleration for Android emulators.
     #
     # https://github.com/ReactiveCircus/android-emulator-runner
-    runs-on: [macos-latest]
+    runs-on: ${{ matrix.config.os }}
+    strategy:
+      # This is needed so that all the different jobs continue to run
+      # even if one of the other fails.
+      fail-fast: false
+      matrix:
+        config:
+          - { os: macos-latest, tag: '@smoke' }
+          - { os: macos-latest, tag: '@bp' }
+          - { os: macos-latest, tag: '@medicine' }
 
     steps:
       - name: Checkout UI tests
@@ -40,8 +49,15 @@ jobs:
         with:
           node-version: '8.x'
 
+      - name: Update Homebrew
+        # This was added because a PR broke the "brew services" command, and the
+        # version of Homebrew currently on GitHub Actions runners are not updated
+        # with the fix.
+        # See https://github.com/Homebrew/homebrew-services/issues/206
+        run: brew update
+
       - name: Install mongodb
-        run:  brew tap mongodb/brew && brew install mongodb-community@4.2 && brew services start mongodb-community
+        run: brew tap mongodb/brew && brew install mongodb-community@4.2 && brew services start mongodb-community
 
       # This has to happen AFTER installing mongodb and setting up NodeJs
       - name: Install Optimus
@@ -67,7 +83,7 @@ jobs:
           headless: true
           emulator-options: -gpu swiftshader_indirect -no-snapshot -noaudio -no-boot-anim -netdelay none -netspeed full -no-window
           disable-animations: true
-          script: ui-tests/gradlew -p ui-tests runFragmentation -DtestFeed=QA  -Dtags=@smoke  -Denv="India"
+          script: ui-tests/gradlew -p ui-tests runFragmentation -DtestFeed=QA  -Dtags=${{ matrix.config.tag }}  -Denv="India"
 
       - name: Upload test reports
         if: failure() || success()
