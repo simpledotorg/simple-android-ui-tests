@@ -48,6 +48,7 @@ Feature: miscellaneous feature -Patinet sync in different facility
     And User on search page searches for new Patient name
     And User on search page taps on registered patient button
     And User on Patient entry page enters new patient info
+    And User on Diagnosis page select diagnosis
     And User on Diagnosis page taps on next Button
     And User on Patient summary page taps on Add new Bp button
     And User on Patient summary page enters new Bp Info
@@ -75,6 +76,7 @@ Feature: miscellaneous feature -Patinet sync in different facility
     And User on search page searches for new Patient name
     And User on search page taps on registered patient button
     And User on Patient entry page enters new patient info
+    And User on Diagnosis page select diagnosis
     And User on Diagnosis page taps on next Button
     And User on Patient summary page taps on Add new Bp button
     And User on Patient summary page enters new Bp Info
@@ -109,7 +111,7 @@ Feature: miscellaneous feature -Patinet sync in different facility
     And User on Patient summary page verifies days information
 
 
-  @regression @patientsync @all
+  @regression @patientsync @all1
   Scenario: End to End flow for Remove Bp and verify patient info sync in different facility
     Given User registers new user from api
     And User registers a patient with multiple Bps

@@ -53,7 +53,7 @@ public class StartingSteps extends BaseSteps {
             getChromeDriver().quit();
         } catch (Exception e1) {
         } finally {
-            new DeleteApi().DeleteUser();
+//            new DeleteApi().DeleteUser();
             controller.deRegisterSmartBOTs(smartBOTs);
         }
     }

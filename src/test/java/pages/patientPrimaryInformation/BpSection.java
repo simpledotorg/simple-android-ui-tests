@@ -77,7 +77,7 @@ public class BpSection extends BasePage {
     private WebElement bpLayout1;
 
     private By heartIcon = By.id("heartImageView");
-    private By highBpLevel = By.id("bpHigh");
+    private By highBpLevel = By.id("bpHighTextView");
     private By dateAndTimeTextView = By.id("dateTimeTextView");
     private By reading = By.id("readingsTextView");
 

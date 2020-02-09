@@ -71,6 +71,7 @@ public class PatientTabPage extends BasePage {
     }
 
     public void tapsOnSyncLink() {
+        scrollToElement("Synced just now");
         syncLink.click();
         waitFor(1000);
     }

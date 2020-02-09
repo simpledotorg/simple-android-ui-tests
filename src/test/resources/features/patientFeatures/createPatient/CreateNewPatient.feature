@@ -10,6 +10,7 @@ Feature: Create Patient
     And User on search page searches for new Patient name
     And User on search page taps on registered patient button
     And User on Patient entry page enters new patient info
+    And User on Diagnosis page select diagnosis
     And User on Diagnosis page taps on next Button
     And User on Patient summary page taps on Add new Bp button
     And User on Patient summary page enters new Bp Info
@@ -24,6 +25,7 @@ Feature: Create Patient
     And User on search page searches for new Patient name
     And User on search page taps on registered patient button
     And User on Patient entry page enters new patient info Without phone number
+    And User on Diagnosis page select diagnosis
     And User on Diagnosis page taps on next Button
     And User on Patient summary page taps on Add new Bp button
     And User on Patient summary page enters new Bp Info
@@ -38,6 +40,7 @@ Feature: Create Patient
     And User on search page searches for new Patient name
     And User on search page taps on registered patient button
     And User on Patient entry page enters new patient info
+    And User on Diagnosis page select diagnosis
     And User on Diagnosis page taps on next Button
     And User on Patient summary page taps on Add new Bp button
     And User on Patient summary page navigates back
@@ -50,6 +53,7 @@ Feature: Create Patient
     And User on search page searches for new Patient name
     And User on search page taps on registered patient button
     And User on Patient entry page enters new patient info Without phone number
+    And User on Diagnosis page select diagnosis
     And User on Diagnosis page taps on next Button
     And User on Patient summary page taps on Add new Bp button
     And User on Patient summary page navigates back
@@ -63,6 +67,7 @@ Feature: Create Patient
     And User on search page searches for new Patient name
     And User on search page taps on registered patient button
     And User on Patient entry page enters new patient info with age as <age>
+    And User on Diagnosis page select diagnosis
     And User on Diagnosis page taps on next Button
     And User on Patient summary page taps on Add new Bp button
     And User on Patient summary page enters new Bp Info

@@ -8,6 +8,7 @@ Feature: to test  reminder- Consent toggle button
     And User on search page searches for new Patient name
     And User on search page taps on registered patient button
     And User on Patient entry page enters new patient info
+    And User on Diagnosis page select diagnosis
     And User on Diagnosis page taps on next Button
     And User on Patient summary page taps on Add new Bp button
     And User on Patient summary page enters new Bp Info
@@ -26,6 +27,7 @@ Feature: to test  reminder- Consent toggle button
     And User on search page searches for new Patient name
     And User on search page taps on registered patient button
     And User on Patient entry page enters new patient info by disabling consent reminder toggle
+    And User on Diagnosis page select diagnosis
     And User on Diagnosis page taps on next Button
     And User on Patient summary page taps on Add new Bp button
     And User on Patient summary page enters new Bp Info

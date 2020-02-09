@@ -16,6 +16,7 @@ Feature:  To test Address Model
     And User on search page searches for new Patient name
     And User on search page taps on registered patient button
     And User on Patient entry page enters new patient info
+    And User on Diagnosis page select diagnosis
     And User on Diagnosis page taps on next Button
     And User on Patient summary page taps on Edit patient info link
     Then User on Patient entry page verifies address model for given countries
@@ -26,6 +27,7 @@ Feature:  To test Address Model
     And User on search page searches for new Patient name
     And User on search page taps on registered patient button
     And User on Patient entry page enters new patient info
+    And User on Diagnosis page select diagnosis
     And User on Diagnosis page taps on next Button
     And User on Patient summary page taps on Add new Bp button
     And User on Patient summary page enters new Bp Info
@@ -45,6 +47,7 @@ Feature:  To test Address Model
     And User on search page searches for new Patient name
     And User on search page taps on registered patient button
     And User on Patient entry page enters new patient info
+    And User on Diagnosis page select diagnosis
     And User on Diagnosis page taps on next Button
     And User on Patient summary page taps on Add new Bp button
     And User on Patient summary page enters new Bp Info

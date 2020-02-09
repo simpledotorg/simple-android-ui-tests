@@ -64,7 +64,7 @@ Feature: Miscellaneous feature
     And User on Patient tab taps on okay button
     Then User on patient tab verifies sync pending status should be present
 
-  @miscellaneous1 @regression @all
+  @miscellaneous @regression @all
   Scenario:Log in as user and get its access denied from backend,add new patient data from app,allow access from backend
   then verify patient data should get synced in server.
     Given User registers new user from api
@@ -77,6 +77,7 @@ Feature: Miscellaneous feature
     And User on search page searches for new Patient name
     And User on search page taps on registered patient button
     And User on Patient entry page enters new patient info
+    And User on Diagnosis page select diagnosis
     And User on Diagnosis page taps on next Button
     And User on Patient summary page taps on Add new Bp button
     And User on Patient summary page enters new Bp Info

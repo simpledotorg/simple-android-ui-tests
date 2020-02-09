@@ -194,7 +194,8 @@ public class LoginPage extends BasePage {
 
     public void enterInvalidPhoneNumber(String phone) {
         if (phone != null && !phone.isEmpty()) {
-            registrationPhoneNumber.sendKeys(phone + "\n");
+            registrationPhoneNumber.sendKeys(phone);
+            pressEnter();
         } else {
             pressEnter();
         }

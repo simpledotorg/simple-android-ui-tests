@@ -1,7 +1,7 @@
 name: UI tests
 
 on:
-  push: 
+  push:
     branches:
       - master
   schedule:
@@ -22,9 +22,7 @@ jobs:
       fail-fast: false
       matrix:
         config:
-          - { os: macos-latest, tag: '@smoke' }
-#          - { os: macos-latest, tag: '@bp' }
-#          - { os: macos-latest, tag: '@medicine' }
+          - { os: macos-latest, tag: '@regression' }
 
     steps:
       - name: Checkout UI tests

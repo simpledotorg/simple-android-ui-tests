@@ -10,4 +10,9 @@ public class DiagnosisSteps extends BaseSteps {
         new DiagnosisPage(getDriverInstanceFor(User)).tapsOnNextButton();
 
     }
+
+    @And("^(\\w+) on Diagnosis page select diagnosis$")
+    public void userOnDiagnosisPageSelectDiagnosis(String User) throws Throwable {
+        new DiagnosisPage(getDriverInstanceFor(User)).selectDiagnosis();
+    }
 }
