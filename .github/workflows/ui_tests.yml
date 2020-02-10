@@ -23,8 +23,6 @@ jobs:
       matrix:
         config:
           - { os: macos-latest, tag: '@smoke' }
-#          - { os: macos-latest, tag: '@bp' }
-#          - { os: macos-latest, tag: '@medicine' }
 
     steps:
       - name: Checkout UI tests
