@@ -1,7 +1,7 @@
 name: UI tests
 
 on:
-  push: 
+  push:
     branches:
       - master
   schedule:
@@ -15,15 +15,7 @@ jobs:
     # run with H/W acceleration for Android emulators.
     #
     # https://github.com/ReactiveCircus/android-emulator-runner
-    runs-on: ${{ matrix.config.os }}
-    strategy:
-      # This is needed so that all the different jobs continue to run
-      # even if one of the other fails.
-      fail-fast: false
-      matrix:
-        config:
-          - { os: macos-latest, tag: '@smoke' }
-
+    runs-on: [macos-latest]
     steps:
       - name: Checkout UI tests
         uses: actions/checkout@v2
@@ -81,7 +73,7 @@ jobs:
           headless: true
           emulator-options: -gpu swiftshader_indirect -no-snapshot -noaudio -no-boot-anim -netdelay none -netspeed full -no-window
           disable-animations: true
-          script: ui-tests/gradlew -p ui-tests runFragmentation -DtestFeed=QA  -Dtags=${{ matrix.config.tag }}  -Denv="India"
+          script: ui-tests/gradlew -p ui-tests runFragmentation -DtestFeed=QA  -Dtags=@bp1  -Denv="India"
 
       - name: Upload test reports
         if: failure() || success()
