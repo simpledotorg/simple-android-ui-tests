@@ -1,6 +1,6 @@
 Feature: Register Nurse/User
 
-  @register @smoke  @all
+  @register @smoke1  @all
   Scenario Outline: Register New Nurse/User
     And New User registers on app
     And User search for facility as <facilityName>

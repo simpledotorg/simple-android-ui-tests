@@ -1,6 +1,6 @@
 Feature: to test  reminder- Consent toggle button
 
-  @reminderConcent @smoke @all
+  @reminderConcent @smoke1 @all
   Scenario: create Patient and verify reminder-consent value in api service
     Given User registers new user from api
     And User LogsIn in app

@@ -1,6 +1,6 @@
 Feature: Perform search for new Patient by ( name or phone number)
 
-  @search  @smoke @all
+  @search  @smoke1 @all
   Scenario Outline: Search for new Patient by name
     Given User registers new user from api
     And User LogsIn in app

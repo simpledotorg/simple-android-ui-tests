@@ -5,7 +5,7 @@ Feature: Test setting screen functionality
     And User LogsIn in app
     And User taps on setting Icon
 
-  @setting @smoke @all
+  @setting @smoke1 @all
   Scenario Outline: User should be able to select language
 
     And User taps on change button
