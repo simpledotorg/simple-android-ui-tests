@@ -17,8 +17,6 @@ Feature: Test setting screen functionality
 
   @setting @regression @all
   Scenario: Verify default text for language setting when user didn't select any language
-
-    Examples:
     And User taps on change button
     And User navigates back
     Then User verifies default text for lang setting
