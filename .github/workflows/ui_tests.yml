@@ -16,9 +16,6 @@ jobs:
     #
     # https://github.com/ReactiveCircus/android-emulator-runner
     runs-on: [macos-latest]
-    strategy:
-      matrix:
-        api-level: [25]
     steps:
       - name: Checkout UI tests
         uses: actions/checkout@v2
@@ -67,9 +64,9 @@ jobs:
         run: cp simple-android/app/build/outputs/apk/qa/debug/app-qa-debug.apk ui-tests/app/qaDebug.apk
 
       - name: Run UI tests
-        uses: reactivecircus/android-emulator-runner@v2.3.2
+        uses: reactivecircus/android-emulator-runner@v2.3.1
         with:
-          api-level: ${{ matrix.api-level }}
+          api-level: 25
           target: google_apis
           arch: x86
           profile: pixel
