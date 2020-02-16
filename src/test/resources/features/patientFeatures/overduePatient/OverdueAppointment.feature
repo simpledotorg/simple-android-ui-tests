@@ -5,7 +5,7 @@ Feature: overdue PATIENTS test
     And User registers overdue patient
     And User LogsIn in app
 
-  @overdue @smoke @all
+  @overdue @smoke1 @all
   Scenario: create overdue patient from api and validate it in ui
     And User on Homepage taps on OVERDUE Tab
     Then User on Overdue Tab verifies patient info present in overdue list

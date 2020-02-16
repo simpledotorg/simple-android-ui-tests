@@ -1,6 +1,6 @@
 Feature: miscellaneous feature -Patinet sync in different facility
 
-  @smoke @patientsync @all
+  @smoke1 @patientsync @all
   Scenario: Verify patient info sync in different facility
     Given User registers new user from api
     And User registers new patient with bp from api
@@ -16,7 +16,7 @@ Feature: miscellaneous feature -Patinet sync in different facility
     And User on Patient tab taps on search text box
     And User on search page searched for patient registered in other facility for withoutBp
 
-  @smoke @patientsync @all
+  @regression @patientsync @all
   Scenario: Verify patient info sync in different facility -patient with bp passport
     Given User registers new user from api
     And User registers new patient with bp passport from api
@@ -40,7 +40,7 @@ Feature: miscellaneous feature -Patinet sync in different facility
     And User on Patient tab taps on search text box
     And User on search page searched for patient registered in other facility for withoutPhonenumber
 
-  @smoke @patientsync @all
+  @regression @patientsync @all
   Scenario Outline: App End to end flow to create verify patient info sync in different facility- registration flow
     Given User registers new user from api
     And User LogsIn in app

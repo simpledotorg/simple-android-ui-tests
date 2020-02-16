@@ -1,6 +1,6 @@
 Feature: Recent patient list
 
-  @recentPatient @smoke @all
+  @recentPatient @smoke1 @all
   Scenario: User verifies recent patient list
     Given User registers new user from api
     And User registers new patient with bp from api

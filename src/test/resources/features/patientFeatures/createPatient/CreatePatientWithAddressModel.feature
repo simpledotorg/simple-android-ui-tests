@@ -5,7 +5,7 @@ Feature:  To test Address Model
     And User LogsIn in app
     And User on Patient tab taps on search text box
 
-  @createPatient @smoke @all
+  @createPatient @smoke1 @all
   Scenario: Verify Address page for different country
     And User on search page searches for new Patient name
     And User on search page taps on registered patient button

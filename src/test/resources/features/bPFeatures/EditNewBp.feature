@@ -1,6 +1,6 @@
 Feature: Edit BP info
 
-  @bp @smoke @all
+  @bp @smoke1 @all
   Scenario: Edit BP info with today's date to already registered patient
     Given User registers new user from api
     And User registers new patient with bp from api
