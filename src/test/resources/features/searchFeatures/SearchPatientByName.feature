@@ -8,7 +8,7 @@ Feature: Search for Patient information by name
     And User on Patient tab taps on search text box
     Then User on search page searched for Registered Patient without BP info
 
-  @search @smoke @all
+  @search @smoke1 @all
   Scenario: Search for patient with BP info
     Given User registers new user from api
     And User registers new patient with bp from api

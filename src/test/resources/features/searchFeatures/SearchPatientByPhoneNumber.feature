@@ -1,6 +1,6 @@
 Feature: Search for Patient information by phone number
 
-  @search @smoke  @all
+  @search @smoke1  @all
   Scenario: search by phone number
     Given User registers new user from api
     And User registers new patient with bp from api

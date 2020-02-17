@@ -1,6 +1,6 @@
 Feature: Remove bp functionality testing
 
-  @bp @smoke @all
+  @bp @smoke1 @all
   Scenario: Remove BP info for already registered patient who has only one bp recorded
     Given User registers new user from api
     And User registers new patient with bp from api

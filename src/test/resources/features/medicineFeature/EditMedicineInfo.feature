@@ -8,7 +8,7 @@ Feature: Update medicine info functionality testing
     Then User on Search page searched for Registered Patient
     And User on Search page selects patient form search list
 
-   @medicine @smoke @all
+   @medicine @smoke1 @all
   Scenario: Update customized Medicine to already registered patient
     Then User on Patient summary page taps on Add new medicine button
     Then User on Patient summary page taps on Add another medicine button

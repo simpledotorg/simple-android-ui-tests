@@ -1,6 +1,6 @@
 Feature: Search for Patient information by shortcode
 
-  @search @smoke @all
+  @search @smoke1 @all
   Scenario: search for a registered patient by shortcode
     Given User registers new user from api
     And User registers new patient with bp passport from api

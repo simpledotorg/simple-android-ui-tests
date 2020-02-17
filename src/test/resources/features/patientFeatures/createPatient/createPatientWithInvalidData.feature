@@ -5,7 +5,7 @@ Feature: Create Patient with invalid test data
     And User LogsIn in app
     And User on Patient tab taps on search text box
 
-  @createPatient @smoke  @all
+  @createPatient @smoke1  @all
   Scenario: User validate error message for invalid Data
     And User on search page searches for new Patient name
     And User on search page taps on registered patient button

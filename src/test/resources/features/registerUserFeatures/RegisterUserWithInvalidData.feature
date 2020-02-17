@@ -1,6 +1,6 @@
 Feature: Register Nurse/User with invalid data
 
-  @register  @smoke  @all
+  @register  @smoke1  @all
   Scenario Outline: Register New Nurse/User with invalid phone number
     And User taps on GetStarted button
     And User selects country

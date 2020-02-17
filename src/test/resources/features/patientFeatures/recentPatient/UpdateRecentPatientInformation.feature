@@ -1,7 +1,7 @@
 Feature: Select patient from recent patient list,update it's primary information or schedule an appointment
   verify display order in recent patient list.
 
-  @recentPatient @smoke @all
+  @recentPatient @smoke1 @all
   Scenario Outline: Add new Bp for patient whose name is listed in recent patient section
     Given User registers new user from api
     And User registers multiple patient <count> from api
